@@ -1,0 +1,30 @@
+# Create .gitignore with proper exclusions
+cat > .gitignore << EOF
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Research data
+data/generated_documents/
+experiments/*/session_logs/
+EOF
