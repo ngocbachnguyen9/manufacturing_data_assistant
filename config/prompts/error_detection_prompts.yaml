@@ -3,7 +3,7 @@ error_detection:
   q1_space_detection: |
     BARCODE SPACE ERROR DETECTION (Q1 Condition)
     
-    You are analyzing manufacturing data that may contain barcode scanning errors where random spaces have been injected into ID fields.
+    You are analyzing manufacturing data that may contain barcode scanning errors where random whitespaces have been injected into ID fields.
     
     DETECTION CRITERIA:
     • Look for unexpected spaces in barcode patterns
