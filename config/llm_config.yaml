@@ -1,0 +1,86 @@
+# LLM Provider Configuration - Performance Optimized Selection
+llm_providers:
+  openai:
+    api_key_env: "OPENAI_API_KEY"
+    base_url: "https://api.openai.com/v1"
+    models:
+      gpt-4o:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 67
+        cost_per_1m_tokens: 1.9
+        tokens_per_second: 119
+        recommended: true
+      gpt-4-turbo:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 65
+        cost_per_1m_tokens: 3.5
+        tokens_per_second: 119
+    
+  anthropic:
+    api_key_env: "ANTHROPIC_API_KEY"
+    base_url: "https://api.anthropic.com"
+    models:
+      claude-3-5-sonnet:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 62
+        cost_per_1m_tokens: 2.6
+        tokens_per_second: 89
+        recommended: true
+      claude-3-opus:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 68
+        cost_per_1m_tokens: 6.0
+        tokens_per_second: 24
+
+  deepseek:
+    api_key_env: "DEEPSEEK_API_KEY"
+    base_url: "https://api.deepseek.com/v1"
+    models:
+      deepseek-r1:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 68
+        cost_per_1m_tokens: 2.4
+        tokens_per_second: 168
+        recommended: true
+        primary_choice: true
+      deepseek-v3:
+        max_tokens: 4096
+        temperature: 0.1
+        intelligence_score: 68
+        cost_per_1m_tokens: 0.5
+        tokens_per_second: 168
+
+# Model Selection Strategy
+model_selection:
+  primary_models: ["deepseek-r1", "o4-mini-2025-04-16", "claude-sonnet-4-20250514"]
+  selection_criteria: "intelligence_price_ratio"
+  fallback_order: ["deepseek-r1", "gpt-4o", "claude-3-5-sonnet"]
+  
+# Performance Thresholds
+performance_thresholds:
+  max_cost_per_task: 0.50  # USD
+  max_response_time: 120   # seconds
+  min_intelligence_score: 60
+  
+# Rate Limiting
+rate_limits:
+  openai:
+    requests_per_minute: 500
+    tokens_per_minute: 200000
+  anthropic:
+    requests_per_minute: 400
+    tokens_per_minute: 100000
+  deepseek:
+    requests_per_minute: 600
+    tokens_per_minute: 300000
+
+# Retry Configuration
+retry_config:
+  max_retries: 3
+  backoff_factor: 2
+  timeout_seconds: 60

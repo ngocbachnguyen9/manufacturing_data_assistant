@@ -1,0 +1,140 @@
+# Experimental Design Configuration
+experiment:
+  name: "Manufacturing_Data_Assistant_Study"
+  version: "1.0"
+  random_seed: 42
+  
+# Human Study Configuration
+human_study:
+  participants: 9
+  tasks_per_participant: 10
+  
+  # Pattern-Pair Counterbalancing (3×3 Design)
+  quality_patterns:
+    PQ1: {Q0: 5, Q1: 2, Q2: 2, Q3: 1}
+    PQ2: {Q0: 5, Q1: 2, Q2: 1, Q3: 2}
+    PQ3: {Q0: 5, Q1: 1, Q2: 2, Q3: 2}
+    
+  prompt_patterns:
+    PC1: {E: 4, M: 3, H: 3}
+    PC2: {E: 3, M: 4, H: 3}
+    PC3: {E: 3, M: 3, H: 4}
+    
+  # Participant Assignment Matrix (PQ × PC)
+  participant_matrix:
+    P1: {quality_pattern: "PQ1", prompt_pattern: "PC1"}
+    P2: {quality_pattern: "PQ1", prompt_pattern: "PC2"}
+    P3: {quality_pattern: "PQ1", prompt_pattern: "PC3"}
+    P4: {quality_pattern: "PQ2", prompt_pattern: "PC1"}
+    P5: {quality_pattern: "PQ2", prompt_pattern: "PC2"}
+    P6: {quality_pattern: "PQ2", prompt_pattern: "PC3"}
+    P7: {quality_pattern: "PQ3", prompt_pattern: "PC1"}
+    P8: {quality_pattern: "PQ3", prompt_pattern: "PC2"}
+    P9: {quality_pattern: "PQ3", prompt_pattern: "PC3"}
+    
+  # Global Target Counts (Validation)
+  target_counts:
+    total_tasks: 90
+    by_complexity: {E: 30, M: 30, H: 30}
+    by_quality: {Q0: 45, Q1: 15, Q2: 15, Q3: 15}
+    
+  # Data Collection Protocol
+  data_collection:
+    method: "manual_researcher_recording"
+    response_format: "structured_forms"
+    timing_precision: "seconds"
+    
+  # Success Criteria
+  success_criteria:
+    scoring_method: "binary"  # correct/incorrect only
+    error_detection_required: true  # for Q1/Q2/Q3
+    partial_credit: false
+
+# LLM Evaluation Configuration
+llm_evaluation:
+  models_to_test: ["deepseek-r1", "gpt-4o", "claude-3-5-sonnet"]
+  tasks_per_model: 90  # Same as human study
+  task_distribution: "identical_to_human_study"
+  
+  # Performance Metrics
+  metrics:
+    primary: ["accuracy", "completion_time", "api_cost"]
+    secondary: ["error_detection", "confidence_score", "token_usage"]
+    manufacturing_specific: ["data_traversal_correctness", "cross_system_validation"]
+
+# Data Quality Configuration
+data_quality:
+  conditions:
+    Q0:
+      name: "baseline"
+      corruption_rate: 0.0
+      description: "Perfect data with full traceability"
+      
+    Q1:
+      name: "spaces"
+      corruption_rate: 0.15
+      target_fields: ["barcode_ids", "worker_rfid", "order_numbers"]
+      error_type: "random_space_injection"
+      spaces_per_corruption: [1, 2, 3]
+      
+    Q2:
+      name: "char_missing"
+      corruption_rate: 0.12
+      target_fields: ["gear_ids", "order_ids"]
+      error_type: "random_character_removal"
+      characters_per_corruption: 1
+      
+    Q3:
+      name: "missing_records"
+      corruption_rate: 0.07
+      target_systems: ["relationship_data", "location_data"]
+      removal_strategy: "strategic_intermediate_links"
+      maintain_solvability: true
+
+# Task Complexity Definitions
+task_complexity:
+  easy:
+    name: "Direct Traversal"
+    description: "Find gears for given order using packing list"
+    data_sources: ["relationship_data", "location_data"]
+    max_steps: 2
+    expected_time_human: 180  # 3 minutes
+    expected_time_llm: 30     # 30 seconds
+    
+  medium:
+    name: "Cross-System Validation"
+    description: "Determine printer for part and count parts printed"
+    data_sources: ["relationship_data", "machine_log", "location_data"]
+    max_steps: 4
+    expected_time_human: 420  # 7 minutes
+    expected_time_llm: 60     # 1 minute
+    
+  hard:
+    name: "Document Cross-Reference"
+    description: "Verify ARC document dates vs warehouse arrival"
+    data_sources: ["documents", "location_data", "relationship_data"]
+    max_steps: 6
+    expected_time_human: 900  # 15 minutes
+    expected_time_llm: 120    # 2 minutes
+
+# Ground Truth Configuration
+ground_truth:
+  generation_method: "baseline_data_traversal"
+  validation_required: true
+  answer_formats:
+    easy: "list_of_gear_ids"
+    medium: "printer_id_and_count"
+    hard: "date_match_boolean_with_discrepancy_details"
+    
+# Cost Analysis
+cost_analysis:
+  human_analyst_wage: 25.0  # USD per hour
+  target_cost_per_task: 0.50  # USD maximum for LLM
+  roi_calculation: true
+  
+# Output Configuration
+output:
+  results_directory: "experiments/results"
+  logging_level: "INFO"
+  save_intermediate_results: true
+  generate_visualizations: true

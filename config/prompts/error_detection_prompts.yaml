@@ -1,0 +1,170 @@
+# Error Detection and Data Quality Assessment Prompts
+error_detection:
+  q1_space_detection: |
+    BARCODE SPACE ERROR DETECTION (Q1 Condition)
+    
+    You are analyzing manufacturing data that may contain barcode scanning errors where random spaces have been injected into ID fields.
+    
+    DETECTION CRITERIA:
+    • Look for unexpected spaces in barcode patterns
+    • Worker RFID: Should be 10 consecutive digits (e.g., "1677565722")
+    • Printer IDs: Should be "Printer_" + number (e.g., "Printer_1")  
+    • Gear IDs: Should be "3DOR" + 5-6 digits (e.g., "3DOR10001")
+    • Order IDs: Should be "ORBOX" + digits (e.g., "ORBOX0011")
+    • Material IDs: Should be letters + digits (e.g., "ABSM0002")
+    
+    ANALYSIS APPROACH:
+    1. Scan all ID fields for unexpected spacing patterns
+    2. Attempt to reconstruct correct IDs by removing spaces
+    3. Validate reconstructed IDs against known patterns
+    4. Report confidence in space-corrected matches
+    
+    When spaces are detected:
+    - Flag the specific fields affected
+    - Provide both original and corrected versions
+    - Assess impact on data traversal success
+    - Recommend data cleaning procedures
+
+  q2_character_missing_detection: |
+    CHARACTER MISSING ERROR DETECTION (Q2 Condition)
+    
+    You are analyzing manufacturing data where characters may be randomly missing from gear and order barcodes.
+    
+    DETECTION CRITERIA:
+    • Gear IDs missing characters: "3DOR1001" instead of "3DOR10001"
+    • Order IDs missing characters: "ORBOX011" instead of "ORBOX0011"  
+    • Pattern recognition for incomplete barcodes
+    • Length validation against expected formats
+    
+    ANALYSIS APPROACH:
+    1. Check ID field lengths against expected patterns
+    2. Use fuzzy matching to find closest valid IDs
+    3. Cross-reference with relationship data to validate corrections
+    4. Assess probability of character reconstruction
+    
+    When missing characters are detected:
+    - Identify the affected barcode fields
+    - Provide best-guess reconstructions with confidence scores
+    - Flag cases where reconstruction is uncertain
+    - Report impact on manufacturing traceability
+
+  q3_missing_records_detection: |
+    MISSING RECORDS ERROR DETECTION (Q3 Condition)
+    
+    You are analyzing manufacturing data where relationship links and location records may be missing due to system downtime or data corruption.
+    
+    DETECTION CRITERIA:
+    • Broken relationship chains between workers, printers, gears, and orders
+    • Missing location scan records for expected process stations
+    • Incomplete parent-child linkages in relationship data
+    • Temporal gaps in manufacturing process flow
+    
+    ANALYSIS APPROACH:
+    1. Map expected vs. actual relationship connections
+    2. Identify missing process station scans
+    3. Look for isolated records without proper linkages
+    4. Use alternative data sources to bridge gaps
+    5. Assess completeness of manufacturing traceability
+    
+    When missing records are detected:
+    - Specify which relationship types are incomplete
+    - Identify missing process steps or locations
+    - Attempt alternative path discovery
+    - Assess impact on manufacturing compliance
+
+# Data Quality Classification
+quality_classification:
+  severity_levels:
+    low: |
+      LOW SEVERITY DATA QUALITY ISSUES
+      - Minimal impact on task completion
+      - Alternative data sources available
+      - High confidence in corrected results
+      - Recommend routine data cleaning
+      
+    medium: |
+      MEDIUM SEVERITY DATA QUALITY ISSUES  
+      - Moderate impact on analysis accuracy
+      - Some alternative paths available
+      - Medium confidence in results
+      - Recommend prioritized data quality improvement
+      
+    high: |
+      HIGH SEVERITY DATA QUALITY ISSUES
+      - Significant impact on manufacturing traceability
+      - Limited alternative data sources
+      - Low confidence in results  
+      - Immediate data quality investigation required
+      
+    critical: |
+      CRITICAL SEVERITY DATA QUALITY ISSUES
+      - Manufacturing compliance at risk
+      - Task completion severely impacted
+      - Results unreliable for operational decisions
+      - Emergency data quality remediation needed
+
+# Error Recovery Strategies
+recovery_strategies:
+  fuzzy_matching: |
+    FUZZY MATCHING RECOVERY STRATEGY
+    
+    When exact barcode matches fail:
+    1. Apply Levenshtein distance matching (threshold: 0.8)
+    2. Use soundex algorithm for phonetic matching
+    3. Pattern-based reconstruction for known ID formats
+    4. Cross-validate fuzzy matches with relationship data
+    5. Report confidence scores for all fuzzy matches
+
+  alternative_path_discovery: |
+    ALTERNATIVE PATH DISCOVERY STRATEGY
+    
+    When primary relationship paths are broken:
+    1. Search for indirect connections through intermediate entities
+    2. Use temporal correlation to bridge missing links
+    3. Leverage redundant data sources (location + worker + machine logs)
+    4. Employ historical data patterns for gap filling
+    5. Validate alternative paths with multiple evidence sources
+
+  partial_result_compilation: |
+    PARTIAL RESULT COMPILATION STRATEGY
+    
+    When complete analysis is impossible:
+    1. Compile all reliable partial findings
+    2. Clearly document data quality limitations
+    3. Provide confidence intervals for uncertain results
+    4. Prioritize manufacturing-critical information
+    5. Recommend follow-up investigation procedures
+
+# Confidence Assessment Framework
+confidence_framework:
+  confidence_calculation: |
+    CONFIDENCE LEVEL ASSESSMENT
+    
+    Calculate confidence based on:
+    • Data source reliability (primary vs. alternative sources)
+    • Cross-validation success rate
+    • Error correction confidence
+    • Manufacturing process consistency
+    • Temporal validation results
+    
+    Confidence Levels:
+    - HIGH (90-100%): Multiple data sources confirm, no quality issues
+    - MEDIUM (70-89%): Some data quality issues, but cross-validated
+    - LOW (50-69%): Significant quality issues, limited validation
+    - UNRELIABLE (<50%): Major data corruption, results questionable
+
+  manufacturing_impact_assessment: |
+    MANUFACTURING IMPACT ASSESSMENT
+    
+    Evaluate data quality impact on:
+    • Production traceability requirements
+    • Quality control procedures  
+    • Regulatory compliance (FAA certification)
+    • Operational decision-making
+    • Supply chain management
+    
+    Impact Levels:
+    - MINIMAL: Normal operations can continue
+    - MODERATE: Enhanced monitoring recommended
+    - SIGNIFICANT: Process review required
+    - CRITICAL: Operations halt until data quality restored

@@ -1,0 +1,105 @@
+# Agent System Configuration
+master_agent:
+  name: "ManufacturingDataMaster"
+  role: "Manufacturing Data Analysis Orchestrator"
+  max_planning_steps: 5
+  max_execution_attempts: 3
+  confidence_threshold: 0.7
+  
+  # Error Handling Strategy
+  error_handling:
+    tier_1: "standard_execution"
+    tier_2: "alternative_reasoning"
+    tier_3: "data_quality_flagging"
+    max_alternative_attempts: 2
+    
+  # Planning Strategy
+  planning:
+    decomposition_method: "task_complexity_based"
+    tool_selection_strategy: "manufacturing_priority"
+    fallback_enabled: true
+
+specialist_agents:
+  data_retrieval_agent:
+    name: "DataRetrievalSpecialist"
+    role: "Multi-source Manufacturing Data Query"
+    tools: ["location_query", "machine_log", "relationship", "worker_data"]
+    fuzzy_search_enabled: true
+    search_threshold: 0.8
+    
+  reconciliation_agent:
+    name: "DataReconciliationSpecialist"
+    role: "Cross-system Validation and Consistency"
+    tools: ["relationship", "barcode_validator", "document_parser"]
+    missing_data_handling: true
+    alternative_path_discovery: true
+    
+  synthesis_agent:
+    name: "ReportSynthesisSpecialist"
+    role: "Manufacturing Report Generation"
+    output_format: "structured_manufacturing_report"
+    include_confidence: true
+    include_data_quality_assessment: true
+
+# Tool Configuration
+tools:
+  location_query_tool:
+    fuzzy_matching: true
+    search_algorithms: ["exact", "levenshtein", "soundex"]
+    max_location_results: 50
+    
+  machine_log_tool:
+    time_range_extension: true
+    printer_correlation: true
+    duration_validation: true
+    
+  relationship_tool:
+    bidirectional_search: true
+    max_depth: 5
+    alternative_path_limit: 3
+    
+  worker_data_tool:
+    activity_correlation: true
+    rfid_validation: true
+    temporal_matching: true
+    
+  document_parser_tool:
+    supported_formats: ["pdf"]
+    certificate_types: ["faa_8130_3"]
+    date_extraction: true
+    
+  barcode_validator_tool:
+    format_patterns:
+      worker_rfid: "***REMOVED******REMOVED***d{10}"
+      printer: "Printer_***REMOVED******REMOVED***d+"
+      gear: "3DOR***REMOVED******REMOVED***d{5,6}"
+      order: "OR[A-Z0-9]+"
+      material: "[A-Z]{3,4}***REMOVED******REMOVED***d{4}"
+
+# Workflow Logic
+workflow:
+  standard_flow:
+    - "query_decomposition"
+    - "tool_selection"
+    - "parallel_execution"
+    - "result_validation"
+    - "synthesis"
+    
+  alternative_flow:
+    - "alternative_tool_selection"
+    - "sequential_execution"
+    - "partial_result_compilation"
+    - "confidence_assessment"
+    
+  failure_handling:
+    - "error_classification"
+    - "data_quality_assessment"
+    - "partial_report_generation"
+
+# Performance Monitoring
+monitoring:
+  track_token_usage: true
+  track_execution_time: true
+  track_tool_success_rates: true
+  track_confidence_scores: true
+  log_alternative_attempts: true
