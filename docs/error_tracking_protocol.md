@@ -312,3 +312,4 @@ class ErrorAnalyzer:
             }
         
         return impact_analysis
+
