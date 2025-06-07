@@ -1,27 +1,20 @@
 import pandas as pd
-import numpy as np
 import os
 import random
 import json
-from typing import Tuple, Dict
+from typing import Tuple, Dict, List, Set
 from src.data_generation.error_tracker import ErrorTracker
 
 
 class DataQualityController:
     """
-    Applies systematic data corruption to a baseline dataset to generate
-    Q1, Q2, and Q3 quality conditions.
+    Applies order-level data corruption to generate Q1, Q2, and Q3 quality conditions.
     """
 
     def __init__(self, baseline_path: str = "data/experimental_datasets/Q0_baseline"):
         self.baseline_path = baseline_path
         self.datasets = self._load_baseline()
-        self.id_fields = {
-            "location_data": ["_value"],
-            "worker_data": ["_value"],
-            "relationship_data": ["child", "parent"],
-        }
-
+        
     def _load_baseline(self) -> Dict[str, pd.DataFrame]:
         """Loads the Q0 baseline dataset."""
         datasets = {}
@@ -35,147 +28,235 @@ class DataQualityController:
                 )
         return datasets
 
-    def apply_corruption(
-        self, quality_condition: str
-    ) -> Tuple[Dict[str, pd.DataFrame], ErrorTracker]:
+    def _get_all_orders(self) -> List[str]:
+        """Extract all unique orders from relationship data."""
+        rel_df = self.datasets.get("relationship_data")
+        if rel_df is None or rel_df.empty:
+            return []
+        
+        # Find all ORBOX entries in parent column
+        orders = rel_df[rel_df["parent"].str.startswith("ORBOX", na=False)]["parent"].unique()
+        return sorted(list(orders))
+
+    def _get_order_related_entities(self, order_id: str) -> Dict[str, Set[str]]:
         """
-        Applies a specific quality corruption to the loaded baseline data.
+        For a given order, find all related entities across all tables.
+        Returns dict with entity types as keys and sets of IDs as values.
         """
+        rel_df = self.datasets.get("relationship_data")
+        if rel_df is None or rel_df.empty:
+            return {}
+        
+        entities = {
+            "orders": {order_id},
+            "gears": set(),
+            "print_jobs": set(),
+            "printers": set()
+        }
+        
+        # Find gears for this order
+        order_gears = rel_df[rel_df["parent"] == order_id]["child"].tolist()
+        entities["gears"].update(order_gears)
+        
+        # Find print jobs and printers for these gears
+        for gear in order_gears:
+            # Find what produced this gear (print jobs)
+            gear_parents = rel_df[rel_df["child"] == gear]["parent"].tolist()
+            for parent in gear_parents:
+                if parent.startswith("Printer_"):
+                    entities["printers"].add(parent)
+                elif parent.isdigit() or parent not in entities["orders"]:
+                    # Numeric print job IDs or other production entities
+                    entities["print_jobs"].add(parent)
+        
+        return entities
+
+    def _find_and_corrupt_related_records(self, corruption_map: Dict[str, str], 
+                                        tracker: ErrorTracker, 
+                                        quality_condition: str) -> None:
+        """Apply corruption to all records using a pre-defined corruption map."""
+        
+        # Corrupt records in each table
+        for table_name, df in self.datasets.items():
+            if df.empty:
+                continue
+                
+            id_columns = []
+            if table_name == "relationship_data":
+                id_columns = ["child", "parent"]
+            elif table_name in ["location_data", "worker_data"]:
+                id_columns = ["_value"]
+            
+            for col in id_columns:
+                if col not in df.columns:
+                    continue
+                    
+                # Find rows where this column contains an ID from our map
+                mask = df[col].isin(corruption_map.keys())
+                indices_to_corrupt = df[mask].index.tolist()
+                
+                for idx in indices_to_corrupt:
+                    original_val = str(df.at[idx, col])
+                    if original_val in corruption_map:
+                        corrupted_val = corruption_map[original_val] # Use the map
+                        df.at[idx, col] = corrupted_val
+                        
+                        # Log the corruption
+                        if quality_condition == "Q1":
+                            tracker.log_q1_space_injection(idx, f"{table_name}.{col}", 
+                                                         original_val, corrupted_val)
+                        elif quality_condition == "Q2":
+                            removed_char, position = self._find_removed_char(original_val, corrupted_val)
+                            tracker.log_q2_char_missing(idx, f"{table_name}.{col}", 
+                                                       original_val, corrupted_val,
+                                                       removed_char, position)
+
+    def _find_removed_char(self, original: str, corrupted: str) -> Tuple[str, int]:
+        """Find which character was removed and its position."""
+        if len(original) <= len(corrupted):
+            return "", -1
+            
+        for i in range(len(original)):
+            if i >= len(corrupted) or original[i] != corrupted[i]:
+                return original[i], i
+        return original[-1], len(original) - 1
+
+    def apply_corruption(self, quality_condition: str) -> Tuple[Dict[str, pd.DataFrame], ErrorTracker]:
+        """Apply order-level corruption for the specified quality condition."""
         corrupted_data = {k: v.copy() for k, v in self.datasets.items()}
         error_tracker = ErrorTracker()
+        
+        # Temporarily replace datasets with corrupted copies for processing
+        original_datasets = self.datasets
+        self.datasets = corrupted_data
 
-        print(f"***REMOVED***n--- Applying {quality_condition} Corruption ---")
-
+        print(f"***REMOVED***n--- Applying {quality_condition} Corruption (Order-Level) ---")
+        
         if quality_condition == "Q1":
-            self._apply_q1_spaces(corrupted_data, error_tracker)
+            self._apply_q1_order_level(error_tracker)
         elif quality_condition == "Q2":
-            self._apply_q2_char_missing(corrupted_data, error_tracker)
+            self._apply_q2_order_level(error_tracker)
         elif quality_condition == "Q3":
-            self._apply_q3_missing_records(corrupted_data, error_tracker)
+            self._apply_q3_gear_order_deletion(error_tracker)
         else:
             print(f"Warning: Unknown quality condition '{quality_condition}'")
 
+        # Restore original datasets reference
+        self.datasets = original_datasets
+        
         return corrupted_data, error_tracker
 
-    def _apply_q1_spaces(self, data: Dict, tracker: ErrorTracker):
-        """Q1: Injects space errors into 15% of barcode/ID fields."""
-        corruption_rate = 0.15
-        for df_name, id_cols in self.id_fields.items():
-            df = data[df_name]
-            for col in id_cols:
-                if col not in df.columns:
-                    continue
-                # Select 15% of rows to corrupt
-                indices_to_corrupt = df.sample(frac=corruption_rate).index
-                for idx in indices_to_corrupt:
-                    original_val = str(df.at[idx, col])
-                    if not original_val:
-                        continue
-
-                    # Insert 1-3 spaces at start, end, or both
+    def _apply_q1_order_level(self, tracker: ErrorTracker):
+        """Q1: Apply space injection to 15% of orders and all their related records."""
+        orders = self._get_all_orders()
+        if not orders:
+            print("No orders found for Q1 corruption")
+            return
+            
+        num_orders_to_corrupt = max(1, int(len(orders) * 0.15))
+        selected_orders = random.sample(orders, num_orders_to_corrupt)
+        
+        print(f"Q1: Corrupting {num_orders_to_corrupt}/{len(orders)} orders: {selected_orders}")
+        
+        corruption_map = {}
+        for order_id in selected_orders:
+            entities = self._get_order_related_entities(order_id)
+            all_entity_ids = set().union(*entities.values())
+            
+            for entity_id in all_entity_ids:
+                if entity_id not in corruption_map:
                     num_spaces = random.randint(1, 3)
                     spaces = " " * num_spaces
                     pos = random.choice(["start", "end", "both"])
                     if pos == "start":
-                        corrupted_val = spaces + original_val
+                        corruption_map[entity_id] = spaces + entity_id
                     elif pos == "end":
-                        corrupted_val = original_val + spaces
+                        corruption_map[entity_id] = entity_id + spaces
                     else:
-                        corrupted_val = spaces + original_val + spaces
+                        corruption_map[entity_id] = spaces + entity_id + spaces
+        
+        self._find_and_corrupt_related_records(corruption_map, tracker, "Q1")
 
-                    df.at[idx, col] = corrupted_val
-                    tracker.log_q1_space_injection(
-                        idx, col, original_val, corrupted_val
-                    )
+    def _apply_q2_order_level(self, tracker: ErrorTracker):
+        """Q2: Apply character deletion to 12% of orders and all their related records."""
+        orders = self._get_all_orders()
+        if not orders:
+            print("No orders found for Q2 corruption")
+            return
+            
+        num_orders_to_corrupt = max(1, int(len(orders) * 0.12))
+        selected_orders = random.sample(orders, num_orders_to_corrupt)
+        
+        print(f"Q2: Corrupting {num_orders_to_corrupt}/{len(orders)} orders: {selected_orders}")
+        
+        corruption_map = {}
+        for order_id in selected_orders:
+            entities = self._get_order_related_entities(order_id)
+            all_entity_ids = set().union(*entities.values())
+            
+            for entity_id in all_entity_ids:
+                if entity_id not in corruption_map:
+                    if len(entity_id) < 2:
+                        corruption_map[entity_id] = entity_id
+                    else:
+                        pos_to_remove = random.randint(1, len(entity_id) - 1)
+                        corruption_map[entity_id] = entity_id[:pos_to_remove] + entity_id[pos_to_remove + 1:]
 
-    def _apply_q2_char_missing(self, data: Dict, tracker: ErrorTracker):
-        """Q2: Removes a single character from 12% of Gear/Order IDs."""
-        corruption_rate = 0.12
-        targets = ["3DOR", "ORBOX"]
-        for df_name, id_cols in self.id_fields.items():
-            df = data[df_name]
-            for col in id_cols:
-                if col not in df.columns:
-                    continue
-                # Filter for rows containing target IDs
-                target_rows = df[
-                    df[col].str.startswith(tuple(targets), na=False)
-                ]
-                indices_to_corrupt = target_rows.sample(
-                    frac=corruption_rate
-                ).index
+        self._find_and_corrupt_related_records(corruption_map, tracker, "Q2")
 
-                for idx in indices_to_corrupt:
-                    original_val = str(df.at[idx, col])
-                    if len(original_val) < 2:
-                        continue
-
-                    # Avoid removing leading chars to maintain some format
-                    pos_to_remove = random.randint(1, len(original_val) - 1)
-                    removed_char = original_val[pos_to_remove]
-                    corrupted_val = (
-                        original_val[:pos_to_remove]
-                        + original_val[pos_to_remove + 1 :]
-                    )
-
-                    df.at[idx, col] = corrupted_val
-                    tracker.log_q2_char_missing(
-                        idx,
-                        col,
-                        original_val,
-                        corrupted_val,
-                        removed_char,
-                        pos_to_remove,
-                    )
-
-    def _apply_q3_missing_records(self, data: Dict, tracker: ErrorTracker):
-        """Q3: Strategically deletes 5-8% of records."""
-        # For this example, we'll focus on relationship_data
-        df_name = "relationship_data"
-        corruption_rate = random.uniform(0.05, 0.08)
-        df = data[df_name]
-
-        if df.empty:
+    def _apply_q3_gear_order_deletion(self, tracker: ErrorTracker):
+        """Q3: Delete 5-8% of gear→order relationships."""
+        rel_df = self.datasets.get("relationship_data")
+        if rel_df is None or rel_df.empty:
+            print("No relationship data found for Q3 corruption")
             return
 
-        # Priority: Intermediate links (gear-to-order)
-        target_rows = df[
-            df["parent"].str.startswith("ORBOX", na=False)
-            & df["child"].str.startswith("3DOR", na=False)
-        ]
-        indices_to_remove = target_rows.sample(frac=corruption_rate).index
+        # Find all gear→order relationships
+        gear_order_mask = (
+            rel_df["child"].str.startswith("3DOR", na=False) &
+            rel_df["parent"].str.startswith("ORBOX", na=False)
+        )
+        gear_order_relationships = rel_df[gear_order_mask]
+        
+        if gear_order_relationships.empty:
+            print("No gear→order relationships found for Q3 corruption")
+            return
 
-        for idx in indices_to_remove:
-            removed_record = df.loc[idx].to_dict()
+        # Select 5-8% of these relationships to delete
+        deletion_rate = random.uniform(0.05, 0.08)
+        num_to_delete = max(1, int(len(gear_order_relationships) * deletion_rate))
+        
+        indices_to_delete = gear_order_relationships.sample(n=num_to_delete).index.tolist()
+        
+        print(f"Q3: Deleting {num_to_delete}/{len(gear_order_relationships)} gear→order relationships ({deletion_rate:.1%})")
+        
+        for idx in indices_to_delete:
+            removed_record = rel_df.loc[idx].to_dict()
+            gear_id = removed_record["child"]
+            order_id = removed_record["parent"]
+            
             tracker.log_q3_missing_record(
                 idx,
                 json.dumps(removed_record),
-                "gear_to_order",
-                "MEDIUM",
+                f"gear_to_order: {gear_id} → {order_id}",
+                "HIGH"  # High impact as it breaks ARC traceability
             )
 
-        # Drop the selected rows from the dataframe
-        data[df_name] = df.drop(indices_to_remove).reset_index(drop=True)
+        # Remove the selected relationships
+        self.datasets["relationship_data"] = rel_df.drop(indices_to_delete).reset_index(drop=True)
 
-    def save_corrupted_data(
-        self,
-        corrupted_data: Dict[str, pd.DataFrame],
-        error_tracker: ErrorTracker,
-        quality_condition: str,
-    ):
-        """Saves the corrupted data and its corresponding error log."""
+    def save_corrupted_data(self, corrupted_data: Dict[str, pd.DataFrame], 
+                          error_tracker: ErrorTracker, quality_condition: str):
+        """Save the corrupted data and error logs."""
         output_dir = f"data/experimental_datasets/{quality_condition}_dataset"
         os.makedirs(output_dir, exist_ok=True)
 
         for name, df in corrupted_data.items():
             # Save corrupted data file
-            corrupted_path = os.path.join(
-                output_dir, f"{name}_{quality_condition}.csv"
-            )
+            corrupted_path = os.path.join(output_dir, f"{name}_{quality_condition}.csv")
             df.to_csv(corrupted_path, index=False)
+            print(f"Saved corrupted data: {corrupted_path}")
 
-            # Save corresponding error log
-            log_path = os.path.join(
-                output_dir, f"{name}_{quality_condition}_errors.csv"
-            )
-            error_tracker.save_log(log_path, quality_condition)
+        # Save error log
+        log_path = os.path.join(output_dir, f"all_tables_{quality_condition}_errors.csv")
+        error_tracker.save_log(log_path, quality_condition)
