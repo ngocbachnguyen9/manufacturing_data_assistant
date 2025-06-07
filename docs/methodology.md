@@ -78,11 +78,7 @@ Job End Buffer → Parts Warehouse → Order Packing → Goods Out
 
 Based on intelligence/price/speed analysis:
 
-| Model | Intelligence | Cost/1M Tokens | Speed (tok/sec) | Selection |
-|-------|-------------|----------------|-----------------|-----------|
-| DeepSeek-R1 | 68 | $2.4 | 168 | Primary |
-| GPT-4o | 67 | $1.9 | 119 | Secondary |
-| Claude-3.5-Sonnet | 62 | $2.6 | 89 | Tertiary |
+ChatGPT -> Claude -> DeepSeek
 
 ### 2.2 Multi-Agent Architecture
 
@@ -223,5 +219,3 @@ PQ3    P7     P8     P9
 - **Task Generalizability**: Three complexity levels covering operational range
 - **Data Quality**: Controlled corruption types representing real manufacturing issues
 - **Model Selection**: Performance-based selection considering cost and capability
-
-This methodology provides a rigorous, industry-relevant evaluation framework for LLM deployment in manufacturing environments while maintaining experimental control and statistical validity.
