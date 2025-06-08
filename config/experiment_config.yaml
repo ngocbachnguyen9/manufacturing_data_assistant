@@ -52,7 +52,7 @@ human_study:
 
 # LLM Evaluation Configuration
 llm_evaluation:
-  models_to_test: ["deepseek-r1", "gpt-4o", "claude-3-5-sonnet"]
+  models_to_test: ["deepseek-reasoner", "o4-mini-2025-04-16", "claude-sonnet-4-20250514"]
   tasks_per_model: 90  # Same as human study
   task_distribution: "identical_to_human_study"
   

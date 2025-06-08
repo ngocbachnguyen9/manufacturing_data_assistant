@@ -57,9 +57,9 @@ llm_providers:
 
 # Model Selection Strategy
 model_selection:
-  primary_models: ["deepseek-r1", "o4-mini-2025-04-16", "claude-sonnet-4-20250514"]
+  primary_models: ["deepseek-reasoner", "o4-mini-2025-04-16", "claude-sonnet-4-20250514"]
   selection_criteria: "intelligence_price_ratio"
-  fallback_order: ["deepseek-r1", "gpt-4o", "claude-3-5-sonnet"]
+  fallback_order: ["o4-mini-2025-04-16", "claude-sonnet-4-20250514", "deepseek-reasoner"]
   
 # Performance Thresholds
 performance_thresholds:
