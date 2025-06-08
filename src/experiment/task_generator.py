@@ -82,7 +82,13 @@ class TaskGenerator:
 
             participant_tasks = []
             for i in range(len(quality_list)):
-                complexity = complexity_list[i].lower()  # E -> easy
+                # Map the single-letter code to the full complexity name
+                letter = complexity_list[i].lower()  # 'e','m','h'
+                mapping = {"e": "easy", "m": "medium", "h": "hard"}
+                if letter not in mapping:
+                    raise ValueError(f"Unknown complexity code: {complexity_list[i]}")
+                complexity = mapping[letter]
+                
                 quality = quality_list[i]
 
                 # Select a random ID and remove it to ensure variety

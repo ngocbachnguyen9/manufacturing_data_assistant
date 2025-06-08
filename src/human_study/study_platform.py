@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import json
 import time
-
+from typing import Dict, List, Any
 
 class StudyPlatform:
     """
