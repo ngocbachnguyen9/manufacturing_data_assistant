@@ -38,10 +38,10 @@ class ManufacturingValidator:
 
         # Dynamically determine pattern based on content if no key matches
         if not pattern_key:
-            if df[column].str.match(self.patterns["gear"]).any():
-                pattern_key = "gear"
-            elif df[column].str.match(self.patterns["order"]).any():
-                pattern_key = "order"
+            for key, regex in self.patterns.items():
+                if df[column].astype(str).str.match(regex).any():
+                    pattern_key = key
+                    break
 
         if pattern_key:
             return df[column].astype(str).str.match(self.patterns[pattern_key])
