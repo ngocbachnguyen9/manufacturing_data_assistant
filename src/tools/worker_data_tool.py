@@ -4,22 +4,22 @@ from .base_tool import BaseTool
 
 
 class WorkerDataTool(BaseTool):
-    """Tool for querying worker activity data with optional fuzzy matching."""
+    """Tool for querying worker activity data."""
 
+    # UPDATED: Signature now accepts **kwargs for consistency
     def run(self, worker_id: str, **kwargs) -> List[Dict]:
         """
         Finds all activity scans for a given worker ID.
 
         Args:
             worker_id: The RFID of the worker to track.
-            **kwargs: Can accept 'fuzzy_enabled' and 'threshold'.
+            **kwargs: Included for signature consistency with the agent caller.
         """
         df = self.datasets.get("worker_data")
         if df is None or df.empty:
             return [{"error": "Worker data not available."}]
 
-        # Worker IDs are numeric and less prone to fuzzy errors,
-        # but we support the option if needed.
+        # Worker IDs are numeric RFIDs; exact match is appropriate.
         result_df = df[df["_value"] == worker_id]
 
         if result_df.empty:
