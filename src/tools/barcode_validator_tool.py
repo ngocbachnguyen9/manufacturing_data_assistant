@@ -1,3 +1,4 @@
+import re
 from typing import Dict, Any
 from .base_tool import BaseTool
 from src.utils.manufacturing_validator import ManufacturingValidator
@@ -10,16 +11,15 @@ class BarcodeValidatorTool(BaseTool):
         super().__init__(datasets)
         self.validator = ManufacturingValidator()
 
-    def run(self, entity_id: str) -> Dict[str, Any]:
+    def run(self, entity_id: str, **kwargs) -> Dict[str, Any]:
         """
         Validates the format of a single entity ID.
 
         Args:
             entity_id: The ID string to validate.
-
-        Returns:
-            A dictionary with the validation result.
+            **kwargs: Included for signature consistency, but not used.
         """
+        # This tool performs validation, not search, so fuzzy logic isn't applicable.
         for pattern_name, regex in self.validator.patterns.items():
             if re.match(regex, entity_id):
                 return {

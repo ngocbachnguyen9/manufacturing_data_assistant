@@ -1,8 +1,10 @@
+import json
+from typing import Dict, Any, List, Tuple
+
 from .data_retrieval_agent import DataRetrievalAgent
 from .reconciliation_agent import ReconciliationAgent
 from .synthesis_agent import SynthesisAgent
-import json
-from typing import Tuple, List, Dict, Any
+from src.tools import TOOL_CLASSES
 
 
 class MasterAgent:
@@ -10,18 +12,27 @@ class MasterAgent:
     Orchestrates the entire query resolution process by managing specialist agents.
     """
 
-    def __init__(self, llm_provider: Any, tools: Dict[str, Any], config: Dict):
-        """
-        Initializes the MasterAgent and all its specialist agents.
-        """
+    def __init__(
+        self, llm_provider: Any, datasets: Dict[str, Any], config: Dict
+    ):
         self.llm = llm_provider
         self.config = config
         self.prompts = config.get("system_prompts", {})
 
-        # Instantiate specialist agents
-        self.retrieval_agent = DataRetrievalAgent(tools)
-        self.reconciliation_agent = ReconciliationAgent(tools)
-        self.synthesis_agent = SynthesisAgent(llm_provider, config.get("response_formats", {}))
+        self.tools = {
+            name: cls(datasets) for name, cls in TOOL_CLASSES.items()
+        }
+        print("MasterAgent initialized tools:", list(self.tools.keys()))
+
+        # UPDATED: Pass agent-specific config to DataRetrievalAgent
+        agent_configs = self.config.get("specialist_agents", {})
+        self.retrieval_agent = DataRetrievalAgent(
+            self.tools, agent_configs.get("data_retrieval_agent", {})
+        )
+        self.reconciliation_agent = ReconciliationAgent(self.tools)
+        self.synthesis_agent = SynthesisAgent(
+            llm_provider, config.get("response_formats", {})
+        )
         print("MasterAgent and specialist agents initialized.")
 
     def run_query(self, query: str) -> str:
