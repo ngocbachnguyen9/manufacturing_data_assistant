@@ -1,0 +1,147 @@
+{
+  "easy_ORBOX0014_0": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where parent='ORBOX0014'",
+      "2. Collect all child entities and find unique set: ['3DOR10001', '3DOR10003', '3DOR10004', '3DOR10005', '3DOR10008']"
+    ]
+  },
+  "easy_ORBOX00116_1": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where parent='ORBOX00116'",
+      "2. Collect all child entities and find unique set: ['3DOR100010', '3DOR10002', '3DOR10006', '3DOR10007', '3DOR10009']"
+    ]
+  },
+  "easy_ORBOX0019_2": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where parent='ORBOX0019'",
+      "2. Collect all child entities and find unique set: ['3DOR1000100', '3DOR100092', '3DOR100093', '3DOR100095', '3DOR100096']"
+    ]
+  },
+  "easy_ORBOX0013_3": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where parent='ORBOX0013'",
+      "2. Collect all child entities and find unique set: ['3DOR100011', '3DOR100014', '3DOR100017', '3DOR100018', '3DOR100019']"
+    ]
+  },
+  "easy_ORBOX0011_4": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where parent='ORBOX0011'",
+      "2. Collect all child entities and find unique set: ['3DOR100012', '3DOR100013', '3DOR100015', '3DOR100020']"
+    ]
+  },
+  "medium_3DOR10001_0": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where child='3DOR10001'",
+      "2. Find parent entity starting with 'Printer_': Printer_1"
+    ]
+  },
+  "medium_3DOR100010_1": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where child='3DOR100010'",
+      "2. Find parent entity starting with 'Printer_': Printer_10"
+    ]
+  },
+  "medium_3DOR1000100_2": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where child='3DOR1000100'",
+      "2. Find parent entity starting with 'Printer_': Printer_10"
+    ]
+  },
+  "medium_3DOR100082_3": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where child='3DOR100082'",
+      "2. Find parent entity starting with 'Printer_': Printer_2"
+    ]
+  },
+  "medium_3DOR1000103_4": {
+    "data_sources": [
+      "relationship_data"
+    ],
+    "steps": [
+      "1. Query relationship_data where child='3DOR1000103'",
+      "2. Find parent entity starting with 'Printer_': Printer_2"
+    ]
+  },
+  "hard_ORBOX0014_0": {
+    "data_sources": [
+      "relationship_data",
+      "location_data"
+    ],
+    "steps": [
+      "1. Query relationship_data for children of 'ORBOX0014': Found 10 gears.",
+      "2. Query location_data for these gears at 'Parts Warehouse': Found 5 scans.",
+      "3. Determined latest arrival timestamp: 2024-10-28"
+    ]
+  },
+  "hard_ORBOX00116_1": {
+    "data_sources": [
+      "relationship_data",
+      "location_data"
+    ],
+    "steps": [
+      "1. Query relationship_data for children of 'ORBOX00116': Found 10 gears.",
+      "2. Query location_data for these gears at 'Parts Warehouse': Found 5 scans.",
+      "3. Determined latest arrival timestamp: 2024-10-28"
+    ]
+  },
+  "hard_ORBOX0019_2": {
+    "data_sources": [
+      "relationship_data",
+      "location_data"
+    ],
+    "steps": [
+      "1. Query relationship_data for children of 'ORBOX0019': Found 10 gears.",
+      "2. Query location_data for these gears at 'Parts Warehouse': Found 5 scans.",
+      "3. Determined latest arrival timestamp: 2024-10-28"
+    ]
+  },
+  "hard_ORBOX0013_3": {
+    "data_sources": [
+      "relationship_data",
+      "location_data"
+    ],
+    "steps": [
+      "1. Query relationship_data for children of 'ORBOX0013': Found 10 gears.",
+      "2. Query location_data for these gears at 'Parts Warehouse': Found 5 scans.",
+      "3. Determined latest arrival timestamp: 2024-10-28"
+    ]
+  },
+  "hard_ORBOX0011_4": {
+    "data_sources": [
+      "relationship_data",
+      "location_data"
+    ],
+    "steps": [
+      "1. Query relationship_data for children of 'ORBOX0011': Found 10 gears.",
+      "2. Query location_data for these gears at 'Parts Warehouse': Found 4 scans.",
+      "3. Determined latest arrival timestamp: 2024-10-28"
+    ]
+  }
+}

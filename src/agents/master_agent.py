@@ -40,9 +40,7 @@ class MasterAgent:
         print("MasterAgent and specialist agents initialized.")
 
     def run_query(self, query: str) -> str:
-        """
-        Manages the end-to-end process, including re-planning on failure.
-        """
+        # ... (re-planning loop remains unchanged) ...
         attempts = 0
         error_context = ""
         final_report = "Failed to generate a satisfactory report."
@@ -62,10 +60,14 @@ class MasterAgent:
                 print(
                     "[MasterAgent] Confidence threshold met. Proceeding to synthesis."
                 )
-                final_report = self.synthesis_agent.synthesize(
-                    reconciliation, query, complexity
+                # NEW: Add a post-processing step before synthesis
+                processed_data = self._post_process_data(
+                    reconciliation, complexity
                 )
-                break  # Success, exit the loop
+                final_report = self.synthesis_agent.synthesize(
+                    processed_data, query, complexity
+                )
+                break
             else:
                 print(
                     "[MasterAgent] Confidence threshold not met. Triggering re-planning."
@@ -75,6 +77,30 @@ class MasterAgent:
 
         print("[MasterAgent] Query processing complete.")
         return final_report
+    
+    def _post_process_data(
+        self, data: Dict[str, Any], complexity: str
+    ) -> Dict[str, Any]:
+        """
+        Cleans and transforms data based on task complexity before synthesis.
+        """
+        if complexity == "easy":
+            print("  - [MasterAgent] Post-processing for 'easy' task: Deduplicating gears.")
+            # Find the output from the relationship tool
+            for key, value in data["validated_data"].items():
+                if "relationship_tool" in key and isinstance(value, list):
+                    # Extract just the 'child' IDs which are the gears
+                    gear_ids = [
+                        item["child"]
+                        for item in value
+                        if "child" in item and item["child"].startswith("3DOR")
+                    ]
+                    # Deduplicate and sort the list
+                    unique_gears = sorted(list(set(gear_ids)))
+                    # Replace the raw tool output with the clean list
+                    data["validated_data"][key] = unique_gears
+                    break  # Assume only one relationship step for easy tasks
+        return data
 
     def _decompose_task(
         self, query: str, error_context: str = ""
