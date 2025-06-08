@@ -1,6 +1,7 @@
 import json
 from typing import Dict, Any, List, Tuple
 
+
 from .data_retrieval_agent import DataRetrievalAgent
 from .reconciliation_agent import ReconciliationAgent
 from .synthesis_agent import SynthesisAgent
@@ -18,13 +19,16 @@ class MasterAgent:
         self.llm = llm_provider
         self.config = config
         self.prompts = config.get("system_prompts", {})
+        self.max_attempts = config.get("master_agent", {}).get(
+            "max_execution_attempts", 2
+        )
+        self.confidence_threshold = config.get("master_agent", {}).get(
+            "confidence_threshold", 0.7
+        )
 
         self.tools = {
             name: cls(datasets) for name, cls in TOOL_CLASSES.items()
         }
-        print("MasterAgent initialized tools:", list(self.tools.keys()))
-
-        # UPDATED: Pass agent-specific config to DataRetrievalAgent
         agent_configs = self.config.get("specialist_agents", {})
         self.retrieval_agent = DataRetrievalAgent(
             self.tools, agent_configs.get("data_retrieval_agent", {})
@@ -37,86 +41,108 @@ class MasterAgent:
 
     def run_query(self, query: str) -> str:
         """
-        Manages the end-to-end process of handling a user query.
-
-        Args:
-            query: The natural language query from the user.
-
-        Returns:
-            A string containing the final, synthesized report.
+        Manages the end-to-end process, including re-planning on failure.
         """
-        print(f"***REMOVED***n[MasterAgent] Received query: '{query}'")
-        
-        # 1. Decompose task into a plan
-        plan, complexity = self._decompose_task(query)
-        if not plan:
-            return "Failed to create a valid execution plan."
+        attempts = 0
+        error_context = ""
+        final_report = "Failed to generate a satisfactory report."
 
-        # 2. Execute the plan to retrieve data
-        retrieved_data = self._execute_plan(plan)
+        while attempts < self.max_attempts:
+            attempts += 1
+            print(f"***REMOVED***n[MasterAgent] Execution Attempt: {attempts}")
 
-        # 3. Reconcile and validate the data
-        reconciled_data = self.reconciliation_agent.reconcile(retrieved_data)
+            plan, complexity = self._decompose_task(query, error_context)
+            if not plan:
+                return "Failed to create a valid execution plan."
 
-        # 4. Synthesize the final report
-        final_report = self.synthesis_agent.synthesize(reconciled_data, query, complexity)
-        
+            context = self._execute_plan(plan)
+            reconciliation = self.reconciliation_agent.reconcile(context)
+
+            if reconciliation["confidence"] >= self.confidence_threshold:
+                print(
+                    "[MasterAgent] Confidence threshold met. Proceeding to synthesis."
+                )
+                final_report = self.synthesis_agent.synthesize(
+                    reconciliation, query, complexity
+                )
+                break  # Success, exit the loop
+            else:
+                print(
+                    "[MasterAgent] Confidence threshold not met. Triggering re-planning."
+                )
+                error_context = f"Previous attempt failed with low confidence. Issues found: {reconciliation['issues_found']}. Please create a new plan to address these issues."
+                final_report = f"Could not resolve query with high confidence. Last issues found: {reconciliation['issues_found']}"
+
         print("[MasterAgent] Query processing complete.")
         return final_report
 
-    def _decompose_task(self, query: str) -> Tuple[List[Dict[str, Any]], str]:
+    def _decompose_task(
+        self, query: str, error_context: str = ""
+    ) -> Tuple[List[Dict], str]:
         """
-        Uses an LLM to decompose the user query into a structured, step-by-step plan.
+        Uses an LLM to decompose the query into a plan, considering past errors.
         """
         print("- [MasterAgent] Decomposing task into a plan...")
-        prompt = self.prompts.get("master_agent_planning", "").format(query=query)
-        
-        # Mock LLM response for demonstration
+        # NEW: A more realistic mock plan showing dependency
         mock_llm_response = """
         {
-            "complexity": "easy",
+            "complexity": "medium",
             "plan": [
                 {
                     "step": 1,
                     "tool": "relationship_tool",
-                    "input": "ORBOX0011",
-                    "reason": "Find all gears associated with the order."
+                    "input": "ORBOX0014",
+                    "output_key": "order_gears",
+                    "reason": "Find all gears for the order."
+                },
+                {
+                    "step": 2,
+                    "tool": "location_query_tool",
+                    "input": "{order_gears[0][child]}",
+                    "output_key": "gear_location_history",
+                    "reason": "Find the location history of the first gear found."
                 }
             ]
         }
         """
-        
         try:
-            # In a real implementation: response = self.llm.generate(prompt)
             parsed_response = json.loads(mock_llm_response)
-            plan = parsed_response.get("plan", [])
-            complexity = parsed_response.get("complexity", "unknown")
-            print(f"- [MasterAgent] Plan created successfully. Complexity: {complexity}.")
-            return plan, complexity
-        except json.JSONDecodeError as e:
-            print(f"- [MasterAgent] Error: Failed to parse LLM plan response. {e}")
-            return None, "unknown"
+            return parsed_response.get("plan", []), parsed_response.get(
+                "complexity", "unknown"
+            )
+        except json.JSONDecodeError:
+            return [], "unknown"
 
     def _execute_plan(self, plan: List[Dict]) -> Dict[str, Any]:
         """
-        Executes the steps in the plan using the DataRetrievalAgent.
-
-        Args:
-            plan: A list of steps, each specifying a tool and its input.
-
-        Returns:
-            A dictionary containing the collected results from all tool executions.
+        Executes the plan, passing context between dependent steps.
         """
-        print("- [MasterAgent] Executing plan...")
-        execution_results = {}
+        print("- [MasterAgent] Executing stateful plan...")
+        context = {}
         for step in plan:
             tool_name = step.get("tool")
-            tool_input = step.get("input")
-            if tool_name and tool_input is not None:
-                result = self.retrieval_agent.retrieve(tool_name, tool_input)
-                execution_results[tool_name] = result
+            raw_input = step.get("input")
+            output_key = step.get("output_key", f"step_{step['step']}_output")
+
+            try:
+                # NEW: Resolve input from context if it's a template
+                resolved_input = str(raw_input).format(**context)
+            except KeyError as e:
+                print(
+                    f"  - Error: Could not resolve input for step {step['step']}. Missing key: {e}"
+                )
+                context[
+                    output_key
+                ] = [{"error": f"Missing context key {e}"}]
+                continue
+
+            if tool_name:
+                result = self.retrieval_agent.retrieve(
+                    tool_name, resolved_input
+                )
+                context[output_key] = result
             else:
                 print(f"  - Warning: Skipping invalid plan step: {step}")
-        
+
         print("- [MasterAgent] Plan execution complete.")
-        return execution_results
+        return context

@@ -61,7 +61,7 @@ Job End Buffer → Parts Warehouse → Order Packing → Goods Out
 - Expected Time: Human 7min, LLM 1min
 
 **Hard (Document Cross-Reference)**:
-- Query: "Verify ARC document dates vs warehouse arrival"
+- Query: "For Product Z, verify ARC document dates vs warehouse arrival"
 - Data Sources: Documents + Location + Relationship data
 - Expected Time: Human 15min, LLM 2min
 
