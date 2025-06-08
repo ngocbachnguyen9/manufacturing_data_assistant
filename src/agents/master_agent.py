@@ -122,8 +122,11 @@ class MasterAgent:
         for step in plan:
             tool_name = step.get("tool")
             raw_input = step.get("input")
-            output_key = step.get("output_key", f"step_{step['step']}_output")
-
+            if "output_key" in step:
+                output_key = step["output_key"]
+            else:
+                #use .get here so missing 'step' just yields '0'
+                output_key = f"step_{step.get('step', 0)}_output"
             try:
                 # NEW: Resolve input from context if it's a template
                 resolved_input = str(raw_input).format(**context)

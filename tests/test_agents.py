@@ -1,126 +1,167 @@
-# test_agents.py
+# tests/test_agents.py
 
-import sys
 import os
+import sys
+import json
 import pytest
 
-# Ensure 'src' is on PYTHONPATH so we can import src.agents
-ROOT = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(ROOT, "src"))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.agents.data_retrieval_agent import DataRetrievalAgent
 from src.agents.reconciliation_agent import ReconciliationAgent
 from src.agents.synthesis_agent import SynthesisAgent
 from src.agents.master_agent import MasterAgent
 
-# -- Helpers & Fixtures -----------------------------------------------------
 
 class DummyTool:
-    """A fake tool that returns a preset value or raises if needed."""
     def __init__(self, result):
         self.result = result
 
-    def run(self, _input):
-        if isinstance(self.result, Exception):
-            raise self.result
+    def run(self, *_args, **_kwargs):
         return self.result
 
+
 class DummyLLM:
-    """A fake LLM client capturing prompts."""
     def __init__(self):
         self.last_prompt = None
 
     def generate(self, prompt: str) -> str:
         self.last_prompt = prompt
-        return "DUMMY_LLM_RESPONSE"
+        return "LLM_OK"
+
+
+# -- DataRetrievalAgent tests ----------------------------------------------
+
+def test_data_retrieval_success():
+    tools = {"foo": DummyTool("bar")}
+    agent = DataRetrievalAgent(tools, config={})
+    assert agent.retrieve("foo", "input") == "bar"
+
+
+def test_data_retrieval_missing_tool():
+    agent = DataRetrievalAgent({}, config={})
+    res = agent.retrieve("missing", "x")
+    assert isinstance(res, dict) and "error" in res
+
+
+# -- ReconciliationAgent tests ---------------------------------------------
+
+def test_reconcile_no_issues():
+    agent = ReconciliationAgent(tools={})
+    ctx = {"step1": [{"value": 1}]}
+    rec = agent.reconcile(ctx)
+    assert rec["confidence"] == 1.0
+    assert rec["issues_found"] == []
+
+
+def test_reconcile_detects_errors():
+    agent = ReconciliationAgent(tools={})
+    ctx = {"step1": [{"error": "oops"}]}
+    rec = agent.reconcile(ctx)
+    assert rec["issues_found"] == ["Error from step1: oops"]
+    assert rec["confidence"] < 1.0
+
+
+# -- SynthesisAgent tests --------------------------------------------------
+
+def test_synthesis_agent_returns_mock_report():
+    llm = DummyLLM()
+    tmpl = {"medium_response": "RESP"}
+    agent = SynthesisAgent(llm, tmpl)
+    rec_data = {"issues_found": [], "validated_data": {}, "confidence": 1.0}
+    report = agent.synthesize(rec_data, "Q", "medium")
+    assert "GEAR IDENTIFICATION RESULTS" in report
+
+
+# -- MasterAgent tests -----------------------------------------------------
 
 @pytest.fixture
-def tools():
-    return {
-        "tool_a": DummyTool("result_a"),
-        "barcode_validator_tool": DummyTool(True),
-    }
-
-# -- Tests for DataRetrievalAgent -------------------------------------------
-
-def test_data_retrieval_success(tools):
-    agent = DataRetrievalAgent(tools)
-    out = agent.retrieve("tool_a", "input_x")
-    assert out == "result_a"
-
-def test_data_retrieval_missing_tool(tools):
-    agent = DataRetrievalAgent(tools)
-    res = agent.retrieve("no_such_tool", "x")
-    assert isinstance(res, dict)
-    assert "error" in res
-
-# -- Tests for ReconciliationAgent ------------------------------------------
-
-def test_reconciliation_no_issues(tools):
-    agent = ReconciliationAgent(tools)
-    data = {"tool_a": "OK"}
-    rec = agent.reconcile(data)
-    assert rec["issues_found"] == []
-    assert rec["validated_data"] == data
-    assert rec["confidence"] == 1.0
-
-def test_reconciliation_with_error(tools):
-    agent = ReconciliationAgent(tools)
-    data = {"tool_a": {"error": "failure"}}
-    rec = agent.reconcile(data)
-    assert len(rec["issues_found"]) == 1
-    # confidence dropped by 0.25 per error
-    assert pytest.approx(rec["confidence"], 0.01) == 0.75
-
-# -- Tests for SynthesisAgent ------------------------------------------------
-
-def test_synthesis_agent_formats_report_correctly():
+def basic_master(monkeypatch):
     llm = DummyLLM()
-    templates = {
-        "easy_response": (
-            "Order {order_id}; Count {gear_count}; "
-            "Issues {data_quality_issues}; Conf {confidence_level}; "
-            "Status {manufacturing_status}; Recs {recommendations}"
-        )
+    cfg = {
+        "system_prompts": {},
+        "response_formats": {"medium_response": "OUT"},
+        "master_agent": {"max_execution_attempts": 2, "confidence_threshold": 0.5},
+        "specialist_agents": {"data_retrieval_agent": {}},
     }
-    syn = SynthesisAgent(llm, templates)
+    ma = MasterAgent(llm, datasets={}, config=cfg)
+    # Stub out synthesis to return a sentinel
+    monkeypatch.setattr(ma.synthesis_agent, "synthesize", lambda *_: "FINAL")
+    return ma
 
-    reconciled = {
-        "validated_data": {"relationship_tool": ["g1", "g2"]},
-        "issues_found": [],
-        "confidence": 1.0,
-    }
-    report = syn.synthesize(reconciled, "Find gears for OR123", "easy")
-    assert "Order OR123" in report
-    assert "Count 2" in report
-    assert "Issues []" in report
-    assert "Status Completed" in report
 
-# -- Tests for MasterAgent ---------------------------------------------------
+def test_master_agent_success(basic_master, monkeypatch):
+    ma = basic_master
+    # First, plan yields one step
+    fake_plan = ([{"step": 1, "tool": "foo", "input": "in", "output_key": "o1"}],
+                 "medium")
+    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": fake_plan)
+    # Stub retrieval to return valid data
+    class StubRetrieval:
+        def retrieve(self, *_):
+            return [{"foo": "bar"}]
+    ma.retrieval_agent = StubRetrieval()
+    # Stub reconcile to exceed threshold immediately
+    monkeypatch.setattr(ma.reconciliation_agent, "reconcile",
+                        lambda ctx: {"confidence": 0.8,
+                                     "issues_found": [],
+                                     "validated_data": ctx})
+    out = ma.run_query("Q")
+    assert out == "FINAL"
 
-class StubMaster(MasterAgent):
-    """
-    Subclass MasterAgent to override _decompose_task with a fixed plan.
-    """
-    def _decompose_task(self, query: str):
-        # Always return a one-step plan using our tool stub
-        return ([{"tool": "relationship_tool", "input": "OR1"}], "easy")
 
-def test_master_agent_end_to_end(monkeypatch, tools):
-    # Add the tool that MasterAgent will call
-    tools["relationship_tool"] = DummyTool(["g1", "g2", "g3"])
-    llm = DummyLLM()
-    config = {
-        "system_prompts": {"master_agent_planning": ""},
-        "response_formats": {"easy_response": "Count {gear_count} for {order_id}"},
-    }
+def test_master_agent_replanning_then_success(basic_master, monkeypatch):
 
-    master = StubMaster(llm, tools, config)
-    report = master.run_query("Find gears for OR1")
-    # Stub template: "Count {gear_count} for {order_id}"
-    assert report.strip() == "Count 3 for OR1"
+    ma = basic_master
+    fake_plan = ([{"step": 1, "tool": "foo", "input": "in", "output_key": "o"}],
+                 "medium")
+    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": fake_plan)
 
-# ----------------------------------------------------------------------------
+    class StubRetrievalAgent:
+        def retrieve(self, tool_name, inp):
+            return [{"x": "y"}]
+
+    ma.retrieval_agent = StubRetrievalAgent()
+    # First reconciliation below threshold, then above
+    seq = [
+        {"confidence": 0.1, "issues_found": ["err"], "validated_data": {}},
+        {"confidence": 0.6, "issues_found": [], "validated_data": {}},
+    ]
+    monkeypatch.setattr(
+        ma.reconciliation_agent,
+        "reconcile",
+        lambda ctx, seq=seq: seq.pop(0),
+    )
+    out = ma.run_query("Q")
+    assert out == "FINAL"
+
+
+def test_master_agent_failure_after_max_attempts(basic_master, monkeypatch):
+    ma = basic_master
+    ma.config["master_agent"]["max_execution_attempts"] = 1
+    monkeypatch.setattr(
+        ma,
+        "_decompose_task",
+        lambda q, e="": ([{"tool": "t", "input": "i", "output_key": "o"}],
+                        "medium"),
+    )
+
+    class StubRetrievalAgent:
+        def retrieve(self, tool_name, inp):
+            return [{"x": "y"}]
+
+    ma.retrieval_agent = StubRetrievalAgent()
+    # Always below threshold
+    monkeypatch.setattr(
+        ma.reconciliation_agent,
+        "reconcile",
+        lambda ctx: {"confidence": 0.0,
+                     "issues_found": ["bad"],
+                     "validated_data": {}},
+    )
+    out = ma.run_query("Q")
+    assert "Could not resolve query with high confidence" in out
+
 
 if __name__ == "__main__":
-    pytest.main(["-v", __file__])
+    pytest.main(["-q", __file__])

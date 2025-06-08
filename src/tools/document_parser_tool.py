@@ -1,6 +1,6 @@
 import pypdf
 import os
-from typing import Dict, Any
+from typing import Dict, Any, List
 from .base_tool import BaseTool
 from thefuzz import process
 
