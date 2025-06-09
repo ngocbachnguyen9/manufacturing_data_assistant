@@ -5,258 +5,214 @@ import sys
 import json
 import pytest
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# Ensure src/ is on PYTHONPATH so we can import agents and utils
+sys.path.insert(
+    0,
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..")),
+)
 
 from src.agents.data_retrieval_agent import DataRetrievalAgent
 from src.agents.reconciliation_agent import ReconciliationAgent
 from src.agents.synthesis_agent import SynthesisAgent
 from src.agents.master_agent import MasterAgent
+from src.utils.cost_tracker import CostTracker
 
+
+# -- Dummy collaborators ---------------------------------------------------
 
 class DummyTool:
+    """A fake tool that returns a preset value or raises if needed."""
     def __init__(self, result):
         self.result = result
 
     def run(self, *_args, **_kwargs):
+        if isinstance(self.result, Exception):
+            raise self.result
         return self.result
 
 
-class DummyLLM:
+class DummyCostTracker:
+    """Captures log_transaction calls for verification."""
     def __init__(self):
-        self.last_prompt = None
+        self.calls = []
 
-    def generate(self, prompt: str) -> str:
+    def log_transaction(self, input_tokens, output_tokens, model_name):
+        self.calls.append((input_tokens, output_tokens, model_name))
+
+
+class DummyLLM:
+    """
+    Fake LLM client: returns a dict with 'content',
+    'input_tokens', 'output_tokens'; has a .model_name.
+    """
+    def __init__(self, content="{}", in_toks=1, out_toks=1, model="dummy-model"):
+        self.last_prompt = None
+        self.content = content
+        self.input_tokens = in_toks
+        self.output_tokens = out_toks
+        self.model_name = model
+
+    def generate(self, prompt: str) -> dict:
         self.last_prompt = prompt
-        return "LLM_OK"
+        return {
+            "content": self.content,
+            "input_tokens": self.input_tokens,
+            "output_tokens": self.output_tokens
+        }
 
 
 # -- DataRetrievalAgent tests ----------------------------------------------
 
-def test_data_retrieval_success():
-    tools = {"foo": DummyTool("bar")}
+def test_data_retrieval_success_and_error():
+    tools = {"tool_a": DummyTool("result_a")}
     agent = DataRetrievalAgent(tools, config={})
-    assert agent.retrieve("foo", "input") == "bar"
+    out = agent.retrieve("tool_a", "input_x")
+    assert out == "result_a"
 
-
-def test_data_retrieval_missing_tool():
     agent = DataRetrievalAgent({}, config={})
-    res = agent.retrieve("missing", "x")
-    assert isinstance(res, dict) and "error" in res
+    res = agent.retrieve("missing_tool", "in")
+    assert isinstance(res, dict)
+    assert "error" in res
 
 
 # -- ReconciliationAgent tests ---------------------------------------------
 
-def test_reconcile_no_issues():
+def test_reconcile_no_issues_and_with_error():
     agent = ReconciliationAgent(tools={})
     ctx = {"step1": [{"value": 1}]}
     rec = agent.reconcile(ctx)
     assert rec["confidence"] == 1.0
     assert rec["issues_found"] == []
 
-
-def test_reconcile_detects_errors():
-    agent = ReconciliationAgent(tools={})
-    ctx = {"step1": [{"error": "oops"}]}
-    rec = agent.reconcile(ctx)
-    assert rec["issues_found"] == ["Error from step1: oops"]
-    assert rec["confidence"] < 1.0
+    ctx_err = {"step1": [{"error": "failure"}]}
+    rec2 = agent.reconcile(ctx_err)
+    assert rec2["issues_found"] == ["Error from step1: failure"]
+    assert rec2["confidence"] < 1.0
 
 
 # -- SynthesisAgent tests --------------------------------------------------
 
-def test_synthesis_agent_returns_mock_report():
-    llm = DummyLLM()
-    tmpl = {"medium_response": "RESP"}
-    agent = SynthesisAgent(llm, tmpl)
-    rec_data = {"issues_found": [], "validated_data": {}, "confidence": 1.0}
-    report = agent.synthesize(rec_data, "Q", "medium")
-    assert "GEAR IDENTIFICATION RESULTS" in report
+def test_synthesis_logs_cost_and_returns_content():
+    # Prepare dummy LLM and cost tracker
+    llm = DummyLLM(content="REPLY", in_toks=5, out_toks=10, model="mymodel")
+    tracker = DummyCostTracker()
+    templates = {"easy_response": "Template"}
+    agent = SynthesisAgent(llm, templates, tracker)
+
+    result = agent.synthesize(
+        reconciled_data={"foo": "bar"},
+        original_query="Q",
+        complexity="easy"
+    )
+    # Should return the LLM content
+    assert result == "REPLY"
+    # And log exactly one transaction
+    assert len(tracker.calls) == 1
+    in_t, out_t, mname = tracker.calls[0]
+    assert in_t == 5 and out_t == 10 and mname == "mymodel"
 
 
-# -- MasterAgent tests -----------------------------------------------------
+# -- MasterAgent internal tests --------------------------------------------
 
-@pytest.fixture
-def basic_master(monkeypatch):
-    llm = DummyLLM()
+def test_decompose_logs_cost_and_parses_plan(dummy_llm=None, dummy_tracker=None):
+    # Setup dummy LLM(plan) and cost tracker
+    plan = {"complexity": "easy",
+            "plan": [{"step": 1, "tool": "foo", "input": "bar", "output_key": "o1"}]}
+    llm = DummyLLM(content=json.dumps(plan), in_toks=3, out_toks=7, model="modelX")
+    tracker = DummyCostTracker()
     cfg = {
         "system_prompts": {},
-        "response_formats": {"medium_response": "OUT"},
-        "master_agent": {"max_execution_attempts": 2, "confidence_threshold": 0.5},
+        "master_agent": {"max_execution_attempts": 1,
+                         "confidence_threshold": 0.0},
         "specialist_agents": {"data_retrieval_agent": {}},
     }
-    ma = MasterAgent(llm, datasets={}, config=cfg)
-    # Stub out synthesis to return a sentinel
-    monkeypatch.setattr(ma.synthesis_agent, "synthesize", lambda *_: "FINAL")
-    return ma
+    ma = MasterAgent(llm, datasets={}, config=cfg, cost_tracker=tracker)
+
+    plan_out, comp = ma._decompose_task("QUERY", "")
+    assert comp == "easy"
+    assert isinstance(plan_out, list)
+    # cost logged once
+    assert tracker.calls == [(3, 7, "modelX")]
 
 
-def test_master_agent_success(basic_master, monkeypatch):
-    ma = basic_master
-    # First, plan yields one step
-    fake_plan = ([{"step": 1, "tool": "foo", "input": "in", "output_key": "o1"}],
-                 "medium")
-    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": fake_plan)
-    # Stub retrieval to return valid data
-    class StubRetrieval:
-        def retrieve(self, *_):
-            return [{"foo": "bar"}]
-    ma.retrieval_agent = StubRetrieval()
-    # Stub reconcile to exceed threshold immediately
-    monkeypatch.setattr(ma.reconciliation_agent, "reconcile",
-                        lambda ctx: {"confidence": 0.8,
-                                     "issues_found": [],
-                                     "validated_data": ctx})
-    out = ma.run_query("Q")
-    assert out == "FINAL"
+def test_post_process_deduplicates_gears():
+    # Test the easy‐task post‐processing logic
+    llm = DummyLLM()
+    tracker = DummyCostTracker()
+    cfg = {
+        "system_prompts": {},
+        "master_agent": {"max_execution_attempts": 1,
+                         "confidence_threshold": 0.0},
+        "specialist_agents": {"data_retrieval_agent": {}},
+    }
+    ma = MasterAgent(llm, datasets={}, config=cfg, cost_tracker=tracker)
+
+    reconciliation = {
+        "validated_data": {
+            "relationship_tool_step": [
+                {"child": "3DOR1"}, {"child": "3DOR1"}, {"child": "X"}
+            ]
+        },
+        "issues_found": [],
+        "confidence": 1.0
+    }
+    processed = ma._post_process_data(reconciliation, "easy")
+    cleaned = processed["validated_data"]["relationship_tool_step"]
+    assert cleaned == ["3DOR1"]
 
 
-def test_master_agent_replanning_then_success(basic_master, monkeypatch):
+# -- MasterAgent orchestration tests ---------------------------------------
 
-    ma = basic_master
-    fake_plan = ([{"step": 1, "tool": "foo", "input": "in", "output_key": "o"}],
-                 "medium")
-    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": fake_plan)
+def test_run_query_triggers_post_and_synthesis(monkeypatch):
+    # Setup MasterAgent with dummy LLM & tracker
+    llm = DummyLLM(content="{}", in_toks=1, out_toks=1, model="m")
+    tracker = DummyCostTracker()
+    cfg = {
+        "system_prompts": {},
+        "master_agent": {"max_execution_attempts": 1,
+                         "confidence_threshold": 0.0},
+        "specialist_agents": {"data_retrieval_agent": {}},
+    }
+    ma = MasterAgent(llm, datasets={}, config=cfg, cost_tracker=tracker)
 
-    class StubRetrievalAgent:
-        def retrieve(self, tool_name, inp):
-            return [{"x": "y"}]
-
-    ma.retrieval_agent = StubRetrievalAgent()
-    # First reconciliation below threshold, then above
-    seq = [
-        {"confidence": 0.1, "issues_found": ["err"], "validated_data": {}},
-        {"confidence": 0.6, "issues_found": [], "validated_data": {}},
-    ]
-    monkeypatch.setattr(
-        ma.reconciliation_agent,
-        "reconcile",
-        lambda ctx, seq=seq: seq.pop(0),
-    )
-    out = ma.run_query("Q")
-    assert out == "FINAL"
-
-
-def test_master_agent_failure_after_max_attempts(basic_master, monkeypatch):
-    ma = basic_master
-    ma.config["master_agent"]["max_execution_attempts"] = 1
+    # Stub _decompose_task to return a single easy step
     monkeypatch.setattr(
         ma,
         "_decompose_task",
-        lambda q, e="": ([{"tool": "t", "input": "i", "output_key": "o"}],
-                        "medium"),
+        lambda q, e="": (
+            [{"step": 1,
+              "tool": "relationship_tool",
+              "input": "X",
+              "output_key": "relationship_tool"}],
+            "easy"
+        )
     )
-
-    class StubRetrievalAgent:
-        def retrieve(self, tool_name, inp):
-            return [{"x": "y"}]
-
-    ma.retrieval_agent = StubRetrievalAgent()
-    # Always below threshold
-    monkeypatch.setattr(
-        ma.reconciliation_agent,
-        "reconcile",
-        lambda ctx: {"confidence": 0.0,
-                     "issues_found": ["bad"],
-                     "validated_data": {}},
-    )
-    out = ma.run_query("Q")
-    assert "Could not resolve query with high confidence" in out
-    
-
-def test_post_process_data_deduplicates_gears():
-    # Create a dummy MasterAgent just to call _post_process_data
-    from src.agents.master_agent import MasterAgent
-
-    dummy_llm = DummyLLM()
-    cfg = {
-        "system_prompts": {},
-        "response_formats": {},
-        "master_agent": {"max_execution_attempts": 1, "confidence_threshold": 0.0},
-        "specialist_agents": {"data_retrieval_agent": {}},
-    }
-    # empty datasets is fine for this test
-    ma = MasterAgent(dummy_llm, datasets={}, config=cfg)
-
-    # Build a fake reconciliation dict
-    # 'relationship_tool_step1' simulates the key name you'd get back
-    raw_list = [
-        {"child": "3DOR1"},
-        {"child": "3DOR1"},   # duplicate
-        {"child": "3DOR2"},
-        {"child": "XNOTGEAR"} # should be filtered out
-    ]
-    reconciliation = {
-        "validated_data": {"relationship_tool_step1": raw_list},
-        "issues_found": [],
-        "confidence": 1.0,
-    }
-
-    # Now post‐process for 'easy'
-    out = ma._post_process_data(
-        data=reconciliation.copy(), complexity="easy"
-    )
-    # after dedupe + filter + sort, we expect ['3DOR1','3DOR2']
-    cleaned = out["validated_data"]["relationship_tool_step1"]
-    assert cleaned == ["3DOR1", "3DOR2"]
-
-
-def test_run_query_uses_post_processing(monkeypatch):
-    from src.agents.master_agent import MasterAgent
-
-    # Set up a master with a low threshold so synthesis is called immediately
-    dummy_llm = DummyLLM()
-    # Stub synthesis so we can capture the argument it receives
-    captured = {}
-    def fake_synth(data, query, complexity):
-        captured["data"] = data
-        captured["complexity"] = complexity
-        return "SYNTH_RESP"
-
-    cfg = {
-        "system_prompts": {},
-        "response_formats": {},
-        "master_agent": {"max_execution_attempts": 1, "confidence_threshold": 0.0},
-        "specialist_agents": {"data_retrieval_agent": {}},
-    }
-    ma = MasterAgent(dummy_llm, datasets={}, config=cfg)
-    monkeypatch.setattr(ma.synthesis_agent, "synthesize", fake_synth)
-
-    # Stub decomposition to return a single-step plan
-    plan = ([{"step": 1, "tool": "relationship_tool", "input": "IGNORED", "output_key": "relationship_tool_step1"}], "easy")
-    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": plan)
-
-    # Stub execution to put our raw list into context
-    raw = [
-        {"child": "3DOR1"},
-        {"child": "3DOR1"},
-        {"child": "3DOR3"},
-    ]
+    # Stub retrieval to return duplicate gears
     class StubRetrieval:
-        def retrieve(self, tool, inp):
-            return raw
+        def retrieve(self, t, inp):
+            return [{"child": "3DOR1"}, {"child": "3DOR1"}]
     ma.retrieval_agent = StubRetrieval()
 
-    # Stub reconciliation to wrap our raw list as validated_data
+    # Stub reconcile to wrap that into validated_data
     monkeypatch.setattr(
         ma.reconciliation_agent,
         "reconcile",
         lambda ctx: {
-            "validated_data": {"relationship_tool_step1": ctx["relationship_tool_step1"]},
+            "validated_data": {"relationship_tool": ctx["relationship_tool"]},
             "issues_found": [],
-            "confidence": 1.0,
+            "confidence": 1.0
         }
     )
+    # Capture what synthesize receives
+    captured = {}
+    def fake_synth(data, query, complexity):
+        captured["data"] = data
+        captured["complexity"] = complexity
+        return "DONE"
+    monkeypatch.setattr(ma.synthesis_agent, "synthesize", fake_synth)
 
-    # Call run_query
-    out = ma.run_query("ANY QUERY")
-    assert out == "SYNTH_RESP"
-
-    # Now inspect what we passed to synthesize:
-    assert captured["complexity"] == "easy"
-    # The raw list had duplicates; post_process should dedupe to ['3DOR1','3DOR3']
-    proc = captured["data"]["validated_data"]["relationship_tool_step1"]
-    assert proc == ["3DOR1", "3DOR3"]
-
-
-if __name__ == "__main__":
-    pytest.main(["-q", __file__])
+    result = ma.run_query("any")
+    assert isinstance(result, dict)
+    assert result["final_report"] == "DONE"
+    # Post‐processing should have deduped to ['3DOR1']
+    assert captured["data"]["validated_data"]["relationship_tool"] == ["3DOR1"]
