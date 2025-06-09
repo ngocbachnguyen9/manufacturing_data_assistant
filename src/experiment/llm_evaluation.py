@@ -42,7 +42,7 @@ class LLMEvaluationRunner:
 
         for model_name in models_to_test:
             print(f"***REMOVED***n--- Testing Model: {model_name} ---")
-            llm_provider = MockLLMProvider(model_name)
+            llm_provider = MockLLMProvider(model_name) #need to replace with actual LLM provider
             cost_tracker = CostTracker(cost_config)
 
             for p_id, tasks in self.assignments.items():
