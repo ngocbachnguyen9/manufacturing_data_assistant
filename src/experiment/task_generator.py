@@ -73,14 +73,22 @@ class TaskGenerator:
         print("Generating task assignments for all participants...")
 
         for p_id, patterns in self.participants.items():
+
             quality_list = self._create_task_list(
                 "quality", patterns["quality_pattern"]
             )
             complexity_list = self._create_task_list(
                 "prompt", patterns["prompt_pattern"]
             )
+            # Clone the valid IDs so each participant gets a fresh pool
+            available_ids = {
+                "easy": self.valid_ids["easy"][:],
+                "medium": self.valid_ids["medium"][:],
+                "hard": self.valid_ids["hard"][:],
+            }
 
             participant_tasks = []
+
             for i in range(len(quality_list)):
                 # Map the single-letter code to the full complexity name
                 letter = complexity_list[i].lower()  # 'e','m','h'
@@ -92,11 +100,10 @@ class TaskGenerator:
                 quality = quality_list[i]
 
                 # Select a random ID and remove it to ensure variety
-                if not self.valid_ids[complexity]:
+                pool = available_ids[complexity]
+                if not pool:
                     raise ValueError(f"Not enough unique IDs for {complexity} tasks.")
-                entity_id = self.valid_ids[complexity].pop(
-                    random.randrange(len(self.valid_ids[complexity]))
-                )
+                entity_id = pool.pop(random.randrange(len(pool)))
 
                 # Construct the task object
                 task_id = f"{p_id}_task_{i+1}"

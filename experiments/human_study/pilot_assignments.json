@@ -1,0 +1,166 @@
+{
+  "P1": [
+    {
+      "task_id": "P1_task_1",
+      "participant_id": "P1",
+      "complexity": "hard",
+      "quality_condition": "Q2",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q2_dataset"
+    },
+    {
+      "task_id": "P1_task_2",
+      "participant_id": "P1",
+      "complexity": "medium",
+      "quality_condition": "Q2",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q2_dataset"
+    },
+    {
+      "task_id": "P1_task_3",
+      "participant_id": "P1",
+      "complexity": "easy",
+      "quality_condition": "Q1",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q1_dataset"
+    },
+    {
+      "task_id": "P1_task_4",
+      "participant_id": "P1",
+      "complexity": "medium",
+      "quality_condition": "Q3",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q3_dataset"
+    },
+    {
+      "task_id": "P1_task_5",
+      "participant_id": "P1",
+      "complexity": "easy",
+      "quality_condition": "Q0",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P1_task_6",
+      "participant_id": "P1",
+      "complexity": "easy",
+      "quality_condition": "Q0",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P1_task_7",
+      "participant_id": "P1",
+      "complexity": "easy",
+      "quality_condition": "Q1",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q1_dataset"
+    },
+    {
+      "task_id": "P1_task_8",
+      "participant_id": "P1",
+      "complexity": "medium",
+      "quality_condition": "Q0",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P1_task_9",
+      "participant_id": "P1",
+      "complexity": "hard",
+      "quality_condition": "Q0",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P1_task_10",
+      "participant_id": "P1",
+      "complexity": "hard",
+      "quality_condition": "Q0",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    }
+  ],
+  "P2": [
+    {
+      "task_id": "P2_task_1",
+      "participant_id": "P2",
+      "complexity": "medium",
+      "quality_condition": "Q0",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P2_task_2",
+      "participant_id": "P2",
+      "complexity": "easy",
+      "quality_condition": "Q0",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P2_task_3",
+      "participant_id": "P2",
+      "complexity": "medium",
+      "quality_condition": "Q0",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P2_task_4",
+      "participant_id": "P2",
+      "complexity": "hard",
+      "quality_condition": "Q2",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q2_dataset"
+    },
+    {
+      "task_id": "P2_task_5",
+      "participant_id": "P2",
+      "complexity": "easy",
+      "quality_condition": "Q1",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q1_dataset"
+    },
+    {
+      "task_id": "P2_task_6",
+      "participant_id": "P2",
+      "complexity": "easy",
+      "quality_condition": "Q2",
+      "query_string": "Find gears for given order using packing list",
+      "dataset_path": "data/experimental_datasets/Q2_dataset"
+    },
+    {
+      "task_id": "P2_task_7",
+      "participant_id": "P2",
+      "complexity": "medium",
+      "quality_condition": "Q1",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q1_dataset"
+    },
+    {
+      "task_id": "P2_task_8",
+      "participant_id": "P2",
+      "complexity": "medium",
+      "quality_condition": "Q3",
+      "query_string": "Determine printer for part and count parts printed",
+      "dataset_path": "data/experimental_datasets/Q3_dataset"
+    },
+    {
+      "task_id": "P2_task_9",
+      "participant_id": "P2",
+      "complexity": "hard",
+      "quality_condition": "Q0",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    },
+    {
+      "task_id": "P2_task_10",
+      "participant_id": "P2",
+      "complexity": "hard",
+      "quality_condition": "Q0",
+      "query_string": "Verify ARC document dates vs warehouse arrival",
+      "dataset_path": "data/experimental_datasets/Q0_baseline"
+    }
+  ]
+}

@@ -1,63 +1,63 @@
 import yaml
 import os
+import json
 from typing import Dict, Any
+from argparse import ArgumentParser
 
-# Import the necessary classes from the src directory
 from src.experiment.task_generator import TaskGenerator
 from src.human_study.study_platform import StudyPlatform
 
-
 def load_config(config_path: str) -> Dict[str, Any]:
-    """Loads the main experiment configuration file."""
     if not os.path.exists(config_path):
-        raise FileNotFoundError(
-            f"Configuration file not found at: {config_path}"
-        )
+        raise FileNotFoundError(f"Config not found: {config_path}")
     with open(config_path, "r") as f:
-        config = yaml.safe_load(f)
-    return config
-
+        return yaml.safe_load(f)
 
 def main():
-    """
-    Orchestrates the entire process for Phase 3: Human Study Execution.
-    1. Loads the experiment configuration.
-    2. Generates the counterbalanced task assignments for all participants.
-    3. Launches the interactive study platform for data collection.
-    """
-    print("--- Starting Phase 3: Human Study Execution ---")
-    config_path = "config/experiment_config.yaml"
-    assignments_path = "experiments/human_study/participant_assignments.json"
+    p = ArgumentParser()
+    p.add_argument("--pilot", action="store_true",
+                   help="Run only pilot participants")
+    p.add_argument("--seed", type=int,
+                   help="Override random seed (for pilot or full run)")
+    args = p.parse_args()
 
-    try:
-        # --- Step 1: Load Configuration ---
-        print(f"Loading configuration from {config_path}...")
-        config = load_config(config_path)
+    # 1) Load config
+    cfg = load_config("config/experiment_config.yaml")
 
-        # --- Step 2: Generate Task Assignments ---
-        print("***REMOVED***n--- Generating Participant Task Assignments ---")
-        task_generator = TaskGenerator(config)
-        assignments = task_generator.generate_all_assignments()
-        task_generator.save_assignments(assignments)
+    # 2) Decide seed & participant set
+    if args.seed is not None:
+        seed = args.seed
+    elif args.pilot:
+        seed = cfg["experiment"].get("pilot_random_seed", cfg["experiment"]["random_seed"])
+    else:
+        seed = cfg["experiment"]["random_seed"]
+    cfg["experiment"]["random_seed"] = seed
 
-        # --- Step 3: Launch Study Platform ---
-        print("***REMOVED***n--- Launching Human Study Platform ---")
-        print(
-            "The platform will now start. Please enter a participant ID to begin a session."
-        )
-        input("Press Enter to continue...")
+    all_parts = cfg["human_study"]["participant_matrix"].keys()
+    if args.pilot:
+        # define your pilot IDs here or in config under human_study['pilot_participants']
+        pilot_ids = cfg["human_study"].get("pilot_participants", list(all_parts)[:2])
+        participants_to_run = pilot_ids
+        out_file = "experiments/human_study/pilot_assignments.json"
+    else:
+        participants_to_run = all_parts
+        out_file = "experiments/human_study/participant_assignments.json"
 
-        study_platform = StudyPlatform(assignments_path)
-        study_platform.run_session()
+    # 3) Generate all assignments (same logic, seeded)
+    tg = TaskGenerator(cfg)
+    full_assignments = tg.generate_all_assignments()
 
-    except FileNotFoundError as e:
-        print(f"***REMOVED***nERROR: A required file was not found. {e}")
-        print("Please ensure your configuration and data paths are correct.")
-    except Exception as e:
-        print(f"***REMOVED***nAn unexpected error occurred: {e}")
+    # 4) Slice as needed and write JSON
+    subset = {pid: full_assignments[pid] for pid in participants_to_run}
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
+    with open(out_file, "w") as f:
+        json.dump(subset, f, indent=2)
+    print(f"Wrote {len(subset)} participant(s) → {out_file}")
 
-    print("***REMOVED***n--- Phase 3 Script Finished ---")
+    # 5) Launch the CLI only on that file
+    input("Press ENTER to start study session…")
+    sp = StudyPlatform(out_file)
+    sp.run_session()
 
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
