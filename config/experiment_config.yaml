@@ -2,7 +2,7 @@
 experiment:
   name: "Manufacturing_Data_Assistant_Study"
   version: "1.0"
-  random_seed: 42
+  random_seed: 42 #seeded generation for reproducibility in task assignment and data generation
   
 # Human Study Configuration
 human_study:
@@ -98,7 +98,7 @@ task_complexity:
     description: "Find gears for given order using packing list"
     data_sources: ["relationship_data", "location_data"]
     max_steps: 2
-    expected_time_human: 180  # 3 minutes
+    expected_time_human: 180  # 3 minutes assumptions, for this and all other times
     expected_time_llm: 30     # 30 seconds
     
   medium:

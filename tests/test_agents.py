@@ -161,6 +161,101 @@ def test_master_agent_failure_after_max_attempts(basic_master, monkeypatch):
     )
     out = ma.run_query("Q")
     assert "Could not resolve query with high confidence" in out
+    
+
+def test_post_process_data_deduplicates_gears():
+    # Create a dummy MasterAgent just to call _post_process_data
+    from src.agents.master_agent import MasterAgent
+
+    dummy_llm = DummyLLM()
+    cfg = {
+        "system_prompts": {},
+        "response_formats": {},
+        "master_agent": {"max_execution_attempts": 1, "confidence_threshold": 0.0},
+        "specialist_agents": {"data_retrieval_agent": {}},
+    }
+    # empty datasets is fine for this test
+    ma = MasterAgent(dummy_llm, datasets={}, config=cfg)
+
+    # Build a fake reconciliation dict
+    # 'relationship_tool_step1' simulates the key name you'd get back
+    raw_list = [
+        {"child": "3DOR1"},
+        {"child": "3DOR1"},   # duplicate
+        {"child": "3DOR2"},
+        {"child": "XNOTGEAR"} # should be filtered out
+    ]
+    reconciliation = {
+        "validated_data": {"relationship_tool_step1": raw_list},
+        "issues_found": [],
+        "confidence": 1.0,
+    }
+
+    # Now post‐process for 'easy'
+    out = ma._post_process_data(
+        data=reconciliation.copy(), complexity="easy"
+    )
+    # after dedupe + filter + sort, we expect ['3DOR1','3DOR2']
+    cleaned = out["validated_data"]["relationship_tool_step1"]
+    assert cleaned == ["3DOR1", "3DOR2"]
+
+
+def test_run_query_uses_post_processing(monkeypatch):
+    from src.agents.master_agent import MasterAgent
+
+    # Set up a master with a low threshold so synthesis is called immediately
+    dummy_llm = DummyLLM()
+    # Stub synthesis so we can capture the argument it receives
+    captured = {}
+    def fake_synth(data, query, complexity):
+        captured["data"] = data
+        captured["complexity"] = complexity
+        return "SYNTH_RESP"
+
+    cfg = {
+        "system_prompts": {},
+        "response_formats": {},
+        "master_agent": {"max_execution_attempts": 1, "confidence_threshold": 0.0},
+        "specialist_agents": {"data_retrieval_agent": {}},
+    }
+    ma = MasterAgent(dummy_llm, datasets={}, config=cfg)
+    monkeypatch.setattr(ma.synthesis_agent, "synthesize", fake_synth)
+
+    # Stub decomposition to return a single-step plan
+    plan = ([{"step": 1, "tool": "relationship_tool", "input": "IGNORED", "output_key": "relationship_tool_step1"}], "easy")
+    monkeypatch.setattr(ma, "_decompose_task", lambda q, e="": plan)
+
+    # Stub execution to put our raw list into context
+    raw = [
+        {"child": "3DOR1"},
+        {"child": "3DOR1"},
+        {"child": "3DOR3"},
+    ]
+    class StubRetrieval:
+        def retrieve(self, tool, inp):
+            return raw
+    ma.retrieval_agent = StubRetrieval()
+
+    # Stub reconciliation to wrap our raw list as validated_data
+    monkeypatch.setattr(
+        ma.reconciliation_agent,
+        "reconcile",
+        lambda ctx: {
+            "validated_data": {"relationship_tool_step1": ctx["relationship_tool_step1"]},
+            "issues_found": [],
+            "confidence": 1.0,
+        }
+    )
+
+    # Call run_query
+    out = ma.run_query("ANY QUERY")
+    assert out == "SYNTH_RESP"
+
+    # Now inspect what we passed to synthesize:
+    assert captured["complexity"] == "easy"
+    # The raw list had duplicates; post_process should dedupe to ['3DOR1','3DOR3']
+    proc = captured["data"]["validated_data"]["relationship_tool_step1"]
+    assert proc == ["3DOR1", "3DOR3"]
 
 
 if __name__ == "__main__":
