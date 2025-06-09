@@ -150,7 +150,7 @@ PQ3    P7     P8     P9
 ### 4.2 Performance Analysis
 
 **Primary Metrics**:
-- Manufacturing task accuracy
+- Task accuracy, timeliness and completeness
 - Cost per correct answer
 - Error detection capability
 - Cross-system validation success

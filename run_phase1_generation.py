@@ -2,41 +2,41 @@ from src.data_generation.manufacturing_environment import ManufacturingEnvironme
 from src.data_generation.data_quality_controller import DataQualityController
 from src.data_generation.ground_truth_generator import GroundTruthGenerator
 from experiments.validation.error_injection_validation import InjectionValidator
+from experiments.validation.ground_truth_validation import GroundTruthValidator
 
 
 def main():
     """
-    Executes the full data generation pipeline for Phase 1.
-    1. Sets up the Q0 baseline environment and documents.
-    2. Generates corrupted datasets (Q1, Q2, Q3) with error logs.
-    3. Generates ground truth answers from the Q0 baseline.
-    4. Validates the integrity of the generated corrupted datasets.
+    Executes the full data generation and validation pipeline for Phase 1.
     """
     # --- Step 1: Setup Q0 Baseline Environment ---
+    print("--- Starting Phase 1: Data Corpus Generation ---")
     env = ManufacturingEnvironment()
     env.setup_baseline_environment()
 
     # --- Step 2: Generate Corrupted Datasets ---
     controller = DataQualityController()
     quality_conditions = ["Q1", "Q2", "Q3"]
-
     for qc in quality_conditions:
         corrupted_data, error_tracker = controller.apply_corruption(qc)
         controller.save_corrupted_data(corrupted_data, error_tracker, qc)
 
-    # --- Step 3: Generate Ground Truth ---
-    print("***REMOVED***n--- Generating Ground Truth Answers ---")
+    # --- Step 3: Generate Ground Truth & Traversal Paths ---
+    print("***REMOVED***n--- Generating Ground Truth Answers & Paths ---")
     gt_generator = GroundTruthGenerator()
     gt_generator.generate_all_ground_truths()
 
     # --- Step 4: Validate Error Injection ---
-    validator = InjectionValidator()
-    validator.validate_all_conditions()
+    print("***REMOVED***n--- Validating Corrupted Datasets ---")
+    injection_validator = InjectionValidator()
+    injection_validator.validate_all_conditions()
 
-    print("***REMOVED***n***REMOVED***nPhase 1 Data Generation and Validation Complete.")
-    print("Datasets generated in 'data/experimental_datasets/'")
-    print("Documents generated in 'data/generated_documents/'")
-    print("Ground truth generated in 'data/ground_truth/'")
+    # --- Step 5 (NEW): Validate the Ground Truth Itself ---
+    print("***REMOVED***n--- Validating Ground Truth Integrity ---")
+    gt_validator = GroundTruthValidator()
+    gt_validator.run_all_validations()
+
+    print("***REMOVED***n***REMOVED***n--- Phase 1: Data Generation and Validation Complete ---")
 
 
 if __name__ == "__main__":
