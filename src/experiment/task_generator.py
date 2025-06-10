@@ -21,6 +21,7 @@ class TaskGenerator:
         self.prompt_patterns = config["human_study"]["prompt_patterns"]
         self.task_templates = config["task_complexity"]
         self.valid_ids = self._get_valid_ids()
+        self.clean_ids = self._get_clean_ids() # NEW: Pool of clean IDs
         random.seed(config["experiment"]["random_seed"])
 
     def _get_valid_ids(self) -> Dict[str, List[str]]:
@@ -48,6 +49,16 @@ class TaskGenerator:
         )
 
         return {"easy": orders, "hard": orders.copy(), "medium": gears}
+    
+    def _get_clean_ids(self) -> Dict[str, List[str]]:
+        """NEW: Creates pools of IDs that were NOT corrupted."""
+        all_dirty_orders = set(self.dirty_ids.get("Q1", []) + self.dirty_ids.get("Q2", []) + self.dirty_ids.get("Q3", []))
+        
+        clean_orders = [oid for oid in self.valid_ids["easy"] if oid not in all_dirty_orders]
+        # For medium tasks, we assume all gears are clean unless explicitly targeted
+        clean_gears = self.valid_ids["medium"][:]
+        
+        return {"easy": clean_orders, "hard": clean_orders.copy(), "medium": clean_gears}
 
     def _create_task_list(
         self, pattern_type: str, pattern_name: str
@@ -67,7 +78,7 @@ class TaskGenerator:
 
     def generate_all_assignments(self) -> Dict[str, List[Dict]]:
         """
-        Generates and returns the full assignment dictionary for all participants.
+        UPDATED: Generates assignments ensuring tasks match their data quality.
         """
         all_assignments = {}
         print("Generating task assignments for all participants...")
@@ -87,6 +98,14 @@ class TaskGenerator:
                 "hard": self.valid_ids["hard"][:],
             }
 
+            # NEW: Create disposable pools of IDs for this participant
+            id_pools = {
+                "Q0": self.clean_ids.copy(),
+                "Q1": {"easy": self.dirty_ids.get("Q1", []), "hard": self.dirty_ids.get("Q1", [])},
+                "Q2": {"easy": self.dirty_ids.get("Q2", []), "hard": self.dirty_ids.get("Q2", [])},
+                "Q3": {"easy": self.dirty_ids.get("Q3", []), "hard": self.dirty_ids.get("Q3", [])},
+            }
+
             participant_tasks = []
 
             for i in range(len(quality_list)):
@@ -96,13 +115,17 @@ class TaskGenerator:
                 if letter not in mapping:
                     raise ValueError(f"Unknown complexity code: {complexity_list[i]}")
                 complexity = mapping[letter]
-                
+
+                # NEW: Select entity ID from the correct pool (clean or dirty)
                 quality = quality_list[i]
 
-                # Select a random ID and remove it to ensure variety
-                pool = available_ids[complexity]
+                if quality == "Q0":
+                    pool = id_pools[quality][complexity]
+                else: # For Q1, Q2, Q3, medium tasks still use clean IDs
+                    pool = id_pools[quality].get(complexity, self.clean_ids[complexity])
+
                 if not pool:
-                    raise ValueError(f"Not enough unique IDs for {complexity} tasks.")
+                    raise ValueError(f"Not enough unique IDs for {p_id}, {quality}, {complexity} task.")
                 entity_id = pool.pop(random.randrange(len(pool)))
 
                 # Construct the task object
