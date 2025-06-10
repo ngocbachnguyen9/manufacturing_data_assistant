@@ -23,6 +23,11 @@ def main():
 
     # 1) Load config
     cfg = load_config("config/experiment_config.yaml")
+    # --- load the dirty‐ID map produced in Phase 1 ---
+    dirty_path = "experiments/human_study/dirty_ids.json"
+    if not os.path.exists(dirty_path):
+        raise FileNotFoundError(f"Dirty‐ID map not found: {dirty_path}")
+    dirty_ids = json.load(open(dirty_path))
 
     # 2) Decide seed & participant set
     if args.seed is not None:
@@ -43,8 +48,8 @@ def main():
         participants_to_run = all_parts
         out_file = "experiments/human_study/participant_assignments.json"
 
-    # 3) Generate all assignments (same logic, seeded)
-    tg = TaskGenerator(cfg)
+    # 3) Generate all assignments (same logic, seeded) using dirty IDs
+    tg = TaskGenerator(cfg, dirty_ids)
     full_assignments = tg.generate_all_assignments()
 
     # 4) Slice as needed and write JSON

@@ -11,11 +11,12 @@ class TaskGenerator:
     the 3x3 pattern-pair design.
     """
 
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: Dict[str,Any], dirty_ids: Dict[str,List[str]]):
         """
         Initializes the generator with experiment configuration.
         """
         self.config = config
+        self.dirty_ids = dirty_ids # <— store the incoming dirty‐ID map
         self.participants = config["human_study"]["participant_matrix"]
         self.quality_patterns = config["human_study"]["quality_patterns"]
         self.prompt_patterns = config["human_study"]["prompt_patterns"]
@@ -51,14 +52,28 @@ class TaskGenerator:
         return {"easy": orders, "hard": orders.copy(), "medium": gears}
     
     def _get_clean_ids(self) -> Dict[str, List[str]]:
-        """NEW: Creates pools of IDs that were NOT corrupted."""
-        all_dirty_orders = set(self.dirty_ids.get("Q1", []) + self.dirty_ids.get("Q2", []) + self.dirty_ids.get("Q3", []))
-        
-        clean_orders = [oid for oid in self.valid_ids["easy"] if oid not in all_dirty_orders]
-        # For medium tasks, we assume all gears are clean unless explicitly targeted
-        clean_gears = self.valid_ids["medium"][:]
-        
-        return {"easy": clean_orders, "hard": clean_orders.copy(), "medium": clean_gears}
+        # Gather all corrupted IDs across Q1–Q3
+        all_dirty = set()
+        for qc in ("Q1","Q2","Q3"):
+            all_dirty.update(self.dirty_ids.get(qc, []))
+
+        # Split into orders vs gears by intersecting with baseline lists
+        dirty_orders = set(self.valid_ids["easy"]).intersection(all_dirty)
+        dirty_gears  = set(self.valid_ids["medium"]).intersection(all_dirty)
+
+        # Filter them out of the baseline valid IDs
+        clean_orders = [
+            o for o in self.valid_ids["easy"] if o not in dirty_orders
+        ]
+        clean_gears = [
+            g for g in self.valid_ids["medium"] if g not in dirty_gears
+        ]
+
+        return {
+            "easy": clean_orders,
+            "hard": clean_orders.copy(),
+            "medium": clean_gears,
+        }
 
     def _create_task_list(
         self, pattern_type: str, pattern_name: str
@@ -98,13 +113,24 @@ class TaskGenerator:
                 "hard": self.valid_ids["hard"][:],
             }
 
-            # NEW: Create disposable pools of IDs for this participant
+             # Build per‐QC ID pools
             id_pools = {
-                "Q0": self.clean_ids.copy(),
-                "Q1": {"easy": self.dirty_ids.get("Q1", []), "hard": self.dirty_ids.get("Q1", [])},
-                "Q2": {"easy": self.dirty_ids.get("Q2", []), "hard": self.dirty_ids.get("Q2", [])},
-                "Q3": {"easy": self.dirty_ids.get("Q3", []), "hard": self.dirty_ids.get("Q3", [])},
+                "Q0": {
+                    "easy":   self.valid_ids["easy"][:],
+                    "hard":   self.valid_ids["hard"][:],
+                    # Q0 medium uses all baseline gears
+                    "medium": self.valid_ids["medium"][:],
+                }
             }
+            for qc in ("Q1", "Q2", "Q3"):
+                dirty = self.dirty_ids.get(qc, [])
+                dirty_orders = [x for x in dirty if x.startswith("ORBOX")]
+                # Only orders are corrupted at easy/hard levels
+                id_pools[qc] = {
+                    "easy": dirty_orders[:],
+                    "hard": dirty_orders[:],
+                    # no "medium" key here: forces fallback below
+                }
 
             participant_tasks = []
 
@@ -120,10 +146,11 @@ class TaskGenerator:
                 quality = quality_list[i]
 
                 if quality == "Q0":
-                    pool = id_pools[quality][complexity]
-                else: # For Q1, Q2, Q3, medium tasks still use clean IDs
-                    pool = id_pools[quality].get(complexity, self.clean_ids[complexity])
-
+                    pool = id_pools["Q0"][complexity]
+                else:
+                    # try QC‐specific pool first, then fallback to baseline available_ids
+                    pool = id_pools.get(quality, {}).get(complexity, []) or available_ids[complexity][:]
+ 
                 if not pool:
                     raise ValueError(f"Not enough unique IDs for {p_id}, {quality}, {complexity} task.")
                 entity_id = pool.pop(random.randrange(len(pool)))
@@ -131,8 +158,21 @@ class TaskGenerator:
                 # Construct the task object
                 task_id = f"{p_id}_task_{i+1}"
                 query_template = self.task_templates[complexity]["description"]
-                # Replace ENTITY_ID placeholder with the actual ID through accessing dataset
-                query_string = query_template.format(ENTITY_ID=entity_id)
+
+                # Support both {ENTITY_ID} and legacy {...} placeholders:
+                if "{ENTITY_ID}" in query_template:
+                    query_string = query_template.format(ENTITY_ID=entity_id)
+                elif "{...}" in query_template:
+                    query_string = query_template.replace("{...}", entity_id)
+                else:
+                    # No placeholder found: append ID at end
+                    query_string = f"{query_template} {entity_id}"
+            
+                dataset_path = (
+                    f"data/experimental_datasets/{quality}_baseline"
+                    if quality == "Q0"
+                    else f"data/experimental_datasets/{quality}_dataset"
+                )
                
                 dataset_path = (
                     f"data/experimental_datasets/{quality}_baseline"

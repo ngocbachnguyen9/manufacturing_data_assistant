@@ -111,7 +111,7 @@ task_complexity:
     
   hard:
     name: "Document Cross-Reference"
-    description: "For Product {ENTITY_ID}, verify ARC document date matches warehouse arrival"
+    description: "For Order {ENTITY_ID}, verify ARC document date matches warehouse arrival"
     data_sources: ["documents", "location_data", "relationship_data"]
     max_steps: 6
     expected_time_human: 900  # 15 minutes

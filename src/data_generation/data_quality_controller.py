@@ -18,14 +18,17 @@ class DataQualityController:
     def _load_baseline(self) -> Dict[str, pd.DataFrame]:
         """Loads the Q0 baseline dataset."""
         datasets = {}
-        for filename in os.listdir(self.baseline_path):
-            if filename.endswith(".csv"):
-                key = filename.replace(".csv", "")
-                datasets[key] = pd.read_csv(
-                    os.path.join(self.baseline_path, filename),
-                    dtype=str,
-                    keep_default_na=False,
-                )
+        try:
+            for filename in os.listdir(self.baseline_path):
+                if filename.endswith(".csv"):
+                    key = filename.replace(".csv", "")
+                    datasets[key] = pd.read_csv(
+                        os.path.join(self.baseline_path, filename),
+                        dtype=str,
+                        keep_default_na=False,
+                    )
+        except FileNotFoundError:
+            print(f"Warning: Baseline directory not found at {self.baseline_path}")
         return datasets
 
     def _get_all_orders(self) -> List[str]:
@@ -176,7 +179,7 @@ class DataQualityController:
         
         self._find_and_corrupt_related_records(corruption_map, tracker, "Q1")
         
-        return selected_orders # NEW: Return the list
+        return list(corruption_map.keys()) # NEW: Return the list
 
     def _apply_q2_order_level(self, tracker: ErrorTracker):
         """Q2: Apply character deletion to 12% of orders and all their related records."""
@@ -204,7 +207,7 @@ class DataQualityController:
 
         self._find_and_corrupt_related_records(corruption_map, tracker, "Q2")
 
-        return selected_orders # NEW: Return the list
+        return list(corruption_map.keys()) # NEW: Return the list
 
     def _apply_q3_gear_order_deletion(self, tracker: ErrorTracker):
         """Q3: Delete 5-8% of gear→order relationships."""
@@ -250,7 +253,12 @@ class DataQualityController:
         # Remove the selected relationships
         self.datasets["relationship_data"] = rel_df.drop(indices_to_delete).reset_index(drop=True)
 
-        return list(affected_orders) # NEW: Return the list of affected orders
+        # assemble both orders and gears that were impacted
+        impacted_gears  = [
+            rec["child"] for rec in rel_df.loc[indices_to_delete].to_dict("records")
+        ]
+        impacted_orders = list(affected_orders)
+        return impacted_orders + impacted_gears
 
     def save_corrupted_data(self, corrupted_data: Dict[str, pd.DataFrame], 
                           error_tracker: ErrorTracker, quality_condition: str):

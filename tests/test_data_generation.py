@@ -170,8 +170,9 @@ def tmp_q0(tmp_path):
 def test_q1_space_injection(tmp_q0):
     random.seed(0)
     ctrl = DataQualityController(baseline_path=tmp_q0)
-    data, tracker = ctrl.apply_corruption("Q1")
-
+    data, tracker, targeted_ids = ctrl.apply_corruption("Q1")
+    # make sure we actually got back a list of IDs
+    assert isinstance(targeted_ids, list)
     # We expect at least one entry and each 'corrupted' has space + original as substring
     assert len(tracker.q1_log) > 0
     for entry in tracker.q1_log:
@@ -185,12 +186,15 @@ def test_q1_space_injection(tmp_q0):
 def test_q2_char_missing(tmp_q0):
     random.seed(1)
     ctrl = DataQualityController(baseline_path=tmp_q0)
-    data, tracker = ctrl.apply_corruption("Q2")
-
+    data, tracker, targeted_ids = ctrl.apply_corruption("Q2")
+    assert isinstance(targeted_ids, list)
     for entry in tracker.q2_log:
-        assert len(entry["corrupted"]) + 1 == len(entry["original"])
-        assert entry["removed_char"] not in entry["corrupted"]
-
+           original = entry["original"]
+           corrupted = entry["corrupted"]
+           removed_char = entry["removed_char"]
+           assert len(entry["corrupted"]) + 1 == len(entry["original"])
+           # Check that the count of the removed character is one less
+           assert original.count(removed_char) == corrupted.count(removed_char) + 1
 
 def test_q3_missing_records(tmp_q0):
     random.seed(2)
@@ -199,7 +203,72 @@ def test_q3_missing_records(tmp_q0):
         os.path.join(tmp_q0, "relationship_data.csv"),
         dtype=str,
     )
-    data, tracker = ctrl.apply_corruption("Q3")
+    data, tracker, targeted_ids = ctrl.apply_corruption("Q3")
+    assert isinstance(targeted_ids, list)
 
     # number of dropped records matches log
     assert len(before) - len(data["relationship_data"]) == len(tracker.q3_log)
+
+def test_dqc_load_baseline_handles_missing_dir(tmp_path):
+    # Test what happens if the baseline directory doesn't exist at all
+    ctrl = DataQualityController(baseline_path=str(tmp_path / "nonexistent"))
+    # _load_baseline should handle the FileNotFoundError and return an empty dict
+    assert ctrl.datasets == {}
+
+
+def test_dqc_get_all_orders(tmp_q0):
+    # Test the helper that extracts order IDs
+    ctrl = DataQualityController(baseline_path=tmp_q0)
+    orders = ctrl._get_all_orders()
+    # Based on your tmp_q0 fixture, it should find ORBOX1 and ORBOX2
+    assert sorted(orders) == ["ORBOX1", "ORBOX2"]
+
+
+def test_dqc_get_order_related_entities(tmp_q0):
+    # Test the helper that maps an order to all its related parts
+    ctrl = DataQualityController(baseline_path=tmp_q0)
+    entities = ctrl._get_order_related_entities("ORBOX1")
+    assert entities["orders"] == {"ORBOX1"}
+    assert entities["gears"] == {"3DOR1"}
+    # This will be empty as the fixture has no printer relationships
+    assert entities["printers"] == set()
+
+# Add this test as well
+
+def test_dqc_apply_corruption_on_empty_dataset(monkeypatch):
+    # Create a controller where the baseline data is empty
+    monkeypatch.setattr(
+        DataQualityController, "_load_baseline", lambda self: {}
+    )
+    ctrl = DataQualityController(baseline_path="ignored")
+
+    # All corruption methods should run without error and return empty results
+    for qc in ["Q1", "Q2", "Q3"]:
+        data, tracker, targeted_ids = ctrl.apply_corruption(qc)
+        assert data == {}
+        assert targeted_ids == []
+
+# Add this test to verify file output
+
+def test_dqc_save_corrupted_data(tmp_path):
+    # We don't need a full controller, just an instance to call the method
+    ctrl = DataQualityController(baseline_path="ignored")
+    
+    # Create some dummy data to save
+    dummy_data = {"test_table": pd.DataFrame({"col": [1, 2]})}
+    
+    from src.data_generation.error_tracker import ErrorTracker
+    dummy_tracker = ErrorTracker()
+    dummy_tracker.log_q1_space_injection(0, "loc", "a", " a")
+
+    # Call the save method
+    ctrl.save_corrupted_data(dummy_data, dummy_tracker, "Q1")
+
+    # Check that the files were written to the correct directory
+    output_dir = Path("data/experimental_datasets/Q1_dataset")
+    assert (output_dir / "test_table_Q1.csv").exists()
+    assert (output_dir / "all_tables_Q1_errors.csv").exists()
+
+    # Clean up the created directory after the test
+    import shutil
+    shutil.rmtree(output_dir)

@@ -3,7 +3,9 @@ from src.data_generation.data_quality_controller import DataQualityController
 from src.data_generation.ground_truth_generator import GroundTruthGenerator
 from experiments.validation.error_injection_validation import InjectionValidator
 from experiments.validation.ground_truth_validation import GroundTruthValidator
-
+from typing import Dict, List, Any
+import os
+import json
 
 def main():
     """
@@ -14,12 +16,21 @@ def main():
     env = ManufacturingEnvironment()
     env.setup_baseline_environment()
 
-    # --- Step 2: Generate Corrupted Datasets ---
     controller = DataQualityController()
     quality_conditions = ["Q1", "Q2", "Q3"]
+    dirty_ids: Dict[str, List[str]] = {}
+    # Apply corruption and capture the list of targeted IDs
     for qc in quality_conditions:
-        corrupted_data, error_tracker = controller.apply_corruption(qc)
+        corrupted_data, error_tracker, targeted = controller.apply_corruption(qc)
         controller.save_corrupted_data(corrupted_data, error_tracker, qc)
+        dirty_ids[qc] = targeted
+        print(f"  - Captured {len(targeted)} dirty IDs for {qc}")
+
+    # Persist dirty‐ID map for Phase 3
+    os.makedirs("experiments/human_study", exist_ok=True)
+    with open("experiments/human_study/dirty_ids.json", "w") as f:
+        json.dump(dirty_ids, f, indent=2)
+    print("Saved dirty IDs map → experiments/human_study/dirty_ids.json")
 
     # --- Step 3: Generate Ground Truth & Traversal Paths ---
     print("***REMOVED***n--- Generating Ground Truth Answers & Paths ---")
