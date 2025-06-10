@@ -95,7 +95,7 @@ data_quality:
 task_complexity:
   easy:
     name: "Direct Traversal"
-    description: "Find gears for given order using packing list"
+    description: "Find all gears for Order {ENTITY_ID}"
     data_sources: ["relationship_data", "location_data"]
     max_steps: 2
     expected_time_human: 180  # 3 minutes assumptions, for this and all other times
@@ -103,7 +103,7 @@ task_complexity:
     
   medium:
     name: "Cross-System Validation"
-    description: "Determine printer for part and count parts printed"
+    description: "Determine the printer for Part {ENTITY_ID} and count parts printed on that machine"
     data_sources: ["relationship_data", "machine_log", "location_data"]
     max_steps: 4
     expected_time_human: 420  # 7 minutes
@@ -111,7 +111,7 @@ task_complexity:
     
   hard:
     name: "Document Cross-Reference"
-    description: "Verify ARC document dates vs warehouse arrival"
+    description: "For Product {ENTITY_ID}, verify ARC document date matches warehouse arrival"
     data_sources: ["documents", "location_data", "relationship_data"]
     max_steps: 6
     expected_time_human: 900  # 15 minutes

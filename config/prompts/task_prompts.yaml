@@ -2,8 +2,6 @@
 task_prompts:
   easy:
     base_prompt: |
-      MANUFACTURING QUERY - EASY COMPLEXITY
-      
       Task: Find all gears that went into Order {order_id}
       
       CONTEXT:
@@ -28,8 +26,6 @@ task_prompts:
       Provide your analysis in a clear, structured format suitable for factory floor personnel.
 
     with_data_quality_issues: |
-      MANUFACTURING QUERY - EASY COMPLEXITY (Data Quality Alert)
-      
       Task: Find all gears that went into Order {order_id}
       
       DATA QUALITY NOTICE:
@@ -48,8 +44,6 @@ task_prompts:
 
   medium:
     base_prompt: |
-      MANUFACTURING QUERY - MEDIUM COMPLEXITY
-      
       Task: For Part {part_id}, determine which 3D printer was used and count the total number of parts printed on that printer.
       
       CONTEXT:
@@ -77,8 +71,6 @@ task_prompts:
       Your analysis supports manufacturing capacity planning and quality control decisions.
 
     with_data_quality_issues: |
-      MANUFACTURING QUERY - MEDIUM COMPLEXITY (Data Quality Alert)
-      
       Task: For Part {part_id}, determine which 3D printer was used and count the total number of parts printed on that printer.
       
       DATA QUALITY NOTICE:
@@ -98,8 +90,6 @@ task_prompts:
 
   hard:
     base_prompt: |
-      MANUFACTURING QUERY - HARD COMPLEXITY
-      
       Task: For Product {product_id}, verify that the ARC (Authorized Release Certificate) document completion date matches the date the product arrived at the Parts Warehouse.
       
       CONTEXT:
@@ -128,8 +118,6 @@ task_prompts:
       This analysis is critical for maintaining airworthiness certification and regulatory compliance.
 
     with_data_quality_issues: |
-      MANUFACTURING QUERY - HARD COMPLEXITY (Data Quality Alert)
-      
       Task: For Product {product_id}, verify that the ARC document completion date matches the product's Parts Warehouse arrival date.
       
       DATA QUALITY NOTICE:

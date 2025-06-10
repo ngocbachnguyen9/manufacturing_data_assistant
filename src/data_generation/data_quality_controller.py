@@ -121,38 +121,37 @@ class DataQualityController:
                 return original[i], i
         return original[-1], len(original) - 1
 
-    def apply_corruption(self, quality_condition: str) -> Tuple[Dict[str, pd.DataFrame], ErrorTracker]:
-        """Apply order-level corruption for the specified quality condition."""
+    # UPDATED: The main apply method now returns the targeted IDs
+    def apply_corruption(
+        self, quality_condition: str
+    ) -> Tuple[Dict[str, pd.DataFrame], ErrorTracker, List[str]]:
+        """Apply corruption and return the corrupted data, tracker, and targeted IDs."""
         corrupted_data = {k: v.copy() for k, v in self.datasets.items()}
         error_tracker = ErrorTracker()
-        
+        targeted_ids = []
+
         # Temporarily replace datasets with corrupted copies for processing
         original_datasets = self.datasets
         self.datasets = corrupted_data
 
         print(f"***REMOVED***n--- Applying {quality_condition} Corruption (Order-Level) ---")
-        
-        if quality_condition == "Q1":
-            self._apply_q1_order_level(error_tracker)
-        elif quality_condition == "Q2":
-            self._apply_q2_order_level(error_tracker)
-        elif quality_condition == "Q3":
-            self._apply_q3_gear_order_deletion(error_tracker)
-        else:
-            print(f"Warning: Unknown quality condition '{quality_condition}'")
 
-        # Restore original datasets reference
+        if quality_condition == "Q1":
+            targeted_ids = self._apply_q1_order_level(error_tracker)
+        elif quality_condition == "Q2":
+            targeted_ids = self._apply_q2_order_level(error_tracker)
+        elif quality_condition == "Q3":
+            targeted_ids = self._apply_q3_gear_order_deletion(error_tracker)
+
         self.datasets = original_datasets
-        
-        return corrupted_data, error_tracker
+        return corrupted_data, error_tracker, targeted_ids
 
     def _apply_q1_order_level(self, tracker: ErrorTracker):
         """Q1: Apply space injection to 15% of orders and all their related records."""
         orders = self._get_all_orders()
         if not orders:
-            print("No orders found for Q1 corruption")
-            return
-            
+            print("No orders available for Q1 corruption.")
+            return []
         num_orders_to_corrupt = max(1, int(len(orders) * 0.15))
         selected_orders = random.sample(orders, num_orders_to_corrupt)
         
@@ -176,14 +175,15 @@ class DataQualityController:
                         corruption_map[entity_id] = spaces + entity_id + spaces
         
         self._find_and_corrupt_related_records(corruption_map, tracker, "Q1")
+        
+        return selected_orders # NEW: Return the list
 
     def _apply_q2_order_level(self, tracker: ErrorTracker):
         """Q2: Apply character deletion to 12% of orders and all their related records."""
         orders = self._get_all_orders()
         if not orders:
-            print("No orders found for Q2 corruption")
-            return
-            
+            print("No orders available for Q2 corruption.")
+            return []
         num_orders_to_corrupt = max(1, int(len(orders) * 0.12))
         selected_orders = random.sample(orders, num_orders_to_corrupt)
         
@@ -204,12 +204,14 @@ class DataQualityController:
 
         self._find_and_corrupt_related_records(corruption_map, tracker, "Q2")
 
+        return selected_orders # NEW: Return the list
+
     def _apply_q3_gear_order_deletion(self, tracker: ErrorTracker):
         """Q3: Delete 5-8% of gear→order relationships."""
         rel_df = self.datasets.get("relationship_data")
         if rel_df is None or rel_df.empty:
-            print("No relationship data found for Q3 corruption")
-            return
+            print("No relationship data available for Q3 corruption.")
+            return []
 
         # Find all gear→order relationships
         gear_order_mask = (
@@ -219,8 +221,8 @@ class DataQualityController:
         gear_order_relationships = rel_df[gear_order_mask]
         
         if gear_order_relationships.empty:
-            print("No gear→order relationships found for Q3 corruption")
-            return
+            print("No gear→order relationships found for Q3 corruption.")
+            return []
 
         # Select 5-8% of these relationships to delete
         deletion_rate = random.uniform(0.05, 0.08)
@@ -229,6 +231,9 @@ class DataQualityController:
         indices_to_delete = gear_order_relationships.sample(n=num_to_delete).index.tolist()
         
         print(f"Q3: Deleting {num_to_delete}/{len(gear_order_relationships)} gear→order relationships ({deletion_rate:.1%})")
+
+        # NEW: Get the set of unique order IDs affected by the deletion
+        affected_orders = set(rel_df.loc[indices_to_delete]["parent"].unique())
         
         for idx in indices_to_delete:
             removed_record = rel_df.loc[idx].to_dict()
@@ -244,6 +249,8 @@ class DataQualityController:
 
         # Remove the selected relationships
         self.datasets["relationship_data"] = rel_df.drop(indices_to_delete).reset_index(drop=True)
+
+        return list(affected_orders) # NEW: Return the list of affected orders
 
     def save_corrupted_data(self, corrupted_data: Dict[str, pd.DataFrame], 
                           error_tracker: ErrorTracker, quality_condition: str):

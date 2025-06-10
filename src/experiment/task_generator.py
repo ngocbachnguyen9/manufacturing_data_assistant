@@ -108,9 +108,9 @@ class TaskGenerator:
                 # Construct the task object
                 task_id = f"{p_id}_task_{i+1}"
                 query_template = self.task_templates[complexity]["description"]
-                query_string = query_template.replace(
-                    "{...}", entity_id
-                )  # Simple replace
+                # Replace ENTITY_ID placeholder with the actual ID through accessing dataset
+                query_string = query_template.format(ENTITY_ID=entity_id)
+               
                 dataset_path = (
                     f"data/experimental_datasets/{quality}_baseline"
                     if quality == "Q0"
