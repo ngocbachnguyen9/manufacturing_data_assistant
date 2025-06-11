@@ -33,67 +33,56 @@ class StubMasterAgent:
 
 @pytest.fixture
 def runner_and_dirs(tmp_path, monkeypatch):
-    # 1) Stub out JSON loading
+    # 1. Stub out JSON loading
     assignments = {
-        "P1": [
-            {
-                "task_id": "T1",
-                "complexity": "easy",
-                "quality_condition": "Q0",
-                "query_string": "Find gears for ORBOX0014",
-                "dataset_path": "ignored",
-            }
-        ]
+        "P1": [{"task_id": "T1", "complexity": "easy", "quality_condition": "Q0",
+                "query_string": "Find gears for ORBOX0014", "dataset_path": "ignored"}]
     }
     ground_truth = [
-        {
-            "task_id": "T1",
-            "complexity_level": "easy",
-            "baseline_answer": {"gear_list": ["3DOR1"]},
-        }
+        {"task_id": "T1", "complexity_level": "easy",
+         "baseline_answer": {"gear_list": ["3DOR1"]}}
     ]
     monkeypatch.setattr(
-        LLMEvaluationRunner,
-        "_load_json",
-        lambda self, path: assignments
-        if "participant_assignments" in path
-        else ground_truth,
+        LLMEvaluationRunner, "_load_json",
+        lambda self, path: assignments if "assignments" in path else ground_truth
     )
 
-    # 2) Stub DataLoader and MasterAgent in the llm_evaluation module
+    # 2. Stub out heavy dependencies
     import src.experiment.llm_evaluation as m
     monkeypatch.setattr(m, "DataLoader", DummyDataLoader)
     monkeypatch.setattr(m, "MasterAgent", StubMasterAgent)
 
-    # 3) Monkeypatch MockLLMProvider.generate to always return "correct"
-    monkeypatch.setattr(MockLLMProvider, "generate",
-                        lambda self, prompt: {
-                            "content": "Correct",
-                            "input_tokens": 0,
-                            "output_tokens": 0
-                        })
+    # 3. Patch the MockLLMProvider's generate method to act like a judge
+    #    when it sees the judge prompt.
+    original_generate = MockLLMProvider.generate
+    def mock_generate_with_judge(self, prompt):
+        if "You are an impartial judge" in prompt:
+            # If this is the judge prompt, return "Correct"
+            return {"content": "Correct", "input_tokens": 10, "output_tokens": 1}
+        else:
+            # Otherwise, use the original mock logic (for planning/synthesis)
+            return original_generate(self, prompt)
 
-    # 4) Create runner
+    monkeypatch.setattr(MockLLMProvider, "generate", mock_generate_with_judge)
+
+    # 4. Create the runner instance correctly
     cfg = {
         "llm_evaluation": {"models_to_test": ["M1"]},
         "llm_providers": {
-            "M1": {
-                "cost_per_1m_tokens_input": 0.0,
-                "cost_per_1m_tokens_output": 0.0,
-            }
+            "M1": {"cost_per_1m_tokens_input": 0.0, "cost_per_1m_tokens_output": 0.0}
         },
     }
-    runner = LLMEvaluationRunner(cfg)
-    # rewrite log_dir to a tmp folder
+    runner = LLMEvaluationRunner(config=cfg, use_mock=True)
+
+    # 5. Point the runner's log directory to the temporary path
     runner.log_dir = str(tmp_path)
     return runner, tmp_path
 
 
-# -- Tests ------------------------------------------------------------------
-
+# --- UPDATE the test_evaluate_answer_missing_gt function ---
 def test_evaluate_answer_missing_gt(runner_and_dirs):
     runner, _ = runner_and_dirs
-    # now pass an llm_provider, but it won't be used for missing GT
+    # The method now requires an llm_provider instance as the third argument
     ok, gt = runner._evaluate_answer("NO_SUCH", "whatever", MockLLMProvider("M1"))
     assert ok is False
     assert gt == "Ground truth not found"

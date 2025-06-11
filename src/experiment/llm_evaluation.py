@@ -1,4 +1,5 @@
-#src/experiment/llm_evaluation.py
+# In src/experiment/llm_evaluation.py
+
 import pandas as pd
 import os
 import json
@@ -8,22 +9,23 @@ from typing import Dict, Any, List
 from src.agents.master_agent import MasterAgent
 from src.utils.data_loader import DataLoader
 from src.utils.cost_tracker import CostTracker
-from src.utils.llm_provider import MockLLMProvider, OpenAIProvider, AnthropicProvider
-
+# Import all providers
+from src.utils.llm_provider import (
+    MockLLMProvider,
+    OpenAIProvider,
+    AnthropicProvider,
+    DeepSeekProvider,
+)
 
 class LLMEvaluationRunner:
     """
     Manages the execution of the LLM agent against the experimental tasks.
     """
-
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: Dict[str, Any], use_mock: bool = True):
         self.config = config
-        self.assignments = self._load_json(
-            "experiments/human_study/participant_assignments.json"
-        )
-        self.ground_truth = self._load_json(
-            "data/ground_truth/baseline_answers.json"
-        )
+        self.use_mock = use_mock
+        self.assignments = self._load_json("experiments/human_study/participant_assignments.json")
+        self.ground_truth = self._load_json("data/ground_truth/baseline_answers.json")
         self.results = []
         self.log_dir = "experiments/llm_evaluation/performance_logs"
         os.makedirs(self.log_dir, exist_ok=True)
@@ -31,6 +33,22 @@ class LLMEvaluationRunner:
     def _load_json(self, path: str) -> Any:
         with open(path, "r") as f:
             return json.load(f)
+
+    def _select_llm_provider(self, model_name: str) -> Any:
+        """Internal factory function to select the correct LLM provider."""
+        if self.use_mock:
+            print(f"  - Using MockLLMProvider for {model_name}")
+            return MockLLMProvider(model_name)
+
+        print(f"  - Using LIVE provider for {model_name}")
+        if "gpt" in model_name or "o4" in model_name:
+            return OpenAIProvider(model_name)
+        elif "claude" in model_name or "sonnet" in model_name:
+            return AnthropicProvider(model_name)
+        elif "deepseek" in model_name:
+            return DeepSeekProvider(model_name)
+        else:
+            raise ValueError(f"No real provider found for model: {model_name}")
 
     def run_evaluation(self):
         """
@@ -42,7 +60,7 @@ class LLMEvaluationRunner:
 
         for model_name in models_to_test:
             print(f"***REMOVED***n--- Testing Model: {model_name} ---")
-            # UPDATED: Instantiate the correct provider based on the flag and model name
+            # This logic now works because self.use_mock is set in __init__
             if self.use_mock:
                 llm_provider = MockLLMProvider(model_name)
                 print(f"  - Using MockLLMProvider for {model_name}")
@@ -51,12 +69,13 @@ class LLMEvaluationRunner:
                     llm_provider = OpenAIProvider(model_name)
                 elif "claude" in model_name or "sonnet" in model_name:
                     llm_provider = AnthropicProvider(model_name)
-                # Add an elif for DeepSeek or other providers here
+                elif "deepseek" in model_name: # NEW: Added DeepSeek
+                    llm_provider = DeepSeekProvider(model_name)
                 else:
                     print(f"Warning: No real provider found for {model_name}. Using mock.")
                     llm_provider = MockLLMProvider(model_name)
                 print(f"  - Using LIVE provider: {llm_provider.__class__.__name__}")
-                
+
             cost_tracker = CostTracker(cost_config)
 
             for p_id, tasks in self.assignments.items():
