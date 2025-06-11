@@ -29,23 +29,23 @@ BASE_CONFIG = {
         },
     },
     "task_complexity": {
-        "easy": {"description": "Do easy task {...}"},
-        "medium": {"description": "Do medium task {...}"},
-        "hard": {"description": "Do hard task {...}"},
+       "easy": {"description": "Find all gears for Packing List {ENTITY_ID}"},
+       "medium": {"description": "Determine the printer for Part {ENTITY_ID} and count parts printed on that machine"},
+       "hard": {"description": "For Order {ENTITY_ID}, verify ARC document date matches warehouse arrival"},
     },
     "experiment": {"random_seed": 0},
 }
 # We’ll feed in an “empty” dirty_ids map so that all clean IDs remain
 EMPTY_DIRTY = {"Q1": [], "Q2": [], "Q3": []}
 
+# UPDATED Fixture
 @pytest.fixture(autouse=True)
 def stub_get_valid_ids(monkeypatch):
     """
-    Stub out _get_valid_ids so we don't hit the real CSVs.
-    Provide predictable lists for easy/medium/hard.
+    Stub out _get_valid_ids to provide predictable lists for all complexities.
     """
     fake = {
-        "easy": ["E1", "E2", "E3"],
+        "easy": ["PL1011", "PL1012", "PL1013"], # UPDATED: Easy tasks use PL IDs
         "medium": ["M1", "M2", "M3"],
         "hard": ["H1", "H2", "H3"],
     }
@@ -90,6 +90,10 @@ def test_generate_all_assignments_structure(tmp_path, monkeypatch):
                 assert "Q0_baseline" in t["dataset_path"]
             else:
                 assert f"{qc}_dataset" in t["dataset_path"]
+            # UPDATED: Check the query string for an easy task
+            if t["complexity"] == "easy":
+                assert "Find all gears for Packing List" in t["query_string"]
+                assert any(pl_id in t["query_string"] for pl_id in ["PL1011", "PL1012", "PL1013"])
 
 def test_generate_all_assignments_exhausted_ids(monkeypatch):
     # stub valid_ids so 'easy' is empty

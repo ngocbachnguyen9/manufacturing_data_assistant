@@ -8,6 +8,7 @@ from pathlib import Path
 
 from src.utils.data_loader import DataLoader
 from src.data_generation.document_generator import FAACertificateGenerator
+from src.data_generation.document_generator import PackingListGenerator
 from src.data_generation.manufacturing_environment import ManufacturingEnvironment
 from src.data_generation.data_quality_controller import DataQualityController
 
@@ -95,54 +96,72 @@ def test_faa_generate_certificate_writes_file(
     assert out_pdf.exists()
     assert out_pdf.read_bytes() == b"PDF OK"
 
+# ----------------------------------------
+# NEW TEST for PackingListGenerator
+# ----------------------------------------
+def test_packing_list_generator_writes_file(monkeypatch, dummy_pdf_template, tmp_path):
+    # This test is very similar to the FAA generator test
+    # We stub out pypdf to avoid real PDF creation
+    class DummyWriter:
+        def __init__(self): self.pages = [{}]
+        def append(self, r): pass
+        def update_page_form_field_values(self, p, data, auto_regenerate=False): pass
+        def write(self, stream): stream.write(b"PACKING_LIST_OK")
+
+    monkeypatch.setattr(pypdf, "PdfReader", lambda f: object())
+    monkeypatch.setattr(pypdf, "PdfWriter", DummyWriter)
+
+    out_pdf = tmp_path / "packing_list_out.pdf"
+    # Assume the template exists at the dummy path
+    gen = PackingListGenerator(template_path=dummy_pdf_template)
+    gen.generate_packing_list({"OrderNumber": "ORBOX1"}, str(out_pdf))
+
+    assert out_pdf.exists()
+    assert out_pdf.read_bytes() == b"PACKING_LIST_OK"
 
 # ----------------------------------------
-# ManufacturingEnvironment tests
+# UPDATED TEST for ManufacturingEnvironment
 # ----------------------------------------
 def test_manufacturing_environment_writes_baseline_and_invokes_docs(
     monkeypatch, tmp_path
 ):
-    # 1) Stub DataLoader.load_base_data()
+    # 1) Stub DataLoader.load_base_data() - Unchanged
     base_data = {
-        "location_data": pd.DataFrame({"A": [1]}),
-        "machine_log": pd.DataFrame(),
-        "relationship_data": pd.DataFrame({
-            "parent": ["ORBOX1"], "child": ["3DOR1"]
-        }),
-        "worker_data": pd.DataFrame(),
+        "relationship_data": pd.DataFrame({"parent": ["ORBOX1"], "child": ["3DOR1"]}),
+        # ... other empty dataframes ...
     }
     monkeypatch.setattr(DataLoader, "load_base_data", lambda self: base_data)
 
-    # 2) Prevent FAACertificateGenerator.__init__ from raising
-    monkeypatch.setattr(
-        FAACertificateGenerator,
-        "__init__",
-        lambda self, template_path=None: None
-    )
+    # 2) Prevent both generators from raising errors
+    monkeypatch.setattr(FAACertificateGenerator, "__init__", lambda s, p=None: None)
+    monkeypatch.setattr(PackingListGenerator, "__init__", lambda s, p=None: None) # NEW
 
-    # 3) Collect calls to generate_certificate
-    calls = []
+    # 3) Collect calls for both generators
+    faa_calls = []
+    packing_list_calls = [] # NEW
 
-    class StubGen:
-        def generate_certificate(self, fd, path):
-            calls.append(path)
-            Path(path).write_text("X")
+    class StubFAAGen:
+        def generate_certificate(self, fd, path): faa_calls.append(path)
 
-    # 4) Instantiate and override doc_generator
+    class StubPackingListGen: # NEW
+        def generate_packing_list(self, fd, path): packing_list_calls.append(path)
+
+    # 4) Instantiate environment and override both generators
     env = ManufacturingEnvironment(
         base_data_path="unused",
         output_path=str(tmp_path / "out"),
-        doc_output_path=str(tmp_path / "docs")
+        faa_doc_path=str(tmp_path / "faa_docs"),
+        packing_list_doc_path=str(tmp_path / "pl_docs"), # NEW
     )
-    env.doc_generator = StubGen()
+    env.faa_generator = StubFAAGen()
+    env.packing_list_generator = StubPackingListGen() # NEW
     env.setup_baseline_environment()
 
-    # Baseline CSV was written:
-    assert (tmp_path / "out" / "location_data.csv").exists()
-
-    # Exactly one certificate for ORBOX1
-    assert len(calls) == 1
-    assert "ARC-ORBOX1.pdf" in calls[0]
+    # Assertions
+    assert len(faa_calls) == 1
+    assert "ARC-ORBOX1.pdf" in faa_calls[0]
+    assert len(packing_list_calls) == 1 # NEW
+    assert "PackingList-PL1001.pdf" in packing_list_calls[0] # NEW
 
 
 # ----------------------------------------

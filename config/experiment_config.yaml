@@ -94,9 +94,9 @@ data_quality:
 # Task Complexity Definitions
 task_complexity:
   easy:
-    name: "Direct Traversal"
-    description: "Find all gears for Order {ENTITY_ID}"
-    data_sources: ["relationship_data", "location_data"]
+    name: "Document Lookup and Traversal" # Consider renaming
+    description: "Find all gears for Packing List {ENTITY_ID}" # UPDATED
+    data_sources: ["documents", "relationship_data"] # UPDATED
     max_steps: 2
     expected_time_human: 180  # 3 minutes assumptions, for this and all other times
     expected_time_llm: 30     # 30 seconds

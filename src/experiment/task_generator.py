@@ -36,12 +36,25 @@ class TaskGenerator:
             os.path.join(baseline_path, "relationship_data.csv")
         )
 
-        # Easy/Hard tasks use Order IDs
+        # NEW: Easy tasks now use Packing List IDs
+        packing_list_dir = "data/generated_documents/packing_lists"
+        packing_lists = []
+        if os.path.exists(packing_list_dir):
+            for f in os.listdir(packing_list_dir):
+                if f.startswith("PackingList-") and f.endswith(".pdf"):
+                    # Extract 'PL1011' from 'PackingList-PL1011.pdf'
+                    pl_id = f.replace("PackingList-", "").replace(".pdf", "")
+                    packing_lists.append(pl_id)
+        else:
+            print(f"Warning: Packing list directory not found at {packing_list_dir}")
+        
+        # Hard tasks use Order IDs
         orders = sorted(
             rel_df[rel_df["parent"].str.startswith("ORBOX", na=False)][
                 "parent"
             ].unique()
         )
+
         # Medium tasks use Gear IDs
         gears = sorted(
             rel_df[rel_df["child"].str.startswith("3DOR", na=False)][
@@ -49,7 +62,7 @@ class TaskGenerator:
             ].unique()
         )
 
-        return {"easy": orders, "hard": orders.copy(), "medium": gears}
+        return {"easy": sorted(packing_lists),  "hard": orders, "medium": gears}
     
     def _get_clean_ids(self) -> Dict[str, List[str]]:
         # Gather all corrupted IDs across Q1–Q3

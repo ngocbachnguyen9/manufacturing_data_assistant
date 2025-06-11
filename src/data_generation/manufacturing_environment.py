@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from src.utils.data_loader import DataLoader
 from src.data_generation.document_generator import FAACertificateGenerator
-
+from src.data_generation.document_generator import PackingListGenerator
 
 class ManufacturingEnvironment:
     """
@@ -14,14 +14,19 @@ class ManufacturingEnvironment:
         self,
         base_data_path: str = "data/manufacturing_base",
         output_path: str = "data/experimental_datasets/Q0_baseline",
-        doc_output_path: str = "data/generated_documents/certificates",
+        faa_doc_path: str = "data/generated_documents/certificates",
+        # NEW: Add a path for packing lists
+        packing_list_doc_path: str = "data/generated_documents/packing_lists",
     ):
         self.data_loader = DataLoader(base_path=base_data_path)
         self.output_path = output_path
-        self.doc_output_path = doc_output_path
-        self.doc_generator = FAACertificateGenerator()
+        self.faa_doc_output_path = faa_doc_path
+        self.packing_list_output_path = packing_list_doc_path # NEW
+        self.faa_generator = FAACertificateGenerator()
+        self.packing_list_generator = PackingListGenerator() # NEW
         os.makedirs(self.output_path, exist_ok=True)
-        os.makedirs(self.doc_output_path, exist_ok=True)
+        os.makedirs(self.faa_doc_output_path, exist_ok=True)
+        os.makedirs(self.packing_list_output_path, exist_ok=True) # NEW
 
     def setup_baseline_environment(self):
         """
@@ -81,9 +86,25 @@ class ManufacturingEnvironment:
                 "14e Date": "28/10/2024",
             }
 
-            output_file = os.path.join(self.doc_output_path, f"ARC-{order_id}.pdf")
+            output_file = os.path.join(self.faa_doc_output_path, f"ARC-{order_id}.pdf")
             try:
-                self.doc_generator.generate_certificate(field_data, output_file)
+                self.faa_generator.generate_certificate(field_data, output_file)
                 print(f"Generated certificate for Order ID: {order_id}")
             except Exception as e:
                 print(f"Error generating certificate for {order_id}: {e}")
+            
+            # --- NEW: Packing List Generation Logic ---
+            packing_list_id = f"PL{int(order_id.replace('ORBOX', '')) + 1000}"
+            packing_list_fields = {
+                "PackingListID": packing_list_id,
+                "OrderNumber": order_id, # This is the crucial link
+                "Quantity": str(len(gear_rels[gear_rels["parent"] == order_id])),
+                "Description": "3D Printed Gears",
+            }
+            packing_list_output_file = os.path.join(
+                self.packing_list_output_path, f"PackingList-{packing_list_id}.pdf"
+            )
+            self.packing_list_generator.generate_packing_list(
+                packing_list_fields, packing_list_output_file
+            )
+            print(f"Generated Packing List {packing_list_id} for Order ID: {order_id}")

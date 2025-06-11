@@ -61,3 +61,26 @@ class FAACertificateGenerator:
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, "wb") as output_stream:
             writer.write(output_stream)
+
+# NEW CLASS
+class PackingListGenerator:
+    """Generates Packing List PDFs from a template."""
+
+    def __init__(
+        self,
+        template_path: str = "data/document_templates/packing_list_template.pdf",
+    ):
+        if not os.path.exists(template_path):
+            raise FileNotFoundError(f"Template not found: {template_path}")
+        self.template_path = template_path
+
+    def generate_packing_list(self, field_data: dict, output_path: str):
+        """Fills and saves a packing list PDF."""
+        reader = pypdf.PdfReader(self.template_path)
+        writer = pypdf.PdfWriter()
+        writer.append(reader)
+        writer.update_page_form_field_values(
+            writer.pages[0], field_data, auto_regenerate=False
+        )
+        with open(output_path, "wb") as f:
+            writer.write(f)

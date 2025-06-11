@@ -4,6 +4,7 @@ from .relationship_tool import RelationshipTool
 from .worker_data_tool import WorkerDataTool
 from .document_parser_tool import DocumentParserTool
 from .barcode_validator_tool import BarcodeValidatorTool
+from .packing_list_parser_tool import PackingListParserTool # NEW
 
 # A dictionary to easily access all tool classes
 TOOL_CLASSES = {
@@ -13,4 +14,5 @@ TOOL_CLASSES = {
     "worker_data_tool": WorkerDataTool,
     "document_parser_tool": DocumentParserTool,
     "barcode_validator_tool": BarcodeValidatorTool,
+    "packing_list_parser_tool": PackingListParserTool, # NEW
 }
