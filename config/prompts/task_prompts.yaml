@@ -2,44 +2,48 @@
 task_prompts:
   easy:
     base_prompt: |
-      Task: Find all gears that went into Order {order_id}
-      
+      # --- UPDATED SECTION ---
+      Task: Find all gears for Packing List {packing_list_id}
+
       CONTEXT:
-      You are analyzing a 3D printing factory's order fulfillment data. Each order contains multiple printed gears that must be traced through the manufacturing system.
-      
+      You are analyzing a 3D printing factory's order fulfillment data. You must start by looking up a Packing List document to find the corresponding Order ID, then use that Order ID to trace all associated gears.
+
       REQUIRED ANALYSIS:
-      1. Locate the specified order in the system
-      2. Find all associated gears using relationship data
-      3. Verify gear locations and status
-      4. Provide complete gear list for the order
-      
+      1. Locate and parse the specified Packing List document.
+      2. Extract the Order ID from the document.
+      3. Use the Order ID to find all associated gears in the relationship data.
+      4. Provide a complete gear list for the order.
+
       DATA SOURCES AVAILABLE:
+      • Packing lists (your starting point, contains the Order ID)
       • Relationship data (parent-child links between orders and gears)
       • Location data (barcode scans at process stations)
-      • Packing lists (order contents documentation)
-      
+      # --- END UPDATED SECTION ---
+
       SUCCESS CRITERIA:
-      • List all gear IDs associated with the order
-      • Verify gears reached completion (Parts Warehouse or Goods Out)
+      • Correctly extract the Order ID from the Packing List
+      • List all gear IDs associated with that Order ID
       • Flag any missing or incomplete gear tracking
-      
+
       Provide your analysis in a clear, structured format suitable for factory floor personnel.
 
     with_data_quality_issues: |
-      Task: Find all gears that went into Order {order_id}
-      
+      # --- UPDATED SECTION ---
+      Task: Find all gears for Packing List {packing_list_id}
+
       DATA QUALITY NOTICE:
       The manufacturing data may contain quality issues such as:
+      • Document parsing errors or missing documents
       • Barcode scanning errors (extra spaces, missing characters)
       • Missing relationship records due to system downtime
-      • Incomplete location tracking
-      
+
       Your analysis must:
-      1. Complete the gear identification task as best possible
+      1. Complete the gear identification task as best possible, starting from the Packing List.
+      # --- END UPDATED SECTION ---
       2. Identify and classify any data quality issues encountered
       3. Assess confidence level in your findings
       4. Recommend data quality improvements
-      
+
       Use alternative search strategies if primary data sources fail.
 
   medium:
@@ -90,22 +94,22 @@ task_prompts:
 
   hard:
     base_prompt: |
-      Task: For Product {product_id}, verify that the ARC (Authorized Release Certificate) document completion date matches the date the product arrived at the Parts Warehouse.
+      Task: For Order {order_id}, verify that the ARC (Authorized Release Certificate) document completion date matches the date the order arrived at the Parts Warehouse.
       
       CONTEXT:
       This is a critical compliance verification task for aerospace manufacturing. FAA 8130-3 certificates must align with actual manufacturing completion dates to ensure airworthiness compliance.
       
       REQUIRED ANALYSIS:
-      1. Locate and parse the ARC document (FAA 8130-3 certificate) for the product
+      1. Locate and parse the ARC document (FAA 8130-3 certificate) for the order
       2. Extract the certificate completion date from the document
-      3. Trace the product through location data to find Parts Warehouse arrival
+      3. Trace the order through location data to find Parts Warehouse arrival
       4. Compare certificate date with actual warehouse arrival date
       5. Identify any discrepancies and assess compliance implications
       
       DATA SOURCES AVAILABLE:
       • Document system (FAA 8130-3 certificates in PDF format)
       • Location data (barcode tracking through process stations)
-      • Relationship data (product-order-gear associations)
+      • Relationship data (order-gear-status/work associations)
       • Worker data (certification activity tracking)
       
       SUCCESS CRITERIA:
@@ -118,7 +122,7 @@ task_prompts:
       This analysis is critical for maintaining airworthiness certification and regulatory compliance.
 
     with_data_quality_issues: |
-      Task: For Product {product_id}, verify that the ARC document completion date matches the product's Parts Warehouse arrival date.
+      Task: For Order {order_id}, verify that the ARC document completion date matches the order's Parts Warehouse arrival date.
       
       DATA QUALITY NOTICE:
       Complex compliance verification under degraded data conditions:
@@ -178,7 +182,7 @@ response_formats:
   hard_response: |
     ## COMPLIANCE VERIFICATION RESULTS
     
-    **Product ID:** {product_id}
+    **Order ID:** {order_id}
     **Certificate Date:** {certificate_date}
     **Warehouse Arrival Date:** {warehouse_date}
     **Date Match Status:** {date_match_status}

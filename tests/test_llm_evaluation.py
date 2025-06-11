@@ -9,7 +9,7 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from src.experiment.llm_evaluation import LLMEvaluationRunner
-from src.utils.mock_llm_provider import MockLLMProvider
+from src.utils.llm_provider import MockLLMProvider
 from src.utils.cost_tracker import CostTracker
 
 

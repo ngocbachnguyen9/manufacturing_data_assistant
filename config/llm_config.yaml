@@ -1,7 +1,7 @@
 # LLM Provider Configuration - Performance Optimized Selection
 llm_providers:
   openai:
-    api_key_env: "***REMOVED***"
+    api_key_env: "OPENAI_API_KEY"
     base_url: "https://api.openai.com/v1"
     models:
       gpt-4o:
@@ -19,7 +19,7 @@ llm_providers:
         tokens_per_second: 119
     
   anthropic:
-    api_key_env: "***REMOVED***"
+    api_key_env: "ANTHROPIC_API_KEY""
     base_url: "https://api.anthropic.com"
     models:
       claude-3-5-sonnet:
@@ -37,8 +37,8 @@ llm_providers:
         tokens_per_second: 24
 
   deepseek:
-    api_key_env: "***REMOVED***"
-    base_url: "https://api.deepseek.com/v1"
+    api_key_env: "DEEPSEEK_API_KEY"
+    base_url: "https://api.deepseek.com/completions"
     models:
       deepseek-r1:
         max_tokens: 4096
@@ -57,13 +57,13 @@ llm_providers:
 
 # Model Selection Strategy
 model_selection:
-  primary_models: ["deepseek-reasoner", "o4-mini-2025-04-16", "claude-sonnet-4-20250514"]
+  primary_models: ["o4-mini-2025-04-16", "claude-sonnet-4-20250514","deepseek-reasoner"]
   selection_criteria: "intelligence_price_ratio"
-  fallback_order: ["o4-mini-2025-04-16", "claude-sonnet-4-20250514", "deepseek-reasoner"]
+  fallback_order: ["o3-mini-2025-01-31", "claude-3-7-sonnet-20250219", "deepseek-chat"]
   
 # Performance Thresholds
 performance_thresholds:
-  max_cost_per_task: 0.50  # USD
+  max_cost_per_task: 8.00  # USD
   max_response_time: 120   # seconds
   min_intelligence_score: 60
   

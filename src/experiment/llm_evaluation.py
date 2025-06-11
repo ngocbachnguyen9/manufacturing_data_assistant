@@ -8,7 +8,7 @@ from typing import Dict, Any, List
 from src.agents.master_agent import MasterAgent
 from src.utils.data_loader import DataLoader
 from src.utils.cost_tracker import CostTracker
-from src.utils.mock_llm_provider import MockLLMProvider
+from src.utils.llm_provider import MockLLMProvider, OpenAIProvider, AnthropicProvider
 
 
 class LLMEvaluationRunner:
@@ -42,7 +42,20 @@ class LLMEvaluationRunner:
 
         for model_name in models_to_test:
             print(f"***REMOVED***n--- Testing Model: {model_name} ---")
-            llm_provider = MockLLMProvider(model_name) #need to replace with actual LLM provider
+            # UPDATED: Instantiate the correct provider based on the flag and model name
+            if self.use_mock:
+                llm_provider = MockLLMProvider(model_name)
+                print(f"  - Using MockLLMProvider for {model_name}")
+            else:
+                if "gpt" in model_name or "o4" in model_name:
+                    llm_provider = OpenAIProvider(model_name)
+                elif "claude" in model_name or "sonnet" in model_name:
+                    llm_provider = AnthropicProvider(model_name)
+                # Add an elif for DeepSeek or other providers here
+                else:
+                    print(f"Warning: No real provider found for {model_name}. Using mock.")
+                    llm_provider = MockLLMProvider(model_name)
+                print(f"  - Using LIVE provider: {llm_provider.__class__.__name__}")
             cost_tracker = CostTracker(cost_config)
 
             for p_id, tasks in self.assignments.items():
