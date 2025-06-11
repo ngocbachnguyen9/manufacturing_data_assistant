@@ -2,7 +2,6 @@
 task_prompts:
   easy:
     base_prompt: |
-      # --- UPDATED SECTION ---
       Task: Find all gears for Packing List {packing_list_id}
 
       CONTEXT:
@@ -18,7 +17,6 @@ task_prompts:
       • Packing lists (your starting point, contains the Order ID)
       • Relationship data (parent-child links between orders and gears)
       • Location data (barcode scans at process stations)
-      # --- END UPDATED SECTION ---
 
       SUCCESS CRITERIA:
       • Correctly extract the Order ID from the Packing List
@@ -28,7 +26,6 @@ task_prompts:
       Provide your analysis in a clear, structured format suitable for factory floor personnel.
 
     with_data_quality_issues: |
-      # --- UPDATED SECTION ---
       Task: Find all gears for Packing List {packing_list_id}
 
       DATA QUALITY NOTICE:
@@ -39,7 +36,6 @@ task_prompts:
 
       Your analysis must:
       1. Complete the gear identification task as best possible, starting from the Packing List.
-      # --- END UPDATED SECTION ---
       2. Identify and classify any data quality issues encountered
       3. Assess confidence level in your findings
       4. Recommend data quality improvements
