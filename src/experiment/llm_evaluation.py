@@ -56,6 +56,7 @@ class LLMEvaluationRunner:
                     print(f"Warning: No real provider found for {model_name}. Using mock.")
                     llm_provider = MockLLMProvider(model_name)
                 print(f"  - Using LIVE provider: {llm_provider.__class__.__name__}")
+                
             cost_tracker = CostTracker(cost_config)
 
             for p_id, tasks in self.assignments.items():
