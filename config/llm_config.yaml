@@ -2,58 +2,61 @@
 llm_providers:
   openai:
     api_key_env: "OPENAI_API_KEY"
-    base_url: "https://api.openai.com/v1"
+    base_url: "https://api.openai.com/v1/"
     models:
-      gpt-4o:
-        max_tokens: 4096
+
+      o4-mini-2025-04-16:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 67
-        cost_per_1m_tokens: 1.9
-        tokens_per_second: 119
+        cost_per_1m_tokens_input: 1.1   # Example value
+        cost_per_1m_tokens_output: 4.4 # Example value
         recommended: true
-      gpt-4-turbo:
-        max_tokens: 4096
+      
+      o3-mini-2025-01-31:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 65
-        cost_per_1m_tokens: 3.5
-        tokens_per_second: 119
+        cost_per_1m_tokens_input: 1.1   # Example value
+        cost_per_1m_tokens_output: 4.4 # Example value
+        recommended: true
+
     
   anthropic:
-    api_key_env: "ANTHROPIC_API_KEY""
-    base_url: "https://api.anthropic.com"
+    api_key_env: "ANTHROPIC_API_KEY"
+    base_url: "https://api.anthropic.com/v1/"
     models:
-      claude-3-5-sonnet:
-        max_tokens: 4096
+
+      claude-sonnet-4-20250514:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 62
-        cost_per_1m_tokens: 2.6
-        tokens_per_second: 89
+        cost_per_1m_tokens_input: 3   # Example value
+        cost_per_1m_tokens_output: 15 # Example value
         recommended: true
-      claude-3-opus:
-        max_tokens: 4096
+        
+      claude-3-7-sonnet-20250219:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 68
-        cost_per_1m_tokens: 6.0
-        tokens_per_second: 24
+        cost_per_1m_tokens_input: 3   # Example value
+        cost_per_1m_tokens_output: 15 # Example value
+        recommended: true
 
   deepseek:
     api_key_env: "DEEPSEEK_API_KEY"
-    base_url: "https://api.deepseek.com/completions"
+    base_url: "https://api.deepseek.com"
     models:
-      deepseek-r1:
-        max_tokens: 4096
+
+      deepseek-reasoner:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 68
-        cost_per_1m_tokens: 2.4
-        tokens_per_second: 168
+        cost_per_1m_tokens_input: 0.55   # Example value
+        cost_per_1m_tokens_output: 2.19 # Example value
         recommended: true
-        primary_choice: true
-      deepseek-v3:
-        max_tokens: 4096
+
+      deepseek-chat:
+        max_tokens: 200000
         temperature: 0.1
-        intelligence_score: 68
-        cost_per_1m_tokens: 0.5
-        tokens_per_second: 168
+        cost_per_1m_tokens_input: 0.07   # Example value
+        cost_per_1m_tokens_output: 1.10 # Example value
+        recommended: true
 
 # Model Selection Strategy
 model_selection:
@@ -65,7 +68,6 @@ model_selection:
 performance_thresholds:
   max_cost_per_task: 8.00  # USD
   max_response_time: 120   # seconds
-  min_intelligence_score: 60
   
 # Rate Limiting
 rate_limits:

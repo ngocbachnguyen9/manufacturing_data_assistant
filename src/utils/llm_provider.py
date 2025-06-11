@@ -3,7 +3,8 @@ import random
 from typing import Dict, Any
 import openai      # NEW: Import real libraries
 import anthropic   # NEW
-
+from tenacity import retry, stop_after_attempt, wait_exponential
+import os
 
 
 class MockLLMProvider:
@@ -71,6 +72,11 @@ class OpenAIProvider:
         # The client automatically reads the OPENAI_API_KEY env variable
         self.client = openai.OpenAI()
 
+    @retry(
+        stop=stop_after_attempt(3), # From retry_config.max_retries
+        wait=wait_exponential(multiplier=1, min=2, max=60) # Exponential backoff
+    )
+
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to OpenAI and standardizes the response."""
         try:
@@ -100,6 +106,11 @@ class AnthropicProvider:
         self.model_name = model_name
         # The client automatically reads the ANTHROPIC_API_KEY env variable
         self.client = anthropic.Anthropic()
+    
+    @retry(
+        stop=stop_after_attempt(3), # From retry_config.max_retries
+        wait=wait_exponential(multiplier=1, min=2, max=60) # Exponential backoff
+    )
 
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to Anthropic and standardizes the response."""
@@ -120,4 +131,37 @@ class AnthropicProvider:
             }
         except Exception as e:
             print(f"ERROR: Anthropic API call failed: {e}")
+            return {"content": f'{{"error": "API call failed: {e}"}}', "input_tokens": 0, "output_tokens": 0}
+
+class DeepSeekProvider:
+    """A real LLM provider for DeepSeek's OpenAI-compatible API."""
+    def __init__(self, model_name: str):
+        self.model_name = model_name
+        # Initializes the client with the specific DeepSeek API key and base URL
+        self.client = openai.OpenAI(
+            api_key=os.environ.get("DEEPSEEK_API_KEY"),
+            base_url="https://api.deepseek.com/v1"
+        )
+    
+    @retry(
+        stop=stop_after_attempt(3), # From retry_config.max_retries
+        wait=wait_exponential(multiplier=1, min=2, max=60) # Exponential backoff
+    )
+
+    def generate(self, prompt: str) -> Dict[str, Any]:
+        """Makes a real API call to DeepSeek and standardizes the response."""
+        # This logic is identical to the OpenAIProvider because the API is compatible
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[{"role": "user", "content": prompt}],
+                response_format={"type": "json_object"},
+            )
+            return {
+                "content": response.choices[0].message.content,
+                "input_tokens": response.usage.prompt_tokens,
+                "output_tokens": response.usage.completion_tokens,
+            }
+        except Exception as e:
+            print(f"ERROR: DeepSeek API call failed: {e}")
             return {"content": f'{{"error": "API call failed: {e}"}}', "input_tokens": 0, "output_tokens": 0}
