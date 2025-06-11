@@ -102,7 +102,7 @@ class ManufacturingEnvironment:
                 "Description": "3D Printed Gears",
             }
             packing_list_output_file = os.path.join(
-                self.packing_list_output_path, f"PackingList-{packing_list_id}.pdf"
+                self.packing_list_output_path, f"PackingList-{packing_list_id}.docx"
             )
             self.packing_list_generator.generate_packing_list(
                 packing_list_fields, packing_list_output_file

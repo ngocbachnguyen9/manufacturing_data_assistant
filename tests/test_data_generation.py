@@ -3,6 +3,7 @@ import random
 import pandas as pd
 import pytest
 import pypdf
+import mailmerge
 
 from pathlib import Path
 
@@ -99,25 +100,56 @@ def test_faa_generate_certificate_writes_file(
 # ----------------------------------------
 # NEW TEST for PackingListGenerator
 # ----------------------------------------
-def test_packing_list_generator_writes_file(monkeypatch, dummy_pdf_template, tmp_path):
-    # This test is very similar to the FAA generator test
-    # We stub out pypdf to avoid real PDF creation
-    class DummyWriter:
-        def __init__(self): self.pages = [{}]
-        def append(self, r): pass
-        def update_page_form_field_values(self, p, data, auto_regenerate=False): pass
-        def write(self, stream): stream.write(b"PACKING_LIST_OK")
+def test_packing_list_generator_uses_mailmerge(monkeypatch, tmp_path):
+    """
+    Tests that the PackingListGenerator correctly uses the docx-mailmerge library
+    by patching the MailMerge class itself.
+    """
+    # Create spies to capture calls to the mailmerge library
+    init_calls = []
+    merge_calls = []
+    write_calls = []
 
-    monkeypatch.setattr(pypdf, "PdfReader", lambda f: object())
-    monkeypatch.setattr(pypdf, "PdfWriter", DummyWriter)
+    class StubMailMerge:
+        def __init__(self, template_path):
+            # Spy on the template path used during initialization
+            init_calls.append(template_path)
 
-    out_pdf = tmp_path / "packing_list_out.pdf"
-    # Assume the template exists at the dummy path
-    gen = PackingListGenerator(template_path=dummy_pdf_template)
-    gen.generate_packing_list({"OrderNumber": "ORBOX1"}, str(out_pdf))
+        def merge(self, **kwargs):
+            # Spy on the data passed to the merge function
+            merge_calls.append(kwargs)
 
-    assert out_pdf.exists()
-    assert out_pdf.read_bytes() == b"PACKING_LIST_OK"
+        def write(self, output_path):
+            # Spy on the output path
+            write_calls.append(output_path)
+
+    # --- THIS IS THE KEY CHANGE ---
+    # patch the MailMerge class within the document_generator module
+    # to ensure our generator uses the stub instead of the real library.
+    monkeypatch.setattr(
+        "src.data_generation.document_generator.MailMerge", StubMailMerge
+    )
+
+    # still need a dummy template file to exist to pass the generator's
+    # own FileNotFoundError check in its __init__.
+    dummy_template = tmp_path / "packing_list_template.docx"
+    dummy_template.touch()
+
+    # Instantiate our generator. It will now use the StubMailMerge class.
+    gen = PackingListGenerator(template_path=str(dummy_template))
+
+    # Run the generator
+    field_data = {"OrderNumber": "ORBOX123"}
+    output_path = str(tmp_path / "output.docx")
+    gen.generate_packing_list(field_data, output_path)
+
+    # Assert that the library was initialized and used correctly
+    assert len(init_calls) == 1
+    assert init_calls[0] == str(dummy_template)
+    assert len(merge_calls) == 1
+    assert merge_calls[0] == field_data
+    assert len(write_calls) == 1
+    assert write_calls[0] == output_path
 
 # ----------------------------------------
 # UPDATED TEST for ManufacturingEnvironment
@@ -161,7 +193,8 @@ def test_manufacturing_environment_writes_baseline_and_invokes_docs(
     assert len(faa_calls) == 1
     assert "ARC-ORBOX1.pdf" in faa_calls[0]
     assert len(packing_list_calls) == 1 # NEW
-    assert "PackingList-PL1001.pdf" in packing_list_calls[0] # NEW
+    # UPDATED: Check for the .docx extension
+    assert "PackingList-PL1001.docx" in packing_list_calls[0]
 
 
 # ----------------------------------------

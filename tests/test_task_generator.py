@@ -12,7 +12,7 @@ sys.path.insert(
 )
 from src.experiment.task_generator import TaskGenerator
 
-# a minimal experiment config to drive TaskGenerator
+## --- REPLACE your existing BASE_CONFIG with this complete version ---
 BASE_CONFIG = {
     "human_study": {
         "participant_matrix": {
@@ -29,12 +29,13 @@ BASE_CONFIG = {
         },
     },
     "task_complexity": {
-       "easy": {"description": "Find all gears for Packing List {ENTITY_ID}"},
-       "medium": {"description": "Determine the printer for Part {ENTITY_ID} and count parts printed on that machine"},
-       "hard": {"description": "For Order {ENTITY_ID}, verify ARC document date matches warehouse arrival"},
+        "easy": {"description": "Find all gears for Packing List {ENTITY_ID}"},
+        "medium": {"description": "Determine the printer for Part {ENTITY_ID} and count parts printed on that machine"},
+        "hard": {"description": "For Order {ENTITY_ID}, verify ARC document date matches warehouse arrival"},
     },
     "experiment": {"random_seed": 0},
 }
+
 # We’ll feed in an “empty” dirty_ids map so that all clean IDs remain
 EMPTY_DIRTY = {"Q1": [], "Q2": [], "Q3": []}
 
