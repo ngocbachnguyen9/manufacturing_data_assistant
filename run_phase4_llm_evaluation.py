@@ -3,7 +3,7 @@
 import yaml
 import os
 from dotenv import load_dotenv
-from argparse import ArgumentParser # NEW: For command-line arguments
+from argparse import ArgumentParser
 from src.experiment.llm_evaluation import LLMEvaluationRunner
 
 # Load API keys from .env file into the environment
@@ -11,13 +11,9 @@ load_dotenv()
 
 def load_specific_configs(config_dir: str) -> dict:
     """Loads and merges a specific, known set of configuration files."""
+    # ... (this function is correct and does not need changes) ...
     combined_config = {}
-    # Define the exact files to load, in order of precedence
-    files_to_load = [
-        "experiment_config.yaml",
-        "llm_config.yaml", # Assuming you have this
-        "task_prompts.yaml",
-    ]
+    files_to_load = ["experiment_config.yaml", "llm_config.yaml", "task_prompts.yaml"]
     for filename in files_to_load:
         path = os.path.join(config_dir, filename)
         if os.path.exists(path):
@@ -29,19 +25,25 @@ def load_specific_configs(config_dir: str) -> dict:
             print(f"Warning: Config file not found, skipping: {path}")
     return combined_config
 
+
 def main():
     """Orchestrates the entire process for Phase 4: LLM Evaluation."""
-    # NEW: Use argparse to handle the --live flag
+    # --- UPDATED: Add a new argument for model selection ---
     parser = ArgumentParser(description="Run Phase 4 LLM Evaluation.")
     parser.add_argument(
         "--live",
         action="store_true",
         help="Run with live API keys. Default is to use the mock provider.",
     )
+    parser.add_argument(
+        "--models",
+        nargs="+",  # This allows one or more arguments
+        help="Specify one or more model names to test (e.g., gpt-4o claude-3-5-sonnet). Overrides config.",
+    )
     args = parser.parse_args()
+    # --- END UPDATE ---
 
     print("--- Starting Phase 4: LLM Evaluation ---")
-    # The USE_MOCK_LLM flag is now controlled from the command line
     USE_MOCK_LLM = not args.live
 
     if not USE_MOCK_LLM:
@@ -51,12 +53,19 @@ def main():
 
     try:
         config = load_specific_configs("config")
+
+        # --- NEW: Override models_to_test if provided via command line ---
+        if args.models:
+            print(f"Overriding config. Running evaluation for specified models: {args.models}")
+            config["llm_evaluation"]["models_to_test"] = args.models
+
         runner = LLMEvaluationRunner(config, use_mock=USE_MOCK_LLM)
         runner.run_evaluation()
     except Exception as e:
         print(f"***REMOVED***nAn unexpected error occurred in the evaluation runner: {e}")
         import traceback
         traceback.print_exc()
+
 
 if __name__ == "__main__":
     main()

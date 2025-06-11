@@ -1,811 +1,811 @@
 task_id,model,complexity,quality_condition,completion_time_sec,is_correct,total_cost_usd,input_tokens,output_tokens,final_confidence,reconciliation_issues,llm_final_report,ground_truth_answer
-P1_task_1,deepseek-reasoner,easy,Q2,0.01,False,0.0,69,252,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_2,deepseek-reasoner,medium,Q0,0.03,False,0.0,234,245,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_1,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,296,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_2,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,342,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_3,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,446,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_3,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,278,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_4,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,283,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_5,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,405,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_6,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,246,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_7,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,347,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_8,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,391,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_4,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,317,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_5,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,349,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_6,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,293,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_7,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,262,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_8,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,233,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_9,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,294,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_9,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,350,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_10,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,288,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_10,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,297,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_1,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,246,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_2,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,206,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_3,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,274,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_1,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,329,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_2,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,185,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_3,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,277,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_4,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,303,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_4,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,266,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_5,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,311,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_5,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,390,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,212,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_7,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,283,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,323,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_7,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,336,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,235,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,223,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_9,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,343,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_10,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,233,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_1,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,177,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_2,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,284,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_3,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,221,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_4,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,425,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_9,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,329,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_10,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,257,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_1,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,170,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_2,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,358,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_3,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,349,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_4,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,143,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_5,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,329,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_6,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,338,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_5,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,407,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_6,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,382,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_7,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,248,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,381,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_7,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,391,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,268,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_9,deepseek-reasoner,medium,Q0,0.0,False,0.0,234,269,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_9,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,334,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_10,deepseek-reasoner,easy,Q0,0.0,False,0.0,222,174,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_10,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,120,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_1,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,151,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_1,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,332,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_2,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,260,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_3,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,140,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_4,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,316,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_2,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,380,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_3,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,161,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_4,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,197,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_5,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,176,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_6,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,243,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_5,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,163,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_6,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,242,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_7,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,268,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_8,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,248,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,395,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_7,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,225,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_8,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,396,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,193,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_10,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,356,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_10,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,219,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_1,deepseek-reasoner,medium,Q0,0.0,False,0.0,234,239,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_1,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,158,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_2,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,153,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_3,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,390,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_4,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,269,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_5,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,341,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_2,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,345,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_3,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,238,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_4,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,332,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_5,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,276,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,301,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_7,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,204,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_8,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,323,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,275,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_7,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,172,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_8,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,150,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,233,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,337,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_10,deepseek-reasoner,hard,Q0,0.0,False,0.0,228,365,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_10,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,436,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_1,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,304,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_2,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,233,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_3,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,263,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_4,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,339,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_1,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,401,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_2,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,366,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_3,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,236,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_4,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,244,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_5,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,211,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_6,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,199,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_5,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,344,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_6,deepseek-reasoner,hard,Q0,0.0,False,0.0,261,454,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_7,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,439,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_8,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,375,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_7,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,428,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_8,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,324,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_9,deepseek-reasoner,easy,Q0,0.0,False,0.0,222,386,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_9,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,200,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_10,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,119,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_10,deepseek-reasoner,hard,Q0,0.0,False,0.0,261,282,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_1,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,288,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_1,deepseek-reasoner,easy,Q0,0.0,False,0.0,255,364,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_2,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,397,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_3,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,221,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_4,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,303,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_2,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,260,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_3,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,185,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_4,deepseek-reasoner,medium,Q0,0.0,False,0.0,267,331,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_5,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,269,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_5,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,307,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_6,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,302,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_7,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,110,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_6,deepseek-reasoner,easy,Q1,0.0,False,0.0,69,384,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_7,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,313,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,237,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,285,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_9,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,295,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_10,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,286,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_1,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,477,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_9,deepseek-reasoner,hard,Q2,0.0,False,0.0,75,400,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_10,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,171,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_1,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,454,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_2,deepseek-reasoner,easy,Q0,0.01,False,0.0,222,232,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_2,deepseek-reasoner,easy,Q0,0.01,False,0.0,255,173,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_3,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,385,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_4,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,260,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_5,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,312,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_6,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,215,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_7,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,157,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_3,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,157,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_4,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,428,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_5,deepseek-reasoner,medium,Q2,0.0,False,0.0,81,387,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_6,deepseek-reasoner,hard,Q3,0.0,False,0.0,75,217,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_7,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,336,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_8,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,431,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_8,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,213,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,420,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_9,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,246,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_10,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,310,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_1,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,332,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_10,deepseek-reasoner,hard,Q1,0.0,False,0.0,75,172,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_1,deepseek-reasoner,hard,Q0,0.0,False,0.0,261,195,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_2,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,131,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_2,deepseek-reasoner,hard,Q0,0.0,False,0.0,261,270,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_3,deepseek-reasoner,hard,Q0,0.0,False,0.0,228,395,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_3,deepseek-reasoner,hard,Q0,0.0,False,0.0,261,387,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_4,deepseek-reasoner,medium,Q0,0.01,False,0.0,234,153,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_4,deepseek-reasoner,medium,Q0,0.01,False,0.0,267,281,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_5,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,361,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,197,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_7,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,309,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,228,179,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_5,deepseek-reasoner,medium,Q3,0.0,False,0.0,81,306,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_6,deepseek-reasoner,easy,Q3,0.0,False,0.0,69,407,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_7,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,181,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_8,deepseek-reasoner,hard,Q0,0.01,False,0.0,261,195,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_9,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,362,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_10,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,296,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_1,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,199,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_2,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,180,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_9,deepseek-reasoner,medium,Q1,0.0,False,0.0,81,436,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_10,deepseek-reasoner,easy,Q2,0.0,False,0.0,69,329,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_1,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,248,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_2,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,403,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_3,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,281,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_3,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,219,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_4,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,340,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_5,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,253,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_6,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,388,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_7,o4-mini-2025-04-16,hard,Q3,0.0,False,0.0,75,303,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_8,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,324,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_4,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,277,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_5,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,272,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_6,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,287,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_7,o4-mini-2025-04-16,hard,Q3,0.0,False,0.0,75,268,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_8,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,370,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_9,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,282,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_9,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,325,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,275,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,406,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_1,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,240,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_2,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,283,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_3,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,177,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_1,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,302,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_2,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,293,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_3,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,354,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_4,o4-mini-2025-04-16,medium,Q0,0.0,False,0.0,234,308,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_4,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,249,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_5,o4-mini-2025-04-16,easy,Q0,0.0,False,0.0,222,331,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_5,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,273,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,131,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_7,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,166,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,281,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_7,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,363,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_8,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,228,301,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_8,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,374,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_9,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,141,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_10,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,235,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_1,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,434,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_2,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,426,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_3,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,438,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_4,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,263,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_9,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,257,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_10,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,246,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_1,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,260,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_2,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,343,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_3,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,389,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_4,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,291,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_5,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,297,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_6,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,403,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_5,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,232,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_6,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,261,356,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_7,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,304,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_8,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,228,174,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_7,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,339,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_8,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,147,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_9,o4-mini-2025-04-16,medium,Q0,0.0,False,0.0,234,342,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_9,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,320,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_10,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,180,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_10,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,215,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_1,o4-mini-2025-04-16,medium,Q0,0.0,False,0.0,234,346,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_1,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,237,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_2,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,351,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_3,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,447,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_4,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,325,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_2,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,237,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_3,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,292,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_4,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,322,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_5,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,218,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_6,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,206,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_5,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,237,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_6,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,366,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_7,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,291,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_8,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,230,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_9,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,228,313,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_7,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,333,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_8,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,275,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_9,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,407,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_10,o4-mini-2025-04-16,easy,Q0,0.0,False,0.0,222,178,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_10,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,285,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_1,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,137,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_1,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,251,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_2,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,147,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_3,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,227,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_4,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,237,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_5,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,488,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_2,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,482,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_3,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,233,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_4,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,243,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_5,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,327,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,316,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_7,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,389,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_8,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,229,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,420,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_7,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,251,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_8,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,410,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_9,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,181,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_9,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,340,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,297,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,316,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_1,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,310,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_2,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,311,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_3,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,184,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_4,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,289,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_1,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,344,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_2,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,360,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_3,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,236,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_4,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,350,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_5,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,388,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_6,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,227,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_5,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,181,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_6,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,242,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_7,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,319,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_8,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,305,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_7,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,468,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_8,o4-mini-2025-04-16,easy,Q0,0.0,False,0.0,255,326,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_9,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,335,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_9,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,392,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,361,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_10,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,404,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_1,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,251,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_1,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,340,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_2,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,300,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_3,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,216,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_4,o4-mini-2025-04-16,medium,Q0,0.0,False,0.0,234,438,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_2,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,244,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_3,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,182,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_4,o4-mini-2025-04-16,medium,Q0,0.0,False,0.0,267,176,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_5,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,322,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_5,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,356,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_6,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,426,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_7,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,306,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_6,o4-mini-2025-04-16,easy,Q1,0.0,False,0.0,69,416,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_7,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,171,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_8,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,228,145,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_8,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,334,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_9,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,292,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_10,o4-mini-2025-04-16,hard,Q3,0.01,False,0.0,75,388,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_1,o4-mini-2025-04-16,medium,Q0,0.04,False,0.0,234,367,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_9,o4-mini-2025-04-16,hard,Q2,0.0,False,0.0,75,294,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_10,o4-mini-2025-04-16,hard,Q3,0.0,False,0.0,75,433,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_1,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,293,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_2,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,222,342,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_2,o4-mini-2025-04-16,easy,Q0,0.01,False,0.0,255,289,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_3,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,189,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_4,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,244,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_5,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,259,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_6,o4-mini-2025-04-16,hard,Q3,0.0,False,0.0,75,246,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_7,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,294,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_3,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,168,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_4,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,299,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_5,o4-mini-2025-04-16,medium,Q2,0.0,False,0.0,81,245,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_6,o4-mini-2025-04-16,hard,Q3,0.0,False,0.0,75,253,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_7,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,225,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_8,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,272,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_8,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,199,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_9,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,279,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_9,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,299,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_10,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,325,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_1,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,204,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_10,o4-mini-2025-04-16,hard,Q1,0.0,False,0.0,75,209,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_1,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,261,296,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_2,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,360,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_2,o4-mini-2025-04-16,hard,Q0,0.0,False,0.0,261,297,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_3,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,207,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_3,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,166,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_4,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,234,269,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_4,o4-mini-2025-04-16,medium,Q0,0.01,False,0.0,267,274,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_5,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,213,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,249,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_7,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,415,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_8,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,228,338,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_5,o4-mini-2025-04-16,medium,Q3,0.0,False,0.0,81,392,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_6,o4-mini-2025-04-16,easy,Q3,0.0,False,0.0,69,366,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_7,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,228,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_8,o4-mini-2025-04-16,hard,Q0,0.01,False,0.0,261,222,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_9,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,364,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_10,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,402,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_1,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,279,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_2,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,400,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_9,o4-mini-2025-04-16,medium,Q1,0.0,False,0.0,81,463,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_10,o4-mini-2025-04-16,easy,Q2,0.0,False,0.0,69,418,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_1,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,339,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_2,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,423,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_3,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,314,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_3,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,173,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_4,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,248,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_5,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,245,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_6,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,256,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_7,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,264,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P1_task_8,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,179,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_4,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,329,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_5,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,308,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_6,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,323,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_7,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,220,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P1_task_8,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,127,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_9,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,226,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_9,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,160,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P1_task_10,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,261,1.0,[]," ## SYNTHESIZED REPORT
+P1_task_10,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,290,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_1,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,114,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_2,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,270,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_3,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,266,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_1,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,338,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_2,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,287,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_3,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,328,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,226,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,388,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_5,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,314,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_5,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,159,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,343,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_7,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,371,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,484,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_7,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,320,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,349,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,344,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P2_task_9,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,162,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P2_task_10,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,326,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_1,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,286,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_2,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,365,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_3,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,255,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_4,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,421,1.0,[]," ## SYNTHESIZED REPORT
+P2_task_9,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,216,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P2_task_10,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,222,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_1,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,320,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_2,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,216,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_3,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,155,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_4,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,304,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_5,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,404,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_6,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,242,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_5,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,163,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_6,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,428,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_7,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,366,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P3_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,327,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_7,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,125,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P3_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,366,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_9,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,348,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_9,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,263,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P3_task_10,claude-sonnet-4-20250514,easy,Q0,0.0,False,0.0,222,431,1.0,[]," ## SYNTHESIZED REPORT
+P3_task_10,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,366,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_1,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,303,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_1,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,228,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_2,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,303,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_3,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,261,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_4,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,318,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_2,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,307,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_3,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,272,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_4,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,300,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_5,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,180,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_6,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,444,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_5,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,371,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_6,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,261,180,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_7,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,397,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_8,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,201,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P4_task_9,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,228,222,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_7,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,214,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_8,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,200,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P4_task_9,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,240,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P4_task_10,claude-sonnet-4-20250514,easy,Q0,0.0,False,0.0,222,116,1.0,[]," ## SYNTHESIZED REPORT
+P4_task_10,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,423,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_1,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,477,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_1,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,399,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_2,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,275,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_3,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,352,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_4,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,185,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_5,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,187,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_2,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,345,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_3,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,243,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_4,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,173,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_5,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,202,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,226,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_7,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,161,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P5_task_8,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,260,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,398,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_7,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,259,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P5_task_8,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,266,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_9,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,272,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_9,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,254,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P5_task_10,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,228,418,1.0,[]," ## SYNTHESIZED REPORT
+P5_task_10,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,422,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_1,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,314,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_2,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,365,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_3,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,223,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_4,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,217,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_1,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,192,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_2,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,339,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_3,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,129,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_4,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,219,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_5,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,300,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_6,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,228,273,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_5,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,206,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_6,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,261,336,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_7,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,340,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P6_task_8,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,242,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_7,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,186,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P6_task_8,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,213,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_9,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,299,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_9,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,265,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P6_task_10,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,152,1.0,[]," ## SYNTHESIZED REPORT
+P6_task_10,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,342,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_1,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,336,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_1,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,298,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_2,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,421,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_3,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,406,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,128,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_2,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,375,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_3,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,319,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,286,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_5,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,295,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_5,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,254,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_6,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,184,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_7,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,366,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_6,claude-sonnet-4-20250514,easy,Q1,0.0,False,0.0,69,301,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_7,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,316,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,451,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,289,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P7_task_9,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,287,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P7_task_10,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,441,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_1,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,323,1.0,[]," ## SYNTHESIZED REPORT
+P7_task_9,claude-sonnet-4-20250514,hard,Q2,0.0,False,0.0,75,313,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P7_task_10,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,257,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_1,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,253,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_2,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,222,268,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_2,claude-sonnet-4-20250514,easy,Q0,0.01,False,0.0,255,419,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_3,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,296,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_4,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,393,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_5,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,284,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_6,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,327,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P8_task_7,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,291,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_3,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,288,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_4,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,299,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_5,claude-sonnet-4-20250514,medium,Q2,0.0,False,0.0,81,249,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_6,claude-sonnet-4-20250514,hard,Q3,0.0,False,0.0,75,230,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P8_task_7,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,303,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_8,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,371,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_8,claude-sonnet-4-20250514,medium,Q0,0.0,False,0.0,267,257,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_9,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,218,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_9,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,331,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P8_task_10,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,189,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_1,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,228,353,1.0,[]," ## SYNTHESIZED REPORT
+P8_task_10,claude-sonnet-4-20250514,hard,Q1,0.0,False,0.0,75,331,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_1,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,261,307,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_2,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,228,439,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_2,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,382,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_3,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,242,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_3,claude-sonnet-4-20250514,hard,Q0,0.0,False,0.0,261,310,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,234,214,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_4,claude-sonnet-4-20250514,medium,Q0,0.01,False,0.0,267,302,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_5,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,380,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,319,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_7,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,198,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,228,229,1.0,[]," ## SYNTHESIZED REPORT
+P9_task_5,claude-sonnet-4-20250514,medium,Q3,0.0,False,0.0,81,345,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_6,claude-sonnet-4-20250514,easy,Q3,0.0,False,0.0,69,304,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_7,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,324,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_8,claude-sonnet-4-20250514,hard,Q0,0.01,False,0.0,261,219,1.0,[]," ## SYNTHESIZED REPORT
         **Answer:** Based on the data, the primary entity is associated with Printer_1.
         **Confidence:** 0.95
         **Data Quality Issues:** None detected.
         ",Ground truth not found
-P9_task_9,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,288,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
-P9_task_10,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,234,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_9,claude-sonnet-4-20250514,medium,Q1,0.0,False,0.0,81,430,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
+P9_task_10,claude-sonnet-4-20250514,easy,Q2,0.0,False,0.0,69,390,0.0,"[""Error from printer_rel: Relationship data not available."", ""Error from printer_logs: Missing context key 'parent'""]","Could not resolve query. Last issues: ['Error from printer_rel: Relationship data not available.', ""Error from printer_logs: Missing context key 'parent'""]",Ground truth not found
