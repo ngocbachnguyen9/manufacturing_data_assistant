@@ -41,9 +41,9 @@ class TaskGenerator:
         packing_lists = []
         if os.path.exists(packing_list_dir):
             for f in os.listdir(packing_list_dir):
-                if f.startswith("PackingList-") and f.endswith(".pdf"):
+                if f.startswith("PackingList-") and f.endswith(".docx"):
                     # Extract 'PL1011' from 'PackingList-PL1011.pdf'
-                    pl_id = f.replace("PackingList-", "").replace(".pdf", "")
+                    pl_id = f.replace("PackingList-", "").replace(".docx", "")
                     packing_lists.append(pl_id)
         else:
             print(f"Warning: Packing list directory not found at {packing_list_dir}")
