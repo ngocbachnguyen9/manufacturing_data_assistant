@@ -113,19 +113,26 @@ class MasterAgent:
             response["input_tokens"], response["output_tokens"], self.llm.model_name
         )
 
-        try:
-            parsed_response = json.loads(response["content"])
-            plan = parsed_response.get("plan", [])
-            complexity = parsed_response.get("complexity", "unknown")
-            print(
-                f"- [MasterAgent] Plan created successfully. Complexity: {complexity}."
-            )
-            return plan, complexity
-        except json.JSONDecodeError as e:
-            print(
-                f"- [MasterAgent] Error: Failed to parse LLM plan response. {e}"
-            )
-            return [], "unknown"
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                parsed_response = json.loads(response["content"])
+                plan = parsed_response.get("plan", [])
+                complexity = parsed_response.get("complexity", "unknown")
+                print(
+                    f"- [MasterAgent] Plan created successfully. Complexity: {complexity}."
+                )
+                return plan, complexity
+            except json.JSONDecodeError as e:
+                if attempt < max_retries - 1:
+                    print(
+                        f"- [MasterAgent] JSON parse error (attempt {attempt+1}): {e}. Retrying..."
+                    )
+                else:
+                    print(
+                        f"- [MasterAgent] Error: Failed to parse LLM plan response after {max_retries} attempts. {e}"
+                    )
+                    return [], "unknown"
 
     def _execute_plan(self, plan: List[Dict]) -> Dict[str, Any]:
         # ... (this method is unchanged) ...
