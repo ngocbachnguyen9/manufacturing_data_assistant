@@ -10,48 +10,29 @@ from src.utils.cost_tracker import CostTracker
 
 
 class MasterAgent:
-    """
-    Orchestrates the entire query resolution process by managing specialist agents.
-    """
-
     def __init__(
         self,
         llm_provider: Any,
         datasets: Dict[str, Any],
         config: Dict,
-        cost_tracker: CostTracker,  # UPDATED: Now accepts a CostTracker instance
+        cost_tracker: CostTracker,
     ):
-        """
-        Initializes the MasterAgent and all its specialist agents and tools.
-        """
         self.llm = llm_provider
         self.config = config
-        self.prompts = config.get("system_prompts", {})
-        self.max_attempts = config.get("master_agent", {}).get(
-            "max_execution_attempts", 2
-        )
-        self.confidence_threshold = config.get("master_agent", {}).get(
-            "confidence_threshold", 0.7
-        )
-        self.cost_tracker = cost_tracker  # NEW: Store the tracker instance
+        # UPDATED: Load the specific planning prompt from the combined config
+        self.planning_prompt_template = config.get("master_agent_planning_prompt", "")
+        if not self.planning_prompt_template:
+            raise ValueError("Master agent planning prompt not found in configuration.")
 
-        # Instantiate tools
-        self.tools = {
-            name: cls(datasets) for name, cls in TOOL_CLASSES.items()
-        }
+        self.max_attempts = config.get("master_agent", {}).get("max_execution_attempts", 2)
+        self.confidence_threshold = config.get("master_agent", {}).get("confidence_threshold", 0.7)
+        self.cost_tracker = cost_tracker
 
-        # Instantiate specialist agents, passing down necessary components
+        self.tools = {name: cls(datasets) for name, cls in TOOL_CLASSES.items()}
         agent_configs = self.config.get("specialist_agents", {})
-        self.retrieval_agent = DataRetrievalAgent(
-            self.tools, agent_configs.get("data_retrieval_agent", {})
-        )
+        self.retrieval_agent = DataRetrievalAgent(self.tools, agent_configs.get("data_retrieval_agent", {}))
         self.reconciliation_agent = ReconciliationAgent(self.tools)
-        # UPDATED: Pass the cost_tracker to the SynthesisAgent
-        self.synthesis_agent = SynthesisAgent(
-            llm_provider,
-            config.get("response_formats", {}),
-            self.cost_tracker,
-        )
+        self.synthesis_agent = SynthesisAgent(llm_provider, config.get("response_formats", {}), self.cost_tracker)
         print("MasterAgent and specialist agents initialized.")
 
     def run_query(self, query: str) -> Dict[str, Any]:
@@ -75,17 +56,33 @@ class MasterAgent:
             context = self._execute_plan(plan)
             reconciliation = self.reconciliation_agent.reconcile(context)
 
-            if reconciliation["confidence"] >= self.confidence_threshold:
-                processed_data = self._post_process_data(
-                    reconciliation, complexity
-                )
-                final_report = self.synthesis_agent.synthesize(
+            # Always attempt synthesis even with low confidence
+            processed_data = self._post_process_data(reconciliation, complexity)
+            try:
+                base_report = self.synthesis_agent.synthesize(
                     processed_data, query, complexity
                 )
-                break
-            else:
-                error_context = f"Previous attempt failed. Issues: {reconciliation['issues_found']}"
-                final_report = f"Could not resolve query. Last issues: {reconciliation['issues_found']}"
+                
+                # Include reconciliation issues in final report if confidence is low
+                if reconciliation["confidence"] < self.confidence_threshold:
+                    final_report = (
+                        f"⚠️ Low Confidence Report (confidence: {reconciliation['confidence']:.2f}) ⚠️***REMOVED***n"
+                        f"Issues found during reconciliation:***REMOVED***n"
+                        + "***REMOVED***n".join([f" - {issue}" for issue in reconciliation["issues_found"]])
+                        + "***REMOVED***n***REMOVED***n"
+                        + base_report
+                    )
+                else:
+                    final_report = base_report
+                    
+                break  # Break out of retry loop on successful synthesis
+            except Exception as e:
+                print(f"  - Synthesis failed: {str(e)}")
+                # Include reconciliation issues in error context
+                error_context = f"Synthesis error: {str(e)}"
+                if reconciliation["issues_found"]:
+                    error_context += f". Reconciliation issues: {reconciliation['issues_found']}"
+                final_report = f"Synthesis failed: {str(e)}"
 
         print("[MasterAgent] Query processing complete.")
         # NEW: Return the full trace
@@ -93,68 +90,78 @@ class MasterAgent:
             "final_report": final_report,
             "reconciliation_summary": reconciliation,
         }
+    
+    # NEW HELPER METHOD
+    def _get_tool_descriptions(self) -> str:
+        """Generates a formatted string of tool descriptions for the prompt."""
+        descriptions = []
+        for name, tool_class in TOOL_CLASSES.items():
+            # Get the first line of the class docstring as the description
+            docstring = (tool_class.__doc__ or "No description.").strip().split('***REMOVED***n')[0]
+            descriptions.append(f"- `{name}`: {docstring}")
+        return "***REMOVED***n".join(descriptions)
 
+    # REPLACED METHOD
     def _decompose_task(
         self, query: str, error_context: str = ""
     ) -> Tuple[List[Dict], str]:
         """
-        Uses an LLM to decompose the query into a plan, and logs the cost.
+        Uses a detailed few-shot prompt to get a reliable JSON plan from the LLM.
         """
         print("- [MasterAgent] Decomposing task into a plan...")
-        prompt = f"Based on the query '{query}', create a JSON plan. Tool list: {list(self.tools.keys())}"
+
+        tool_descriptions = self._get_tool_descriptions()
+        prompt = self.planning_prompt_template.format(
+            tool_descriptions=tool_descriptions,
+            query=query
+        )
+
         if error_context:
-            prompt += f"***REMOVED***nPREVIOUS ATTEMPT FAILED: {error_context}"
+            prompt += f"***REMOVED***n***REMOVED***nIMPORTANT: Your previous attempt failed with these issues: {error_context}. Create a new, corrected plan."
 
-        # UPDATED: This now represents a real call to the LLM provider
         response = self.llm.generate(prompt)
-
-        # NEW: Log the cost of this transaction using the tracker
         self.cost_tracker.log_transaction(
             response["input_tokens"], response["output_tokens"], self.llm.model_name
         )
 
-        max_retries = 3
-        for attempt in range(max_retries):
-            try:
-                parsed_response = json.loads(response["content"])
-                plan = parsed_response.get("plan", [])
-                complexity = parsed_response.get("complexity", "unknown")
-                print(
-                    f"- [MasterAgent] Plan created successfully. Complexity: {complexity}."
-                )
-                return plan, complexity
-            except json.JSONDecodeError as e:
-                if attempt < max_retries - 1:
-                    print(
-                        f"- [MasterAgent] JSON parse error (attempt {attempt+1}): {e}. Retrying..."
-                    )
-                else:
-                    print(
-                        f"- [MasterAgent] Error: Failed to parse LLM plan response after {max_retries} attempts. {e}"
-                    )
-                    return [], "unknown"
+        try:
+            # The LLM might return the JSON inside a markdown code block, so we clean it.
+            content = response["content"]
+            if "```json" in content:
+                content = content.split("```json")[1].split("```")[0]
+
+            parsed_response = json.loads(content)
+            plan = parsed_response.get("plan", [])
+            complexity = parsed_response.get("complexity", "unknown")
+            print(f"- [MasterAgent] Plan created successfully. Complexity: {complexity}.")
+            return plan, complexity
+        except (json.JSONDecodeError, IndexError) as e:
+            print(f"- [MasterAgent] Error: Failed to parse LLM plan response. Content was: {response['content']}. Error: {e}")
+            return [], "unknown"
 
     def _execute_plan(self, plan: List[Dict]) -> Dict[str, Any]:
-        # ... (this method is unchanged) ...
         print("- [MasterAgent] Executing stateful plan...")
         context = {}
         for step in plan:
             tool_name = step.get("tool")
             raw_input = step.get("input")
             output_key = step.get("output_key", f"step_{step['step']}_output")
+            
+            # Handle missing parameters by trying raw input first
             try:
-                resolved_input = str(raw_input).format(**context)
-            except KeyError as e:
-                print(
-                    f"  - Error: Could not resolve input for step {step['step']}. Missing key: {e}"
-                )
-                context[output_key] = [{"error": f"Missing context key {e}"}]
-                continue
+                resolved_input = str(raw_input).format(**context) if raw_input else ""
+            except KeyError:
+                # Use raw input as fallback if context is missing
+                resolved_input = raw_input
+                print(f"  - Warning: Using raw input for step {step['step']} due to missing context keys")
+            
             if tool_name:
-                result = self.retrieval_agent.retrieve(
-                    tool_name, resolved_input
-                )
-                context[output_key] = result
+                try:
+                    result = self.retrieval_agent.retrieve(tool_name, resolved_input)
+                    context[output_key] = result
+                except Exception as e:
+                    print(f"  - Error in {tool_name}: {str(e)}")
+                    context[output_key] = [{"error": str(e)}]
             else:
                 print(f"  - Warning: Skipping invalid plan step: {step}")
         print("- [MasterAgent] Plan execution complete.")

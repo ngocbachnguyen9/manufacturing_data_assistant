@@ -1,12 +1,13 @@
 # In src/tools/packing_list_parser_tool.py
 
-import docx # Add this import
 import os
+import re
 from .base_tool import BaseTool
 from typing import Dict, Any
+from PyPDF2 import PdfReader  # Updated import for PDF parsing
 
 class PackingListParserTool(BaseTool):
-    """Tool for parsing .docx Packing Lists to find the associated Order ID."""
+    """Tool for parsing PDF Packing Lists to find the associated Order ID."""
 
     def __init__(self, datasets: Dict[str, Any]):
         super().__init__(datasets)
@@ -16,32 +17,27 @@ class PackingListParserTool(BaseTool):
         """
         Finds a packing list by its ID and extracts the OrderNumber.
         """
-        doc_filename = f"PackingList-{packing_list_id}.docx" # UPDATED extension
-        doc_full_path = os.path.join(self.doc_path, doc_filename)
+        # Updated to use PDF extension
+        pdf_filename = f"PackingList-{packing_list_id}.pdf"
+        pdf_full_path = os.path.join(self.doc_path, pdf_filename)
 
-        if not os.path.exists(doc_full_path):
-            return {"error": f"Packing List not found: {doc_filename}"}
+        if not os.path.exists(pdf_full_path):
+            return {"error": f"Packing List not found: {pdf_filename}"}
 
         try:
-            document = docx.Document(doc_full_path)
-            # This is a simple parsing strategy. It assumes the text
-            # 'Order Number:' appears in the document.
-            for para in document.paragraphs:
-                if "Order Number:" in para.text:
-                    # Assumes format is "Order Number: ORBOX0011"
-                    parts = para.text.split(":")
-                    if len(parts) > 1:
-                        order_id = parts[1].strip()
-                        return {"order_id": order_id, "source_document": doc_filename}
+            # Use PyPDF2 to read the PDF
+            reader = PdfReader(pdf_full_path)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text()
 
-            # Fallback if not found in paragraphs (e.g., it's in a table)
-            for table in document.tables:
-                for row in table.rows:
-                    for i, cell in enumerate(row.cells):
-                        if "Order Number" in cell.text and i + 1 < len(row.cells):
-                            order_id = row.cells[i + 1].text.strip()
-                            return {"order_id": order_id, "source_document": doc_filename}
+            # Search for the order number pattern in the extracted text
+            # We look for patterns like "Order Number: ORBOX0011"
+            match = re.search(r'Order***REMOVED***s*Number:***REMOVED***s*(***REMOVED***S+)', text)
+            if match:
+                order_id = match.group(1).strip()
+                return {"order_id": order_id, "source_document": pdf_filename}
 
-            return {"error": f"Could not find 'Order Number' in {doc_filename}."}
+            return {"error": f"Could not find 'Order Number' in {pdf_filename}."}
         except Exception as e:
-            return {"error": f"Failed to parse DOCX {doc_filename}: {e}"}
+            return {"error": f"Failed to parse PDF {pdf_filename}: {e}"}

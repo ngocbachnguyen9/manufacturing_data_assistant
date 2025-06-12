@@ -1,5 +1,5 @@
 import json
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from src.utils.cost_tracker import CostTracker
 
 
@@ -13,7 +13,7 @@ class SynthesisAgent:
         self,
         llm_provider: Any,
         response_templates: Dict[str, str],
-        cost_tracker: CostTracker,  # UPDATED: Now accepts a CostTracker instance
+        cost_tracker: CostTracker,
     ):
         """
         Initializes the agent with an LLM provider, response templates,
@@ -21,17 +21,18 @@ class SynthesisAgent:
         """
         self.llm = llm_provider
         self.templates = response_templates
-        self.cost_tracker = cost_tracker  # NEW: Store the tracker instance
+        self.cost_tracker = cost_tracker
 
     def synthesize(
         self,
         reconciled_data: Dict[str, Any],
         original_query: str,
         complexity: str,
+        timeout_seconds: int = 120
     ) -> str:
         """
         Uses an LLM to format the reconciled data into a structured report
-        and logs the transaction cost.
+        and logs the transaction cost. Includes timeout handling.
         """
         print("  - [SynthesisAgent] Synthesizing final report...")
 
@@ -60,10 +61,18 @@ class SynthesisAgent:
         {template}
         """
 
-        # UPDATED: This now represents a real call to the LLM provider
-        response = self.llm.generate(prompt)
+        # Wrap LLM generation with timeout handling
+        try:
+            response = self.llm.generate(
+                prompt,
+                timeout=timeout_seconds
+            )
+        except TimeoutError:
+            return f"Synthesis timed out after {timeout_seconds} seconds"
+        except Exception as e:
+            return f"Synthesis failed: {str(e)}"
 
-        # NEW: Log the cost of this synthesis transaction
+        # Log the cost of this synthesis transaction
         self.cost_tracker.log_transaction(
             response["input_tokens"], response["output_tokens"], self.llm.model_name
         )

@@ -56,37 +56,51 @@ class ReconciliationAgent:
             if "relationship_query" in key:
                 relationship_data.extend(value)
 
-        # Validate we have all required data
-        if not machine_logs or not location_scans or not relationship_data:
-            print("  - [ReconciliationAgent] Insufficient data for timeline validation")
+        # Handle partial data scenarios
+        missing_data = []
+        if not machine_logs:
+            missing_data.append("machine logs")
+        if not location_scans:
+            missing_data.append("location scans")
+        if not relationship_data:
+            missing_data.append("relationship data")
+            
+        if missing_data:
+            msg = f"Insufficient data for timeline validation. Missing: {', '.join(missing_data)}"
+            print(f"  - [ReconciliationAgent] {msg}")
+            summary["issues_found"].append(msg)
+            summary["confidence"] -= 0.1 * len(missing_data)
             return
 
-        # Build gear-to-job mapping from relationship data
+        # Build gear-to-job mapping from relationship data with error handling
         gear_to_job = {}
         for rel in relationship_data:
-            if rel.get("type") == "printed_by" and rel["_from"].startswith("barcode/"):
-                gear_id = rel["_from"].split("/")[1]
-                job_id = rel["_to"]
-                gear_to_job[gear_id] = job_id
+            try:
+                if rel.get("type") == "printed_by" and rel["_from"].startswith("barcode/"):
+                    gear_id = rel["_from"].split("/")[1]
+                    job_id = rel["_to"]
+                    gear_to_job[gear_id] = job_id
+            except KeyError as e:
+                print(f"  - Warning: Missing key in relationship data: {e}")
 
-        # Find all warehouse entry events for gears
+        # Find warehouse entries with error handling
         warehouse_entries = {}
         for scan in location_scans:
-            scan_value = str(scan.get("_value", ""))
-            if scan_value.startswith("3DOR") and scan.get("location") == "Parts Warehouse":
-                try:
+            try:
+                scan_value = str(scan.get("_value", ""))
+                if scan_value.startswith("3DOR") and scan.get("location") == "Parts Warehouse":
                     warehouse_entries[scan_value] = pd.to_datetime(scan["_time"])
-                except (KeyError, ValueError):
-                    continue
+            except (KeyError, ValueError) as e:
+                print(f"  - Warning: Invalid location scan entry: {e}")
 
-        # Find print end times from machine logs
+        # Find print end times with error handling
         print_end_times = {}
         for log in machine_logs:
-            if log.get("event_type") == "PRINT_END":
-                try:
+            try:
+                if log.get("event_type") == "PRINT_END":
                     print_end_times[log["job_id"]] = pd.to_datetime(log["_time"])
-                except (KeyError, ValueError):
-                    continue
+            except (KeyError, ValueError) as e:
+                print(f"  - Warning: Invalid machine log entry: {e}")
 
         # Validate timelines for all gears
         for gear_id, warehouse_time in warehouse_entries.items():
