@@ -5,7 +5,7 @@
       "participant_id": "P1",
       "complexity": "hard",
       "quality_condition": "Q2",
-      "query_string": "For Order ORBOX00114, verify ARC document date matches warehouse arrival",
+      "query_string": "For Order ORBOX00115, verify ARC document date matches warehouse arrival",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -21,7 +21,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Order ORBOX00122",
+      "query_string": "Find all gears for Packing List ORBOX00121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -37,7 +37,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q0",
-      "query_string": "Find all gears for Order ORBOX00114",
+      "query_string": "Find all gears for Packing List ORBOX00114",
       "dataset_path": "data/experimental_datasets/Q0_baseline"
     },
     {
@@ -45,7 +45,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q0",
-      "query_string": "Find all gears for Order ORBOX0014",
+      "query_string": "Find all gears for Packing List ORBOX0014",
       "dataset_path": "data/experimental_datasets/Q0_baseline"
     },
     {
@@ -53,7 +53,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Order ORBOX00116",
+      "query_string": "Find all gears for Packing List ORBOX0017",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -95,7 +95,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q0",
-      "query_string": "Find all gears for Order ORBOX0018",
+      "query_string": "Find all gears for Packing List ORBOX0018",
       "dataset_path": "data/experimental_datasets/Q0_baseline"
     },
     {
@@ -111,7 +111,7 @@
       "participant_id": "P2",
       "complexity": "hard",
       "quality_condition": "Q2",
-      "query_string": "For Order ORBOX00117, verify ARC document date matches warehouse arrival",
+      "query_string": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -119,7 +119,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Order ORBOX00122",
+      "query_string": "Find all gears for Packing List ORBOX00121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -127,7 +127,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Order ORBOX00117",
+      "query_string": "Find all gears for Packing List ORBOX0019",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {

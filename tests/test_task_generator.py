@@ -36,8 +36,15 @@ BASE_CONFIG = {
     "experiment": {"random_seed": 0},
 }
 
-# We’ll feed in an “empty” dirty_ids map so that all clean IDs remain
+# feed in an “empty” dirty_ids map so that all clean IDs remain
 EMPTY_DIRTY = {"Q1": [], "Q2": [], "Q3": []}
+
+# NEW: Create a realistic dirty ID map for testing
+REALISTIC_DIRTY = {
+    "Q1": ["PL1011", "M1", "H1"], # Provide one dirty ID for each complexity
+    "Q2": [],
+    "Q3": [],
+}
 
 # UPDATED Fixture
 @pytest.fixture(autouse=True)
@@ -66,7 +73,8 @@ def test_create_task_list_counts_and_shuffle():
 def test_generate_all_assignments_structure(tmp_path, monkeypatch):
     # run inside a temp cwd so save_assignments won't pollute project root
     monkeypatch.chdir(tmp_path)
-    tg = TaskGenerator(BASE_CONFIG, EMPTY_DIRTY)
+    # UPDATED: Use the realistic dirty map
+    tg = TaskGenerator(BASE_CONFIG, REALISTIC_DIRTY)
     assignments = tg.generate_all_assignments()
 
     # should have one entry per participant
@@ -107,7 +115,8 @@ def test_generate_all_assignments_exhausted_ids(monkeypatch):
 
 def test_save_assignments_writes_json(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
-    tg = TaskGenerator(BASE_CONFIG, EMPTY_DIRTY)
+    # UPDATED: Use the realistic dirty map
+    tg = TaskGenerator(BASE_CONFIG, REALISTIC_DIRTY)
     sample = {"P1": [{"task_id": "P1_t1"}]}
     tg.save_assignments(sample)
 

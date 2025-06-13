@@ -61,15 +61,14 @@ class SynthesisAgent:
         {template}
         """
 
-        # Wrap LLM generation with timeout handling
+       # Wrap LLM generation with timeout handling
         try:
+            # REMOVED timeout=timeout_seconds from this call
             response = self.llm.generate(
-                prompt,
-                timeout=timeout_seconds
+                prompt
             )
-        except TimeoutError:
-            return f"Synthesis timed out after {timeout_seconds} seconds"
         except Exception as e:
+            # Simplified the error handling as timeout is no longer a direct parameter
             return f"Synthesis failed: {str(e)}"
 
         # Log the cost of this synthesis transaction

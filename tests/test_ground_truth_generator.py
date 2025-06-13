@@ -17,12 +17,16 @@ from src.data_generation.ground_truth_generator import GroundTruthGenerator
 @pytest.fixture
 def sample_baseline(tmp_path):
     """
-    Create a fake Q0_baseline folder with exactly:
-      - relationship_data.csv containing order->gear and printer->gear
-      - location_data.csv containing one warehouse scan
+    UPDATED: Create a fake Q0_baseline folder and a dummy packing list.
     """
     base = tmp_path / "Q0_baseline"
     base.mkdir()
+
+    # Create a dummy packing list directory and file
+    doc_dir = tmp_path / "generated_documents" / "packing_lists"
+    doc_dir.mkdir(parents=True)
+    (doc_dir / "PackingList-PL1.pdf").touch()
+
 
     # relationship_data.csv must link ORBOX1->3DOR1 and Printer5->3DOR1
     rel_csv = base / "relationship_data.csv"
@@ -39,29 +43,35 @@ def sample_baseline(tmp_path):
         "2020-01-02T14:30:00Z,3DOR1,Parts Warehouse***REMOVED***n"
     )
 
-    return str(base)
+    # The generator needs to know where to find the dummy docs
+    # We return the parent directory of the baseline folder
+    return str(tmp_path)
 
 
 def test_ground_truth_generator_outputs_expected_json_and_paths(
     sample_baseline, tmp_path
 ):
     # Use tmp_path as our output_dir
+    # The baseline_path is now the parent directory containing Q0_baseline and generated_documents
     gen = GroundTruthGenerator(
-        baseline_path=sample_baseline, output_dir=str(tmp_path)
+        baseline_path=os.path.join(sample_baseline, "Q0_baseline"), 
+        output_dir=str(tmp_path)
     )
+    # Override the document path to point to our test fixture
+    gen.packing_list_dir = os.path.join(sample_baseline, "generated_documents", "packing_lists")
+
+
     gen.generate_all_ground_truths()
 
-    # Check both output files exist
+    # ... (assertions for file existence are the same) ...
     answers_file = tmp_path / "baseline_answers.json"
     paths_file = tmp_path / "data_traversal_paths.json"
     assert answers_file.exists(), "baseline_answers.json not written"
     assert paths_file.exists(), "data_traversal_paths.json not written"
 
-    # Load contents
     answers = json.loads(answers_file.read_text())
     paths = json.loads(paths_file.read_text())
 
-    # We expect exactly one easy, one medium, one hard
     easy = [a for a in answers if a["complexity_level"] == "easy"]
     medium = [a for a in answers if a["complexity_level"] == "medium"]
     hard = [a for a in answers if a["complexity_level"] == "hard"]
@@ -70,23 +80,25 @@ def test_ground_truth_generator_outputs_expected_json_and_paths(
     assert len(medium) == 1
     assert len(hard) == 1
 
-    # --- Easy task assertions ---
+    # --- Easy task assertions (UPDATED) ---
     e = easy[0]
-    assert e["task_id"] == "easy_ORBOX1_0"
-    assert e["query_instance"] == "Find all gears for Order ORBOX1"
+    assert e["task_id"] == "easy_PL1_0"
+    assert e["query_instance"] == "Find all gears for Packing List PL1"
     ba_e = e["baseline_answer"]
-    assert ba_e["order_id"] == "ORBOX1"
+    assert ba_e["packing_list_id"] == "PL1"
+    assert ba_e["order_id"] == "ORBOX1" # Check that it correctly derived the Order ID
     assert ba_e["gear_count"] == 1
     assert ba_e["gear_list"] == ["3DOR1"]
 
-    # Check its path
+    # Check its path (UPDATED)
     eid = e["task_id"]
     assert eid in paths
     path_e = paths[eid]
-    assert path_e["data_sources"] == ["relationship_data"]
+    assert path_e["data_sources"] == ["packing_lists", "relationship_data"]
     assert path_e["steps"] == [
-        "1. Query relationship_data where parent='ORBOX1'",
-        "2. Collect all child entities and find unique set: ['3DOR1']",
+        "1. Parse Packing List 'PL1' to find Order ID: 'ORBOX1'",
+        "2. Query relationship_data where parent='ORBOX1'",
+        "3. Collect unique child entities: ['3DOR1']",
     ]
 
     # --- Medium task assertions ---

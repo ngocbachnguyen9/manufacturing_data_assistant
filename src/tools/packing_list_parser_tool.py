@@ -4,7 +4,7 @@ import os
 import re
 from .base_tool import BaseTool
 from typing import Dict, Any
-from PyPDF2 import PdfReader  # Updated import for PDF parsing
+from pypdf import PdfReader  # Updated import for PDF parsing
 
 class PackingListParserTool(BaseTool):
     """Tool for parsing PDF Packing Lists to find the associated Order ID."""

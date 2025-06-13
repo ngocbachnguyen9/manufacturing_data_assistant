@@ -44,8 +44,6 @@ class LocationQueryTool(BaseTool):
                 result_df = df[df["_value"] == matched_id]
 
         if result_df.empty:
-            return [
-                {"message": f"No location data found for ID '{entity_id}'"}
-            ]
+            return [{"error": f"No location data found for ID '{entity_id}'"}]
 
         return result_df.to_dict("records")

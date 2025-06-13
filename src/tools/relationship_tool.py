@@ -32,8 +32,6 @@ class RelationshipTool(BaseTool):
         ]
 
         if result_df.empty:
-            return [
-                {"message": f"No relationships found for ID {entity_id}"}
-            ]
+            return [{"error": f"No relationships found for ID {entity_id}"}]
 
         return result_df.to_dict("records")

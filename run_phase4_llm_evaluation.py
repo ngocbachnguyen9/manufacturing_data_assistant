@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 from argparse import ArgumentParser
 from src.experiment.llm_evaluation import LLMEvaluationRunner
+import re
 
 # Load API keys from .env file into the environment
 load_dotenv()
@@ -13,16 +14,28 @@ def load_specific_configs(config_dir: str) -> dict:
     """Loads and merges a specific, known set of configuration files."""
     # ... (this function is correct and does not need changes) ...
     combined_config = {}
-    files_to_load = ["experiment_config.yaml", "llm_config.yaml", "task_prompts.yaml"]
+    # Include agent settings, experiment, llm, task prompts, and master-agent planning prompt
+    files_to_load = [
+        "agent_config.yaml",
+        "experiment_config.yaml",
+        "llm_config.yaml",
+        "task_prompts.yaml",
+        "master_agent_planning_prompt.yaml",
+    ]
     for filename in files_to_load:
+        # first try config/<filename>, then config/prompts/<filename>
         path = os.path.join(config_dir, filename)
-        if os.path.exists(path):
-            with open(path, "r") as f:
-                config_data = yaml.safe_load(f)
-                if config_data:
-                    combined_config.update(config_data)
-        else:
-            print(f"Warning: Config file not found, skipping: {path}")
+        if not os.path.exists(path):
+            alt = os.path.join(config_dir, "prompts", filename)
+            if os.path.exists(alt):
+                path = alt
+            else:
+                print(f"Warning: Config file not found, skipping: {filename}")
+                continue
+        with open(path, "r") as f:
+            config_data = yaml.safe_load(f)
+            if config_data:
+                combined_config.update(config_data)
     return combined_config
 
 

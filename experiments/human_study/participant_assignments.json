@@ -5,7 +5,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX00115",
+      "query_string": "Find all gears for Packing List PL1115",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -37,7 +37,7 @@
       "participant_id": "P1",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Packing List ORBOX00121",
+      "query_string": "Find all gears for Packing List PL1121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -127,7 +127,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX0012",
+      "query_string": "Find all gears for Packing List PL112",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -159,7 +159,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Packing List ORBOX00121",
+      "query_string": "Find all gears for Packing List PL1121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     }
   ],
@@ -217,7 +217,7 @@
       "participant_id": "P3",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Packing List ORBOX00121",
+      "query_string": "Find all gears for Packing List PL1121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -267,7 +267,7 @@
       "participant_id": "P4",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX0019",
+      "query_string": "Find all gears for Packing List PL1019",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -283,7 +283,7 @@
       "participant_id": "P4",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX00120",
+      "query_string": "Find all gears for Packing List PL1120",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -341,7 +341,7 @@
       "participant_id": "P5",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX0019",
+      "query_string": "Find all gears for Packing List PL1019",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -357,7 +357,7 @@
       "participant_id": "P5",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX00118",
+      "query_string": "Find all gears for Packing List PL1118",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -373,7 +373,7 @@
       "participant_id": "P5",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX00119",
+      "query_string": "Find all gears for Packing List PL1119",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -463,7 +463,7 @@
       "participant_id": "P6",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX0013",
+      "query_string": "Find all gears for Packing List PL1013",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -505,7 +505,7 @@
       "participant_id": "P7",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX00115",
+      "query_string": "Find all gears for Packing List PL1115",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -537,7 +537,7 @@
       "participant_id": "P7",
       "complexity": "easy",
       "quality_condition": "Q1",
-      "query_string": "Find all gears for Packing List ORBOX00121",
+      "query_string": "Find all gears for Packing List PL1121",
       "dataset_path": "data/experimental_datasets/Q1_dataset"
     },
     {
@@ -595,7 +595,7 @@
       "participant_id": "P8",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX0019",
+      "query_string": "Find all gears for Packing List PL1019",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -603,7 +603,7 @@
       "participant_id": "P8",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX00114",
+      "query_string": "Find all gears for Packing List PL1114",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -701,7 +701,7 @@
       "participant_id": "P9",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List ORBOX0013",
+      "query_string": "Find all gears for Packing List PL1013",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {
@@ -709,7 +709,7 @@
       "participant_id": "P9",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX00115",
+      "query_string": "Find all gears for Packing List PL1115",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     },
     {
@@ -733,7 +733,7 @@
       "participant_id": "P9",
       "complexity": "easy",
       "quality_condition": "Q2",
-      "query_string": "Find all gears for Packing List ORBOX0019",
+      "query_string": "Find all gears for Packing List PL1019",
       "dataset_path": "data/experimental_datasets/Q2_dataset"
     }
   ]

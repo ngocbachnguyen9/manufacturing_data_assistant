@@ -1,0 +1,181 @@
+[
+  {
+    "task_id": "easy_PL1014_0",
+    "complexity_level": "easy",
+    "query_instance": "Find all gears for Packing List PL1014",
+    "baseline_answer": {
+      "packing_list_id": "PL1014",
+      "gear_count": 5,
+      "gear_list": [
+        "3DOR10001",
+        "3DOR10003",
+        "3DOR10004",
+        "3DOR10005",
+        "3DOR10008"
+      ]
+    }
+  },
+  {
+    "task_id": "easy_PL1116_1",
+    "complexity_level": "easy",
+    "query_instance": "Find all gears for Packing List PL1116",
+    "baseline_answer": {
+      "packing_list_id": "PL1116",
+      "gear_count": 5,
+      "gear_list": [
+        "3DOR100010",
+        "3DOR10002",
+        "3DOR10006",
+        "3DOR10007",
+        "3DOR10009"
+      ]
+    }
+  },
+  {
+    "task_id": "easy_PL1019_2",
+    "complexity_level": "easy",
+    "query_instance": "Find all gears for Packing List PL1019",
+    "baseline_answer": {
+      "packing_list_id": "PL1019",
+      "gear_count": 5,
+      "gear_list": [
+        "3DOR1000100",
+        "3DOR100092",
+        "3DOR100093",
+        "3DOR100095",
+        "3DOR100096"
+      ]
+    }
+  },
+  {
+    "task_id": "easy_PL1013_3",
+    "complexity_level": "easy",
+    "query_instance": "Find all gears for Packing List PL1013",
+    "baseline_answer": {
+      "packing_list_id": "PL1013",
+      "gear_count": 5,
+      "gear_list": [
+        "3DOR100011",
+        "3DOR100014",
+        "3DOR100017",
+        "3DOR100018",
+        "3DOR100019"
+      ]
+    }
+  },
+  {
+    "task_id": "easy_PL1011_4",
+    "complexity_level": "easy",
+    "query_instance": "Find all gears for Packing List PL1011",
+    "baseline_answer": {
+      "packing_list_id": "PL1011",
+      "gear_count": 4,
+      "gear_list": [
+        "3DOR100012",
+        "3DOR100013",
+        "3DOR100015",
+        "3DOR100020"
+      ]
+    }
+  },
+  {
+    "task_id": "medium_3DOR10001_0",
+    "complexity_level": "medium",
+    "query_instance": "Determine printer for Part 3DOR10001",
+    "baseline_answer": {
+      "part_id": "3DOR10001",
+      "assigned_printer": "Printer_1"
+    }
+  },
+  {
+    "task_id": "medium_3DOR100010_1",
+    "complexity_level": "medium",
+    "query_instance": "Determine printer for Part 3DOR100010",
+    "baseline_answer": {
+      "part_id": "3DOR100010",
+      "assigned_printer": "Printer_10"
+    }
+  },
+  {
+    "task_id": "medium_3DOR1000100_2",
+    "complexity_level": "medium",
+    "query_instance": "Determine printer for Part 3DOR1000100",
+    "baseline_answer": {
+      "part_id": "3DOR1000100",
+      "assigned_printer": "Printer_10"
+    }
+  },
+  {
+    "task_id": "medium_3DOR100082_3",
+    "complexity_level": "medium",
+    "query_instance": "Determine printer for Part 3DOR100082",
+    "baseline_answer": {
+      "part_id": "3DOR100082",
+      "assigned_printer": "Printer_2"
+    }
+  },
+  {
+    "task_id": "medium_3DOR1000103_4",
+    "complexity_level": "medium",
+    "query_instance": "Determine printer for Part 3DOR1000103",
+    "baseline_answer": {
+      "part_id": "3DOR1000103",
+      "assigned_printer": "Printer_2"
+    }
+  },
+  {
+    "task_id": "hard_ORBOX0014_0",
+    "complexity_level": "hard",
+    "query_instance": "Verify ARC date vs warehouse arrival for ORBOX0014",
+    "baseline_answer": {
+      "product_id": "ORBOX0014",
+      "certificate_date": "2024-10-28",
+      "warehouse_arrival_date": "2024-10-28",
+      "date_match_status": true
+    }
+  },
+  {
+    "task_id": "hard_ORBOX00116_1",
+    "complexity_level": "hard",
+    "query_instance": "Verify ARC date vs warehouse arrival for ORBOX00116",
+    "baseline_answer": {
+      "product_id": "ORBOX00116",
+      "certificate_date": "2024-10-28",
+      "warehouse_arrival_date": "2024-10-28",
+      "date_match_status": true
+    }
+  },
+  {
+    "task_id": "hard_ORBOX0019_2",
+    "complexity_level": "hard",
+    "query_instance": "Verify ARC date vs warehouse arrival for ORBOX0019",
+    "baseline_answer": {
+      "product_id": "ORBOX0019",
+      "certificate_date": "2024-10-28",
+      "warehouse_arrival_date": "2024-10-28",
+      "date_match_status": true
+    }
+  },
+  {
+    "task_id": "hard_ORBOX0013_3",
+    "complexity_level": "hard",
+    "query_instance": "Verify ARC date vs warehouse arrival for ORBOX0013",
+    "baseline_answer": {
+      "product_id": "ORBOX0013",
+      "certificate_date": "2024-10-28",
+      "warehouse_arrival_date": "2024-10-28",
+      "date_match_status": true
+    }
+  },
+  {
+    "task_id": "hard_ORBOX0011_4",
+    "complexity_level": "hard",
+    "query_instance": "Verify ARC date vs warehouse arrival for ORBOX0011",
+    "baseline_answer": {
+      "product_id": "ORBOX0011",
+      "certificate_date": "2024-10-28",
+      "warehouse_arrival_date": "2024-10-28",
+      "date_match_status": true
+    }
+  }
+]

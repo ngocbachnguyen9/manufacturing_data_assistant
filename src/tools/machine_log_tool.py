@@ -22,6 +22,6 @@ class MachineLogTool(BaseTool):
         # This tool uses exact matching as printer IDs are fixed.
         result_df = df[df["Machine"] == printer_id]
         if result_df.empty:
-            return [{"message": f"No logs found for printer {printer_id}"}]
+            return [{"error": f"No logs found for printer {printer_id}"}]
 
         return result_df.to_dict("records")

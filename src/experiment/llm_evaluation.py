@@ -136,7 +136,8 @@ class LLMEvaluationRunner:
             (t for t in self.ground_truth if t["task_id"] == task_id), None
         )
         if not gt_task:
-            return False, "Ground truth not found"
+            # Return a more informative error message
+            return False, f"Ground truth for task_id '{task_id}' not found in baseline_answers.json"
 
         gt_answer_json = json.dumps(gt_task["baseline_answer"], indent=2)
 

@@ -36,18 +36,6 @@ class TaskGenerator:
             os.path.join(baseline_path, "relationship_data.csv")
         )
 
-        # NEW: Easy tasks now use Packing List IDs
-        packing_list_dir = "data/generated_documents/packing_lists"
-        packing_lists = []
-        if os.path.exists(packing_list_dir):
-            for f in os.listdir(packing_list_dir):
-                if f.startswith("PackingList-") and f.endswith(".docx"):
-                    # Extract 'PL1011' from 'PackingList-PL1011.pdf'
-                    pl_id = f.replace("PackingList-", "").replace(".docx", "")
-                    packing_lists.append(pl_id)
-        else:
-            print(f"Warning: Packing list directory not found at {packing_list_dir}")
-        
         # Hard tasks use Order IDs
         orders = sorted(
             rel_df[rel_df["parent"].str.startswith("ORBOX", na=False)][
@@ -61,6 +49,21 @@ class TaskGenerator:
                 "child"
             ].unique()
         )
+        
+        # Fallback: Use orders for easy tasks if packing lists are missing
+        packing_list_dir = "data/generated_documents/packing_lists"
+        packing_lists = []
+        if os.path.exists(packing_list_dir):
+            for f in os.listdir(packing_list_dir):
+                if f.startswith("PackingList-") and f.endswith(".pdf"):
+                    pl_id = f.replace("PackingList-", "").replace(".pdf", "")
+                    packing_lists.append(pl_id)
+        else:
+            print(f"Warning: Packing list directory not found at {packing_list_dir}")
+        
+        if not packing_lists:
+            print("Warning: No packing lists found. Using orders for easy tasks")
+            packing_lists = orders.copy()
 
         return {"easy": sorted(packing_lists),  "hard": orders, "medium": gears}
     
@@ -111,103 +114,60 @@ class TaskGenerator:
         all_assignments = {}
         print("Generating task assignments for all participants...")
 
+        # Build the ID pools dynamically based on ID prefixes
+        id_pools_template = {"Q0": self._get_clean_ids()}
+        for qc in ("Q1", "Q2", "Q3"):
+            dirty = self.dirty_ids.get(qc, [])
+            # Partition dirty IDs by complexity based on their prefix
+            id_pools_template[qc] = {
+                "easy": [i for i in dirty if i.startswith(("E","PL"))],
+                "medium": [i for i in dirty if i.startswith(("M", "3DOR"))],
+                "hard": [i for i in dirty if i.startswith(("H", "ORBOX", "PL"))],
+            }
+
         for p_id, patterns in self.participants.items():
+            # Give each participant their own copy of the ID pools
+            id_pools = json.loads(json.dumps(id_pools_template))
 
-            quality_list = self._create_task_list(
-                "quality", patterns["quality_pattern"]
-            )
-            complexity_list = self._create_task_list(
-                "prompt", patterns["prompt_pattern"]
-            )
-            # Clone the valid IDs so each participant gets a fresh pool
-            available_ids = {
-                "easy": self.valid_ids["easy"][:],
-                "medium": self.valid_ids["medium"][:],
-                "hard": self.valid_ids["hard"][:],
-            }
-
-             # Build per‐QC ID pools
-            id_pools = {
-                "Q0": {
-                    "easy":   self.valid_ids["easy"][:],
-                    "hard":   self.valid_ids["hard"][:],
-                    # Q0 medium uses all baseline gears
-                    "medium": self.valid_ids["medium"][:],
-                }
-            }
-            for qc in ("Q1", "Q2", "Q3"):
-                dirty = self.dirty_ids.get(qc, [])
-                dirty_orders = [x for x in dirty if x.startswith("ORBOX")]
-                # Only orders are corrupted at easy/hard levels
-                id_pools[qc] = {
-                    "easy": dirty_orders[:],
-                    "hard": dirty_orders[:],
-                    # no "medium" key here: forces fallback below
-                }
-
+            quality_list = self._create_task_list("quality", patterns["quality_pattern"])
+            complexity_list = self._create_task_list("prompt", patterns["prompt_pattern"])
+            
             participant_tasks = []
-
             for i in range(len(quality_list)):
-                # Map the single-letter code to the full complexity name
-                letter = complexity_list[i].lower()  # 'e','m','h'
-                mapping = {"e": "easy", "m": "medium", "h": "hard"}
-                if letter not in mapping:
-                    raise ValueError(f"Unknown complexity code: {complexity_list[i]}")
-                complexity = mapping[letter]
-
-                # NEW: Select entity ID from the correct pool (clean or dirty)
+                complexity = {"e": "easy", "m": "medium", "h": "hard"}[complexity_list[i].lower()]
                 quality = quality_list[i]
 
-                if quality == "Q0":
-                    pool = id_pools["Q0"][complexity]
-                else:
-                    # try QC‐specific pool first, then fallback to baseline available_ids
-                    pool = id_pools.get(quality, {}).get(complexity, []) or available_ids[complexity][:]
- 
+                # Select entity ID from the correct, isolated pool
+                pool = id_pools[quality][complexity]
                 if not pool:
                     raise ValueError(f"Not enough unique IDs for {p_id}, {quality}, {complexity} task.")
+                
                 entity_id = pool.pop(random.randrange(len(pool)))
 
-                # Construct the task object
-                task_id = f"{p_id}_task_{i+1}"
+                # Use the entity ID and an index to create a stable, lookup-friendly task_id
+                task_id = f"{complexity}_{entity_id}_{i}"
+                
                 query_template = self.task_templates[complexity]["description"]
-
-                # Support both {ENTITY_ID} and legacy {...} placeholders:
-                if "{ENTITY_ID}" in query_template:
-                    query_string = query_template.format(ENTITY_ID=entity_id)
-                elif "{...}" in query_template:
-                    query_string = query_template.replace("{...}", entity_id)
-                else:
-                    # No placeholder found: append ID at end
-                    query_string = f"{query_template} {entity_id}"
+                query_string = query_template.format(ENTITY_ID=entity_id)
             
-                dataset_path = (
-                    f"data/experimental_datasets/{quality}_baseline"
-                    if quality == "Q0"
-                    else f"data/experimental_datasets/{quality}_dataset"
-                )
-               
-                dataset_path = (
-                    f"data/experimental_datasets/{quality}_baseline"
-                    if quality == "Q0"
-                    else f"data/experimental_datasets/{quality}_dataset"
-                )
+                if quality == "Q0":
+                    dataset_path = f"data/experimental_datasets/Q0_baseline"
+                else:
+                    dataset_path = f"data/experimental_datasets/{quality}_dataset"
 
-                participant_tasks.append(
-                    {
-                        "task_id": task_id,
-                        "participant_id": p_id,
-                        "complexity": complexity,
-                        "quality_condition": quality,
-                        "query_string": query_string,
-                        "dataset_path": dataset_path,
-                    }
-                )
+                participant_tasks.append({
+                    "task_id": task_id,
+                    "participant_id": p_id,
+                    "complexity": complexity,
+                    "quality_condition": quality,
+                    "query_string": query_string,
+                    "dataset_path": dataset_path,
+                })
             all_assignments[p_id] = participant_tasks
             print(f"  - Generated 10 tasks for participant {p_id}")
 
         return all_assignments
-
+    
     def save_assignments(self, assignments: Dict):
         """Saves the generated assignments to a JSON file."""
         output_path = "experiments/human_study/participant_assignments.json"

@@ -55,19 +55,32 @@ class GroundTruthGenerator:
         return rel_map
 
     def generate_all_ground_truths(self):
-        # ... (this method remains unchanged) ...
         all_answers = []
         all_paths = {}
 
-        orders = [
-            p for p in self.relationships.keys() if p.startswith("ORBOX")
-        ]
+        # Correctly source Packing List IDs for easy tasks
+        packing_list_dir = "data/generated_documents/packing_lists"
+        packing_lists = []
+        if os.path.exists(packing_list_dir):
+            for f in os.listdir(packing_list_dir):
+                if f.startswith("PackingList-") and f.endswith(".docx"):
+                    packing_lists.append(f.replace("PackingList-", "").replace(".docx", ""))
+        
+        if not packing_lists:
+             # Fallback for testing when docs don't exist
+            packing_lists = [p.replace("ORBOX", "PL") for p in self.relationships.keys() if p.startswith("ORBOX")]
+
+
         gears = [
             c for c in self.relationships.keys() if c.startswith("3DOR")
         ]
+        orders = [
+            p for p in self.relationships.keys() if p.startswith("ORBOX")
+        ]
 
-        for i, order_id in enumerate(orders[:5]):
-            answer, path = self.generate_easy_task(order_id, i)
+        # Iterate over packing_list_ids for easy tasks
+        for i, pl_id in enumerate(packing_lists[:5]):
+            answer, path = self.generate_easy_task(pl_id, i)
             all_answers.append(answer)
             all_paths[answer["task_id"]] = path
 
@@ -90,29 +103,38 @@ class GroundTruthGenerator:
             json.dump(all_paths, f, indent=2)
         print(f"Data traversal paths saved to {self.paths_output_path}")
 
-    def generate_easy_task(self, order_id: str, index: int) -> tuple:
+
+    def generate_easy_task(self, packing_list_id: str, index: int) -> tuple:
         """
-        UPDATED: Finds the UNIQUE set of gears for an order.
+        UPDATED: Simulates the full flow from Packing List to gears.
         """
+        # Step 1: Find the Order ID from the packing list document.
+        # This simulates the packing_list_parser_tool.
+        # NOTE: This assumes a simple mapping. In a real system, this would parse the file.
+        order_id = "ORBOX" + packing_list_id.replace("PL", "")
+
+        # Step 2: Find the unique gears for that Order ID.
         raw_gears = self.relationships.get(order_id, [])
-        # NEW: Deduplicate and sort the list of gears
         unique_gears = sorted(list(set(raw_gears)))
 
         answer = {
-            "task_id": f"easy_{order_id}_{index}",
+            # The task_id is now based on the Packing List ID.
+            "task_id": f"easy_{packing_list_id}_{index}",
             "complexity_level": "easy",
-            "query_instance": f"Find all gears for Order {order_id}",
+            "query_instance": f"Find all gears for Packing List {packing_list_id}",
             "baseline_answer": {
+                "packing_list_id": packing_list_id,
                 "order_id": order_id,
-                "gear_count": len(unique_gears),  # Count of unique gears
-                "gear_list": unique_gears,  # The unique list
+                "gear_count": len(unique_gears),
+                "gear_list": unique_gears,
             },
         }
         path = {
-            "data_sources": ["relationship_data"],
+            "data_sources": ["packing_lists", "relationship_data"],
             "steps": [
-                f"1. Query relationship_data where parent='{order_id}'",
-                f"2. Collect all child entities and find unique set: {unique_gears}",
+                f"1. Parse Packing List '{packing_list_id}' to find Order ID: '{order_id}'",
+                f"2. Query relationship_data where parent='{order_id}'",
+                f"3. Collect unique child entities: {unique_gears}",
             ],
         }
         return answer, path
@@ -143,7 +165,6 @@ class GroundTruthGenerator:
         return answer, path
 
     def generate_hard_task(self, product_id: str, index: int) -> tuple:
-        # ... (this method remains unchanged) ...
         location_df = self.data["location_data"]
         cert_date = "2024-10-28"
         gears_for_order = self.relationships.get(product_id, [])

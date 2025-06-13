@@ -11,6 +11,11 @@ class ReconciliationAgent:
     def __init__(self, tools: Dict[str, Any]):
         self.tools = tools
         self.validator_tool = self.tools.get("barcode_validator_tool")
+        self.critical_issues = [
+            "missing worker id",
+            "incomplete dataset",
+            "data not found"
+        ]
 
     def reconcile(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -21,13 +26,20 @@ class ReconciliationAgent:
             "issues_found": [],
             "validated_data": context,
             "confidence": 1.0,
+            "critical_issue": False,
         }
 
         self._check_for_tool_errors(context, summary)
         self._cross_validate_gear_timeline(context, summary)
 
+        # Check for critical issues
+        for issue in summary["issues_found"]:
+            if any(keyword in issue.lower() for keyword in self.critical_issues):
+                summary["critical_issue"] = True
+                break
+
         print(
-            f"  - [ReconciliationAgent] Reconciliation complete. Confidence: {summary['confidence']:.2f}"
+            f"  - [ReconciliationAgent] Reconciliation complete. Confidence: {summary['confidence']:.2f}, Critical issue: {summary['critical_issue']}"
         )
         return summary
 

@@ -1,0 +1,6 @@
+task_prompts:
+  planning: "Test planning prompt"
+  execution: "Test execution prompt"
+  error_handling: "Test error handling prompt"
+  reconciliation: "Test reconciliation prompt"
+  synthesis: "Test synthesis prompt"

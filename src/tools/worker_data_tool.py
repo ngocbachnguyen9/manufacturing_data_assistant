@@ -23,6 +23,6 @@ class WorkerDataTool(BaseTool):
         result_df = df[df["_value"] == worker_id]
 
         if result_df.empty:
-            return [{"message": f"No data found for worker ID {worker_id}"}]
+           return [{"error": f"No data found for worker ID {worker_id}"}]
 
         return result_df.to_dict("records")
