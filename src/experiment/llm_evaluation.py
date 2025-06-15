@@ -177,11 +177,45 @@ class LLMEvaluationRunner:
         - Q3 (Missing Relationships): Report is CORRECT if it appropriately reports missing data with low confidence
 
         Your response MUST be a single word: either 'Correct' or 'Incorrect'.
+
+        Do NOT return JSON or any other format. Just respond with one word: 'Correct' or 'Incorrect'.
         """
 
         # Use the LLM to make the judgment
         judge_response = llm_provider.generate(judge_prompt)
-        judgment = judge_response["content"].strip().lower()
+        judgment_content = judge_response["content"].strip()
+
+        # Handle both plain text and JSON responses from the judge
+        judgment = None
+        try:
+            # Try to parse as JSON first (for models that return structured responses)
+            if judgment_content.startswith('{') and judgment_content.endswith('}'):
+                judgment_json = json.loads(judgment_content)
+                if "evaluation" in judgment_json:
+                    judgment = judgment_json["evaluation"].strip().lower()
+                else:
+                    # Look for any field containing "correct" or "incorrect"
+                    for value in judgment_json.values():
+                        if isinstance(value, str) and value.strip().lower() in ["correct", "incorrect"]:
+                            judgment = value.strip().lower()
+                            break
+            else:
+                # Plain text response
+                judgment = judgment_content.lower()
+        except json.JSONDecodeError:
+            # Fallback to plain text parsing
+            judgment = judgment_content.lower()
+
+        # Extract the actual judgment if it's still not found
+        if judgment not in ["correct", "incorrect"]:
+            if "correct" in judgment:
+                judgment = "correct"
+            elif "incorrect" in judgment:
+                judgment = "incorrect"
+            else:
+                # Default to incorrect if we can't parse the response
+                print(f"Warning: Could not parse judge response: {judgment_content}")
+                judgment = "incorrect"
 
         return judgment == "correct", gt_answer_json
 

@@ -84,7 +84,7 @@ def test_evaluate_answer_missing_gt(runner_and_dirs):
     # The method now requires an llm_provider instance as the third argument
     ok, gt = runner._evaluate_answer("NO_SUCH", "whatever", MockLLMProvider("M1"))
     assert ok is False
-    assert gt == "Ground truth not found"
+    assert "Ground truth for task_id 'NO_SUCH' not found" in gt
 
 
 def test_run_evaluation_end_to_end(runner_and_dirs):
