@@ -127,7 +127,7 @@
       "participant_id": "P2",
       "complexity": "easy",
       "quality_condition": "Q3",
-      "query_string": "Find all gears for Packing List PL112",
+      "query_string": "Find all gears for Packing List PL1122",
       "dataset_path": "data/experimental_datasets/Q3_dataset"
     },
     {

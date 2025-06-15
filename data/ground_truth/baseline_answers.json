@@ -181,12 +181,17 @@
   {
     "task_id": "P2_task_6",
     "complexity_level": "easy",
-    "query_instance": "Find all gears for Packing List PL112",
+    "query_instance": "Find all gears for Packing List PL1122",
     "baseline_answer": {
-      "packing_list_id": "PL112",
-      "gear_count": 0,
-      "gear_list": [],
-      "error": "Packing List not found: PackingList-PL112.pdf"
+      "packing_list_id": "PL1122",
+      "gear_count": 5,
+      "gear_list": [
+        "3DOR100071",
+        "3DOR100073",
+        "3DOR100076",
+        "3DOR100079",
+        "3DOR100080"
+      ]
     }
   },
   {
