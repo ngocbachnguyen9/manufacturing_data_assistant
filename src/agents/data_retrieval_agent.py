@@ -20,8 +20,9 @@ class DataRetrievalAgent:
         self.config = config
         self.fuzzy_enabled = self.config.get("fuzzy_search_enabled", False)
         self.search_threshold = self.config.get("search_threshold", 0.8)
+        self.force_fuzzy_on_failure = self.config.get("force_fuzzy_on_failure", False)
         print(
-            f"DataRetrievalAgent initialized. Fuzzy Search: {self.fuzzy_enabled}"
+            f"DataRetrievalAgent initialized. Fuzzy Search: {self.fuzzy_enabled}, Force on Failure: {self.force_fuzzy_on_failure}"
         )
 
     def retrieve(self, tool_name: str, tool_input: Any) -> Any:
@@ -50,6 +51,18 @@ class DataRetrievalAgent:
                 fuzzy_enabled=self.fuzzy_enabled,
                 threshold=self.search_threshold,
             )
+
+            # If result indicates failure and force_fuzzy_on_failure is enabled, retry with fuzzy
+            if self.force_fuzzy_on_failure and not self.fuzzy_enabled:
+                if (isinstance(result, list) and len(result) == 1 and
+                    isinstance(result[0], dict) and "error" in result[0]):
+                    print(f"  - Exact match failed, retrying with fuzzy matching...")
+                    result = tool.run(
+                        tool_input,
+                        fuzzy_enabled=True,
+                        threshold=self.search_threshold,
+                    )
+
             return result
         except Exception as e:
             error_message = f"Error executing tool '{tool_name}': {e}"

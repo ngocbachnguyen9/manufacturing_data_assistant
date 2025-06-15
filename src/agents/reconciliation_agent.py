@@ -46,6 +46,57 @@ class ReconciliationAgent:
         )
         return summary
 
+    def _check_timeline_tools_used(self, context: Dict) -> bool:
+        """
+        Check if any timeline-related tools were used in the execution.
+        Timeline validation is needed for tasks that involve:
+        - Machine logs (printing timeline)
+        - Location queries (warehouse arrival timeline)
+        - Document parsing (certificate dates)
+        """
+        # Check if timeline-related tools were actually called by looking for their outputs
+        timeline_tool_indicators = [
+            # Machine log tool outputs
+            "event_type", "Machine", "print_start", "print_end",
+            # Location query tool outputs
+            "location", "_time", "timestamp", "scan_time", "Parts Warehouse",
+            # Document parser tool outputs
+            "certificate_date", "arc_date", "document_date", "source_document",
+            # Error messages from timeline tools
+            "machine_log_tool", "location_query_tool", "document_parser_tool"
+        ]
+
+        # Look for evidence that timeline-related tools were called
+        for key, value in context.items():
+            # Check context key names for timeline tool usage
+            key_lower = key.lower()
+            if any(indicator in key_lower for indicator in ["machine", "location", "document", "certificate", "warehouse"]):
+                return True
+
+            # Check the actual data content
+            if isinstance(value, list) and value:
+                for item in value:
+                    if isinstance(item, dict):
+                        # Check for timeline tool output fields
+                        if any(indicator in item for indicator in timeline_tool_indicators):
+                            return True
+                        # Check error messages for timeline tool usage
+                        if "error" in item and isinstance(item["error"], str):
+                            error_lower = item["error"].lower()
+                            if any(tool in error_lower for tool in ["machine", "location", "document", "certificate"]):
+                                return True
+
+            # Check if value is a dict (single result from timeline tool)
+            elif isinstance(value, dict):
+                if any(indicator in value for indicator in timeline_tool_indicators):
+                    return True
+                if "error" in value and isinstance(value["error"], str):
+                    error_lower = value["error"].lower()
+                    if any(tool in error_lower for tool in ["machine", "location", "document", "certificate"]):
+                        return True
+
+        return False
+
     def _check_for_tool_errors(self, context: Dict, summary: Dict):
         """Checks for explicit 'error' keys returned by tools."""
         for step_name, result in context.items():
@@ -58,20 +109,34 @@ class ReconciliationAgent:
         """
         Validates that warehouse arrival occurs after print end time for all gears.
         Uses relationship data to link gears to print jobs and machine logs.
+        Only performs timeline validation if timeline-related tools were used.
         """
+        # Check if timeline validation is needed based on tools used
+        timeline_tools_used = self._check_timeline_tools_used(context)
+
+        if not timeline_tools_used:
+            print(f"  - [ReconciliationAgent] Skipping timeline validation - no timeline-related tools used")
+            return
+
         # Collect all relevant data from context
         machine_logs = []
         location_scans = []
         relationship_data = []
-        for key, value in context.items():
-            if "machine_log" in key:
-                machine_logs.extend(value)
-            if "location_query" in key:
-                location_scans.extend(value)
-            if "relationship_query" in key:
-                relationship_data.extend(value)
 
-        # Handle partial data scenarios
+        # Look for data based on the actual content structure, not just key names
+        for key, value in context.items():
+            if isinstance(value, list) and value:
+                # Check if this looks like machine log data
+                if any(isinstance(item, dict) and item.get("event_type") in ["PRINT_START", "PRINT_END"] for item in value):
+                    machine_logs.extend(value)
+                # Check if this looks like location scan data
+                elif any(isinstance(item, dict) and "location" in item and "_time" in item for item in value):
+                    location_scans.extend(value)
+                # Check if this looks like relationship data
+                elif any(isinstance(item, dict) and ("child" in item or "parent" in item or "_from" in item) for item in value):
+                    relationship_data.extend(value)
+
+        # Handle partial data scenarios only if timeline validation is needed
         missing_data = []
         if not machine_logs:
             missing_data.append("machine logs")
@@ -79,7 +144,7 @@ class ReconciliationAgent:
             missing_data.append("location scans")
         if not relationship_data:
             missing_data.append("relationship data")
-            
+
         if missing_data:
             msg = f"Insufficient data for timeline validation. Missing: {', '.join(missing_data)}"
             print(f"  - [ReconciliationAgent] {msg}")

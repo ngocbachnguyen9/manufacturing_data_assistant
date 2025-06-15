@@ -1,23 +1,2313 @@
 task_id,model,complexity,quality_condition,completion_time_sec,is_correct,total_cost_usd,input_tokens,output_tokens,final_confidence,reconciliation_issues,llm_final_report,ground_truth_answer
-P1_task_1,deepseek-chat,easy,Q2,16.6,False,0.0,1290,286,0.19999999999999996,"[""Error from step_2_gear_list: No relationships found for ID ORBOX00115"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.20) ⚠️
-Issues found during reconciliation:
- - Error from step_2_gear_list: No relationships found for ID ORBOX00115
- - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
-
-{
-  ""summary"": {
-    ""direct_answer"": ""No gears found for Packing List PL1115 due to no relationships found for ID ORBOX00115."",
-    ""data_quality_issues"": [
-      ""Error from step_2_gear_list: No relationships found for ID ORBOX00115"",
-      ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
+P1_task_1,deepseek-chat,easy,Q2,16.23,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
     ],
-    ""confidence_score"": 0.19999999999999996,
-    ""missing_data"": ""Relationship data for ID ORBOX00115 is missing, preventing the identification of gears for Packing List PL1115.""
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified"",
+    ""Recommendations"": ""No recommendations at this time""
   }
 }","{
   ""packing_list_id"": ""PL1115"",
   ""gear_count"": 1,
   ""gear_list"": [
     ""3DOR100033""
+  ]
+}"
+P1_task_2,deepseek-chat,medium,Q0,16.64,False,0.0,2977,315,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100091"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100091 was printed on Printer_1. There are no other parts listed as being printed on this printer within the provided data range.""
+  }
+}","{
+  ""part_id"": ""3DOR100091"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P1_task_3,deepseek-chat,easy,Q0,15.59,False,0.0,2492,298,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified in the provided data"",
+    ""Recommendations"": ""No recommendations needed based on the provided data""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 1,
+  ""gear_list"": [
+    ""3DOR100071""
+  ]
+}"
+P1_task_4,deepseek-chat,medium,Q2,17.15,False,0.0,2977,322,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100056"",
+    ""Assigned Printer"": ""Printer_6"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data is consistent across sources.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100056 was printed on Printer_6, which has a total of 5 parts assigned to it. No data quality issues were detected, and the confidence in the data is high.""
+  }
+}","{
+  ""part_id"": ""3DOR100056"",
+  ""assigned_printer"": ""Printer_6""
+}"
+P1_task_5,deepseek-chat,easy,Q1,16.95,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P1_task_6,deepseek-chat,hard,Q1,20.81,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:55:20.353698Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) for comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P1_task_7,deepseek-chat,hard,Q3,39.94,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0015"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T16:40:15.27457Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0015.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX0015"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P1_task_8,deepseek-chat,easy,Q0,16.76,False,0.0,2492,283,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0011"",
+    ""Total Gears Found"": 4,
+    ""Gear List"": [
+      ""3DOR100012"",
+      ""3DOR100013"",
+      ""3DOR100015"",
+      ""3DOR100020""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1011"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100012"",
+    ""3DOR100013"",
+    ""3DOR100015"",
+    ""3DOR100020""
+  ]
+}"
+P1_task_9,deepseek-chat,medium,Q0,16.78,False,0.0,6293,332,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100098"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 12,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100098 is assigned to Printer_8, which has a total of 12 parts printed on it within the specified time frame. The data quality is high with no issues detected, ensuring reliable analysis results.""
+  }
+}","{
+  ""part_id"": ""3DOR100098"",
+  ""assigned_printer"": ""Printer_8""
+}"
+P1_task_10,deepseek-chat,hard,Q0,17.85,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Consider collecting more detailed machine logs and relationship data to improve timeline validation accuracy.""
+  }
+}","{
+  ""product_id"": ""ORBOX0117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P2_task_1,deepseek-chat,hard,Q2,18.01,False,0.0,1959,356,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""28/10/2024"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P2_task_2,deepseek-chat,medium,Q2,16.15,False,0.0,2977,322,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100017"",
+    ""Assigned Printer"": ""Printer_7"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""Part 3DOR100017 was printed on Printer_7, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}"
+P2_task_3,deepseek-chat,hard,Q0,18.16,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation accuracy.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P2_task_4,deepseek-chat,medium,Q0,19.77,False,0.0,2977,339,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100041"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100041 was printed on Printer_1. A total of 5 parts were found to be associated with ORBOX0012, which may indicate a batch or group processing. No data quality issues were detected, and the confidence in the data is high.""
+  }
+}","{
+  ""part_id"": ""3DOR100041"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P2_task_5,deepseek-chat,easy,Q0,15.11,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00116"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100010"",
+      ""3DOR10002"",
+      ""3DOR10006"",
+      ""3DOR10007"",
+      ""3DOR10009""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1116"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100010"",
+    ""3DOR10002"",
+    ""3DOR10006"",
+    ""3DOR10007"",
+    ""3DOR10009""
+  ]
+}"
+P2_task_6,deepseek-chat,easy,Q3,16.99,False,0.0,1341,302,0.5,"[""Error from step_2_gear_list: No relationships found for ID {step_1_order_id['order_id']}""]","⚠️ Low Confidence Report (confidence: 0.50) ⚠️
+Issues found during reconciliation:
+ - Error from step_2_gear_list: No relationships found for ID {step_1_order_id['order_id']}
+
+{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""Not found"",
+    ""Total Gears Found"": 0,
+    ""Gear List"": ""No gears found due to packing list not being identified."",
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Packing List not found: PackingList-PL112.pdf"",
+        ""No relationships found for ID {step_1_order_id['order_id']}""
+      ],
+      ""Confidence Level"": 0.5
+    },
+    ""Manufacturing Status"": ""Unable to determine due to missing packing list."",
+    ""Recommendations"": ""Verify the packing list ID and ensure the document is correctly uploaded and named.""
+  }
+}","{
+  ""packing_list_id"": ""PL112"",
+  ""gear_count"": 0,
+  ""gear_list"": []
+}"
+P2_task_7,deepseek-chat,medium,Q0,19.13,False,0.0,2977,332,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100091"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100091 was printed on Printer_1. There are no other parts listed as being printed on this printer within the provided timeframe, indicating it might have been the only part or the data might be incomplete for other parts.""
+  }
+}","{
+  ""part_id"": ""3DOR100091"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P2_task_8,deepseek-chat,hard,Q0,18.45,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T20:08:36.371232Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation accuracy.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P2_task_9,deepseek-chat,medium,Q1,16.88,False,0.0,3218,317,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100012"",
+    ""Assigned Printer"": ""Printer_2"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100012 was printed on Printer_2. There is a total of 1 part associated with this printer in the given timeframe.""
+  }
+}","{
+  ""part_id"": ""3DOR100012"",
+  ""assigned_printer"": ""Printer_2""
+}"
+P2_task_10,deepseek-chat,easy,Q1,15.86,False,0.0,2492,287,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""1.0""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations provided""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P3_task_1,deepseek-chat,hard,Q1,17.37,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Matches"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P3_task_2,deepseek-chat,medium,Q3,18.35,False,0.0,4202,326,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100026"",
+    ""Assigned Printer"": ""Printer_6"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100026 was printed on Printer_6, which also printed a total of 5 parts including itself. The data quality is high with no issues detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100026"",
+  ""assigned_printer"": ""Printer_6""
+}"
+P3_task_3,deepseek-chat,medium,Q2,20.34,False,0.0,1405,386,0.0,"[""Error from step_1_printer_info: No relationships found for ID 3DOR100061"", ""Error from step_2_all_parts_on_printer: No relationships found for ID {step_1_printer_info['parent']}""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_1_printer_info: No relationships found for ID 3DOR100061
+ - Error from step_2_all_parts_on_printer: No relationships found for ID {step_1_printer_info['parent']}
+
+{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100061"",
+    ""Assigned Printer"": ""No printer assigned due to missing relationships"",
+    ""Total Parts on Printer"": ""No parts counted due to missing printer information"",
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""step_1_printer_info, step_2_all_parts_on_printer"",
+      ""Cross-validation Results"": ""No relationships found for the provided Part ID""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""No relationships found for ID 3DOR100061"",
+        ""No relationships found for ID {step_1_printer_info['parent']}""
+      ],
+      ""Confidence Level"": ""0.0""
+    },
+    ""Manufacturing Insights"": ""The data indicates that the Part ID 3DOR100061 does not have any assigned printer, and consequently, no parts can be counted on a non-existent printer assignment. This suggests a potential data entry or relationship mapping issue that needs to be addressed.""
+  }
+}","{
+  ""part_id"": ""3DOR100061"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P3_task_4,deepseek-chat,easy,Q0,21.8,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100051"",
+      ""3DOR100053"",
+      ""3DOR100057"",
+      ""3DOR100058"",
+      ""3DOR100060""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1117"",
+  ""gear_count"": 3,
+  ""gear_list"": [
+    ""3DOR100051"",
+    ""3DOR100053"",
+    ""3DOR100057""
+  ]
+}"
+P3_task_5,deepseek-chat,hard,Q2,27.54,False,0.0,1959,347,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""28/10/2024"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Collect additional machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P3_task_6,deepseek-chat,hard,Q0,18.38,False,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P3_task_7,deepseek-chat,easy,Q1,17.92,False,0.0,2492,289,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations provided""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P3_task_8,deepseek-chat,hard,Q0,37.89,False,0.0,1843,373,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Matched"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and recorded for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P3_task_9,deepseek-chat,medium,Q0,17.03,False,0.0,6293,324,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100098"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 12,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated without discrepancies""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The printer 'Printer_8' has been used to print a total of 12 parts, including the part '3DOR100098'. The data quality is high with no issues detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100098"",
+  ""assigned_printer"": ""Printer_8""
+}"
+P3_task_10,deepseek-chat,easy,Q0,15.73,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0012"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100041"",
+      ""3DOR100043"",
+      ""3DOR100045"",
+      ""3DOR100047"",
+      ""3DOR100050""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047""
+  ]
+}"
+P4_task_1,deepseek-chat,medium,Q0,17.02,False,0.0,2980,322,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100095"",
+    ""Assigned Printer"": ""Printer_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no discrepancies""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100095 was printed on Printer_5, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100095"",
+  ""assigned_printer"": ""Printer_5""
+}"
+P4_task_2,deepseek-chat,hard,Q1,18.1,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:55:20.353698Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P4_task_3,deepseek-chat,easy,Q2,16.79,False,0.0,3686,324,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Total Gears Found"": 9,
+    ""Gear List"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""None""
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}"
+P4_task_4,deepseek-chat,easy,Q0,17.41,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100051"",
+      ""3DOR100053"",
+      ""3DOR100057"",
+      ""3DOR100058"",
+      ""3DOR100060""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1117"",
+  ""gear_count"": 3,
+  ""gear_list"": [
+    ""3DOR100051"",
+    ""3DOR100053"",
+    ""3DOR100057""
+  ]
+}"
+P4_task_5,deepseek-chat,easy,Q3,15.1,False,0.0,2373,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00120"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100063"",
+      ""3DOR100064"",
+      ""3DOR100066"",
+      ""3DOR100067"",
+      ""3DOR100069""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1120"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100063"",
+    ""3DOR100064"",
+    ""3DOR100066"",
+    ""3DOR100067""
+  ]
+}"
+P4_task_6,deepseek-chat,hard,Q0,17.82,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P4_task_7,deepseek-chat,medium,Q3,16.69,False,0.0,2857,322,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100023"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100023 was printed on Printer_3. A total of 5 parts were found to be associated with this printer, indicating it is actively used in the manufacturing process.""
+  }
+}","{
+  ""part_id"": ""3DOR100023"",
+  ""assigned_printer"": ""Printer_3""
+}"
+P4_task_8,deepseek-chat,medium,Q1,17.82,False,0.0,2979,336,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100067"",
+    ""Assigned Printer"": ""Printer_7"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100067 was printed on Printer_7 along with 4 other parts (3DOR100063, 3DOR100064, 3DOR100066, 3DOR100069) within the same time frame.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}"
+P4_task_9,deepseek-chat,hard,Q0,18.1,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0018"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:18.376922Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0018.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""N/A"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P4_task_10,deepseek-chat,easy,Q0,15.59,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}"
+P5_task_1,deepseek-chat,medium,Q0,16.79,False,0.0,2977,310,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100020"",
+    ""Assigned Printer"": ""Printer_10"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated without issues""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""Part 3DOR100020 was printed on Printer_10. There are no other parts recorded as printed on this printer within the given timeframe.""
+  }
+}","{
+  ""part_id"": ""3DOR100010"",
+  ""assigned_printer"": ""Printer_10""
+}"
+P5_task_2,deepseek-chat,easy,Q2,15.85,False,0.0,3686,324,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Total Gears Found"": 9,
+    ""Gear List"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""None""
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}"
+P5_task_3,deepseek-chat,medium,Q1,17.03,False,0.0,2977,326,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100058"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100058 was printed on Printer_8, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, indicating reliable results.""
+  }
+}","{
+  ""part_id"": ""3DOR100082"",
+  ""assigned_printer"": ""Printer_2""
+}"
+P5_task_4,deepseek-chat,easy,Q3,15.64,False,0.0,2372,298,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified in the provided data"",
+    ""Recommendations"": ""No recommendations needed based on the provided data""
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100059""
+  ]
+}"
+P5_task_5,deepseek-chat,medium,Q0,17.0,False,0.0,2977,322,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100061"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated without discrepancies""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100061 was successfully traced to Printer_1, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100061"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P5_task_6,deepseek-chat,easy,Q3,16.12,False,0.0,2492,283,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100042"",
+      ""3DOR100044"",
+      ""3DOR100046"",
+      ""3DOR100048"",
+      ""3DOR100049""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""1.0""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""None""
+  }
+}","{
+  ""packing_list_id"": ""PL1119"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100042"",
+    ""3DOR100044"",
+    ""3DOR100046"",
+    ""3DOR100048""
+  ]
+}"
+P5_task_7,deepseek-chat,hard,Q1,31.54,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:55:20.353698Z"",
+    ""Date Match Status"": ""Matches"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P5_task_8,deepseek-chat,medium,Q0,22.63,False,0.0,2977,334,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100068"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100068 was printed on Printer_8. A total of 5 parts were identified as being associated with ORBOX00121, which may indicate a batch or group processing. No data quality issues were detected, ensuring reliable analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P5_task_9,deepseek-chat,hard,Q0,23.55,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX0117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P5_task_10,deepseek-chat,hard,Q0,18.53,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_1,deepseek-chat,medium,Q2,16.56,False,0.0,2977,317,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100017"",
+    ""Assigned Printer"": ""Printer_7"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": 1.0
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100017 was printed on Printer_7. A total of 5 parts were found to be associated with this printer, indicating a moderate level of activity.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}"
+P6_task_2,deepseek-chat,medium,Q3,16.97,False,0.0,2742,323,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100093"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100093 was printed on Printer_3. A total of 5 parts were found to be associated with Printer_3, indicating it is actively used in the manufacturing process.""
+  }
+}","{
+  ""part_id"": ""3DOR1000100"",
+  ""assigned_printer"": ""Printer_10""
+}"
+P6_task_3,deepseek-chat,medium,Q1,17.49,False,0.0,2977,336,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100064"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100064 was printed on Printer_4 along with 4 other parts (3DOR100063, 3DOR100066, 3DOR100067, 3DOR100069) within the same time frame.""
+  }
+}","{
+  ""part_id"": ""3DOR1000103"",
+  ""assigned_printer"": ""Printer_2""
+}"
+P6_task_4,deepseek-chat,hard,Q0,18.53,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T20:08:36.371232Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and documented for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_5,deepseek-chat,hard,Q1,17.92,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P6_task_6,deepseek-chat,hard,Q0,18.35,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Consider collecting more detailed machine logs and relationship data to improve timeline validation accuracy.""
+  }
+}","{
+  ""product_id"": ""ORBOX0117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_7,deepseek-chat,easy,Q3,15.41,False,0.0,2373,295,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified in the provided data"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}"
+P6_task_8,deepseek-chat,easy,Q0,15.56,False,0.0,2492,295,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified in the provided data"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 1,
+  ""gear_list"": [
+    ""3DOR100071""
+  ]
+}"
+P6_task_9,deepseek-chat,easy,Q0,16.5,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100021"",
+      ""3DOR100022"",
+      ""3DOR100023"",
+      ""3DOR100024"",
+      ""3DOR100030""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1017"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100021"",
+    ""3DOR100022"",
+    ""3DOR100023"",
+    ""3DOR100024"",
+    ""3DOR100030""
+  ]
+}"
+P6_task_10,deepseek-chat,hard,Q0,18.63,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation accuracy.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P7_task_1,deepseek-chat,easy,Q0,16.15,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 1,
+  ""gear_list"": [
+    ""3DOR100071""
+  ]
+}"
+P7_task_2,deepseek-chat,easy,Q2,15.78,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 1,
+  ""gear_list"": [
+    ""3DOR100033""
+  ]
+}"
+P7_task_3,deepseek-chat,medium,Q3,17.92,False,0.0,2857,328,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100076"",
+    ""Assigned Printer"": ""Printer_6"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100076 was successfully tracked to Printer_6, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis results.""
+  }
+}","{
+  ""part_id"": ""3DOR100076"",
+  ""assigned_printer"": ""Printer_6""
+}"
+P7_task_4,deepseek-chat,medium,Q0,18.18,False,0.0,2977,317,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100033"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100033 was printed on Printer_3. A total of 5 parts were found to be associated with this printer within the specified time frame.""
+  }
+}","{
+  ""product_id"": ""ORBOX00116"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_5,deepseek-chat,medium,Q0,18.95,False,0.0,2977,323,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR10001"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR10001 was printed on Printer_1. A total of 5 parts were found to be associated with Printer_1, indicating it is actively used in the manufacturing process.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P7_task_6,deepseek-chat,easy,Q1,15.46,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P7_task_7,deepseek-chat,easy,Q0,16.28,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0012"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100041"",
+      ""3DOR100043"",
+      ""3DOR100045"",
+      ""3DOR100047"",
+      ""3DOR100050""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047""
+  ]
+}"
+P7_task_8,deepseek-chat,hard,Q0,18.37,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_9,deepseek-chat,hard,Q2,19.11,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_10,deepseek-chat,hard,Q3,19.05,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P8_task_1,deepseek-chat,medium,Q0,18.21,False,0.0,4411,351,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100085"",
+    ""Assigned Printer"": ""Printer_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no discrepancies""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100085 was printed on Printer_5 along with 4 other parts (3DOR100081, 3DOR100086, 3DOR100088, 3DOR100089) on ORBOX00111. No data quality issues were detected, and the confidence in the data is high.""
+  }
+}","{
+  ""product_id"": ""ORBOX0011"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P8_task_2,deepseek-chat,easy,Q0,15.77,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not specified"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100059""
+  ]
+}"
+P8_task_3,deepseek-chat,easy,Q2,16.81,False,0.0,3686,324,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Total Gears Found"": 9,
+    ""Gear List"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""None""
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}"
+P8_task_4,deepseek-chat,easy,Q3,16.63,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100072"",
+      ""3DOR100074"",
+      ""3DOR100075"",
+      ""3DOR100077"",
+      ""3DOR100078""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1114"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100072"",
+    ""3DOR100074"",
+    ""3DOR100077"",
+    ""3DOR100078""
+  ]
+}"
+P8_task_5,deepseek-chat,medium,Q2,17.93,False,0.0,2979,343,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100055"",
+    ""Assigned Printer"": ""Prnter_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100055 was printed on Printer_5 along with 4 other parts (3DOR100052, 3DOR100054, 3DOR100056, 3DOR100059) within the same time frame, indicating a batch processing scenario.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P8_task_6,deepseek-chat,hard,Q3,17.33,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:03:08.860706Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0013.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P8_task_7,deepseek-chat,medium,Q0,16.53,False,0.0,2977,314,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100094"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100094 was printed on Printer_4. There are no other parts listed as being printed on this printer within the given timeframe.""
+  }
+}","{
+  ""part_id"": ""3DOR100010"",
+  ""assigned_printer"": ""Printer_10""
+}"
+P8_task_8,deepseek-chat,medium,Q0,15.16,False,0.0,2977,312,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100013"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated without issues""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues found"",
+      ""Confidence Level"": 1.0
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100013 was printed on Printer_3. There are no other parts listed as being printed on Printer_3 within the provided data range.""
+  }
+}","{
+  ""part_id"": ""3DOR1000100"",
+  ""assigned_printer"": ""Printer_10""
+}"
+P8_task_9,deepseek-chat,hard,Q0,18.7,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P8_task_10,deepseek-chat,hard,Q1,20.48,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068""
+  ]
+}"
+P9_task_1,deepseek-chat,hard,Q0,20.85,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T20:08:36.371232Z"",
+    ""Date Match Status"": ""Matches"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and recorded for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P9_task_2,deepseek-chat,hard,Q0,17.72,False,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0012"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:52.340522Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0012.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Review and include missing machine logs and relationship data for comprehensive timeline validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047""
+  ]
+}"
+P9_task_3,deepseek-chat,hard,Q0,18.02,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:09.611388Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00118.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX00118"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P9_task_4,deepseek-chat,medium,Q0,17.82,False,0.0,2977,328,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100055"",
+    ""Assigned Printer"": ""Printer_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data cross-validated with no discrepancies found.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected."",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100055 was successfully traced to Printer_5, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis results.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P9_task_5,deepseek-chat,medium,Q3,17.45,False,0.0,2858,317,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100064"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100064 was printed on Printer_4. A total of 5 parts were found to be associated with this printer within the given time frame.""
+  }
+}","{
+  ""part_id"": ""3DOR1000103"",
+  ""assigned_printer"": ""Printer_2""
+}"
+P9_task_6,deepseek-chat,easy,Q3,19.43,False,0.0,2373,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}"
+P9_task_7,deepseek-chat,easy,Q2,16.39,False,0.0,2492,291,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""No recommendations at this time""
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 1,
+  ""gear_list"": [
+    ""3DOR100033""
+  ]
+}"
+P9_task_8,deepseek-chat,hard,Q0,18.13,False,0.0,1843,362,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0018"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:18.376922Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0018.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P9_task_9,deepseek-chat,medium,Q1,18.92,False,0.0,2977,324,1.0,[],"{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100054"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data validated with no issues found""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""No issues detected"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100054 was printed on Printer_4, which has a total of 5 parts assigned to it. The data quality is high with no issues detected, ensuring reliable analysis results.""
+  }
+}","{
+  ""part_id"": ""3DOR100054"",
+  ""assigned_printer"": ""Printer_4""
+}"
+P9_task_10,deepseek-chat,easy,Q2,17.51,False,0.0,3686,324,1.0,[],"{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Total Gears Found"": 9,
+    ""Gear List"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""None"",
+      ""Confidence Level"": ""High (1.0)""
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""None""
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
   ]
 }"

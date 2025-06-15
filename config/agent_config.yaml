@@ -25,7 +25,8 @@ specialist_agents:
     role: "Multi-source Manufacturing Data Query"
     tools: ["location_query", "machine_log", "relationship", "worker_data"]
     fuzzy_search_enabled: true
-    search_threshold: 0.8
+    search_threshold: 0.75  # Lowered to catch more corruption cases
+    force_fuzzy_on_failure: true  # Always try fuzzy matching if exact match fails
     
   reconciliation_agent:
     name: "DataReconciliationSpecialist"

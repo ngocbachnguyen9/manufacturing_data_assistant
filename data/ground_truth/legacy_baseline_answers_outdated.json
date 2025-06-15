@@ -1,0 +1,1064 @@
+[
+    {
+      "task_id": "P1_task_1",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1115",
+      "baseline_answer": {
+        "packing_list_id": "PL1115",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100033"
+        ]
+      }
+    },
+    {
+      "task_id": "P1_task_2",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100091 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100091",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P1_task_3",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1122",
+      "baseline_answer": {
+        "packing_list_id": "PL1122",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100071"
+        ]
+      }
+    },
+    {
+      "task_id": "P1_task_4",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100056 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100056",
+        "assigned_printer": "Printer_6"
+      }
+    },
+    {
+      "task_id": "P1_task_5",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1121",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P1_task_6",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0017, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0017",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P1_task_7",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0015, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0015",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P1_task_8",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1011",
+      "baseline_answer": {
+        "packing_list_id": "PL1011",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100012",
+          "3DOR100013",
+          "3DOR100015",
+          "3DOR100020"
+        ]
+      }
+    },
+    {
+      "task_id": "P1_task_9",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100098 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100098",
+        "assigned_printer": "Printer_8"
+      }
+    },
+    {
+      "task_id": "P1_task_10",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00117, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0117",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P2_task_1",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P2_task_2",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100017 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100017",
+        "assigned_printer": "Printer_7"
+      }
+    },
+    {
+      "task_id": "P2_task_3",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P2_task_4",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100041 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100041",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P2_task_5",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1116",
+      "baseline_answer": {
+        "packing_list_id": "PL1116",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR100010",
+          "3DOR10002",
+          "3DOR10006",
+          "3DOR10007",
+          "3DOR10009"
+        ]
+      }
+    },
+    {
+        "task_id": "P2_task_6",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL112",
+        "baseline_answer": {
+          "packing_list_id": "PL112",
+          "gear_count": 0,
+          "gear_list": []
+        }
+      },
+    {
+      "task_id": "P2_task_7",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100091 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100091",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+        "task_id": "P2_task_8",
+        "complexity_level": "hard",
+        "query_instance": "For Order ORBOX00114, verify ARC document date matches warehouse arrival",
+        "baseline_answer": {
+          "product_id": "ORBOX00114",
+          "certificate_date": "2024-10-28",
+          "warehouse_arrival_date": "2024-10-28",
+          "date_match_status": true
+        }
+    },
+    {
+      "task_id": "P2_task_9",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100012 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100012",
+        "assigned_printer": "Printer_2"
+      }
+    },
+    {
+      "task_id": "P2_task_10",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1121",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P3_task_1",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00121, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P3_task_2",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100026 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100026",
+        "assigned_printer": "Printer_6"
+      }
+    },
+    {
+      "task_id": "P3_task_3",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100061 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100061",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+        "task_id": "P3_task_4",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1117",
+        "baseline_answer": {
+          "packing_list_id": "PL1117",
+          "gear_count": 3,
+          "gear_list": [
+            "3DOR100051",
+            "3DOR100053",
+            "3DOR100057"
+          ]
+        }
+    },
+    {
+      "task_id": "P3_task_5",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P3_task_6",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P3_task_7",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1121",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P3_task_8",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00121, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P3_task_9",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100098 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100098",
+        "assigned_printer": "Printer_8"
+      }
+    },
+    {
+      "task_id": "P3_task_10",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1012",
+      "baseline_answer": {
+        "packing_list_id": "PL1012",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100041",
+          "3DOR100043",
+          "3DOR100045",
+          "3DOR100047"
+        ]
+      }
+    },
+    {
+      "task_id": "P4_task_1",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100095 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100095",
+        "assigned_printer": "Printer_5"
+      }
+    },
+    {
+      "task_id": "P4_task_2",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0017, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0017",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P4_task_3",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1019",
+      "baseline_answer": {
+        "packing_list_id": "PL1019",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR1000100",
+          "3DOR100092",
+          "3DOR100093",
+          "3DOR100095",
+          "3DOR100096"
+        ]
+      }
+    },
+    {
+        "task_id": "P4_task_4",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1117",
+        "baseline_answer": {
+          "packing_list_id": "PL1117",
+          "gear_count": 3,
+          "gear_list": [
+            "3DOR100051",
+            "3DOR100053",
+            "3DOR100057"
+          ]
+        }
+    },
+    {
+        "task_id": "P4_task_5",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1120",
+        "baseline_answer": {
+          "packing_list_id": "PL1120",
+          "gear_count": 4,
+          "gear_list": [
+            "3DOR100063",
+            "3DOR100064",
+            "3DOR100066",
+            "3DOR100067"
+          ]
+        }
+    },
+    {
+      "task_id": "P4_task_6",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00119, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+        "task_id": "P4_task_7",
+        "complexity_level": "medium",
+        "query_instance": "Determine the printer for Part 3DOR100023 and count parts printed on that machine",
+        "baseline_answer": {
+          "part_id": "3DOR100023",
+          "assigned_printer": "Printer_3"
+        }
+    },
+    {
+      "task_id": "P4_task_8",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100067 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100017",
+        "assigned_printer": "Printer_7"
+      }
+    },
+    {
+      "task_id": "P4_task_9",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0018, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0013",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P4_task_10",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1013",
+      "baseline_answer": {
+        "packing_list_id": "PL1013",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR100011",
+          "3DOR100014",
+          "3DOR100017",
+          "3DOR100018",
+          "3DOR100019"
+        ]
+      }
+    },
+    {
+      "task_id": "P5_task_1",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100020 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100010",
+        "assigned_printer": "Printer_10"
+      }
+    },
+    {
+      "task_id": "P5_task_2",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1019",
+      "baseline_answer": {
+        "packing_list_id": "PL1019",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR1000100",
+          "3DOR100092",
+          "3DOR100093",
+          "3DOR100095",
+          "3DOR100096"
+        ]
+      }
+    },
+    {
+      "task_id": "P5_task_3",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100058 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100082",
+        "assigned_printer": "Printer_2"
+      }
+    },
+    {
+        "task_id": "P5_task_4",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1118",
+        "baseline_answer": {
+          "packing_list_id": "PL1118",
+          "gear_count": 4,
+          "gear_list": [
+            "3DOR100052",
+            "3DOR100054",
+            "3DOR100055",
+            "3DOR100059"
+          ]
+        }
+    },
+    {
+      "task_id": "P5_task_5",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100061 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100061",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+        "task_id": "P5_task_6",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1119",
+        "baseline_answer": {
+          "packing_list_id": "PL1119",
+          "gear_count": 4,
+          "gear_list": [
+            "3DOR100042",
+            "3DOR100044",
+            "3DOR100046",
+            "3DOR100048"
+          ]
+        }
+    },
+    {
+      "task_id": "P5_task_7",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0017, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0017",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P5_task_8",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100068 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR10001",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P5_task_9",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00117, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0117",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P5_task_10",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0019, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P6_task_1",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100017 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100017",
+        "assigned_printer": "Printer_7"
+      }
+    },
+    {
+      "task_id": "P6_task_2",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100093 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR1000100",
+        "assigned_printer": "Printer_10"
+      }
+    },
+    {
+      "task_id": "P6_task_3",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100064 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR1000103",
+        "assigned_printer": "Printer_2"
+      }
+    },
+    {
+        "task_id": "P6_task_4",
+        "complexity_level": "hard",
+        "query_instance": "For Order ORBOX00114, verify ARC document date matches warehouse arrival",
+        "baseline_answer": {
+          "product_id": "ORBOX00114",
+          "certificate_date": "2024-10-28",
+          "warehouse_arrival_date": "2024-10-28",
+          "date_match_status": true
+        }
+    },
+    {
+      "task_id": "P6_task_5",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00121, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P6_task_6",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00117, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0117",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P6_task_7",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1013",
+      "baseline_answer": {
+        "packing_list_id": "PL1013",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR100011",
+          "3DOR100014",
+          "3DOR100017",
+          "3DOR100018",
+          "3DOR100019"
+        ]
+      }
+    },
+    {
+      "task_id": "P6_task_8",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1122",
+      "baseline_answer": {
+        "packing_list_id": "PL1122",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100071"
+        ]
+      }
+    },
+    {
+        "task_id": "P6_task_9",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1017",
+        "baseline_answer": {
+          "packing_list_id": "PL1017",
+          "gear_count": 5,
+          "gear_list": [
+            "3DOR100021",
+            "3DOR100022",
+            "3DOR100023",
+            "3DOR100024",
+            "3DOR100030"
+          ]
+        }
+      },
+    {
+      "task_id": "P6_task_10",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00121, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P7_task_1",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1122",
+      "baseline_answer": {
+        "packing_list_id": "PL1122",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100071"
+        ]
+      }
+    },
+    {
+      "task_id": "P7_task_2",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1115",
+      "baseline_answer": {
+        "packing_list_id": "PL1115",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100033"
+        ]
+      }
+    },
+    {
+        "task_id": "P7_task_3",
+        "complexity_level": "medium",
+        "query_instance": "Determine the printer for Part 3DOR100076 and count parts printed on that machine",
+        "baseline_answer": {
+          "part_id": "3DOR100076",
+          "assigned_printer": "Printer_6"
+        }
+    },
+    {
+      "task_id": "P7_task_4",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100033 and count parts printed on that machine",
+      "baseline_answer": {
+        "product_id": "ORBOX00116",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P7_task_5",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR10001 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR10001",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P7_task_6",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1121",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+      "task_id": "P7_task_7",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1012",
+      "baseline_answer": {
+        "packing_list_id": "PL1012",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100041",
+          "3DOR100043",
+          "3DOR100045",
+          "3DOR100047"
+        ]
+      }
+    },
+    {
+      "task_id": "P7_task_8",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00119, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P7_task_9",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00115, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0013",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P7_task_10",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00119, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0019",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P8_task_1",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100085 and count parts printed on that machine",
+      "baseline_answer": {
+        "product_id": "ORBOX0011",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+        "task_id": "P8_task_2",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1118",
+        "baseline_answer": {
+          "packing_list_id": "PL1118",
+          "gear_count": 4,
+          "gear_list": [
+            "3DOR100052",
+            "3DOR100054",
+            "3DOR100055",
+            "3DOR100059"
+          ]
+        }
+    },
+    {
+      "task_id": "P8_task_3",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1019",
+      "baseline_answer": {
+        "packing_list_id": "PL1019",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR1000100",
+          "3DOR100092",
+          "3DOR100093",
+          "3DOR100095",
+          "3DOR100096"
+        ]
+      }
+    },
+    {
+        "task_id": "P8_task_4",
+        "complexity_level": "easy",
+        "query_instance": "Find all gears for Packing List PL1114",
+        "baseline_answer": {
+          "packing_list_id": "PL1114",
+          "gear_count": 4,
+          "gear_list": [
+            "3DOR100072",
+            "3DOR100074",
+            "3DOR100077",
+            "3DOR100078"
+          ]
+        }
+    },
+    {
+      "task_id": "P8_task_5",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100055 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR10001",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P8_task_6",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0013, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0013",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P8_task_7",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100094 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100010",
+        "assigned_printer": "Printer_10"
+      }
+    },
+    {
+      "task_id": "P8_task_8",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100013 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR1000100",
+        "assigned_printer": "Printer_10"
+      }
+    },
+    {
+      "task_id": "P8_task_9",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00115, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0013",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P8_task_10",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX00121, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1121",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100061",
+          "3DOR100062",
+          "3DOR100065",
+          "3DOR100068"
+        ]
+      }
+    },
+    {
+        "task_id": "P9_task_1",
+        "complexity_level": "hard",
+        "query_instance": "For Order ORBOX00114, verify ARC document date matches warehouse arrival",
+        "baseline_answer": {
+          "product_id": "ORBOX00114",
+          "certificate_date": "2024-10-28",
+          "warehouse_arrival_date": "2024-10-28",
+          "date_match_status": true
+        }
+    },
+    {
+      "task_id": "P9_task_2",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0012, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "packing_list_id": "PL1012",
+        "gear_count": 4,
+        "gear_list": [
+          "3DOR100041",
+          "3DOR100043",
+          "3DOR100045",
+          "3DOR100047"
+        ]
+      }
+    },
+    {
+        "task_id": "P9_task_3",
+        "complexity_level": "hard",
+        "query_instance": "For Order ORBOX00118, verify ARC document date matches warehouse arrival",
+        "baseline_answer": {
+          "product_id": "ORBOX00118",
+          "certificate_date": "2024-10-28",
+          "warehouse_arrival_date": "2024-10-28",
+          "date_match_status": true
+        }
+    },
+    {
+      "task_id": "P9_task_4",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100055 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR10001",
+        "assigned_printer": "Printer_1"
+      }
+    },
+    {
+      "task_id": "P9_task_5",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100064 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR1000103",
+        "assigned_printer": "Printer_2"
+      }
+    },
+    {
+      "task_id": "P9_task_6",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1013",
+      "baseline_answer": {
+        "packing_list_id": "PL1013",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR100011",
+          "3DOR100014",
+          "3DOR100017",
+          "3DOR100018",
+          "3DOR100019"
+        ]
+      }
+    },
+    {
+      "task_id": "P9_task_7",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1115",
+      "baseline_answer": {
+        "packing_list_id": "PL1115",
+        "gear_count": 1,
+        "gear_list": [
+          "3DOR100033"
+        ]
+      }
+    },
+    {
+      "task_id": "P9_task_8",
+      "complexity_level": "hard",
+      "query_instance": "For Order ORBOX0018, verify ARC document date matches warehouse arrival",
+      "baseline_answer": {
+        "product_id": "ORBOX0013",
+        "certificate_date": "2024-10-28",
+        "warehouse_arrival_date": "2024-10-28",
+        "date_match_status": true
+      }
+    },
+    {
+      "task_id": "P9_task_9",
+      "complexity_level": "medium",
+      "query_instance": "Determine the printer for Part 3DOR100054 and count parts printed on that machine",
+      "baseline_answer": {
+        "part_id": "3DOR100054",
+        "assigned_printer": "Printer_4"
+      }
+    },
+    {
+      "task_id": "P9_task_10",
+      "complexity_level": "easy",
+      "query_instance": "Find all gears for Packing List PL1019",
+      "baseline_answer": {
+        "packing_list_id": "PL1019",
+        "gear_count": 5,
+        "gear_list": [
+          "3DOR1000100",
+          "3DOR100092",
+          "3DOR100093",
+          "3DOR100095",
+          "3DOR100096"
+        ]
+      }
+    }
+  ]

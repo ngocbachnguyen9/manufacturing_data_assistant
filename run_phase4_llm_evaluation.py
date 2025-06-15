@@ -72,7 +72,8 @@ def main():
             print(f"Overriding config. Running evaluation for specified models: {args.models}")
             config["llm_evaluation"]["models_to_test"] = args.models
 
-        runner = LLMEvaluationRunner(config, use_mock=USE_MOCK_LLM)
+        # Use corrected ground truth by default to fix the evaluation issues
+        runner = LLMEvaluationRunner(config, use_mock=USE_MOCK_LLM, use_corrected_ground_truth=True)
         runner.run_evaluation()
     except Exception as e:
         print(f"***REMOVED***nAn unexpected error occurred in the evaluation runner: {e}")

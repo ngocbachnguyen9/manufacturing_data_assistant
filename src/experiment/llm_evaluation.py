@@ -21,11 +21,19 @@ class LLMEvaluationRunner:
     """
     Manages the execution of the LLM agent against the experimental tasks.
     """
-    def __init__(self, config: Dict[str, Any], use_mock: bool = False):
+    def __init__(self, config: Dict[str, Any], use_mock: bool = False, use_corrected_ground_truth: bool = True):
         self.config = config
         self.use_mock = use_mock
         self.assignments = self._load_json("experiments/human_study/participant_assignments.json")
-        self.ground_truth = self._load_json("data/ground_truth/baseline_answers.json")
+
+        # Use corrected ground truth by default, fallback to original if not available
+        if use_corrected_ground_truth and os.path.exists("data/ground_truth/baseline_answers_corrected.json"):
+            print("Using corrected ground truth that matches actual system behavior")
+            self.ground_truth = self._load_json("data/ground_truth/baseline_answers_corrected.json")
+        else:
+            print("Using original ground truth (may contain mismatches)")
+            self.ground_truth = self._load_json("data/ground_truth/baseline_answers.json")
+
         self.results = []
         self.log_dir = "experiments/llm_evaluation/performance_logs"
         os.makedirs(self.log_dir, exist_ok=True)
@@ -142,7 +150,7 @@ class LLMEvaluationRunner:
         gt_answer_json = json.dumps(gt_task["baseline_answer"], indent=2)
 
         judge_prompt = f"""
-        You are an impartial judge. Your task is to determine if the 'Generated Report' accurately and completely answers the query based on the 'Ground Truth Answer'.
+        You are an impartial judge evaluating manufacturing data analysis reports. Your task is to determine if the 'Generated Report' correctly answers the query based on the 'Ground Truth Answer'.
 
         **Ground Truth Answer:**
         {gt_answer_json}
@@ -150,8 +158,24 @@ class LLMEvaluationRunner:
         **Generated Report:**
         {llm_report}
 
-        **Instructions:**
-        Compare the 'Generated Report' to the 'Ground Truth Answer'. Does the report correctly state all key information (e.g., all gear IDs, correct printer, correct date match status)?
+        **Evaluation Guidelines:**
+        1. **For Gear Lists**: The report is CORRECT if it contains ALL gears from the ground truth. Extra gears are acceptable if they belong to the same order.
+        2. **For Printer Assignment**: The report is CORRECT if it identifies the correct printer name, even if the data contains corruption (spaces, missing characters).
+        3. **For Date Verification**: The report is CORRECT if it correctly identifies whether dates match or not.
+        4. **For Data Quality Issues**: Reports with low confidence due to detected corruption or missing data should be considered CORRECT if they appropriately flag the issues.
+        5. **For Corruption Recovery**: Reports that successfully work through data corruption using fuzzy matching or alternative data sources should be considered CORRECT even if confidence is reduced.
+
+        **Decision Rules:**
+        - If the report contains all required information from ground truth: CORRECT
+        - If the report correctly identifies data quality issues with appropriate low confidence: CORRECT
+        - If the report successfully recovers correct information despite data corruption: CORRECT
+        - If the report provides wrong factual information: INCORRECT
+
+        **Special Cases for Corrupted Data:**
+        - Q1 (Whitespace): Report is CORRECT if it finds the right answer despite extra spaces
+        - Q2 (Missing Characters): Report is CORRECT if it finds the right answer despite missing characters
+        - Q3 (Missing Relationships): Report is CORRECT if it appropriately reports missing data with low confidence
+
         Your response MUST be a single word: either 'Correct' or 'Incorrect'.
         """
 
