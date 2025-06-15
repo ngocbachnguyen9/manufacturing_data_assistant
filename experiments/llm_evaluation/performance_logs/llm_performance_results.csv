@@ -1,5 +1,5 @@
 task_id,model,complexity,quality_condition,completion_time_sec,is_correct,total_cost_usd,input_tokens,output_tokens,final_confidence,reconciliation_issues,llm_final_report,ground_truth_answer
-P1_task_1,deepseek-chat,easy,Q2,28.28,False,0.0,2512,319,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_1,deepseek-chat,easy,Q2,22.8,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00115"",
     ""Total Gears Found"": 5,
@@ -16,8 +16,8 @@ P1_task_1,deepseek-chat,easy,Q2,28.28,False,0.0,2512,319,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data validated with some issues noted."",
-    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
+    ""Manufacturing Status"": ""Data suggests gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
   }
 }","{
   ""packing_list_id"": ""PL1115"",
@@ -30,26 +30,26 @@ P1_task_1,deepseek-chat,easy,Q2,28.28,False,0.0,2512,319,0.8,"[""Insufficient da
     ""3DOR100037""
   ]
 }"
-P1_task_2,deepseek-chat,medium,Q0,26.12,False,0.0,2997,328,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_2,deepseek-chat,medium,Q0,34.4,True,0.0,2997,378,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100091"",
     ""Assigned Printer"": ""Printer_1"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Direct match found for part and printer association.""
+      ""Cross-validation Results"": ""Part 3DOR100091 was found to be assigned to Printer_1. However, there was insufficient data for timeline validation due to missing machine logs and location scans.""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100091 was printed on Printer_1. However, the data lacks comprehensive logs and scans for full timeline validation, affecting the confidence level.""
+    ""Manufacturing Insights"": ""The part 3DOR100091 was successfully traced to Printer_1, but the lack of comprehensive data may affect the accuracy of the timeline validation. The confidence level of 0.8 indicates a high likelihood of the data being accurate, but with noted reservations due to missing information.""
   }
 }","{
   ""part_id"": ""3DOR100091"",
   ""assigned_printer"": ""Printer_1""
 }"
-P1_task_3,deepseek-chat,easy,Q0,23.68,False,0.0,2512,330,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_3,deepseek-chat,easy,Q0,44.65,True,0.0,2512,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00122"",
     ""Total Gears Found"": 5,
@@ -67,7 +67,7 @@ P1_task_3,deepseek-chat,easy,Q0,23.68,False,0.0,2512,330,0.8,"[""Insufficient da
       ""Confidence Level"": 0.8
     },
     ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve timeline validation and data quality.""
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1122"",
@@ -80,29 +80,29 @@ P1_task_3,deepseek-chat,easy,Q0,23.68,False,0.0,2512,330,0.8,"[""Insufficient da
     ""3DOR100080""
   ]
 }"
-P1_task_4,deepseek-chat,medium,Q2,25.37,False,0.0,2997,408,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_4,deepseek-chat,medium,Q2,30.96,True,0.0,2997,378,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100056"",
     ""Assigned Printer"": ""Printer_6"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data indicates Part 3DOR100056 was printed on Printer_6. However, there's a discrepancy in the printer name spelling ('Priter_6' vs 'Printer_6').""
+      ""Cross-validation Results"": ""Part 3DOR100056 is linked to Printer_6, but there's a discrepancy in the parent field naming ('Priter_6' vs 'Printer_6').""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-        ""Discrepancy in printer name spelling ('Priter_6' vs 'Printer_6')""
+        ""Discrepancy in parent field naming for Printer_6""
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100056 was printed on Printer_6, but the presence of data quality issues, including insufficient data for timeline validation and a discrepancy in the printer name spelling, suggests caution should be taken when relying on this data for critical decisions.""
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100056 was printed on Printer_6. However, due to data quality issues and naming discrepancies, further validation is recommended to ensure accuracy.""
   }
 }","{
   ""part_id"": ""3DOR100056"",
   ""assigned_printer"": ""Printer_6""
 }"
-P1_task_5,deepseek-chat,easy,Q1,25.25,False,0.0,2512,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_5,deepseek-chat,easy,Q1,44.64,True,0.0,2512,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00121"",
     ""Total Gears Found"": 5,
@@ -114,13 +114,11 @@ P1_task_5,deepseek-chat,easy,Q1,25.25,False,0.0,2512,317,0.8,"[""Insufficient da
       ""3DOR100070""
     ],
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data validated with some issues"",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
+    ""Manufacturing Status"": ""Not specified in the provided data."",
+    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1121"",
@@ -133,7 +131,7 @@ P1_task_5,deepseek-chat,easy,Q1,25.25,False,0.0,2512,317,0.8,"[""Insufficient da
     ""3DOR100070""
   ]
 }"
-P1_task_6,deepseek-chat,hard,Q1,25.95,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P1_task_6,deepseek-chat,hard,Q1,49.08,True,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0017"",
     ""Certificate Date"": ""28/10/2024"",
@@ -142,7 +140,7 @@ P1_task_6,deepseek-chat,hard,Q1,25.95,False,0.0,1843,366,0.8,"[""Insufficient da
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
+      ""Date Discrepancy"": ""None""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -152,9 +150,9 @@ P1_task_6,deepseek-chat,hard,Q1,25.95,False,0.0,1843,366,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": ""0.8""
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
   }
 }","{
   ""product_id"": ""ORBOX0017"",
@@ -162,7 +160,7 @@ P1_task_6,deepseek-chat,hard,Q1,25.95,False,0.0,1843,366,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P1_task_7,deepseek-chat,hard,Q3,23.95,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P1_task_7,deepseek-chat,hard,Q3,30.62,True,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0015"",
     ""Certificate Date"": ""28/10/2024"",
@@ -181,9 +179,9 @@ P1_task_7,deepseek-chat,hard,Q3,23.95,False,0.0,1843,366,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": 0.8
+      ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Recommend to collect missing data (machine logs, relationship data) for comprehensive timeline validation.""
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
   }
 }","{
   ""product_id"": ""ORBOX0015"",
@@ -191,7 +189,7 @@ P1_task_7,deepseek-chat,hard,Q3,23.95,False,0.0,1843,366,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P1_task_8,deepseek-chat,easy,Q0,25.54,False,0.0,2512,320,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_8,deepseek-chat,easy,Q0,19.44,True,0.0,2512,325,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0011"",
     ""Total Gears Found"": 4,
@@ -207,8 +205,8 @@ P1_task_8,deepseek-chat,easy,Q0,25.54,False,0.0,2512,320,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data suggests all gears are accounted for with no critical issues detected."",
-    ""Recommendations"": ""Gather additional data such as machine logs and location scans to improve timeline validation and data quality.""
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data quality.""
   }
 }","{
   ""packing_list_id"": ""PL1011"",
@@ -220,26 +218,28 @@ P1_task_8,deepseek-chat,easy,Q0,25.54,False,0.0,2512,320,0.8,"[""Insufficient da
     ""3DOR100020""
   ]
 }"
-P1_task_9,deepseek-chat,medium,Q0,30.09,False,0.0,6313,345,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P1_task_9,deepseek-chat,medium,Q0,30.11,True,0.0,6313,349,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100098"",
     ""Assigned Printer"": ""Printer_8"",
     ""Total Parts on Printer"": 12,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data validated for printer assignment and part count on the printer.""
+      ""Cross-validation Results"": ""Data validated with confidence score of 0.8""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": ""0.8""
     },
-    ""Manufacturing Insights"": ""The part 3DOR100098 was printed on Printer_8, which has a total of 12 parts recorded. However, there are concerns regarding the completeness of the data for timeline validation due to missing machine logs and location scans.""
+    ""Manufacturing Insights"": ""The part 3DOR100098 was printed on Printer_8, which has printed a total of 12 parts. However, there are issues with the data quality due to missing machine logs and location scans, which affects the timeline validation.""
   }
 }","{
   ""part_id"": ""3DOR100098"",
   ""assigned_printer"": ""Printer_8""
 }"
-P1_task_10,deepseek-chat,hard,Q0,24.95,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P1_task_10,deepseek-chat,hard,Q0,49.78,True,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00117"",
     ""Certificate Date"": ""28/10/2024"",
@@ -248,7 +248,7 @@ P1_task_10,deepseek-chat,hard,Q0,24.95,False,0.0,1843,364,0.8,"[""Insufficient d
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -268,7 +268,7 @@ P1_task_10,deepseek-chat,hard,Q0,24.95,False,0.0,1843,364,0.8,"[""Insufficient d
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P2_task_1,deepseek-chat,hard,Q2,24.21,False,0.0,1959,360,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P2_task_1,deepseek-chat,hard,Q2,51.33,True,0.0,1959,359,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Certificate Date"": ""28/10/2024"",
@@ -277,19 +277,17 @@ P2_task_1,deepseek-chat,hard,Q2,24.21,False,0.0,1959,360,0.8,"[""Insufficient da
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
       ""Risk Level"": ""Low""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected and documented for future validations to improve data quality and confidence level.""
+    ""Recommendations"": ""Further validation is recommended once the missing data (machine logs, relationship data) is available to ensure full compliance and accuracy.""
   }
 }","{
   ""product_id"": ""ORBOX0019"",
@@ -297,31 +295,31 @@ P2_task_1,deepseek-chat,hard,Q2,24.21,False,0.0,1959,360,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P2_task_2,deepseek-chat,medium,Q2,28.29,False,0.0,2997,373,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_2,deepseek-chat,medium,Q2,29.48,True,0.0,2997,405,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100017"",
     ""Assigned Printer"": ""Printer_7"",
     ""Total Parts on Printer"": 5,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows Part 3DOR100017 was printed on Printer_7. Total parts on Printer_7 (via ORBOX0013) counted as 5.""
+      ""Cross-validation Results"": ""Data shows Part 3DOR100017 was printed on Printer_7. Total parts on Printer_7 could not be directly determined from the provided data; however, parts associated with ORBOX0013 (parent of 3DOR100017) are counted as a proxy.""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data indicates that Printer_7 was used for Part 3DOR100017, with a total of 5 parts associated with it through ORBOX0013. However, the absence of machine logs and location scans suggests potential gaps in tracking the full manufacturing timeline.""
+    ""Manufacturing Insights"": ""The data suggests that Printer_7 was used for Part 3DOR100017. However, due to missing machine logs and location scans, the exact count of parts printed on Printer_7 cannot be verified. The confidence level of 0.8 indicates a reasonably high but not absolute certainty in the findings.""
   }
 }","{
   ""part_id"": ""3DOR100017"",
   ""assigned_printer"": ""Printer_7""
 }"
-P2_task_3,deepseek-chat,hard,Q0,26.16,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P2_task_3,deepseek-chat,hard,Q0,29.73,True,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Certificate Date"": ""28/10/2024"",
     ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
-    ""Date Match Status"": ""Match"",
+    ""Date Match Status"": ""Matches"",
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
@@ -337,7 +335,7 @@ P2_task_3,deepseek-chat,hard,Q0,26.16,False,0.0,1843,366,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation accuracy.""
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
   }
 }","{
   ""product_id"": ""ORBOX0019"",
@@ -345,28 +343,26 @@ P2_task_3,deepseek-chat,hard,Q0,26.16,False,0.0,1843,366,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P2_task_4,deepseek-chat,medium,Q0,23.05,False,0.0,2997,371,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_4,deepseek-chat,medium,Q0,36.79,True,0.0,2997,354,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100041"",
     ""Assigned Printer"": ""Printer_1"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100041 is directly linked to Printer_1. No cross-validation with other data sources was possible due to missing machine logs and location scans.""
+      ""Cross-validation Results"": ""Direct match found for part and printer assignment.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100041 was printed on Printer_1. However, the lack of machine logs and location scans limits the ability to validate the timeline and ensure no other parts were printed on Printer_1 outside the observed data range.""
+    ""Manufacturing Insights"": ""The part 3DOR100041 was printed on Printer_1. However, due to missing machine logs and location scans, the timeline of the printing process could not be validated. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the findings.""
   }
 }","{
   ""part_id"": ""3DOR100041"",
   ""assigned_printer"": ""Printer_1""
 }"
-P2_task_5,deepseek-chat,easy,Q0,24.88,False,0.0,2512,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_5,deepseek-chat,easy,Q0,35.25,True,0.0,2512,319,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00116"",
     ""Total Gears Found"": 5,
@@ -383,8 +379,8 @@ P2_task_5,deepseek-chat,easy,Q0,24.88,False,0.0,2512,333,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
+    ""Manufacturing Status"": ""Data partially validated with some issues detected."",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data validation and confidence level.""
   }
 }","{
   ""packing_list_id"": ""PL1116"",
@@ -397,25 +393,22 @@ P2_task_5,deepseek-chat,easy,Q0,24.88,False,0.0,2512,333,0.8,"[""Insufficient da
     ""3DOR10009""
   ]
 }"
-P2_task_6,deepseek-chat,easy,Q3,25.74,False,0.0,2392,337,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_6,deepseek-chat,easy,Q3,52.44,False,0.0,2392,302,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00122"",
-    ""Total Gears Found"": 5,
+    ""Total Gears Found"": 4,
     ""Gear List"": [
       ""3DOR100071"",
       ""3DOR100073"",
       ""3DOR100076"",
-      ""3DOR100079"",
-      ""3DOR100080""
+      ""3DOR100079""
     ],
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data suggests all gears are accounted for under the specified order ID, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and analyze missing machine logs and location scans to complete timeline validation and improve data confidence.""
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1122"",
@@ -428,28 +421,26 @@ P2_task_6,deepseek-chat,easy,Q3,25.74,False,0.0,2392,337,0.8,"[""Insufficient da
     ""3DOR100080""
   ]
 }"
-P2_task_7,deepseek-chat,medium,Q0,32.36,False,0.0,2997,356,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_7,deepseek-chat,medium,Q0,46.11,True,0.0,2997,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100091"",
     ""Assigned Printer"": ""Printer_1"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Direct match found for part and printer assignment.""
+      ""Cross-validation Results"": ""Part 3DOR100091 is directly linked to Printer_1. No other parts are linked to Printer_1 in the provided data.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100091 was printed on Printer_1. However, due to missing machine logs and location scans, the timeline validation could not be fully completed. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the findings.""
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100091 was printed on Printer_1. However, the lack of machine logs and location scans affects the ability to fully validate the timeline and ensure no other parts were printed on Printer_1 outside the observed timeframe.""
   }
 }","{
   ""part_id"": ""3DOR100091"",
   ""assigned_printer"": ""Printer_1""
 }"
-P2_task_8,deepseek-chat,hard,Q0,27.76,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P2_task_8,deepseek-chat,hard,Q0,46.94,True,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00114"",
     ""Certificate Date"": ""28/10/2024"",
@@ -458,7 +449,7 @@ P2_task_8,deepseek-chat,hard,Q0,27.76,False,0.0,1843,363,0.8,"[""Insufficient da
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -470,7 +461,7 @@ P2_task_8,deepseek-chat,hard,Q0,27.76,False,0.0,1843,363,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+    ""Recommendations"": ""Recommend to collect and verify machine logs and relationship data for comprehensive timeline validation.""
   }
 }","{
   ""product_id"": ""ORBOX00114"",
@@ -478,26 +469,26 @@ P2_task_8,deepseek-chat,hard,Q0,27.76,False,0.0,1843,363,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P2_task_9,deepseek-chat,medium,Q1,24.76,False,0.0,3238,371,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_9,deepseek-chat,medium,Q1,31.44,True,0.0,3238,344,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100012"",
     ""Assigned Printer"": ""Printer_2"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows part 3DOR100012 was printed on Printer_2. Other parts on Printer_2 were not specified in the provided data.""
+      ""Cross-validation Results"": ""Data partially validated with some inconsistencies noted.""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that part 3DOR100012 was successfully printed on Printer_2. However, the lack of comprehensive machine logs and location scans may affect the accuracy of this analysis. It's recommended to ensure all relevant data is collected for future analyses to improve confidence levels.""
+    ""Manufacturing Insights"": ""The part 3DOR100012 was assigned to Printer_2. However, there is insufficient data for a complete timeline validation. The confidence level in the data is 0.8, indicating a reasonably high but not absolute confidence in the findings.""
   }
 }","{
   ""part_id"": ""3DOR100012"",
   ""assigned_printer"": ""Printer_2""
 }"
-P2_task_10,deepseek-chat,easy,Q1,22.75,False,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P2_task_10,deepseek-chat,easy,Q1,31.84,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00121"",
     ""Total Gears Found"": 5,
@@ -514,7 +505,7 @@ P2_task_10,deepseek-chat,easy,Q1,22.75,False,0.0,2512,334,0.8,"[""Insufficient d
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data suggests gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
     ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
   }
 }","{
@@ -528,7 +519,7 @@ P2_task_10,deepseek-chat,easy,Q1,22.75,False,0.0,2512,334,0.8,"[""Insufficient d
     ""3DOR100070""
   ]
 }"
-P3_task_1,deepseek-chat,hard,Q1,27.53,False,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P3_task_1,deepseek-chat,hard,Q1,30.4,True,0.0,1843,371,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00121"",
     ""Certificate Date"": ""28/10/2024"",
@@ -549,7 +540,7 @@ P3_task_1,deepseek-chat,hard,Q1,27.53,False,0.0,1843,361,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather missing machine logs and relationship data to improve timeline validation confidence.""
+    ""Recommendations"": ""Further validation is recommended once the missing data (machine logs, relationship data) is available to ensure full compliance and accuracy.""
   }
 }","{
   ""product_id"": ""ORBOX00121"",
@@ -557,45 +548,45 @@ P3_task_1,deepseek-chat,hard,Q1,27.53,False,0.0,1843,361,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P3_task_2,deepseek-chat,medium,Q3,23.08,False,0.0,4222,341,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_2,deepseek-chat,medium,Q3,28.26,True,0.0,4222,341,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100026"",
     ""Assigned Printer"": ""Printer_6"",
     ""Total Parts on Printer"": 5,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows consistency in tracking part to printer assignment.""
+      ""Cross-validation Results"": ""Direct linkage between part and printer found""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100026 was printed on Printer_6, which also printed a total of 5 parts including itself. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation.""
+    ""Manufacturing Insights"": ""The part 3DOR100026 was printed on Printer_6, which also printed a total of 5 parts including itself. However, the data quality is compromised due to missing machine logs and location scans, affecting the confidence level.""
   }
 }","{
   ""part_id"": ""3DOR100026"",
   ""assigned_printer"": ""Printer_6""
 }"
-P3_task_3,deepseek-chat,medium,Q2,26.77,False,0.0,5099,353,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_3,deepseek-chat,medium,Q2,44.57,True,0.0,5099,362,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100061"",
     ""Assigned Printer"": ""Printer_1"",
     ""Total Parts on Printer"": 5,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100061 is matched to printer Printer_1 with a fuzzy match confidence of 0.947.""
+      ""Cross-validation Results"": ""Data shows multiple entries for the part ID with varying parent printers, but the most consistent assignment is to Printer_1.""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100061 was printed on Printer_1 along with 4 other parts. Data quality issues were noted due to missing machine logs and location scans, affecting the confidence level of the analysis.""
+    ""Manufacturing Insights"": ""The part 3DOR100061 is most consistently associated with Printer_1, which has a total of 5 parts assigned to it based on the available data. However, the data quality issues indicate a need for more comprehensive logs and scans to ensure accuracy.""
   }
 }","{
   ""part_id"": ""3DOR100061"",
   ""assigned_printer"": ""Printer_1""
 }"
-P3_task_4,deepseek-chat,easy,Q0,34.72,False,0.0,2512,335,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_4,deepseek-chat,easy,Q0,32.82,True,0.0,2512,350,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00117"",
     ""Total Gears Found"": 5,
@@ -612,8 +603,11 @@ P3_task_4,deepseek-chat,easy,Q0,34.72,False,0.0,2512,335,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data suggests gears are associated with the specified packing list, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
+    ""Manufacturing Status"": ""Data suggests gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": [
+      ""Collect and review missing machine logs and location scans to validate the manufacturing timeline."",
+      ""Consider additional verification steps for the gears listed to ensure accuracy and completeness.""
+    ]
   }
 }","{
   ""packing_list_id"": ""PL1117"",
@@ -626,7 +620,7 @@ P3_task_4,deepseek-chat,easy,Q0,34.72,False,0.0,2512,335,0.8,"[""Insufficient da
     ""3DOR100060""
   ]
 }"
-P3_task_5,deepseek-chat,hard,Q2,23.22,False,0.0,1959,353,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P3_task_5,deepseek-chat,hard,Q2,27.51,True,0.0,1959,355,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Certificate Date"": ""28/10/2024"",
@@ -635,17 +629,19 @@ P3_task_5,deepseek-chat,hard,Q2,23.22,False,0.0,1959,353,0.8,"[""Insufficient da
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
       ""Risk Level"": ""Low""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
-      ""Confidence Level"": ""0.8""
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation and increase confidence level.""
+    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected and documented for future validations.""
   }
 }","{
   ""product_id"": ""ORBOX0019"",
@@ -653,7 +649,7 @@ P3_task_5,deepseek-chat,hard,Q2,23.22,False,0.0,1959,353,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P3_task_6,deepseek-chat,hard,Q0,34.01,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P3_task_6,deepseek-chat,hard,Q0,48.54,True,0.0,1843,373,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Certificate Date"": ""28/10/2024"",
@@ -672,9 +668,9 @@ P3_task_6,deepseek-chat,hard,Q0,34.01,False,0.0,1843,372,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": 0.8
+      ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and recorded for future validations to improve data quality and confidence level.""
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future timeline validations to improve data quality and confidence level.""
   }
 }","{
   ""product_id"": ""ORBOX0019"",
@@ -682,7 +678,7 @@ P3_task_6,deepseek-chat,hard,Q0,34.01,False,0.0,1843,372,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P3_task_7,deepseek-chat,easy,Q1,23.22,False,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_7,deepseek-chat,easy,Q1,33.41,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00121"",
     ""Total Gears Found"": 5,
@@ -713,16 +709,16 @@ P3_task_7,deepseek-chat,easy,Q1,23.22,False,0.0,2512,334,0.8,"[""Insufficient da
     ""3DOR100070""
   ]
 }"
-P3_task_8,deepseek-chat,hard,Q0,21.04,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P3_task_8,deepseek-chat,hard,Q0,27.34,True,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00121"",
     ""Certificate Date"": ""28/10/2024"",
     ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
-    ""Date Match Status"": ""Match"",
+    ""Date Match Status"": ""Matches"",
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
+      ""Date Discrepancy"": ""None""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -734,7 +730,7 @@ P3_task_8,deepseek-chat,hard,Q0,21.04,False,0.0,1843,365,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
   }
 }","{
   ""product_id"": ""ORBOX00121"",
@@ -742,28 +738,26 @@ P3_task_8,deepseek-chat,hard,Q0,21.04,False,0.0,1843,365,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P3_task_9,deepseek-chat,medium,Q0,21.01,False,0.0,6313,336,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_9,deepseek-chat,medium,Q0,32.17,True,0.0,6313,342,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100098"",
     ""Assigned Printer"": ""Printer_8"",
     ""Total Parts on Printer"": 12,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data validated for part and printer assignment""
+      ""Cross-validation Results"": ""Data validated for printer assignment and part count""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100098 was successfully assigned to Printer_8, which has printed a total of 12 parts. However, there are concerns regarding the completeness of timeline validation data.""
+    ""Manufacturing Insights"": ""The part 3DOR100098 was printed on Printer_8, which has a total of 12 parts recorded. However, there are concerns regarding the completeness of the data for timeline validation due to missing machine logs and location scans.""
   }
 }","{
   ""part_id"": ""3DOR100098"",
   ""assigned_printer"": ""Printer_8""
 }"
-P3_task_10,deepseek-chat,easy,Q0,24.2,False,0.0,2512,330,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P3_task_10,deepseek-chat,easy,Q0,51.93,True,0.0,2512,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0012"",
     ""Total Gears Found"": 5,
@@ -781,7 +775,7 @@ P3_task_10,deepseek-chat,easy,Q0,24.2,False,0.0,2512,330,0.8,"[""Insufficient da
       ""Confidence Level"": 0.8
     },
     ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve timeline validation and data confidence.""
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1012"",
@@ -794,28 +788,26 @@ P3_task_10,deepseek-chat,easy,Q0,24.2,False,0.0,2512,330,0.8,"[""Insufficient da
     ""3DOR100050""
   ]
 }"
-P4_task_1,deepseek-chat,medium,Q0,29.36,False,0.0,3000,395,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_1,deepseek-chat,medium,Q0,35.96,True,0.0,3000,382,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100095"",
     ""Assigned Printer"": ""Printer_5"",
-    ""Total Parts on Printer"": ""Data not provided to count parts printed on Printer_5"",
+    ""Total Parts on Printer"": 5,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows part 3DOR100095 was printed on Printer_5, but insufficient data to count all parts printed on Printer_5""
+      ""Cross-validation Results"": ""Data shows part 3DOR100095 was printed on Printer_5. Additional parts associated with ORBOX0019 were found, indicating possible grouping or batch processing.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data indicates that part 3DOR100095 was processed by Printer_5. However, due to missing machine logs and location scans, we cannot accurately count all parts printed on Printer_5. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty due to the noted data gaps.""
+    ""Manufacturing Insights"": ""The data suggests that Printer_5 was used for part 3DOR100095, with a total of 5 parts linked to ORBOX0019, which may indicate batch processing. However, the absence of machine logs and location scans limits the ability to fully validate the timeline and specifics of the printing process.""
   }
 }","{
   ""part_id"": ""3DOR100095"",
   ""assigned_printer"": ""Printer_5""
 }"
-P4_task_2,deepseek-chat,hard,Q1,24.54,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P4_task_2,deepseek-chat,hard,Q1,38.2,True,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0017"",
     ""Certificate Date"": ""28/10/2024"",
@@ -824,7 +816,7 @@ P4_task_2,deepseek-chat,hard,Q1,24.54,False,0.0,1843,364,0.8,"[""Insufficient da
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -834,9 +826,9 @@ P4_task_2,deepseek-chat,hard,Q1,24.54,False,0.0,1843,364,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": 0.8
+      ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+    ""Recommendations"": ""Recommend collecting missing data (machine logs, relationship data) for a more comprehensive validation.""
   }
 }","{
   ""product_id"": ""ORBOX0017"",
@@ -844,10 +836,10 @@ P4_task_2,deepseek-chat,hard,Q1,24.54,False,0.0,1843,364,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P4_task_3,deepseek-chat,easy,Q2,23.45,False,0.0,3706,374,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_3,deepseek-chat,easy,Q2,29.6,False,0.0,3706,376,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
-    ""Total Gears Found"": 10,
+    ""Total Gears Found"": 9,
     ""Gear List"": [
       ""3DOR1000100"",
       ""3OR100042"",
@@ -866,8 +858,8 @@ P4_task_3,deepseek-chat,easy,Q2,23.45,False,0.0,3706,374,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing logs and scans."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure all gears are accounted for.""
   }
 }","{
   ""packing_list_id"": ""PL1019"",
@@ -880,7 +872,7 @@ P4_task_3,deepseek-chat,easy,Q2,23.45,False,0.0,3706,374,0.8,"[""Insufficient da
     ""3DOR100096""
   ]
 }"
-P4_task_4,deepseek-chat,easy,Q0,25.16,False,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_4,deepseek-chat,easy,Q0,37.47,True,0.0,2512,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00117"",
     ""Total Gears Found"": 5,
@@ -897,8 +889,8 @@ P4_task_4,deepseek-chat,easy,Q0,25.16,False,0.0,2512,334,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
+    ""Manufacturing Status"": ""Data validated with some issues"",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1117"",
@@ -911,7 +903,7 @@ P4_task_4,deepseek-chat,easy,Q0,25.16,False,0.0,2512,334,0.8,"[""Insufficient da
     ""3DOR100060""
   ]
 }"
-P4_task_5,deepseek-chat,easy,Q3,25.28,False,0.0,2393,318,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_5,deepseek-chat,easy,Q3,32.56,True,0.0,2393,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00120"",
     ""Total Gears Found"": 5,
@@ -929,7 +921,7 @@ P4_task_5,deepseek-chat,easy,Q3,25.28,False,0.0,2393,318,0.8,"[""Insufficient da
       ""Confidence Level"": 0.8
     },
     ""Manufacturing Status"": ""Data validated with some issues"",
-    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1120"",
@@ -942,7 +934,7 @@ P4_task_5,deepseek-chat,easy,Q3,25.28,False,0.0,2393,318,0.8,"[""Insufficient da
     ""3DOR100069""
   ]
 }"
-P4_task_6,deepseek-chat,hard,Q0,22.12,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P4_task_6,deepseek-chat,hard,Q0,30.42,True,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00119"",
     ""Certificate Date"": ""28/10/2024"",
@@ -961,9 +953,9 @@ P4_task_6,deepseek-chat,hard,Q0,22.12,False,0.0,1843,363,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": ""0.8""
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
   }
 }","{
   ""product_id"": ""ORBOX00119"",
@@ -971,50 +963,54 @@ P4_task_6,deepseek-chat,hard,Q0,22.12,False,0.0,1843,363,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P4_task_7,deepseek-chat,medium,Q3,29.1,False,0.0,2877,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_7,deepseek-chat,medium,Q3,28.13,True,0.0,2877,357,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100023"",
     ""Assigned Printer"": ""Printer_3"",
-    ""Total Parts on Printer"": 5,
+    ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows Part 3DOR100023 was printed on Printer_3, and a total of 5 parts were associated with ORBOX0017, which is linked to Printer_3.""
+      ""Cross-validation Results"": ""Direct match found for Part ID and Printer assignment""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Printer_3 is actively used for printing parts, including Part 3DOR100023. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation.""
+    ""Manufacturing Insights"": ""The part 3DOR100023 was printed on Printer_3. However, due to missing machine logs and location scans, the timeline of printing could not be validated. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the results.""
   }
 }","{
   ""part_id"": ""3DOR100023"",
   ""assigned_printer"": ""Printer_3""
 }"
-P4_task_8,deepseek-chat,medium,Q1,24.83,False,0.0,2999,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_8,deepseek-chat,medium,Q1,41.44,True,0.0,2999,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100067"",
     ""Assigned Printer"": ""Printer_7"",
     ""Total Parts on Printer"": 5,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100067 is linked to Printer_7. Total parts on Printer_7 are counted based on the parent 'ORBOX00120'.""
+      ""Cross-validation Results"": ""Part 3DOR100067 is linked to Printer_7 and ORBOX00120. Total parts on Printer_7 are counted based on parts linked to ORBOX00120.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Printer_7 has been used to print multiple parts, including 3DOR100067. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation for these parts.""
+    ""Manufacturing Insights"": ""The data suggests that Printer_7 has printed 5 parts, including Part 3DOR100067. However, the absence of machine logs and location scans may affect the accuracy of this analysis.""
   }
 }","{
   ""part_id"": ""3DOR100067"",
   ""assigned_printer"": ""Printer_7""
 }"
-P4_task_9,deepseek-chat,hard,Q0,28.43,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P4_task_9,deepseek-chat,hard,Q0,35.73,True,0.0,1843,368,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0018"",
     ""Certificate Date"": ""28/10/2024"",
     ""Warehouse Arrival Date"": ""2024-10-28T21:32:18.376922Z"",
-    ""Date Match Status"": ""Match"",
+    ""Date Match Status"": ""Matches"",
     ""Detailed Analysis"": {
       ""Certificate Document"": ""ARC-ORBOX0018.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
@@ -1025,12 +1021,10 @@ P4_task_9,deepseek-chat,hard,Q0,28.43,False,0.0,1843,372,0.8,"[""Insufficient da
       ""Risk Level"": ""Low""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": ""0.8""
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and documented for future validations to improve data quality and confidence level.""
+    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected and stored for future validations to improve data quality and confidence level.""
   }
 }","{
   ""product_id"": ""ORBOX0018"",
@@ -1038,7 +1032,7 @@ P4_task_9,deepseek-chat,hard,Q0,28.43,False,0.0,1843,372,0.8,"[""Insufficient da
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P4_task_10,deepseek-chat,easy,Q0,26.11,False,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P4_task_10,deepseek-chat,easy,Q0,47.75,True,0.0,2512,332,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0013"",
     ""Total Gears Found"": 5,
@@ -1056,7 +1050,7 @@ P4_task_10,deepseek-chat,easy,Q0,26.11,False,0.0,2512,334,0.8,"[""Insufficient d
       ""Confidence Level"": 0.8
     },
     ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and improve data quality.""
+    ""Recommendations"": ""Collect and review machine logs and location scans to complete timeline validation and improve data confidence.""
   }
 }","{
   ""packing_list_id"": ""PL1013"",
@@ -1069,26 +1063,850 @@ P4_task_10,deepseek-chat,easy,Q0,26.11,False,0.0,2512,334,0.8,"[""Insufficient d
     ""3DOR100019""
   ]
 }"
-P5_task_1,deepseek-chat,medium,Q0,26.28,False,0.0,2997,376,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P5_task_1,deepseek-chat,medium,Q0,24.88,True,0.0,2997,380,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100020"",
     ""Assigned Printer"": ""Printer_10"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100020 is linked to Printer_10 and ORBOX0011. Only one part (3DOR100020) is confirmed to be printed on Printer_10.""
+      ""Cross-validation Results"": ""Part 3DOR100020 is linked to Printer_10 and ORBOX0011. The part count on Printer_10 is based on direct links found in the data.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100020 was printed on Printer_10. However, the lack of machine logs and location scans affects the ability to fully validate the timeline and ensure no other parts were printed on this machine outside the observed data range.""
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100020 was printed on Printer_10. However, the absence of machine logs and location scans may affect the accuracy of the timeline and part count. A confidence level of 0.8 indicates a reliable but not definitive conclusion.""
   }
 }","{
   ""part_id"": ""3DOR100020"",
   ""assigned_printer"": ""Printer_10""
 }"
-P5_task_2,deepseek-chat,easy,Q2,36.07,False,0.0,3706,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P5_task_2,deepseek-chat,easy,Q2,44.34,False,0.0,3706,380,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Total Gears Found"": 9,
+    ""Gear List"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data suggests all gears are accounted for under the specified order ID, but with noted data quality issues."",
+    ""Recommendations"": ""Verify the completeness of the gear list with additional data sources, especially machine logs and location scans, to ensure accuracy and completeness of the packing list.""
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}"
+P5_task_3,deepseek-chat,medium,Q1,46.92,True,0.0,2997,368,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100058"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100058 is linked to Printer_8 and ORBOX00117. Total parts counted on ORBOX00117.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100058 was printed on Printer_8. A total of 5 parts were found associated with ORBOX00117, which may include parts printed on Printer_8. Data quality issues indicate missing machine logs and location scans, affecting timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100058"",
+  ""assigned_printer"": ""Printer_8""
+}"
+P5_task_4,deepseek-chat,easy,Q3,28.09,True,0.0,2392,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data validated with some issues"",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100056"",
+    ""3DOR100059""
+  ]
+}"
+P5_task_5,deepseek-chat,medium,Q0,41.34,True,0.0,2997,359,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100061"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data shows part 3DOR100061 was printed on Printer_1. Additional parts on Printer_1 were identified through parent ORBOX00121.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data indicates that Printer_1 has been used to print multiple parts, including 3DOR100061. However, the absence of machine logs and location scans suggests potential gaps in tracking the full manufacturing timeline.""
+  }
+}","{
+  ""part_id"": ""3DOR100061"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P5_task_6,deepseek-chat,easy,Q3,42.06,True,0.0,2512,314,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100042"",
+      ""3DOR100044"",
+      ""3DOR100046"",
+      ""3DOR100048"",
+      ""3DOR100049""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1119"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100042"",
+    ""3DOR100044"",
+    ""3DOR100046"",
+    ""3DOR100048"",
+    ""3DOR100049""
+  ]
+}"
+P5_task_7,deepseek-chat,hard,Q1,29.48,True,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:55:20.353698Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P5_task_8,deepseek-chat,medium,Q0,38.65,True,0.0,2997,390,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100068"",
+    ""Assigned Printer"": ""Printer_8"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data indicates Part 3DOR100068 was printed on Printer_8. Total parts on Printer_8 include 3DOR100061, 3DOR100062, 3DOR100065, 3DOR100068, and 3DOR100070.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Printer_8 is actively used for printing multiple parts, including Part 3DOR100068. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation for these parts.""
+  }
+}","{
+  ""part_id"": ""3DOR100068"",
+  ""assigned_printer"": ""Printer_8""
+}"
+P5_task_9,deepseek-chat,hard,Q0,53.25,True,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P5_task_10,deepseek-chat,hard,Q0,36.77,True,0.0,1843,359,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0019"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Collect and analyze missing machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_1,deepseek-chat,medium,Q2,36.11,True,0.0,2997,360,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100017"",
+    ""Assigned Printer"": ""Printer_7"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100017 is linked to Printer_7 and ORBOX0013. Total parts on ORBOX0013 are counted.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100017 was printed on Printer_7. A total of 5 parts were found associated with ORBOX0013, which may include parts not directly printed on Printer_7 due to data limitations.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}"
+P6_task_2,deepseek-chat,medium,Q3,36.56,True,0.0,2762,352,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100093"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Direct match found for part and printer assignment.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The part 3DOR100093 was printed on Printer_3. However, due to missing machine logs and location scans, the timeline of printing could not be validated. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the results.""
+  }
+}","{
+  ""part_id"": ""3DOR100093"",
+  ""assigned_printer"": ""Printer_3""
+}"
+P6_task_3,deepseek-chat,medium,Q1,47.24,True,0.0,2997,419,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100064"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100064 is directly linked to Printer_4. Additional parts (3DOR100063, 3DOR100066, 3DOR100067, 3DOR100069) are linked to ORBOX00120, which is indirectly related to Printer_4 through part 3DOR100064.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Printer_4 was used to print part 3DOR100064. However, the absence of machine logs and location scans affects the ability to fully validate the timeline and usage of Printer_4. The confidence level of 0.8 indicates a high but not absolute certainty in the data provided.""
+  }
+}","{
+  ""part_id"": ""3DOR100064"",
+  ""assigned_printer"": ""Printer_4""
+}"
+P6_task_4,deepseek-chat,hard,Q0,38.91,True,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T20:08:36.371232Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_5,deepseek-chat,hard,Q1,30.87,True,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Recommend collecting missing data (machine logs, relationship data) for comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_6,deepseek-chat,hard,Q0,40.49,True,0.0,1843,362,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Gather additional machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P6_task_7,deepseek-chat,easy,Q3,20.48,True,0.0,2393,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing logs and scans."",
+    ""Recommendations"": ""Recommend obtaining missing machine logs and location scans to complete timeline validation and improve data confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}"
+P6_task_8,deepseek-chat,easy,Q0,26.69,True,0.0,2512,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}"
+P6_task_9,deepseek-chat,easy,Q0,28.21,True,0.0,2512,318,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0017"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100021"",
+      ""3DOR100022"",
+      ""3DOR100023"",
+      ""3DOR100024"",
+      ""3DOR100030""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data validated with some issues"",
+    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1017"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100021"",
+    ""3DOR100022"",
+    ""3DOR100023"",
+    ""3DOR100024"",
+    ""3DOR100030""
+  ]
+}"
+P6_task_10,deepseek-chat,hard,Q0,48.97,True,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Collect additional machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_1,deepseek-chat,easy,Q0,34.82,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and improve data quality.""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}"
+P7_task_2,deepseek-chat,easy,Q2,37.27,True,0.0,2512,330,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve timeline validation and data confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100033"",
+    ""3DOR100034"",
+    ""3DOR100035"",
+    ""3DOR100036"",
+    ""3DOR100037""
+  ]
+}"
+P7_task_3,deepseek-chat,medium,Q3,30.0,True,0.0,2877,383,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100076"",
+    ""Assigned Printer"": ""Printer_6"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100076 was found to be assigned to Printer_6. However, the total parts count on Printer_6 could not be accurately determined due to insufficient data.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100076 was printed on Printer_6. However, due to missing machine logs and location scans, the total number of parts printed on Printer_6 cannot be confirmed. It is recommended to ensure all machine logs and location scans are properly recorded for future analyses.""
+  }
+}","{
+  ""part_id"": ""3DOR100076"",
+  ""assigned_printer"": ""Printer_6""
+}"
+P7_task_4,deepseek-chat,medium,Q0,35.64,True,0.0,2997,420,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100033"",
+    ""Assigned Printer"": ""Printer_3"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100033 is directly linked to Printer_3. Additional parts (3DOR100034, 3DOR100035, 3DOR100036, 3DOR100037) are linked to ORBOX00115, which is not a printer but possibly a container or intermediate step.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100033 was printed on Printer_3. However, the connection between ORBOX00115 and the other parts indicates a potential data gap or misclassification in the tracking system. Further investigation into the nature of ORBOX00115 is recommended to clarify its role in the manufacturing process.""
+  }
+}","{
+  ""part_id"": ""3DOR100033"",
+  ""assigned_printer"": ""Printer_3""
+}"
+P7_task_5,deepseek-chat,medium,Q0,49.46,True,0.0,2997,353,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR10001"",
+    ""Assigned Printer"": ""Printer_1"",
+    ""Total Parts on Printer"": 1,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Direct match found for Part ID and Printer assignment""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The part 3DOR10001 was assigned to Printer_1. However, due to missing machine logs and location scans, the timeline validation could not be fully completed. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the findings.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}"
+P7_task_6,deepseek-chat,easy,Q1,30.01,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068"",
+    ""3DOR100070""
+  ]
+}"
+P7_task_7,deepseek-chat,easy,Q0,24.06,True,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX0012"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100041"",
+      ""3DOR100043"",
+      ""3DOR100045"",
+      ""3DOR100047"",
+      ""3DOR100050""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data suggests all gears are accounted for in the packing list, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect missing machine logs and location scans to complete timeline validation and improve data confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047"",
+    ""3DOR100050""
+  ]
+}"
+P7_task_8,deepseek-chat,hard,Q0,36.6,True,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": ""0.8""
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future validation processes to improve data quality and confidence levels.""
+  }
+}","{
+  ""product_id"": ""ORBOX00119"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_9,deepseek-chat,hard,Q2,63.19,True,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00115"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P7_task_10,deepseek-chat,hard,Q3,36.99,True,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00119"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""None""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
+  }
+}","{
+  ""product_id"": ""ORBOX00119"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P8_task_1,deepseek-chat,medium,Q0,50.88,True,0.0,4431,387,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100085"",
+    ""Assigned Printer"": ""Printer_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Data shows part 3DOR100085 was printed on Printer_5 and ORBOX00111, with a total of 5 parts printed on ORBOX00111.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that part 3DOR100085 was processed on Printer_5, but there's also evidence of it being associated with ORBOX00111, indicating possible multiple processing steps or data inaccuracies. The confidence level is high, but the absence of machine logs and location scans suggests potential gaps in the data timeline.""
+  }
+}","{
+  ""part_id"": ""3DOR100085"",
+  ""assigned_printer"": ""Printer_5""
+}"
+P8_task_2,deepseek-chat,easy,Q0,44.77,True,0.0,2512,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Status"": ""Data validated with some issues"",
+    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100056"",
+    ""3DOR100059""
+  ]
+}"
+P8_task_3,deepseek-chat,easy,Q2,42.91,False,0.0,3706,373,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Total Gears Found"": 10,
@@ -1110,8 +1928,8 @@ P5_task_2,deepseek-chat,easy,Q2,36.07,False,0.0,3706,372,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the timeline and ensure data completeness.""
+    ""Manufacturing Status"": ""Data suggests gears are associated with the order, but timeline validation is incomplete due to missing data."",
+    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
   }
 }","{
   ""packing_list_id"": ""PL1019"",
@@ -1124,64 +1942,43 @@ P5_task_2,deepseek-chat,easy,Q2,36.07,False,0.0,3706,372,0.8,"[""Insufficient da
     ""3DOR100096""
   ]
 }"
-P5_task_3,deepseek-chat,medium,Q1,22.74,False,0.0,2997,379,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100058"",
-    ""Assigned Printer"": ""Printer_8"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100058 is linked to Printer_8 and ORBOX00117. The total parts count includes all parts linked to ORBOX00117, assuming ORBOX00117 is a container or batch associated with Printer_8.""
-    },
+P8_task_4,deepseek-chat,easy,Q3,39.91,True,0.0,2512,311,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""GEAR IDENTIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00114"",
+    ""Total Gears Found"": 5,
+    ""Gear List"": [
+      ""3DOR100072"",
+      ""3DOR100074"",
+      ""3DOR100075"",
+      ""3DOR100077"",
+      ""3DOR100078""
+    ],
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Printer_8 is used for printing part 3DOR100058 among others. However, the absence of machine logs and location scans may affect the accuracy of the timeline and location tracking for these parts.""
-  }
-}","{
-  ""part_id"": ""3DOR100058"",
-  ""assigned_printer"": ""Printer_8""
-}"
-P5_task_4,deepseek-chat,easy,Q3,19.24,False,0.0,2392,318,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00118"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100052"",
-      ""3DOR100054"",
-      ""3DOR100055"",
-      ""3DOR100056"",
-      ""3DOR100059""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data validated with some issues"",
+    ""Manufacturing Status"": ""Not provided"",
     ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
   }
 }","{
-  ""packing_list_id"": ""PL1118"",
+  ""packing_list_id"": ""PL1114"",
   ""gear_count"": 5,
   ""gear_list"": [
-    ""3DOR100052"",
-    ""3DOR100054"",
-    ""3DOR100055"",
-    ""3DOR100056"",
-    ""3DOR100059""
+    ""3DOR100072"",
+    ""3DOR100074"",
+    ""3DOR100075"",
+    ""3DOR100077"",
+    ""3DOR100078""
   ]
 }"
-P5_task_5,deepseek-chat,medium,Q0,30.97,False,0.0,2997,377,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P8_task_5,deepseek-chat,medium,Q2,29.22,True,0.0,2999,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100061"",
-    ""Assigned Printer"": ""Printer_1"",
+    ""Part ID"": ""3DOR100055"",
+    ""Assigned Printer"": ""Printer_5"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
       ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100061 was found to be assigned to Printer_1. However, there is insufficient data for timeline validation due to missing machine logs and location scans.""
+      ""Cross-validation Results"": ""Direct match found for part and printer assignment""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": [
@@ -1189,51 +1986,20 @@ P5_task_5,deepseek-chat,medium,Q0,30.97,False,0.0,2997,377,0.8,"[""Insufficient 
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100061 was printed on Printer_1. However, the lack of machine logs and location scans means we cannot fully validate the timeline or confirm if there were other parts printed on the same printer outside the observed data range.""
+    ""Manufacturing Insights"": ""The part 3DOR100055 was printed on Printer_5. However, there is insufficient data for a complete timeline validation due to missing machine logs and location scans.""
   }
 }","{
-  ""part_id"": ""3DOR100061"",
-  ""assigned_printer"": ""Printer_1""
+  ""part_id"": ""3DOR100055"",
+  ""assigned_printer"": ""Printer_5""
 }"
-P5_task_6,deepseek-chat,easy,Q3,25.48,False,0.0,2512,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00119"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100042"",
-      ""3DOR100044"",
-      ""3DOR100046"",
-      ""3DOR100048"",
-      ""3DOR100049""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1119"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100042"",
-    ""3DOR100044"",
-    ""3DOR100046"",
-    ""3DOR100048"",
-    ""3DOR100049""
-  ]
-}"
-P5_task_7,deepseek-chat,hard,Q1,25.27,False,0.0,1843,367,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P8_task_6,deepseek-chat,hard,Q3,24.84,True,0.0,1843,359,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0017"",
+    ""Order ID"": ""ORBOX0013"",
     ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T15:55:20.353698Z"",
+    ""Warehouse Arrival Date"": ""2024-10-28T15:03:08.860706Z"",
     ""Date Match Status"": ""Match"",
     ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX0017.pdf"",
+      ""Certificate Document"": ""ARC-ORBOX0013.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
       ""Date Discrepancy"": ""No discrepancy found""
     },
@@ -1242,120 +2008,39 @@ P5_task_7,deepseek-chat,hard,Q1,25.27,False,0.0,1843,367,0.8,"[""Insufficient da
       ""Risk Level"": ""Low""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
+      ""Confidence Level"": ""0.8""
     },
-    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected for future validations to increase confidence level.""
+    ""Recommendations"": ""Collect and analyze missing machine logs and relationship data to improve timeline validation.""
   }
 }","{
-  ""product_id"": ""ORBOX0017"",
+  ""product_id"": ""ORBOX0013"",
   ""certificate_date"": ""2024-10-28"",
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P5_task_8,deepseek-chat,medium,Q0,26.46,False,0.0,2997,374,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P8_task_7,deepseek-chat,medium,Q0,33.89,True,0.0,2997,332,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100068"",
-    ""Assigned Printer"": ""Printer_8"",
-    ""Total Parts on Printer"": 5,
+    ""Part ID"": ""3DOR100094"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp measurements from the provided JSON data"",
-      ""Cross-validation Results"": ""Data indicates Part 3DOR100068 was printed on Printer_8, and a total of 5 parts were associated with ORBOX00121, which is linked to Printer_8.""
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Direct association found between part and printer""
     },
     ""Data Quality Assessment"": {
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Printer_8 is actively used for printing parts, including Part 3DOR100068. However, the absence of machine logs and location scans may affect the accuracy of timeline validations and tracking.""
+    ""Manufacturing Insights"": ""The part 3DOR100094 was printed on Printer_4. There is a high confidence level in this assignment, but the data quality assessment indicates missing information that could affect timeline validation.""
   }
 }","{
-  ""part_id"": ""3DOR100068"",
-  ""assigned_printer"": ""Printer_8""
+  ""part_id"": ""3DOR100094"",
+  ""assigned_printer"": ""Printer_4""
 }"
-P5_task_9,deepseek-chat,hard,Q0,28.02,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00117"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
-    ""Date Match Status"": ""Matches"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": ""0.8""
-    },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) for comprehensive timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX00117"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P5_task_10,deepseek-chat,hard,Q0,28.55,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0019"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T21:32:17.382962Z"",
-    ""Date Match Status"": ""Matches"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX0019.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": ""0.8""
-    },
-    ""Recommendations"": ""Review and include missing machine logs and relationship data for comprehensive timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX0019"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P6_task_1,deepseek-chat,medium,Q2,28.33,False,0.0,2997,360,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P8_task_8,deepseek-chat,medium,Q0,33.47,True,0.0,2997,357,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100017"",
-    ""Assigned Printer"": ""Printer_7"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data cross-validated within Tracking_comp measurement""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The part 3DOR100017 was printed on Printer_7. A total of 5 parts were found associated with ORBOX0013, which may indicate a batch or group processing. However, the absence of machine logs and location scans suggests potential gaps in tracking the part's manufacturing timeline.""
-  }
-}","{
-  ""part_id"": ""3DOR100017"",
-  ""assigned_printer"": ""Printer_7""
-}"
-P6_task_2,deepseek-chat,medium,Q3,26.94,False,0.0,2762,352,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100093"",
+    ""Part ID"": ""3DOR100013"",
     ""Assigned Printer"": ""Printer_3"",
     ""Total Parts on Printer"": 1,
     ""Analysis Details"": {
@@ -1363,35 +2048,74 @@ P6_task_2,deepseek-chat,medium,Q3,26.94,False,0.0,2762,352,0.8,"[""Insufficient 
       ""Cross-validation Results"": ""Direct match found for Part ID and Printer assignment.""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+      ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The part 3DOR100093 was printed on Printer_3. However, due to missing machine logs and location scans, the timeline of printing cannot be validated. The confidence level of this analysis is 0.8, indicating a high but not absolute certainty in the findings.""
+    ""Manufacturing Insights"": ""The part 3DOR100013 was printed on Printer_3. However, due to missing machine logs and location scans, the timeline validation could not be fully completed. The confidence level in the data is 0.8, indicating a high but not absolute certainty in the findings.""
   }
 }","{
-  ""part_id"": ""3DOR100093"",
+  ""part_id"": ""3DOR100013"",
   ""assigned_printer"": ""Printer_3""
 }"
-P6_task_3,deepseek-chat,medium,Q1,25.62,False,0.0,2997,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100064"",
-    ""Assigned Printer"": ""Printer_4"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100064 is linked to Printer_4 and ORBOX00120. However, the primary assignment is to Printer_4 based on the latest timestamp.""
+P8_task_9,deepseek-chat,hard,Q0,32.49,True,0.0,1843,360,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00115"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
     },
     ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests that Printer_4 has printed a total of 5 parts, including Part 3DOR100064. However, the absence of machine logs and location scans may affect the accuracy of this analysis.""
+    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation.""
   }
 }","{
-  ""part_id"": ""3DOR100064"",
-  ""assigned_printer"": ""Printer_4""
+  ""product_id"": ""ORBOX00115"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
 }"
-P6_task_4,deepseek-chat,hard,Q0,24.5,False,0.0,1843,375,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P8_task_10,deepseek-chat,hard,Q1,44.05,True,0.0,1843,369,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00121"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Date Match Status"": ""Matches"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""N/A"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all necessary logs and relationship data are collected for future validations to improve data quality and confidence level.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P9_task_1,deepseek-chat,hard,Q0,22.98,True,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX00114"",
     ""Certificate Date"": ""28/10/2024"",
@@ -1410,9 +2134,9 @@ P6_task_4,deepseek-chat,hard,Q0,24.5,False,0.0,1843,375,0.8,"[""Insufficient dat
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": ""0.8""
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Ensure all necessary documentation, including machine logs and relationship data, is collected and reviewed for future validations to improve data quality and confidence levels.""
+    ""Recommendations"": ""Review and include missing machine logs and relationship data for comprehensive timeline validation.""
   }
 }","{
   ""product_id"": ""ORBOX00114"",
@@ -1420,43 +2144,14 @@ P6_task_4,deepseek-chat,hard,Q0,24.5,False,0.0,1843,375,0.8,"[""Insufficient dat
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P6_task_5,deepseek-chat,hard,Q1,20.74,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P9_task_2,deepseek-chat,hard,Q0,43.74,True,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00121"",
+    ""Order ID"": ""ORBOX0012"",
     ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Warehouse Arrival Date"": ""2024-10-28T17:24:52.340522Z"",
     ""Date Match Status"": ""Match"",
     ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX00121"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P6_task_6,deepseek-chat,hard,Q0,26.95,False,0.0,1843,372,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00117"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T18:10:10.414461Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00117.pdf"",
+      ""Certificate Document"": ""ARC-ORBOX0012.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
       ""Date Discrepancy"": ""No discrepancy found""
     },
@@ -1468,17 +2163,84 @@ P6_task_6,deepseek-chat,hard,Q0,26.95,False,0.0,1843,372,0.8,"[""Insufficient da
       ""Issues Detected"": [
         ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
       ],
-      ""Confidence Level"": ""0.8""
+      ""Confidence Level"": 0.8
     },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and documented for future validations to improve data quality and confidence level.""
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and stored for future validations to improve data quality and confidence level.""
   }
 }","{
-  ""product_id"": ""ORBOX00117"",
+  ""product_id"": ""ORBOX0012"",
   ""certificate_date"": ""2024-10-28"",
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P6_task_7,deepseek-chat,easy,Q3,22.16,False,0.0,2393,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P9_task_3,deepseek-chat,hard,Q0,24.92,True,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""COMPLIANCE VERIFICATION RESULTS"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Certificate Date"": ""28/10/2024"",
+    ""Warehouse Arrival Date"": ""2024-10-28T18:10:09.611388Z"",
+    ""Date Match Status"": ""Match"",
+    ""Detailed Analysis"": {
+      ""Certificate Document"": ""ARC-ORBOX00118.pdf"",
+      ""Location Tracking"": ""Goods Out Warehouse"",
+      ""Date Discrepancy"": ""No discrepancy found""
+    },
+    ""Compliance Assessment"": {
+      ""Regulatory Status"": ""Compliant"",
+      ""Risk Level"": ""Low""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""Confidence Level"": 0.8
+    },
+    ""Recommendations"": ""Ensure all machine logs and relationship data are collected for future orders to improve timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00118"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}"
+P9_task_4,deepseek-chat,medium,Q0,26.6,True,0.0,2997,403,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100055"",
+    ""Assigned Printer"": ""Printer_5"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100055 is linked to Printer_5 and ORBOX00118. The total parts count includes all parts linked to ORBOX00118, which is the parent of Printer_5.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100055 was printed on Printer_5, which is part of the ORBOX00118 system. A total of 5 parts were identified as being associated with ORBOX00118, indicating a batch or group processing scenario. However, the absence of machine logs and location scans limits the ability to validate the timeline and specific operational details.""
+  }
+}","{
+  ""part_id"": ""3DOR100055"",
+  ""assigned_printer"": ""Printer_5""
+}"
+P9_task_5,deepseek-chat,medium,Q3,49.05,True,0.0,2878,367,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""PRINTER ANALYSIS RESULTS"": {
+    ""Part ID"": ""3DOR100064"",
+    ""Assigned Printer"": ""Printer_4"",
+    ""Total Parts on Printer"": 5,
+    ""Analysis Details"": {
+      ""Data Sources Used"": ""Tracking_comp"",
+      ""Cross-validation Results"": ""Part 3DOR100064 is linked to Printer_4 and ORBOX00120. However, the primary assignment is to Printer_4 based on the latest timestamp.""
+    },
+    ""Data Quality Assessment"": {
+      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Confidence Level"": 0.8
+    },
+    ""Manufacturing Insights"": ""The data suggests that Printer_4 is the primary printer for Part 3DOR100064, with a total of 5 parts associated with it. However, the absence of machine logs and location scans affects the timeline validation confidence.""
+  }
+}","{
+  ""part_id"": ""3DOR100064"",
+  ""assigned_printer"": ""Printer_4""
+}"
+P9_task_6,deepseek-chat,easy,Q3,35.14,True,0.0,2393,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0013"",
     ""Total Gears Found"": 5,
@@ -1509,16 +2271,16 @@ P6_task_7,deepseek-chat,easy,Q3,22.16,False,0.0,2393,333,0.8,"[""Insufficient da
     ""3DOR100019""
   ]
 }"
-P6_task_8,deepseek-chat,easy,Q0,45.22,False,0.0,2512,330,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P9_task_7,deepseek-chat,easy,Q2,34.7,True,0.0,2512,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00122"",
+    ""Order ID"": ""ORBOX00115"",
     ""Total Gears Found"": 5,
     ""Gear List"": [
-      ""3DOR100071"",
-      ""3DOR100073"",
-      ""3DOR100076"",
-      ""3DOR100079"",
-      ""3DOR100080""
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
     ],
     ""Data Quality Assessment"": {
       ""Issues Detected"": [
@@ -1526,61 +2288,30 @@ P6_task_8,deepseek-chat,easy,Q0,45.22,False,0.0,2512,330,0.8,"[""Insufficient da
       ],
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve timeline validation and data confidence.""
+    ""Manufacturing Status"": ""Not provided"",
+    ""Recommendations"": ""Collect missing data (machine logs, location scans) to improve timeline validation and data quality.""
   }
 }","{
-  ""packing_list_id"": ""PL1122"",
+  ""packing_list_id"": ""PL1115"",
   ""gear_count"": 5,
   ""gear_list"": [
-    ""3DOR100071"",
-    ""3DOR100073"",
-    ""3DOR100076"",
-    ""3DOR100079"",
-    ""3DOR100080""
+    ""3DOR100033"",
+    ""3DOR100034"",
+    ""3DOR100035"",
+    ""3DOR100036"",
+    ""3DOR100037""
   ]
 }"
-P6_task_9,deepseek-chat,easy,Q0,19.03,False,0.0,2512,320,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0017"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100021"",
-      ""3DOR100022"",
-      ""3DOR100023"",
-      ""3DOR100024"",
-      ""3DOR100030""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data partially validated with some issues detected."",
-    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1017"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100021"",
-    ""3DOR100022"",
-    ""3DOR100023"",
-    ""3DOR100024"",
-    ""3DOR100030""
-  ]
-}"
-P6_task_10,deepseek-chat,hard,Q0,22.31,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+P9_task_8,deepseek-chat,hard,Q0,49.77,True,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
   ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00121"",
+    ""Order ID"": ""ORBOX0018"",
     ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
+    ""Warehouse Arrival Date"": ""2024-10-28T21:32:18.376922Z"",
     ""Date Match Status"": ""Match"",
     ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
+      ""Certificate Document"": ""ARC-ORBOX0018.pdf"",
       ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
+      ""Date Discrepancy"": ""No discrepancy found""
     },
     ""Compliance Assessment"": {
       ""Regulatory Status"": ""Compliant"",
@@ -1595,757 +2326,12 @@ P6_task_10,deepseek-chat,hard,Q0,22.31,False,0.0,1843,363,0.8,"[""Insufficient d
     ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation.""
   }
 }","{
-  ""product_id"": ""ORBOX00121"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P7_task_1,deepseek-chat,easy,Q0,20.36,False,0.0,2512,330,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00122"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100071"",
-      ""3DOR100073"",
-      ""3DOR100076"",
-      ""3DOR100079"",
-      ""3DOR100080""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data suggests gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve timeline validation and data confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1122"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100071"",
-    ""3DOR100073"",
-    ""3DOR100076"",
-    ""3DOR100079"",
-    ""3DOR100080""
-  ]
-}"
-P7_task_2,deepseek-chat,easy,Q2,33.78,False,0.0,2512,334,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00115"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100033"",
-      ""3DOR100034"",
-      ""3DOR100035"",
-      ""3DOR100036"",
-      ""3DOR100037""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to validate the manufacturing timeline and ensure data completeness.""
-  }
-}","{
-  ""packing_list_id"": ""PL1115"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100033"",
-    ""3DOR100034"",
-    ""3DOR100035"",
-    ""3DOR100036"",
-    ""3DOR100037""
-  ]
-}"
-P7_task_3,deepseek-chat,medium,Q3,23.65,False,0.0,2877,324,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100076"",
-    ""Assigned Printer"": ""Printer_6"",
-    ""Total Parts on Printer"": 1,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Direct match found for part and printer association""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The part 3DOR100076 was printed on Printer_6. There is insufficient data to validate the timeline of printing activities for this part.""
-  }
-}","{
-  ""part_id"": ""3DOR100076"",
-  ""assigned_printer"": ""Printer_6""
-}"
-P7_task_4,deepseek-chat,medium,Q0,33.08,False,0.0,2997,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100033"",
-    ""Assigned Printer"": ""Printer_3"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows Part 3DOR100033 was printed on Printer_3, and there are 5 parts associated with ORBOX00115, which is linked to Printer_3.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests that Printer_3 is actively used for printing parts, including Part 3DOR100033. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation.""
-  }
-}","{
-  ""part_id"": ""3DOR100033"",
-  ""assigned_printer"": ""Printer_3""
-}"
-P7_task_5,deepseek-chat,medium,Q0,25.25,False,0.0,2997,377,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR10001"",
-    ""Assigned Printer"": ""Printer_1"",
-    ""Total Parts on Printer"": ""Data not directly available; parts are associated with ORBOX0014, not directly counted for Printer_1"",
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp measurement from the database"",
-      ""Cross-validation Results"": ""Part 3DOR10001 is linked to Printer_1, but parts count on Printer_1 is not directly provided""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests Part 3DOR10001 was printed on Printer_1, but without direct counts of parts printed on Printer_1, further data collection is needed for accurate analysis.""
-  }
-}","{
-  ""part_id"": ""3DOR10001"",
-  ""assigned_printer"": ""Printer_1""
-}"
-P7_task_6,deepseek-chat,easy,Q1,26.64,False,0.0,2512,316,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00121"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100061"",
-      ""3DOR100062"",
-      ""3DOR100065"",
-      ""3DOR100068"",
-      ""3DOR100070""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Not specified"",
-    ""Recommendations"": ""Consider collecting more detailed machine logs and location scans to improve data quality and validation confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1121"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100061"",
-    ""3DOR100062"",
-    ""3DOR100065"",
-    ""3DOR100068"",
-    ""3DOR100070""
-  ]
-}"
-P7_task_7,deepseek-chat,easy,Q0,22.1,False,0.0,2512,318,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0012"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100041"",
-      ""3DOR100043"",
-      ""3DOR100045"",
-      ""3DOR100047"",
-      ""3DOR100050""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data validated with some issues"",
-    ""Recommendations"": ""Gather missing machine logs and location scans to improve data quality and validation confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1012"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100041"",
-    ""3DOR100043"",
-    ""3DOR100045"",
-    ""3DOR100047"",
-    ""3DOR100050""
-  ]
-}"
-P7_task_8,deepseek-chat,hard,Q0,33.75,False,0.0,1843,371,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00119"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and verified for future orders to improve data quality and validation confidence.""
-  }
-}","{
-  ""product_id"": ""ORBOX00119"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P7_task_9,deepseek-chat,hard,Q2,24.9,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00115"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
-    ""Date Match Status"": ""Matches"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation accuracy.""
-  }
-}","{
-  ""product_id"": ""ORBOX00115"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P7_task_10,deepseek-chat,hard,Q3,21.4,False,0.0,1843,363,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00119"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T17:24:51.187426Z"",
-    ""Date Match Status"": ""Matches"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00119.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": ""0.8""
-    },
-    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation accuracy.""
-  }
-}","{
-  ""product_id"": ""ORBOX00119"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P8_task_1,deepseek-chat,medium,Q0,23.6,False,0.0,4431,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100085"",
-    ""Assigned Printer"": ""Printer_5"",
-    ""Total Parts on Printer"": 1,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data indicates Part 3DOR100085 was printed on Printer_5. However, there is conflicting data suggesting it might also be associated with ORBOX00111.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100085 was primarily printed on Printer_5, but there's a need for further validation due to conflicting data points and missing machine logs and location scans for a comprehensive timeline validation.""
-  }
-}","{
-  ""part_id"": ""3DOR100085"",
-  ""assigned_printer"": ""Printer_5""
-}"
-P8_task_2,deepseek-chat,easy,Q0,22.17,False,0.0,2512,333,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00118"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100052"",
-      ""3DOR100054"",
-      ""3DOR100055"",
-      ""3DOR100056"",
-      ""3DOR100059""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data indicates gears are associated with the order, but timeline validation is incomplete due to missing data."",
-    ""Recommendations"": ""Collect and review missing machine logs and location scans to complete timeline validation and improve data confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1118"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100052"",
-    ""3DOR100054"",
-    ""3DOR100055"",
-    ""3DOR100056"",
-    ""3DOR100059""
-  ]
-}"
-P8_task_3,deepseek-chat,easy,Q2,23.33,False,0.0,3706,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0019"",
-    ""Total Gears Found"": 10,
-    ""Gear List"": [
-      ""3DOR1000100"",
-      ""3OR100042"",
-      ""3DR100044"",
-      ""3DOR10046"",
-      ""3DOR10048"",
-      ""3DOR10004"",
-      ""3DOR100092"",
-      ""3DOR100093"",
-      ""3DOR100095"",
-      ""3DOR100096""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data suggests all gears are accounted for under the specified order ID."",
-    ""Recommendations"": ""Gather missing machine logs and location scans to improve data validation and timeline accuracy.""
-  }
-}","{
-  ""packing_list_id"": ""PL1019"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR1000100"",
-    ""3DOR100092"",
-    ""3DOR100093"",
-    ""3DOR100095"",
-    ""3DOR100096""
-  ]
-}"
-P8_task_4,deepseek-chat,easy,Q3,19.0,False,0.0,2512,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00114"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100072"",
-      ""3DOR100074"",
-      ""3DOR100075"",
-      ""3DOR100077"",
-      ""3DOR100078""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Not provided"",
-    ""Recommendations"": ""Gather missing data (machine logs, location scans) to improve timeline validation and increase confidence level.""
-  }
-}","{
-  ""packing_list_id"": ""PL1114"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100072"",
-    ""3DOR100074"",
-    ""3DOR100075"",
-    ""3DOR100077"",
-    ""3DOR100078""
-  ]
-}"
-P8_task_5,deepseek-chat,medium,Q2,23.58,False,0.0,2999,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100055"",
-    ""Assigned Printer"": ""Prnter_5"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows part 3DOR100055 was printed on Prnter_5, with a total of 5 parts identified on this printer.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests that Prnter_5 is actively used for printing multiple parts, including 3DOR100055. However, the absence of machine logs and location scans may affect the accuracy of the timeline and location tracking for these parts.""
-  }
-}","{
-  ""part_id"": ""3DOR100055"",
-  ""assigned_printer"": ""Printer_5""
-}"
-P8_task_6,deepseek-chat,hard,Q3,23.76,False,0.0,1843,361,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0013"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T15:03:08.860706Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX0013.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": ""0.8""
-    },
-    ""Recommendations"": ""Collect additional machine logs and relationship data to improve timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX0013"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P8_task_7,deepseek-chat,medium,Q0,19.97,False,0.0,2997,338,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100094"",
-    ""Assigned Printer"": ""Printer_4"",
-    ""Total Parts on Printer"": 1,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Direct match found for Part ID and Printer assignment.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The part 3DOR100094 was printed on Printer_4. There is a high confidence level in this assignment, but the lack of machine logs and location scans may affect the accuracy of the timeline validation.""
-  }
-}","{
-  ""part_id"": ""3DOR100094"",
-  ""assigned_printer"": ""Printer_4""
-}"
-P8_task_8,deepseek-chat,medium,Q0,25.93,False,0.0,2997,374,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100013"",
-    ""Assigned Printer"": ""Printer_3"",
-    ""Total Parts on Printer"": 1,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Part 3DOR100013 is linked to Printer_3 and ORBOX0011. Only one part (3DOR100013) is directly linked to Printer_3.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests that Part 3DOR100013 was printed on Printer_3. However, the absence of machine logs and location scans may affect the accuracy of this conclusion. The confidence level is high but not absolute due to the identified data quality issues.""
-  }
-}","{
-  ""part_id"": ""3DOR100013"",
-  ""assigned_printer"": ""Printer_3""
-}"
-P8_task_9,deepseek-chat,hard,Q0,23.99,False,0.0,1843,366,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00115"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T16:40:16.33565Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00115.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Gather additional data such as machine logs and relationship data to improve timeline validation accuracy.""
-  }
-}","{
-  ""product_id"": ""ORBOX00115"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P8_task_10,deepseek-chat,hard,Q1,29.14,False,0.0,1843,365,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00121"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T19:26:44.051174Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00121.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Ensure all necessary documentation and logs are collected and linked for future orders to improve timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX00121"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P9_task_1,deepseek-chat,hard,Q0,20.96,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00114"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T20:08:36.371232Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00114.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Collect additional data such as machine logs and relationship data to improve timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX00114"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P9_task_2,deepseek-chat,hard,Q0,22.7,False,0.0,1843,368,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0012"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T17:24:52.340522Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX0012.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and verified for future orders to improve timeline validation.""
-  }
-}","{
-  ""product_id"": ""ORBOX0012"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P9_task_3,deepseek-chat,hard,Q0,24.9,False,0.0,1843,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00118"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T18:10:09.611388Z"",
-    ""Date Match Status"": ""Match"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX00118.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""None""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Gather missing data (machine logs, relationship data) to improve timeline validation confidence.""
-  }
-}","{
-  ""product_id"": ""ORBOX00118"",
-  ""certificate_date"": ""2024-10-28"",
-  ""warehouse_arrival_date"": ""2024-10-28"",
-  ""date_match_status"": true
-}"
-P9_task_4,deepseek-chat,medium,Q0,22.73,False,0.0,2997,358,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100055"",
-    ""Assigned Printer"": ""Printer_5"",
-    ""Total Parts on Printer"": 5,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Data shows part 3DOR100055 was printed on Printer_5. Additional parts on Printer_5 were identified through parent-child relationships.""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The data suggests Printer_5 is actively used for printing multiple parts, including 3DOR100055. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation for these parts.""
-  }
-}","{
-  ""part_id"": ""3DOR100055"",
-  ""assigned_printer"": ""Printer_5""
-}"
-P9_task_5,deepseek-chat,medium,Q3,34.51,False,0.0,2878,332,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""PRINTER ANALYSIS RESULTS"": {
-    ""Part ID"": ""3DOR100064"",
-    ""Assigned Printer"": ""Printer_4"",
-    ""Total Parts on Printer"": 1,
-    ""Analysis Details"": {
-      ""Data Sources Used"": ""Tracking_comp"",
-      ""Cross-validation Results"": ""Direct assignment found in validated_data""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Insights"": ""The part 3DOR100064 was printed on Printer_4. However, the data quality is compromised due to missing machine logs and location scans, affecting the confidence level.""
-  }
-}","{
-  ""part_id"": ""3DOR100064"",
-  ""assigned_printer"": ""Printer_4""
-}"
-P9_task_6,deepseek-chat,easy,Q3,28.84,False,0.0,2393,319,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0013"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100011"",
-      ""3DOR100014"",
-      ""3DOR100017"",
-      ""3DOR100018"",
-      ""3DOR100019""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data partially validated with some issues detected."",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve data validation and confidence level.""
-  }
-}","{
-  ""packing_list_id"": ""PL1013"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100011"",
-    ""3DOR100014"",
-    ""3DOR100017"",
-    ""3DOR100018"",
-    ""3DOR100019""
-  ]
-}"
-P9_task_7,deepseek-chat,easy,Q2,18.75,False,0.0,2512,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
-  ""GEAR IDENTIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX00115"",
-    ""Total Gears Found"": 5,
-    ""Gear List"": [
-      ""3DOR100033"",
-      ""3DOR100034"",
-      ""3DOR100035"",
-      ""3DOR100036"",
-      ""3DOR100037""
-    ],
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": [
-        ""Insufficient data for timeline validation. Missing: machine logs, location scans""
-      ],
-      ""Confidence Level"": 0.8
-    },
-    ""Manufacturing Status"": ""Data validated with some issues"",
-    ""Recommendations"": ""Collect missing machine logs and location scans to improve data quality and validation confidence.""
-  }
-}","{
-  ""packing_list_id"": ""PL1115"",
-  ""gear_count"": 5,
-  ""gear_list"": [
-    ""3DOR100033"",
-    ""3DOR100034"",
-    ""3DOR100035"",
-    ""3DOR100036"",
-    ""3DOR100037""
-  ]
-}"
-P9_task_8,deepseek-chat,hard,Q0,44.28,False,0.0,1843,367,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
-  ""COMPLIANCE VERIFICATION RESULTS"": {
-    ""Order ID"": ""ORBOX0018"",
-    ""Certificate Date"": ""28/10/2024"",
-    ""Warehouse Arrival Date"": ""2024-10-28T21:32:18.376922Z"",
-    ""Date Match Status"": ""Matches"",
-    ""Detailed Analysis"": {
-      ""Certificate Document"": ""ARC-ORBOX0018.pdf"",
-      ""Location Tracking"": ""Goods Out Warehouse"",
-      ""Date Discrepancy"": ""No discrepancy found""
-    },
-    ""Compliance Assessment"": {
-      ""Regulatory Status"": ""Compliant"",
-      ""Risk Level"": ""Low""
-    },
-    ""Data Quality Assessment"": {
-      ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, relationship data"",
-      ""Confidence Level"": 0.8
-    },
-    ""Recommendations"": ""Ensure all machine logs and relationship data are collected and verified for future orders to improve data quality and validation confidence.""
-  }
-}","{
   ""product_id"": ""ORBOX0018"",
   ""certificate_date"": ""2024-10-28"",
   ""warehouse_arrival_date"": ""2024-10-28"",
   ""date_match_status"": true
 }"
-P9_task_9,deepseek-chat,medium,Q1,22.7,False,0.0,2997,355,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P9_task_9,deepseek-chat,medium,Q1,24.06,True,0.0,2997,354,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""PRINTER ANALYSIS RESULTS"": {
     ""Part ID"": ""3DOR100054"",
     ""Assigned Printer"": ""Printer_4"",
@@ -2358,13 +2344,13 @@ P9_task_9,deepseek-chat,medium,Q1,22.7,False,0.0,2997,355,0.8,"[""Insufficient d
       ""Issues Detected"": ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
       ""Confidence Level"": 0.8
     },
-    ""Manufacturing Insights"": ""The data suggests Printer_4 is actively used for printing multiple parts, including 3DOR100054. However, the absence of machine logs and location scans may affect the accuracy of the timeline validation.""
+    ""Manufacturing Insights"": ""The analysis indicates that Printer_4 was used for part 3DOR100054 among others. However, the absence of machine logs and location scans suggests potential gaps in tracking the complete manufacturing timeline.""
   }
 }","{
   ""part_id"": ""3DOR100054"",
   ""assigned_printer"": ""Printer_4""
 }"
-P9_task_10,deepseek-chat,easy,Q2,39.95,False,0.0,3706,373,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+P9_task_10,deepseek-chat,easy,Q2,39.01,False,0.0,3706,381,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
   ""GEAR IDENTIFICATION RESULTS"": {
     ""Order ID"": ""ORBOX0019"",
     ""Total Gears Found"": 10,
@@ -2387,7 +2373,7 @@ P9_task_10,deepseek-chat,easy,Q2,39.95,False,0.0,3706,373,0.8,"[""Insufficient d
       ""Confidence Level"": 0.8
     },
     ""Manufacturing Status"": ""Data suggests all gears are accounted for under the specified order ID, but with noted data quality issues."",
-    ""Recommendations"": ""Obtain missing machine logs and location scans to validate the timeline and ensure complete data quality.""
+    ""Recommendations"": ""It is recommended to gather missing machine logs and location scans to improve data validation and confidence in the timeline of gear manufacturing and packing.""
   }
 }","{
   ""packing_list_id"": ""PL1019"",
