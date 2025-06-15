@@ -1,18 +1,18 @@
 task_id,model,complexity,quality_condition,completion_time_sec,is_correct,total_cost_usd,input_tokens,output_tokens,final_confidence,reconciliation_issues,llm_final_report,ground_truth_answer
-P1_task_1,deepseek-chat,easy,Q2,16.95,False,0.0,2440,268,0.7,"[""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","{
+P1_task_1,deepseek-chat,easy,Q2,16.6,False,0.0,1290,286,0.19999999999999996,"[""Error from step_2_gear_list: No relationships found for ID ORBOX00115"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.20) ⚠️
+Issues found during reconciliation:
+ - Error from step_2_gear_list: No relationships found for ID ORBOX00115
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
   ""summary"": {
-    ""direct_answer"": [
-      ""3DOR100033"",
-      ""3DOR100034"",
-      ""3DOR100035"",
-      ""3DOR100036"",
-      ""3DOR100037""
-    ],
+    ""direct_answer"": ""No gears found for Packing List PL1115 due to no relationships found for ID ORBOX00115."",
     ""data_quality_issues"": [
+      ""Error from step_2_gear_list: No relationships found for ID ORBOX00115"",
       ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
     ],
-    ""confidence_score"": 0.7,
-    ""missing_data"": ""No missing data in the validated_data section for the query.""
+    ""confidence_score"": 0.19999999999999996,
+    ""missing_data"": ""Relationship data for ID ORBOX00115 is missing, preventing the identification of gears for Packing List PL1115.""
   }
 }","{
   ""packing_list_id"": ""PL1115"",

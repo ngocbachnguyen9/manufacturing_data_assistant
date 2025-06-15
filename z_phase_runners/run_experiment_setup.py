@@ -32,7 +32,9 @@ def main():
 
     # Step 2: Generate Corrupted Datasets and Capture Dirty IDs
     print("***REMOVED***n--- Phase 1b: Generating Corrupted Datasets ---")
-    controller = DataQualityController()
+    seed = config["experiment"]["random_seed"]
+    print(f"🌱 Using random seed {seed} for reproducible data generation")
+    controller = DataQualityController(random_seed=seed)
     dirty_entity_ids = {}
 
     for qc in ["Q1", "Q2", "Q3"]:

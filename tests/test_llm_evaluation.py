@@ -1,7 +1,6 @@
 import os
 import json
 import time
-import random
 import pandas as pd
 import pytest
 
@@ -90,7 +89,7 @@ def test_evaluate_answer_missing_gt(runner_and_dirs):
 
 def test_run_evaluation_end_to_end(runner_and_dirs):
     runner, tmp_path = runner_and_dirs
-    random.seed(0)
+    # Note: The runner should use seeded generation internally
     runner.run_evaluation()
 
     # One result row

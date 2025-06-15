@@ -6,17 +6,29 @@ from experiments.validation.ground_truth_validation import GroundTruthValidator
 from typing import Dict, List, Any
 import os
 import json
+import yaml
+
+def load_experiment_config():
+    """Load the experiment configuration to get the random seed."""
+    with open("config/experiment_config.yaml", 'r') as f:
+        return yaml.safe_load(f)
 
 def main():
     """
     Executes the full data generation and validation pipeline for Phase 1.
     """
+    # Load configuration for seeded generation
+    config = load_experiment_config()
+    seed = config["experiment"]["random_seed"]
+    print(f"🌱 Using random seed {seed} for reproducible data generation")
+
     # --- Step 1: Setup Q0 Baseline Environment ---
     print("--- Starting Phase 1: Data Corpus Generation ---")
     env = ManufacturingEnvironment()
     env.setup_baseline_environment()
 
-    controller = DataQualityController()
+    # Create controller with seeded randomness for reproducible corruption
+    controller = DataQualityController(random_seed=seed)
     quality_conditions = ["Q1", "Q2", "Q3"]
     dirty_ids: Dict[str, List[str]] = {}
     # Apply corruption and capture the list of targeted IDs

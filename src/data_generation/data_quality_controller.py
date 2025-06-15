@@ -11,8 +11,9 @@ class DataQualityController:
     Applies order-level data corruption to generate Q1, Q2, and Q3 quality conditions.
     """
 
-    def __init__(self, baseline_path: str = "data/experimental_datasets/Q0_baseline"):
+    def __init__(self, baseline_path: str = "data/experimental_datasets/Q0_baseline", random_seed: int = None):
         self.baseline_path = baseline_path
+        self.random_seed = random_seed
         self.datasets = self._load_baseline()
         
     def _load_baseline(self) -> Dict[str, pd.DataFrame]:
@@ -124,11 +125,25 @@ class DataQualityController:
                 return original[i], i
         return original[-1], len(original) - 1
 
+    def _set_random_seed(self, quality_condition: str):
+        """Set a deterministic random seed based on quality condition and base seed."""
+        if self.random_seed is not None:
+            # Create different seeds for each quality condition to ensure different patterns
+            seed_map = {"Q1": 1000, "Q2": 2000, "Q3": 3000}
+            final_seed = self.random_seed + seed_map.get(quality_condition, 0)
+            random.seed(final_seed)
+            print(f"Set random seed to {final_seed} for {quality_condition} corruption")
+        else:
+            print(f"No random seed set - using system random for {quality_condition}")
+
     # UPDATED: The main apply method now returns the targeted IDs
     def apply_corruption(
         self, quality_condition: str
     ) -> Tuple[Dict[str, pd.DataFrame], ErrorTracker, List[str]]:
         """Apply corruption and return the corrupted data, tracker, and targeted IDs."""
+        # Set deterministic seed for reproducible corruption
+        self._set_random_seed(quality_condition)
+
         corrupted_data = {k: v.copy() for k, v in self.datasets.items()}
         error_tracker = ErrorTracker()
         targeted_ids = []

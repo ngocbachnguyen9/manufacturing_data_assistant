@@ -220,8 +220,8 @@ def tmp_q0(tmp_path):
 
 
 def test_q1_space_injection(tmp_q0):
-    random.seed(0)
-    ctrl = DataQualityController(baseline_path=tmp_q0)
+    # Use seeded controller instead of manual random.seed
+    ctrl = DataQualityController(baseline_path=tmp_q0, random_seed=0)
     data, tracker, targeted_ids = ctrl.apply_corruption("Q1")
     # make sure we actually got back a list of IDs
     assert isinstance(targeted_ids, list)
@@ -236,8 +236,8 @@ def test_q1_space_injection(tmp_q0):
 
 
 def test_q2_char_missing(tmp_q0):
-    random.seed(1)
-    ctrl = DataQualityController(baseline_path=tmp_q0)
+    # Use seeded controller instead of manual random.seed
+    ctrl = DataQualityController(baseline_path=tmp_q0, random_seed=1)
     data, tracker, targeted_ids = ctrl.apply_corruption("Q2")
     assert isinstance(targeted_ids, list)
     for entry in tracker.q2_log:
@@ -249,8 +249,8 @@ def test_q2_char_missing(tmp_q0):
            assert original.count(removed_char) == corrupted.count(removed_char) + 1
 
 def test_q3_missing_records(tmp_q0):
-    random.seed(2)
-    ctrl = DataQualityController(baseline_path=tmp_q0)
+    # Use seeded controller instead of manual random.seed
+    ctrl = DataQualityController(baseline_path=tmp_q0, random_seed=2)
     before = pd.read_csv(
         os.path.join(tmp_q0, "relationship_data.csv"),
         dtype=str,
