@@ -21,7 +21,7 @@ class LLMEvaluationRunner:
     """
     Manages the execution of the LLM agent against the experimental tasks.
     """
-    def __init__(self, config: Dict[str, Any], use_mock: bool = True):
+    def __init__(self, config: Dict[str, Any], use_mock: bool = False):
         self.config = config
         self.use_mock = use_mock
         self.assignments = self._load_json("experiments/human_study/participant_assignments.json")
@@ -69,10 +69,10 @@ class LLMEvaluationRunner:
                     llm_provider = OpenAIProvider(model_name)
                 elif "claude" in model_name or "sonnet" in model_name:
                     llm_provider = AnthropicProvider(model_name)
-                elif "deepseek" in model_name: # NEW: Added DeepSeek
+                elif "deepseek" in model_name:
                     llm_provider = DeepSeekProvider(model_name)
                 else:
-                    print(f"Warning: No real provider found for {model_name}. Using mock.")
+                    print(f"Warning: No provider found for {model_name}. Using mock.")
                     llm_provider = MockLLMProvider(model_name)
                 print(f"  - Using LIVE provider: {llm_provider.__class__.__name__}")
 

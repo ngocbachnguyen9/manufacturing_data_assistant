@@ -260,17 +260,21 @@ class DataQualityController:
         impacted_orders = list(affected_orders)
         return impacted_orders + impacted_gears
 
-    def save_corrupted_data(self, corrupted_data: Dict[str, pd.DataFrame], 
+    def save_corrupted_data(self, corrupted_data: Dict[str, pd.DataFrame],
                           error_tracker: ErrorTracker, quality_condition: str):
         """Save the corrupted data and error logs."""
         output_dir = f"data/experimental_datasets/{quality_condition}_dataset"
         os.makedirs(output_dir, exist_ok=True)
 
         for name, df in corrupted_data.items():
-            # Save corrupted data file
-            corrupted_path = os.path.join(output_dir, f"{name}_{quality_condition}.csv")
+            # Save corrupted data file with standard name for DataLoader compatibility
+            standard_path = os.path.join(output_dir, f"{name}.csv")
+            df.to_csv(standard_path, index=False)
+            print(f"Saved corrupted data: {standard_path}")
+
+            # Also save with quality condition suffix for error tracking
+            corrupted_path = os.path.join(output_dir, f"{name}_{quality_condition}_errors.csv")
             df.to_csv(corrupted_path, index=False)
-            print(f"Saved corrupted data: {corrupted_path}")
 
         # Save error log
         log_path = os.path.join(output_dir, f"all_tables_{quality_condition}_errors.csv")

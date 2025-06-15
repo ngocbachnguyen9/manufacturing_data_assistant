@@ -198,15 +198,10 @@ class MasterAgent:
             tool_name = step.get("tool")
             raw_input = step.get("input")
             output_key = step.get("output_key", f"step_{step['step']}_output")
-            
-            # Handle missing parameters by trying raw input first
-            try:
-                resolved_input = str(raw_input).format(**context) if raw_input else ""
-            except KeyError:
-                # Use raw input as fallback if context is missing
-                resolved_input = raw_input
-                print(f"  - Warning: Using raw input for step {step['step']} due to missing context keys")
-            
+
+            # Resolve input by substituting context variables
+            resolved_input = self._resolve_input_variables(raw_input, context)
+
             if tool_name:
                 try:
                     result = self.retrieval_agent.retrieve(tool_name, resolved_input)
@@ -218,6 +213,44 @@ class MasterAgent:
                 print(f"  - Warning: Skipping invalid plan step: {step}")
         print("- [MasterAgent] Plan execution complete.")
         return context
+
+    def _resolve_input_variables(self, raw_input: str, context: Dict[str, Any]) -> str:
+        """
+        Resolves variable references in input strings like {step_1_order_id['order_id']}
+        """
+        if not raw_input or not isinstance(raw_input, str):
+            return raw_input
+
+        import re
+
+        # Pattern to match {variable_name['key']} or {variable_name["key"]}
+        pattern = r'***REMOVED***{([^}]+)***REMOVED***[[***REMOVED***'"](.*?)[***REMOVED***'"]***REMOVED***]***REMOVED***}'
+
+        def replace_variable(match):
+            var_name = match.group(1)
+            key = match.group(2)
+
+            if var_name in context:
+                var_value = context[var_name]
+
+                # Handle different data structures returned by tools
+                if isinstance(var_value, dict) and key in var_value:
+                    return str(var_value[key])
+                elif isinstance(var_value, list) and len(var_value) > 0:
+                    if isinstance(var_value[0], dict) and key in var_value[0]:
+                        return str(var_value[0][key])
+
+            print(f"  - Warning: Could not resolve variable {var_name}['{key}'] in context")
+            return match.group(0)  # Return original if can't resolve
+
+        try:
+            resolved = re.sub(pattern, replace_variable, raw_input)
+            if resolved != raw_input:
+                print(f"  - Resolved input: '{raw_input}' -> '{resolved}'")
+            return resolved
+        except Exception as e:
+            print(f"  - Warning: Error resolving variables in '{raw_input}': {str(e)}")
+            return raw_input
 
     def _post_process_data(
         self, data: Dict[str, Any], complexity: str

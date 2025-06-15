@@ -1,6 +1,9 @@
 import json
 import random
 import re
+import os
+import openai
+import anthropic
 from typing import Dict, Any, Optional
 from tenacity import retry, stop_after_attempt, wait_exponential
 
@@ -44,54 +47,87 @@ class MockLLMProvider:
     def _get_mock_plan(self, prompt: str) -> str:
         """
         Returns a mock plan dynamically, extracting the entity ID and complexity
-        from the prompt to ensure consistency.
+        from the prompt to ensure consistency. Always returns a valid JSON object.
         """
-        complexity = "unknown"
-        entity_id = "UNKNOWN_ENTITY"
+        # Try to match known query types
+        # 1. Packing List
+        match = re.search(r"Packing List***REMOVED***s*(PL***REMOVED***w+)", prompt)
+        if match:
+            entity_id = match.group(1)
+            return json.dumps({
+                "complexity": "easy",
+                "plan": [
+                    {
+                        "step": 1,
+                        "tool": "packing_list_parser_tool",
+                        "input": entity_id,
+                        "output_key": "step_1_order_id",
+                        "reason": "Parse the packing list to find the corresponding Order ID."
+                    },
+                    {
+                        "step": 2,
+                        "tool": "relationship_tool",
+                        "input": "{step_1_order_id['order_id']}",
+                        "output_key": "step_2_gear_list",
+                        "reason": "Use the Order ID to find all related gear parts."
+                    }
+                ]
+            })
 
-        if "Find all gears for Packing List" in prompt:
-            complexity = "easy"
-            match = re.search(r"Packing List (PL***REMOVED***w+)", prompt)
-            if match:
-                entity_id = match.group(1)
+        # 2. Part/Printer
+        match = re.search(r"Part***REMOVED***s*(3DOR***REMOVED***w+)", prompt)
+        if match:
+            entity_id = match.group(1)
             return json.dumps({
-                "complexity": complexity,
+                "complexity": "medium",
                 "plan": [
-                    {"step": 1, "tool": "packing_list_parser_tool", "input": entity_id, "output_key": "parsed_pl_data", "reason": "Mock parsing packing list to get Order ID."},
-                    {"step": 2, "tool": "relationship_tool", "input": f"{{parsed_pl_data['order_id']}}", "output_key": "gear_list", "reason": "Mock finding associated gears via Order ID."}
+                    {
+                        "step": 1,
+                        "tool": "relationship_tool",
+                        "input": entity_id,
+                        "output_key": "step_1_printer_info",
+                        "reason": "Find the parent printer associated with the given part ID."
+                    },
+                    {
+                        "step": 2,
+                        "tool": "relationship_tool",
+                        "input": "{step_1_printer_info['parent']}",
+                        "output_key": "step_2_all_parts_on_printer",
+                        "reason": "Use the found printer ID to query for all other parts associated with it to get a total count."
+                    }
                 ]
             })
-        elif "Determine the printer for Part" in prompt:
-            complexity = "medium"
-            match = re.search(r"Part (3DOR***REMOVED***w+)", prompt)
-            if match:
-                entity_id = match.group(1)
+
+        # 3. Order/ARC document
+        match = re.search(r"Order***REMOVED***s*(ORBOX***REMOVED***w+)", prompt)
+        if match:
+            entity_id = match.group(1)
             return json.dumps({
-                "complexity": complexity,
+                "complexity": "hard",
                 "plan": [
-                    {"step": 1, "tool": "relationship_tool", "input": entity_id, "output_key": "printer_info", "reason": "Mock finding printer for part."},
-                    {"step": 2, "tool": "relationship_tool", "input": f"{{printer_info[0]['parent']}}", "output_key": "parts_on_printer", "reason": "Mock getting all parts on that printer."}
+                    {
+                        "step": 1,
+                        "tool": "document_parser_tool",
+                        "input": entity_id,
+                        "output_key": "step_1_arc_date",
+                        "reason": "Parse the ARC document to get the certificate completion date."
+                    },
+                    {
+                        "step": 2,
+                        "tool": "location_query_tool",
+                        "input": entity_id,
+                        "output_key": "step_2_warehouse_arrival",
+                        "reason": "Find the arrival date of the order at the Parts Warehouse."
+                    }
                 ]
             })
-        elif "verify ARC document date matches warehouse arrival" in prompt:
-            complexity = "hard"
-            match = re.search(r"Order (ORBOX***REMOVED***w+)", prompt)
-            if match:
-                entity_id = match.group(1)
-            return json.dumps({
-                "complexity": complexity,
-                "plan": [
-                    {"step": 1, "tool": "document_parser_tool", "input": entity_id, "output_key": "arc_date_data", "reason": "Mock parsing ARC document for date."},
-                    {"step": 2, "tool": "location_query_tool", "input": entity_id, "output_key": "warehouse_arrival_data", "reason": "Mock querying warehouse arrival date."}
-                ]
-            })
-        else:
-            # Fallback for unexpected planning queries
-            return json.dumps({
-                "complexity": "unknown",
-                "plan": [],
-                "reason": "Mock plan not defined for this specific query type."
-            })
+
+        # Default fallback: always return a valid JSON object
+        return json.dumps({
+            "complexity": "unknown",
+            "plan": [],
+            "reason": "Mock plan not defined for this specific query type."
+        })
 
     def _get_mock_synthesis_report(self, prompt: str) -> str:
         """Returns a generic synthesized report based on the prompt content."""
@@ -234,11 +270,15 @@ class DeepSeekProvider:
 
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to DeepSeek and standardizes the response."""
-        # This logic is identical to the OpenAIProvider because the API is compatible
+        # DeepSeek requires the word "json" in the prompt when using JSON response format
+        adjusted_prompt = prompt
+        if "json" not in prompt.lower():
+            adjusted_prompt = "Please respond in JSON format.***REMOVED***n***REMOVED***n" + prompt
+            
         try:
             response = self.client.chat.completions.create(
                 model=self.model_name,
-                messages=[{"role": "user", "content": prompt}],
+                messages=[{"role": "user", "content": adjusted_prompt}],
                 response_format={"type": "json_object"},
             )
             return {

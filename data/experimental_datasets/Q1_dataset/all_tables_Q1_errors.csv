@@ -1,0 +1,415 @@
+row,table_column,original,corrupted,error_type,timestamp
+17,location_data._value,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116525
+23,location_data._value,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116557
+61,location_data._value,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116577
+62,location_data._value,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116595
+63,location_data._value,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116613
+64,location_data._value,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116631
+65,location_data._value,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116649
+89,location_data._value,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116669
+90,location_data._value,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116687
+93,location_data._value,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116705
+96,location_data._value,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116723
+98,location_data._value,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116741
+162,location_data._value,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116758
+163,location_data._value,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116776
+164,location_data._value,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116794
+165,location_data._value,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116811
+166,location_data._value,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116829
+182,location_data._value,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116847
+193,location_data._value,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116865
+194,location_data._value,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116882
+195,location_data._value,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116900
+196,location_data._value,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116918
+197,location_data._value,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116936
+223,location_data._value,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.116953
+198,relationship_data.child,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117220
+199,relationship_data.child,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117242
+200,relationship_data.child,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117261
+201,relationship_data.child,3DOR100033,  3DOR100033  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117280
+202,relationship_data.child,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117298
+203,relationship_data.child,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117316
+204,relationship_data.child,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117334
+205,relationship_data.child,3DOR100034,   3DOR100034,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117352
+206,relationship_data.child,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117370
+207,relationship_data.child,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117391
+208,relationship_data.child,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117409
+209,relationship_data.child,3DOR100035,3DOR100035   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117427
+210,relationship_data.child,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117445
+211,relationship_data.child,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117463
+212,relationship_data.child,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117481
+213,relationship_data.child,3DOR100036,3DOR100036   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117498
+214,relationship_data.child,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117516
+215,relationship_data.child,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117534
+216,relationship_data.child,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117552
+217,relationship_data.child,3DOR100037,  3DOR100037,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117570
+320,relationship_data.child,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117588
+321,relationship_data.child,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117606
+322,relationship_data.child,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117625
+323,relationship_data.child,3DOR100061,3DOR100061   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117643
+324,relationship_data.child,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117660
+325,relationship_data.child,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117678
+326,relationship_data.child,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117696
+327,relationship_data.child,3DOR100062,3DOR100062  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117714
+336,relationship_data.child,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117732
+337,relationship_data.child,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117749
+338,relationship_data.child,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117767
+339,relationship_data.child,3DOR100065, 3DOR100065 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117785
+348,relationship_data.child,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117803
+349,relationship_data.child,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117820
+350,relationship_data.child,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117838
+351,relationship_data.child,3DOR100068,3DOR100068   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117856
+360,relationship_data.child,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117873
+361,relationship_data.child,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117891
+362,relationship_data.child,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117909
+363,relationship_data.child,3DOR100070,  3DOR100070  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117926
+502,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117944
+503,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117962
+504,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.117982
+505,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118000
+506,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118018
+507,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118035
+508,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118053
+509,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118071
+510,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118088
+511,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118106
+512,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118123
+513,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118141
+514,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118159
+515,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118177
+516,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118195
+517,relationship_data.child,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118213
+518,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118232
+519,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118250
+520,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118269
+521,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118287
+522,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118306
+523,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118324
+524,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118343
+525,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118362
+526,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118381
+527,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118400
+528,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118461
+529,relationship_data.child,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118499
+530,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118520
+531,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118554
+532,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118574
+533,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118593
+534,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118613
+535,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118632
+536,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118656
+537,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118676
+538,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118694
+539,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118713
+540,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118731
+541,relationship_data.child,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118749
+542,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118767
+543,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118784
+544,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118803
+545,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118836
+546,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118854
+547,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118874
+548,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118892
+549,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118911
+550,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118929
+551,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118948
+552,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118967
+553,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.118987
+554,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119006
+555,relationship_data.child,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119025
+568,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119043
+569,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119061
+570,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119079
+571,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119097
+572,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119114
+573,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119132
+574,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119155
+575,relationship_data.child,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119172
+576,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119190
+577,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119208
+578,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119226
+579,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119255
+580,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119274
+581,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119292
+582,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119310
+583,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119332
+584,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119352
+585,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119371
+586,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119388
+587,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119417
+588,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119435
+589,relationship_data.child,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119454
+590,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119472
+591,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119490
+592,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119508
+593,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119526
+594,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119543
+595,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119561
+596,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119579
+597,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119596
+598,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119614
+599,relationship_data.child,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119642
+600,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119661
+601,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119678
+602,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119696
+603,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119713
+604,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119731
+605,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119753
+606,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119771
+607,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119788
+608,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119806
+609,relationship_data.child,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.119824
+0,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120032
+1,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120055
+2,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120075
+3,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120095
+4,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120114
+5,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120134
+6,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120153
+7,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120172
+8,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120189
+9,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120209
+10,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120228
+11,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120246
+12,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120265
+13,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120284
+14,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120303
+15,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120321
+16,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120340
+17,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120479
+18,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120588
+19,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120611
+20,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120631
+21,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120650
+30,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120669
+31,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120687
+32,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120705
+33,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120725
+34,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120743
+35,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120762
+36,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120780
+37,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120801
+38,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120820
+39,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120839
+40,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120857
+41,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120875
+42,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120894
+43,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120912
+44,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120930
+45,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120948
+46,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120967
+47,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.120985
+48,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121004
+49,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121024
+50,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121043
+51,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121062
+52,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121081
+53,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121099
+54,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121117
+55,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121136
+56,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121154
+57,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121173
+58,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121191
+59,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121210
+60,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121228
+61,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121247
+66,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121265
+67,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121286
+68,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121304
+69,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121323
+70,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121341
+71,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121360
+74,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121378
+75,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121396
+76,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121415
+77,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121434
+78,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121452
+79,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121470
+80,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121489
+81,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121507
+88,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121528
+89,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121546
+92,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121568
+93,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121586
+96,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121604
+97,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121628
+100,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121646
+101,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121665
+104,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121683
+105,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121701
+108,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121719
+109,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121737
+114,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121755
+115,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121773
+118,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121791
+119,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121809
+126,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121827
+127,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121845
+128,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121863
+129,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121921
+132,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121967
+133,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.121986
+136,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122004
+137,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122034
+144,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122052
+145,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122071
+148,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122096
+149,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122114
+152,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122132
+153,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122150
+156,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122168
+157,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122185
+160,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122203
+161,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122221
+168,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122238
+169,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122256
+172,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122274
+173,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122292
+178,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122311
+179,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122330
+188,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122349
+189,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122368
+192,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122386
+193,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122405
+196,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122423
+197,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122441
+198,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122458
+199,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122476
+200,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122493
+201,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122512
+202,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122530
+203,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122548
+204,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122566
+205,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122584
+206,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122602
+207,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122624
+208,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122642
+209,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122660
+210,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122678
+211,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122696
+212,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122713
+213,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122731
+214,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122749
+215,relationship_data.parent,ORBOX00115,ORBOX00115 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122766
+216,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122784
+217,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122802
+220,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122819
+221,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122837
+232,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122855
+233,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122872
+236,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122890
+237,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122908
+240,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122925
+241,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122943
+244,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122960
+245,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122978
+250,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.122996
+251,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123013
+254,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123033
+255,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123051
+258,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123068
+259,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123087
+262,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123105
+263,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123122
+270,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123140
+271,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123158
+274,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123175
+275,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123193
+278,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123211
+279,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123229
+282,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123247
+283,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123265
+286,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123283
+287,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123300
+294,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123318
+295,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123336
+298,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123354
+299,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123371
+302,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123389
+303,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123406
+306,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123424
+307,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123442
+314,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123459
+315,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123477
+318,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123496
+319,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123514
+320,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123533
+321,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123551
+322,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123569
+323,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123587
+324,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123604
+325,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123623
+326,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123641
+327,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123660
+330,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123678
+331,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123695
+336,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123713
+337,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123730
+338,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123748
+339,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123765
+342,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123800
+343,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123820
+346,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123838
+347,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123855
+348,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123873
+349,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123890
+350,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123909
+351,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123927
+358,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123945
+359,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123964
+360,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.123982
+361,relationship_data.parent,ORBOX00121, ORBOX00121 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124001
+362,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124019
+363,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124037
+366,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124055
+367,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124075
+370,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124093
+371,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124112
+374,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124131
+375,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124150
+382,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124169
+383,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124188
+386,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124206
+387,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124224
+390,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124242
+391,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124261
+394,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124280
+395,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124299
+402,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124317
+403,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124336
+406,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124355
+407,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124375
+412,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124396
+413,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124415
+416,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124434
+417,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124452
+426,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124471
+427,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124490
+432,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124509
+433,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124528
+436,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124547
+437,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124565
+442,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124582
+443,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124600
+456,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124617
+457,relationship_data.parent,Printer_10,Printer_10 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124635
+460,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124652
+461,relationship_data.parent,Printer_1, Printer_1 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124670
+464,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124687
+465,relationship_data.parent,Printer_2,  Printer_2  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124704
+468,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124722
+469,relationship_data.parent,Printer_3, Printer_3 ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124742
+476,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124760
+477,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124779
+480,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124797
+481,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124815
+484,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124869
+485,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124927
+486,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124945
+487,relationship_data.parent,Printer_8,Printer_8   ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124963
+496,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124981
+497,relationship_data.parent,Printer_5,  Printer_5  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.124999
+498,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.125016
+499,relationship_data.parent,Printer_6,Printer_6  ,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.125034
+500,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.125052
+501,relationship_data.parent,Printer_7, Printer_7,Q1_SPACE_ORDER_LEVEL,2025-06-15T09:53:56.125070

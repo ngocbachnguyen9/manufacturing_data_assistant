@@ -32,6 +32,9 @@ class ReconciliationAgent:
         self._check_for_tool_errors(context, summary)
         self._cross_validate_gear_timeline(context, summary)
 
+        # Apply confidence floor at 0.0
+        summary["confidence"] = max(0.0, summary["confidence"])
+        
         # Check for critical issues
         for issue in summary["issues_found"]:
             if any(keyword in issue.lower() for keyword in self.critical_issues):
@@ -118,11 +121,17 @@ class ReconciliationAgent:
         for gear_id, warehouse_time in warehouse_entries.items():
             job_id = gear_to_job.get(gear_id)
             if not job_id:
-                continue  # No associated print job
+                issue = f"Gear {gear_id} has warehouse entry but no associated print job"
+                summary["issues_found"].append(issue)
+                summary["confidence"] -= 0.2
+                continue
             
             print_end_time = print_end_times.get(job_id)
             if not print_end_time:
-                continue  # No PRINT_END event found
+                issue = f"Gear {gear_id} has warehouse entry but no PRINT_END event for job {job_id}"
+                summary["issues_found"].append(issue)
+                summary["confidence"] -= 0.3
+                continue
             
             # Validate timeline consistency
             if warehouse_time < print_end_time:
