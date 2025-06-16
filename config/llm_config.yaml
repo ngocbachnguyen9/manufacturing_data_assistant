@@ -32,7 +32,7 @@ llm_providers:
         cost_per_1m_tokens_output: 15 # Example value
         recommended: true
         
-      claude-3-7-sonnet-20250219:
+      claude-3-5-haiku-latest:
         max_tokens: 200000
         temperature: 0.1
         cost_per_1m_tokens_input: 3   # Example value
@@ -62,7 +62,7 @@ llm_providers:
 model_selection:
   primary_models: ["o4-mini-2025-04-16", "claude-sonnet-4-20250514","deepseek-reasoner"]
   selection_criteria: "intelligence_price_ratio"
-  fallback_order: ["o3-mini-2025-01-31", "claude-3-7-sonnet-20250219", "deepseek-chat"]
+  fallback_order: ["o3-mini-2025-01-31", "claude-3-5-haiku-latest", "deepseek-chat"]
   
 # Performance Thresholds
 performance_thresholds:

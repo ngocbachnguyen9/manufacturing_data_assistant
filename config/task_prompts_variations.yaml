@@ -1,0 +1,368 @@
+# Task Prompt Variations by Length and Complexity
+# This configuration defines three prompt lengths: short, normal, and long
+# for each complexity level (easy, medium, hard) and quality condition
+
+prompt_variations:
+  # ============================================================================
+  # SHORT PROMPTS - Minimal, concise task descriptions
+  # ============================================================================
+  short:
+    easy:
+      base_prompt: |
+        Find all gears for Packing List {packing_list_id}.
+        
+        Steps:
+        1. Get Order ID from packing list
+        2. Find all gears for that order
+        3. List the gears
+      
+      with_data_quality_issues: |
+        Find all gears for Packing List {packing_list_id}.
+        Note: Data may have quality issues. Report any problems found.
+        
+        Steps:
+        1. Get Order ID from packing list  
+        2. Find all gears for that order
+        3. List the gears and note any data issues
+    
+    medium:
+      base_prompt: |
+        For Part {part_id}, find which printer was used and count total parts on that printer.
+        
+        Steps:
+        1. Find the printer for this part
+        2. Count all parts printed on that printer
+        3. Report printer and count
+      
+      with_data_quality_issues: |
+        For Part {part_id}, find which printer was used and count total parts on that printer.
+        Note: Data may have errors. Report any issues found.
+        
+        Steps:
+        1. Find the printer for this part
+        2. Count all parts printed on that printer  
+        3. Report printer, count, and any data problems
+    
+    hard:
+      base_prompt: |
+        For Order {order_id}, check if ARC document date matches warehouse arrival date.
+        
+        Steps:
+        1. Find ARC document date
+        2. Find warehouse arrival date
+        3. Compare dates and report match status
+      
+      with_data_quality_issues: |
+        For Order {order_id}, check if ARC document date matches warehouse arrival date.
+        Note: Data may be incomplete. Report confidence level and any issues.
+        
+        Steps:
+        1. Find ARC document date
+        2. Find warehouse arrival date
+        3. Compare dates, report match status and data quality issues
+
+  # ============================================================================
+  # NORMAL PROMPTS - Balanced detail and clarity (new middle ground)
+  # ============================================================================
+  normal:
+    easy:
+      base_prompt: |
+        Task: Find all gears for Packing List {packing_list_id}
+        
+        CONTEXT:
+        You are analyzing manufacturing data to identify gears associated with a specific packing list.
+        
+        REQUIRED STEPS:
+        1. Locate the specified Packing List document
+        2. Extract the Order ID from the packing list
+        3. Use the Order ID to find all associated gears in the system
+        4. Provide a complete list of gears for the order
+        
+        OUTPUT FORMAT:
+        - Order ID found
+        - Total number of gears
+        - Complete gear list
+        - Any issues encountered
+      
+      with_data_quality_issues: |
+        Task: Find all gears for Packing List {packing_list_id}
+        
+        CONTEXT:
+        You are analyzing manufacturing data that may contain quality issues such as:
+        • Document parsing errors
+        • Barcode scanning errors (spaces, missing characters)
+        • Missing relationship records
+        
+        REQUIRED STEPS:
+        1. Locate the specified Packing List document
+        2. Extract the Order ID from the packing list
+        3. Use the Order ID to find all associated gears
+        4. Identify and document any data quality issues
+        5. Assess confidence level in your findings
+        
+        OUTPUT FORMAT:
+        - Order ID found
+        - Total number of gears
+        - Complete gear list
+        - Data quality issues identified
+        - Confidence level assessment
+    
+    medium:
+      base_prompt: |
+        Task: For Part {part_id}, determine which 3D printer was used and count total parts on that printer
+        
+        CONTEXT:
+        You need to trace a specific part back to its manufacturing origin and analyze printer utilization.
+        
+        REQUIRED STEPS:
+        1. Identify the specific part in the tracking system
+        2. Trace the part to its assigned 3D printer through relationship data
+        3. Access machine logs to verify printer assignment
+        4. Count all parts printed on the identified printer
+        5. Validate consistency between data sources
+        
+        OUTPUT FORMAT:
+        - Part ID confirmation
+        - Assigned printer identification
+        - Total parts count on that printer
+        - Data source validation results
+      
+      with_data_quality_issues: |
+        Task: For Part {part_id}, determine which 3D printer was used and count total parts on that printer
+        
+        CONTEXT:
+        Manufacturing systems may have data integrity issues affecting analysis:
+        • Relationship records may be incomplete
+        • Barcode data may contain errors
+        • Machine logs might have timing discrepancies
+        
+        REQUIRED STEPS:
+        1. Identify the specific part in the tracking system
+        2. Trace the part to its assigned printer through relationship data
+        3. Cross-validate findings across multiple data sources
+        4. Count all parts printed on the identified printer
+        5. Identify specific data quality issues and assess their impact
+        
+        OUTPUT FORMAT:
+        - Part ID confirmation
+        - Assigned printer identification
+        - Total parts count on that printer
+        - Data quality issues identified
+        - Confidence assessment for printer assignment
+        - Reliability assessment for part count
+    
+    hard:
+      base_prompt: |
+        Task: For Order {order_id}, verify that ARC document completion date matches warehouse arrival date
+        
+        CONTEXT:
+        You are performing compliance verification by cross-referencing manufacturing certification documents with logistics tracking data.
+        
+        REQUIRED STEPS:
+        1. Locate the ARC (Acceptance/Release Certificate) document for the order
+        2. Extract the completion/certification date from the document
+        3. Find the warehouse arrival timestamp in location tracking data
+        4. Compare the dates and determine if they match within acceptable tolerance
+        5. Assess compliance status and any regulatory implications
+        
+        OUTPUT FORMAT:
+        - Order ID confirmation
+        - ARC document date
+        - Warehouse arrival date
+        - Date match status
+        - Compliance assessment
+        - Risk level evaluation
+      
+      with_data_quality_issues: |
+        Task: For Order {order_id}, verify that ARC document completion date matches warehouse arrival date
+        
+        CONTEXT:
+        Complex compliance verification under potentially degraded data conditions:
+        • Document parsing may encounter formatting issues
+        • Location tracking may have gaps or errors
+        • Relationship data may be incomplete
+        • Date formats may be inconsistent across systems
+        
+        REQUIRED STEPS:
+        1. Locate the ARC document despite potential parsing issues
+        2. Extract completion date using multiple parsing strategies if needed
+        3. Find warehouse arrival data with error handling
+        4. Compare dates accounting for format inconsistencies
+        5. Document all data quality problems encountered
+        6. Assess impact of data issues on compliance confidence
+        7. Provide risk assessment for manufacturing certification
+        
+        OUTPUT FORMAT:
+        - Order ID confirmation
+        - ARC document date (with parsing confidence)
+        - Warehouse arrival date (with data quality notes)
+        - Date match status
+        - Data quality issues documented
+        - Compliance confidence level
+        - Risk assessment for certification
+        - Recommendations for data quality improvements
+
+  # ============================================================================
+  # LONG PROMPTS - Detailed, comprehensive task descriptions (current format)
+  # ============================================================================
+  long:
+    # Import existing detailed prompts from task_prompts.yaml
+    easy:
+      base_prompt: |
+        Task: Find all gears for Packing List {packing_list_id}
+
+        CONTEXT:
+        You are analyzing a 3D printing factory's order fulfillment data. You must start by looking up a Packing List document to find the corresponding Order ID, then use that Order ID to trace all associated gears.
+
+        REQUIRED ANALYSIS:
+        1. Locate and parse the specified Packing List document.
+        2. Extract the Order ID from the document.
+        3. Use the Order ID to find all associated gears in the relationship data.
+        4. Provide a complete gear list for the order.
+
+        DATA SOURCES AVAILABLE:
+        - Packing List documents (PDF format)
+        - Relationship tracking data (CSV format)
+        - Location tracking data
+        - Machine operation logs
+
+        VALIDATION REQUIREMENTS:
+        - Cross-reference findings across multiple data sources
+        - Verify gear-to-order relationships
+        - Ensure completeness of gear identification
+        - Document any discrepancies found
+
+        EXPECTED OUTPUT:
+        Provide a structured report containing the Order ID, total gear count, complete gear list, and any validation notes or concerns identified during the analysis.
+      
+      with_data_quality_issues: |
+        Task: Find all gears for Packing List {packing_list_id}
+
+        DATA QUALITY NOTICE:
+        The manufacturing data may contain quality issues such as:
+        • Document parsing errors or missing documents
+        • Barcode scanning errors (extra spaces, missing characters)
+        • Missing relationship records due to system downtime
+
+        Your analysis must:
+        1. Complete the gear identification task as best possible, starting from the Packing List.
+        2. Identify and classify any data quality issues encountered
+        3. Assess confidence level in your findings
+        4. Recommend data quality improvements
+
+        Use alternative search strategies if primary data sources fail.
+
+        CONTEXT:
+        You are analyzing a 3D printing factory's order fulfillment data under potentially degraded conditions. The system may have experienced data corruption, incomplete records, or scanning errors that affect data integrity.
+
+        COMPREHENSIVE ANALYSIS REQUIREMENTS:
+        1. Document Analysis: Parse the Packing List document with error handling for potential formatting issues
+        2. Order ID Extraction: Use multiple extraction methods if primary parsing fails
+        3. Relationship Tracing: Cross-validate gear-to-order relationships using all available data sources
+        4. Data Quality Assessment: Systematically identify and categorize data integrity issues
+        5. Alternative Strategies: Employ backup methods when primary data sources are compromised
+        6. Confidence Evaluation: Provide quantitative confidence assessment based on data quality
+        7. Improvement Recommendations: Suggest specific data quality enhancements
+
+        VALIDATION PROTOCOL:
+        - Attempt primary data source access and document any failures
+        - Use secondary validation methods for critical findings
+        - Cross-reference results across multiple systems where possible
+        - Flag any inconsistencies or anomalies for further investigation
+        - Provide detailed documentation of all data quality issues encountered
+
+        EXPECTED OUTPUT:
+        Deliver a comprehensive report including: Order ID (with extraction confidence), complete gear list (with validation status), detailed data quality assessment, confidence level with justification, and specific recommendations for addressing identified data quality issues.
+
+# Response Format Templates for Each Prompt Length
+response_formats:
+  short:
+    easy_response: |
+      **Gears for {packing_list_id}:**
+      - Order ID: {order_id}
+      - Gear Count: {gear_count}
+      - Gears: {gear_list}
+      - Issues: {issues}
+    
+    medium_response: |
+      **Printer Analysis for {part_id}:**
+      - Printer: {printer_id}
+      - Parts on Printer: {part_count}
+      - Issues: {issues}
+    
+    hard_response: |
+      **Date Verification for {order_id}:**
+      - ARC Date: {arc_date}
+      - Warehouse Date: {warehouse_date}
+      - Match: {match_status}
+      - Issues: {issues}
+  
+  normal:
+    easy_response: |
+      ## GEAR IDENTIFICATION RESULTS
+      
+      **Order ID:** {order_id}
+      **Total Gears Found:** {gear_count}
+      **Gear List:** {gear_list}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+      
+      **Recommendations:** {recommendations}
+    
+    medium_response: |
+      ## PRINTER ANALYSIS RESULTS
+      
+      **Part ID:** {part_id}
+      **Assigned Printer:** {printer_id}
+      **Total Parts on Printer:** {part_count}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+      
+      **Manufacturing Insights:** {insights}
+    
+    hard_response: |
+      ## COMPLIANCE VERIFICATION RESULTS
+      
+      **Order ID:** {order_id}
+      **ARC Document Date:** {arc_date}
+      **Warehouse Arrival Date:** {warehouse_date}
+      **Date Match Status:** {match_status}
+      
+      **Compliance Assessment:**
+      - Regulatory Status: {compliance_status}
+      - Risk Level: {risk_level}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+  
+  long:
+    # Use existing detailed response formats from task_prompts.yaml
+    easy_response: |
+      ## GEAR IDENTIFICATION RESULTS
+      
+      **Order ID:** {order_id}
+      **Total Gears Found:** {gear_count}
+      
+      **Gear List:**
+      {gear_list}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+      
+      **Manufacturing Status:**
+      {manufacturing_status}
+      
+      **Recommendations:**
+      {recommendations}
+      
+      **Validation Notes:**
+      {validation_notes}
+      
+      **Alternative Strategies Used:**
+      {alternative_strategies}
