@@ -351,11 +351,11 @@ class LLMEvaluationRunner:
         return AnthropicJudgeProvider(model_name)
 
     def _initialize_judge_providers(self) -> Dict[str, Any]:
-        """Initialize unbiased judge model providers with weighted consensus"""
+        """Initialize unbiased judge model providers with equal weights - using fast, reliable models"""
         judge_models = {
-            "gpt-4o-mini": {"weight": 2, "provider_class": "OpenAIProvider"},
-            "deepseek-reasoner": {"weight": 2, "provider_class": "DeepSeekProvider"},
-            "claude-3-5-haiku-20241022": {"weight": 1, "provider_class": "AnthropicProvider"}
+            "gpt-4o-mini-2024-07-18": {"weight": 1, "provider_class": "OpenAIProvider"},
+            "deepseek-chat": {"weight": 1, "provider_class": "DeepSeekProvider"},
+            "claude-3-haiku-20240307": {"weight": 1, "provider_class": "AnthropicProvider"}
         }
 
         judge_providers = {}
@@ -378,43 +378,49 @@ class LLMEvaluationRunner:
         print(f"🏛️  Unbiased evaluation system ready with {len(judge_providers)} judges")
         return judge_providers
 
-    def _create_unbiased_judge_prompt(self, task_complexity: str, llm_report: str, ground_truth: str) -> str:
-        """Create an improved judge prompt for unbiased evaluation"""
+    def _create_unbiased_judge_prompt(self, llm_report: str, ground_truth: str) -> str:
+        """Create an improved judge prompt for unbiased evaluation with specific examples"""
 
-        complexity_context = {
-            'easy': 'gear identification from packing lists',
-            'medium': 'printer assignment and part counting',
-            'hard': 'compliance verification and date matching'
-        }
+        return f"""You are an expert evaluator for manufacturing data analysis systems. Your task is to determine if the AI-generated report contains the correct core factual information.
 
-        context = complexity_context.get(task_complexity, 'manufacturing data analysis')
+**CRITICAL EVALUATION RULES:**
+1. **IGNORE confidence scores completely** - Low confidence does not mean wrong answer
+2. **IGNORE data quality warnings** - These are neutral and don't affect correctness
+3. **IGNORE extra fields or formatting** - Focus only on core required data
+4. **ONLY evaluate factual accuracy** - Does the core data match the expected result?
 
-        return f"""You are an expert evaluator for manufacturing data analysis systems. Your task is to objectively determine if the AI-generated report correctly answers the query.
-
-**Task Type**: {context}
-
-**Ground Truth Answer (Expected Result):**
+**Ground Truth (Expected Result):**
 {ground_truth}
 
-**AI-Generated Report (To Evaluate):**
+**AI Report (To Evaluate):**
 {llm_report}
 
-**Evaluation Criteria:**
-1. **Accuracy**: Does the report contain the correct core information?
-2. **Completeness**: Are all required elements present?
-3. **Data Quality Awareness**: For corrupted data conditions, does the report appropriately identify issues?
+**EXAMPLES OF CORRECT ANSWERS:**
 
-**Special Evaluation Rules:**
-- For Q0 (perfect data): Report must match ground truth exactly
-- For Q1 (space errors): Report is CORRECT if it finds the right answer despite extra spaces
-- For Q2 (missing characters): Report is CORRECT if it finds the right answer despite missing characters
-- For Q3 (missing records): Report is CORRECT if it appropriately reports missing data with reasonable confidence
+**Example 1 - Gear Identification (CORRECT):**
+- Ground Truth: {{"gear_list": ["3DOR100033", "3DOR100034", "3DOR100035"]}}
+- AI Report: {{"gears_found": ["3DOR100033", "3DOR100034", "3DOR100035"], "confidence": 0.3, "issues": ["low confidence due to data quality"]}}
+- Judgment: CORRECT (gear list matches exactly, ignore confidence and warnings)
 
-**Important**: Focus on whether the core factual content is correct, not on formatting or presentation style.
+**Example 2 - Printer Assignment (INCORRECT):**
+- Ground Truth: {{"assigned_printer": "Printer_1"}}
+- AI Report: {{"printer_used": "ORBOX0018", "confidence": 0.8}}
+- Judgment: INCORRECT (wrong printer name, even with high confidence)
 
-**Your Response**: Respond with exactly one word: "Correct" or "Incorrect"
+**Example 3 - Date Matching (CORRECT):**
+- Ground Truth: {{"date_match_status": true}}
+- AI Report: {{"match_status": "Dates appear to match (28/10/2024 and 2024-10-28)", "confidence": 0.3, "issues": ["missing data"]}}
+- Judgment: CORRECT (core finding is dates match = true, ignore confidence and issues)
 
-Do not provide explanations, reasoning, or additional text. Just the single word judgment."""
+**Example 4 - Gear Count (INCORRECT):**
+- Ground Truth: {{"gear_count": 5, "gear_list": ["A", "B", "C", "D", "E"]}}
+- AI Report: {{"gear_count": 4, "gear_list": ["A", "B", "C", "D"], "confidence": 0.9}}
+- Judgment: INCORRECT (missing gear E, wrong count, even with high confidence)
+
+**YOUR TASK:**
+Compare the core factual content only. Respond with exactly one word: "Correct" or "Incorrect"
+
+Do not provide explanations. Just the single word judgment."""
 
     def _evaluate_answer(
         self, task_id: str, llm_report: str, llm_provider: Any
@@ -431,15 +437,12 @@ Do not provide explanations, reasoning, or additional text. Just the single word
 
         gt_answer_json = json.dumps(gt_task["baseline_answer"], indent=2)
 
-        # Get task complexity for context-aware judging
-        task_complexity = gt_task.get("complexity_level", "unknown")
-
         # Initialize judge providers if not already done
         if not hasattr(self, 'judge_providers'):
             print("🏛️  Initializing unbiased judge system...")
             self.judge_providers = self._initialize_judge_providers()
 
-        judge_prompt = self._create_unbiased_judge_prompt(task_complexity, llm_report, gt_answer_json)
+        judge_prompt = self._create_unbiased_judge_prompt(llm_report, gt_answer_json)
 
         # Collect judgments from all judges
         judgments = {}

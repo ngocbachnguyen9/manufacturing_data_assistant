@@ -15,9 +15,12 @@ current_dir = Path(__file__).parent
 src_path = current_dir / "src"
 sys.path.insert(0, str(src_path))
 
+# Also add the current directory to path for relative imports
+sys.path.insert(0, str(current_dir))
+
 # Now import the modules
 import yaml
-from experiment.llm_evaluation import LLMEvaluationRunner
+from src.experiment.llm_evaluation import LLMEvaluationRunner
 
 def load_config():
     """Load the experiment configuration"""
