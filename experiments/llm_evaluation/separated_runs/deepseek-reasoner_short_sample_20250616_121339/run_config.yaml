@@ -1,0 +1,397 @@
+cost_analysis:
+  human_analyst_wage: 25.0
+  roi_calculation: true
+  target_cost_per_task: 0.5
+data_quality:
+  conditions:
+    Q0:
+      corruption_rate: 0.0
+      description: Perfect data with full traceability
+      name: baseline
+    Q1:
+      corruption_rate: 0.15
+      error_type: random_space_injection
+      name: spaces
+      spaces_per_corruption:
+      - 1
+      - 2
+      - 3
+      target_fields:
+      - barcode_ids
+      - worker_rfid
+      - order_numbers
+    Q2:
+      characters_per_corruption: 1
+      corruption_rate: 0.12
+      error_type: random_character_removal
+      name: char_missing
+      target_fields:
+      - gear_ids
+      - order_ids
+    Q3:
+      corruption_rate: 0.07
+      maintain_solvability: true
+      name: missing_records
+      removal_strategy: strategic_intermediate_links
+      target_systems:
+      - relationship_data
+      - location_data
+experiment:
+  name: Manufacturing_Data_Assistant_Study
+  random_seed: 42
+  version: '1.0'
+ground_truth:
+  answer_formats:
+    easy: list_of_gear_ids
+    hard: date_match_boolean_with_discrepancy_details
+    medium: printer_id_and_count
+  generation_method: baseline_data_traversal
+  validation_required: true
+human_study:
+  data_collection:
+    method: manual_researcher_recording
+    response_format: structured_forms
+    timing_precision: seconds
+  participant_matrix:
+    P1:
+      prompt_pattern: PC1
+      quality_pattern: PQ1
+    P2:
+      prompt_pattern: PC2
+      quality_pattern: PQ1
+    P3:
+      prompt_pattern: PC3
+      quality_pattern: PQ1
+    P4:
+      prompt_pattern: PC1
+      quality_pattern: PQ2
+    P5:
+      prompt_pattern: PC2
+      quality_pattern: PQ2
+    P6:
+      prompt_pattern: PC3
+      quality_pattern: PQ2
+    P7:
+      prompt_pattern: PC1
+      quality_pattern: PQ3
+    P8:
+      prompt_pattern: PC2
+      quality_pattern: PQ3
+    P9:
+      prompt_pattern: PC3
+      quality_pattern: PQ3
+  participants: 9
+  prompt_patterns:
+    PC1:
+      E: 4
+      H: 3
+      M: 3
+    PC2:
+      E: 3
+      H: 3
+      M: 4
+    PC3:
+      E: 3
+      H: 4
+      M: 3
+  quality_patterns:
+    PQ1:
+      Q0: 5
+      Q1: 2
+      Q2: 2
+      Q3: 1
+    PQ2:
+      Q0: 5
+      Q1: 2
+      Q2: 1
+      Q3: 2
+    PQ3:
+      Q0: 5
+      Q1: 1
+      Q2: 2
+      Q3: 2
+  success_criteria:
+    error_detection_required: true
+    partial_credit: false
+    scoring_method: binary
+  target_counts:
+    by_complexity:
+      E: 30
+      H: 30
+      M: 30
+    by_quality:
+      Q0: 45
+      Q1: 15
+      Q2: 15
+      Q3: 15
+    total_tasks: 90
+  tasks_per_participant: 10
+llm_evaluation:
+  metrics:
+    manufacturing_specific:
+    - data_traversal_correctness
+    - cross_system_validation
+    primary:
+    - accuracy
+    - completion_time
+    - api_cost
+    secondary:
+    - error_detection
+    - confidence_score
+    - token_usage
+  models_to_test:
+  - deepseek-reasoner
+  prompt_length: short
+  task_distribution: identical_to_human_study
+  task_subset: sample
+  tasks_per_model: 90
+llm_providers:
+  anthropic:
+    api_key_env: ANTHROPIC_API_KEY
+    base_url: https://api.anthropic.com/v1/
+    models:
+      claude-3-5-haiku-latest:
+        cost_per_1m_tokens_input: 3
+        cost_per_1m_tokens_output: 15
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+      claude-sonnet-4-20250514:
+        cost_per_1m_tokens_input: 3
+        cost_per_1m_tokens_output: 15
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+  deepseek:
+    api_key_env: DEEPSEEK_API_KEY
+    base_url: https://api.deepseek.com
+    models:
+      deepseek-chat:
+        cost_per_1m_tokens_input: 0.07
+        cost_per_1m_tokens_output: 1.1
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+      deepseek-reasoner:
+        cost_per_1m_tokens_input: 0.55
+        cost_per_1m_tokens_output: 2.19
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+  openai:
+    api_key_env: OPENAI_API_KEY
+    base_url: https://api.openai.com/v1/
+    models:
+      o3-mini-2025-01-31:
+        cost_per_1m_tokens_input: 1.1
+        cost_per_1m_tokens_output: 4.4
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+      o4-mini-2025-04-16:
+        cost_per_1m_tokens_input: 1.1
+        cost_per_1m_tokens_output: 4.4
+        max_tokens: 200000
+        recommended: true
+        temperature: 0.1
+master_agent:
+  confidence_threshold: 0.7
+  error_handling:
+    max_alternative_attempts: 2
+    tier_1: standard_execution
+    tier_2: alternative_reasoning
+    tier_3: data_quality_flagging
+  max_execution_attempts: 3
+  max_planning_steps: 5
+  name: ManufacturingDataMaster
+  planning:
+    decomposition_method: task_complexity_based
+    fallback_enabled: true
+    tool_selection_strategy: manufacturing_priority
+  role: Manufacturing Data Analysis Orchestrator
+master_agent_planning_prompt: "You are a JSON formatting expert. Your ONLY function***REMOVED***
+  ***REMOVED*** is to convert a user's query into a JSON object representing an execution plan.***REMOVED***n***REMOVED***
+  DO NOT add any introductory text, explanations, or markdown formatting. Your response***REMOVED***
+  ***REMOVED*** MUST be ONLY the raw JSON object.***REMOVED***n***REMOVED***nThe JSON object must have two keys: ***REMOVED***"complexity***REMOVED***"***REMOVED***
+  ***REMOVED*** and ***REMOVED***"plan***REMOVED***".***REMOVED***n- ***REMOVED***"complexity***REMOVED***": A string, one of ***REMOVED***"easy***REMOVED***", ***REMOVED***"medium***REMOVED***", or ***REMOVED***"***REMOVED***
+  hard***REMOVED***".***REMOVED***n- ***REMOVED***"plan***REMOVED***": A list of step objects.***REMOVED***n***REMOVED***nEach step object in the ***REMOVED***"plan***REMOVED***"***REMOVED***
+  ***REMOVED*** list must contain:***REMOVED***n- ***REMOVED***"step***REMOVED***": An integer (e.g., 1, 2, 3).***REMOVED***n- ***REMOVED***"tool***REMOVED***": The exact***REMOVED***
+  ***REMOVED*** name of a tool from this list: {tool_descriptions}***REMOVED***n- ***REMOVED***"input***REMOVED***": The input for***REMOVED***
+  ***REMOVED*** the tool. For step 1, use the ID from the user query. For later steps, reference***REMOVED***
+  ***REMOVED*** a previous output key (e.g., ***REMOVED***"{{step_1_output['order_id']}}***REMOVED***").***REMOVED***n- ***REMOVED***"output_key***REMOVED***"***REMOVED***
+  : A unique string to identify this step's output (e.g., ***REMOVED***"step_1_output***REMOVED***").***REMOVED***n- ***REMOVED***"***REMOVED***
+  reason***REMOVED***": A brief string explaining the step's purpose.***REMOVED***n***REMOVED***n---***REMOVED***nHere are three examples***REMOVED***
+  ***REMOVED*** of correct output format.***REMOVED***n***REMOVED***nExample 1 Query: ***REMOVED***"Find all gears for Packing List***REMOVED***
+  ***REMOVED*** PL1011***REMOVED***"***REMOVED***nExample 1 Output:***REMOVED***n```json***REMOVED***n{{***REMOVED***n  ***REMOVED***"complexity***REMOVED***": ***REMOVED***"easy***REMOVED***",***REMOVED***n  ***REMOVED***"plan***REMOVED***"***REMOVED***
+  : [***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***": 1,***REMOVED***n      ***REMOVED***"tool***REMOVED***": ***REMOVED***"packing_list_parser_tool***REMOVED***",***REMOVED***n***REMOVED***
+  ***REMOVED***      ***REMOVED***"input***REMOVED***": ***REMOVED***"PL1011***REMOVED***",***REMOVED***n      ***REMOVED***"output_key***REMOVED***": ***REMOVED***"step_1_order_id***REMOVED***",***REMOVED***n    ***REMOVED***
+  ***REMOVED***  ***REMOVED***"reason***REMOVED***": ***REMOVED***"Parse the packing list to find the corresponding Order ID.***REMOVED***"***REMOVED***n***REMOVED***
+  ***REMOVED***    }},***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***": 2,***REMOVED***n      ***REMOVED***"tool***REMOVED***": ***REMOVED***"relationship_tool***REMOVED***",***REMOVED***n ***REMOVED***
+  ***REMOVED***     ***REMOVED***"input***REMOVED***": ***REMOVED***"{{step_1_order_id['order_id']}}***REMOVED***",***REMOVED***n      ***REMOVED***"output_key***REMOVED***": ***REMOVED***"***REMOVED***
+  step_2_gear_list***REMOVED***",***REMOVED***n      ***REMOVED***"reason***REMOVED***": ***REMOVED***"Use the Order ID to find all related gear***REMOVED***
+  ***REMOVED*** parts.***REMOVED***"***REMOVED***n    }}***REMOVED***n  ]***REMOVED***n}}***REMOVED***n```***REMOVED***n***REMOVED***nExample 2 Query: ***REMOVED***"Determine the printer for***REMOVED***
+  ***REMOVED*** Part 3DOR100091 and count parts printed on that machine***REMOVED***"***REMOVED***nExample 2 Output:***REMOVED***n***REMOVED***
+  ```json***REMOVED***n{{***REMOVED***n  ***REMOVED***"complexity***REMOVED***": ***REMOVED***"medium***REMOVED***",***REMOVED***n  ***REMOVED***"plan***REMOVED***": [***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***"***REMOVED***
+  : 1,***REMOVED***n      ***REMOVED***"tool***REMOVED***": ***REMOVED***"relationship_tool***REMOVED***",***REMOVED***n      ***REMOVED***"input***REMOVED***": ***REMOVED***"3DOR100091***REMOVED***",***REMOVED***n***REMOVED***
+  ***REMOVED***      ***REMOVED***"output_key***REMOVED***": ***REMOVED***"step_1_printer_info***REMOVED***",***REMOVED***n      ***REMOVED***"reason***REMOVED***": ***REMOVED***"Find the parent***REMOVED***
+  ***REMOVED*** printer associated with the given part ID.***REMOVED***"***REMOVED***n    }},***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***"***REMOVED***
+  : 2,***REMOVED***n      ***REMOVED***"tool***REMOVED***": ***REMOVED***"relationship_tool***REMOVED***",***REMOVED***n      ***REMOVED***"input***REMOVED***": ***REMOVED***"{{step_1_printer_info['parent']}}***REMOVED***"***REMOVED***
+  ,***REMOVED***n      ***REMOVED***"output_key***REMOVED***": ***REMOVED***"step_2_all_parts_on_printer***REMOVED***",***REMOVED***n      ***REMOVED***"reason***REMOVED***": ***REMOVED***"***REMOVED***
+  Use the found printer ID to query for all other parts associated with it to get***REMOVED***
+  ***REMOVED*** a total count.***REMOVED***"***REMOVED***n    }}***REMOVED***n  ]***REMOVED***n}}***REMOVED***n```***REMOVED***n***REMOVED***nExample 3 Query: ***REMOVED***"For Order ORBOX0017,***REMOVED***
+  ***REMOVED*** verify ARC document date matches warehouse arrival***REMOVED***"***REMOVED***nExample 3 Output:***REMOVED***n```json***REMOVED***n***REMOVED***
+  {{***REMOVED***n  ***REMOVED***"complexity***REMOVED***": ***REMOVED***"hard***REMOVED***",***REMOVED***n  ***REMOVED***"plan***REMOVED***": [***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***": 1,***REMOVED***n   ***REMOVED***
+  ***REMOVED***   ***REMOVED***"tool***REMOVED***": ***REMOVED***"document_parser_tool***REMOVED***",***REMOVED***n      ***REMOVED***"input***REMOVED***": ***REMOVED***"ORBOX0017***REMOVED***",***REMOVED***n     ***REMOVED***
+  ***REMOVED*** ***REMOVED***"output_key***REMOVED***": ***REMOVED***"step_1_arc_date***REMOVED***",***REMOVED***n      ***REMOVED***"reason***REMOVED***": ***REMOVED***"Parse the ARC document***REMOVED***
+  ***REMOVED*** to get the certificate completion date.***REMOVED***"***REMOVED***n    }},***REMOVED***n    {{***REMOVED***n      ***REMOVED***"step***REMOVED***": 2,***REMOVED***n***REMOVED***
+  ***REMOVED***      ***REMOVED***"tool***REMOVED***": ***REMOVED***"location_query_tool***REMOVED***",***REMOVED***n      ***REMOVED***"input***REMOVED***": ***REMOVED***"ORBOX0017***REMOVED***",***REMOVED***n   ***REMOVED***
+  ***REMOVED***   ***REMOVED***"output_key***REMOVED***": ***REMOVED***"step_2_warehouse_arrival***REMOVED***",***REMOVED***n      ***REMOVED***"reason***REMOVED***": ***REMOVED***"Find the***REMOVED***
+  ***REMOVED*** arrival date of the order at the Parts Warehouse.***REMOVED***"***REMOVED***n    }}***REMOVED***n  ]***REMOVED***n}}***REMOVED***n```***REMOVED***n---***REMOVED***n***REMOVED***
+  ***REMOVED***nNow, generate the JSON plan for the following user query. Remember, ONLY output***REMOVED***
+  ***REMOVED*** the JSON object."
+model_selection:
+  fallback_order:
+  - o3-mini-2025-01-31
+  - claude-3-5-haiku-latest
+  - deepseek-chat
+  primary_models:
+  - o4-mini-2025-04-16
+  - claude-sonnet-4-20250514
+  - deepseek-reasoner
+  selection_criteria: intelligence_price_ratio
+monitoring:
+  log_alternative_attempts: true
+  track_confidence_scores: true
+  track_execution_time: true
+  track_token_usage: true
+  track_tool_success_rates: true
+output:
+  generate_visualizations: true
+  logging_level: INFO
+  results_directory: experiments/results
+  save_intermediate_results: true
+performance_thresholds:
+  max_cost_per_task: 8.0
+  max_response_time: 120
+rate_limits:
+  anthropic:
+    requests_per_minute: 400
+    tokens_per_minute: 100000
+  deepseek:
+    requests_per_minute: 600
+    tokens_per_minute: 300000
+  openai:
+    requests_per_minute: 500
+    tokens_per_minute: 200000
+retry_config:
+  backoff_factor: 2
+  max_retries: 3
+  timeout_seconds: 60
+specialist_agents:
+  data_retrieval_agent:
+    force_fuzzy_on_failure: true
+    fuzzy_search_enabled: true
+    name: DataRetrievalSpecialist
+    role: Multi-source Manufacturing Data Query
+    search_threshold: 0.75
+    tools:
+    - location_query
+    - machine_log
+    - relationship
+    - worker_data
+  reconciliation_agent:
+    alternative_path_discovery: true
+    missing_data_handling: true
+    name: DataReconciliationSpecialist
+    role: Cross-system Validation and Consistency
+    tools:
+    - relationship
+    - barcode_validator
+    - document_parser
+  synthesis_agent:
+    include_confidence: true
+    include_data_quality_assessment: true
+    name: ReportSynthesisSpecialist
+    output_format: structured_manufacturing_report
+    role: Manufacturing Report Generation
+task_complexity:
+  easy:
+    data_sources:
+    - documents
+    - relationship_data
+    description: Find all gears for Packing List {ENTITY_ID}
+    expected_time_human: 180
+    expected_time_llm: 30
+    max_steps: 2
+    name: Document Lookup and Traversal
+  hard:
+    data_sources:
+    - documents
+    - location_data
+    - relationship_data
+    description: For Order {ENTITY_ID}, verify ARC document date matches warehouse
+      arrival
+    expected_time_human: 900
+    expected_time_llm: 120
+    max_steps: 6
+    name: Document Cross-Reference
+  medium:
+    data_sources:
+    - relationship_data
+    - machine_log
+    - location_data
+    description: Determine the printer for Part {ENTITY_ID} and count parts printed
+      on that machine
+    expected_time_human: 420
+    expected_time_llm: 60
+    max_steps: 4
+    name: Cross-System Validation
+tools:
+  barcode_validator_tool:
+    format_patterns:
+      gear: 3DOR***REMOVED***d{5,6}
+      material: '[A-Z]{3,4}***REMOVED***d{4}'
+      order: OR[A-Z0-9]+
+      printer: Printer_***REMOVED***d+
+      worker_rfid: ***REMOVED***d{10}
+  document_parser_tool:
+    certificate_types:
+    - faa_8130_3
+    date_extraction: true
+    supported_formats:
+    - pdf
+  location_query_tool:
+    fuzzy_matching: true
+    max_location_results: 50
+    search_algorithms:
+    - exact
+    - levenshtein
+    - soundex
+  machine_log_tool:
+    duration_validation: true
+    printer_correlation: true
+    time_range_extension: true
+  relationship_tool:
+    alternative_path_limit: 3
+    bidirectional_search: true
+    max_depth: 5
+  worker_data_tool:
+    activity_correlation: true
+    rfid_validation: true
+    temporal_matching: true
+workflow:
+  alternative_flow:
+  - alternative_tool_selection
+  - sequential_execution
+  - partial_result_compilation
+  - confidence_assessment
+  failure_handling:
+  - error_classification
+  - data_quality_assessment
+  - partial_report_generation
+  standard_flow:
+  - query_decomposition
+  - tool_selection
+  - parallel_execution
+  - result_validation
+  - synthesis
