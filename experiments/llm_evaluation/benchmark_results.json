@@ -1,0 +1,26 @@
+{
+  "deepseek-chat": {
+    "model_name": "deepseek-chat",
+    "overall_score": 0.825304074074074,
+    "rank": 1,
+    "complexity_scores": {
+      "easy": 0.8333333333333334,
+      "medium": 1.0,
+      "hard": 1.0
+    },
+    "quality_scores": {
+      "Q0": 1.0,
+      "Q1": 1.0,
+      "Q2": 0.7333333333333333,
+      "Q3": 0.9333333333333333
+    },
+    "metrics": {
+      "accuracy": 0.9444444444444444,
+      "avg_completion_time": 36.742111111111114,
+      "avg_cost": 0.0,
+      "avg_confidence": 0.7999999999999998,
+      "error_detection_rate": 1.0,
+      "token_efficiency": 0.3172079727425055
+    }
+  }
+}

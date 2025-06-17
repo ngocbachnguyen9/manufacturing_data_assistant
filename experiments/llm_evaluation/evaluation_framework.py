@@ -234,7 +234,7 @@ class LLMEvaluationFramework:
             
         return benchmark_results
     
-    def export_benchmark_results(self, output_path: str = "experiments/llm_evaluation/benchmark_results.json"):
+    def export_benchmark_results(self, output_path: str = "benchmark_results.json"):
         """Export benchmark results to JSON"""
         benchmark_results = self.create_benchmark_suite()
         
@@ -266,11 +266,11 @@ class LLMEvaluationFramework:
 if __name__ == "__main__":
     # Example usage
     framework = LLMEvaluationFramework()
-    
-    # Generate performance report
-    report = framework.generate_performance_report("experiments/llm_evaluation/performance_report.md")
+
+    # Generate performance report (use relative path from current directory)
+    report = framework.generate_performance_report("performance_report.md")
     print("Performance report generated!")
-    
-    # Export benchmark results
-    benchmark_data = framework.export_benchmark_results()
+
+    # Export benchmark results (use relative path from current directory)
+    benchmark_data = framework.export_benchmark_results("benchmark_results.json")
     print("Benchmark results exported!")
