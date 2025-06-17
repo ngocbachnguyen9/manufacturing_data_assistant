@@ -19,7 +19,10 @@ current_dir = Path(__file__).parent
 src_path = current_dir / "src"
 sys.path.insert(0, str(src_path))
 
-from experiment.llm_evaluation import LLMEvaluationRunner
+# Also add the current directory to path for relative imports
+sys.path.insert(0, str(current_dir))
+
+from src.experiment.llm_evaluation import LLMEvaluationRunner
 
 def load_config():
     """Load the experiment configuration"""
@@ -49,7 +52,7 @@ def get_available_models(config):
     
     # Get models from llm_providers config
     if "llm_providers" in config:
-        for provider, provider_config in config["llm_providers"].items():
+        for provider_config in config["llm_providers"].values():
             if "models" in provider_config:
                 for model_name in provider_config["models"].keys():
                     models.append(model_name)
