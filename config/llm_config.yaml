@@ -12,11 +12,11 @@ llm_providers:
         cost_per_1m_tokens_output: 4.4 # Example value
         recommended: true
       
-      o3-mini-2025-01-31:
-        max_tokens: 200000
+      gpt-4o-mini-2024-07-18:
+        max_tokens: 128000
         temperature: 0.1
-        cost_per_1m_tokens_input: 1.1   # Example value
-        cost_per_1m_tokens_output: 4.4 # Example value
+        cost_per_1m_tokens_input: 0.15   # GPT-4o-mini pricing
+        cost_per_1m_tokens_output: 0.60  # GPT-4o-mini pricing
         recommended: true
 
     
@@ -62,7 +62,7 @@ llm_providers:
 model_selection:
   primary_models: ["o4-mini-2025-04-16", "claude-sonnet-4-20250514","deepseek-reasoner"]
   selection_criteria: "intelligence_price_ratio"
-  fallback_order: ["o3-mini-2025-01-31", "claude-3-5-haiku-latest", "deepseek-chat"]
+  fallback_order: ["gpt-4o-mini-2024-07-18", "claude-3-5-haiku-latest", "deepseek-chat"]
   
 # Performance Thresholds
 performance_thresholds:

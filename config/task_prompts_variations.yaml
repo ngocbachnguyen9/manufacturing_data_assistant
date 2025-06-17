@@ -274,6 +274,100 @@ prompt_variations:
         EXPECTED OUTPUT:
         Deliver a comprehensive report including: Order ID (with extraction confidence), complete gear list (with validation status), detailed data quality assessment, confidence level with justification, and specific recommendations for addressing identified data quality issues.
 
+    medium:
+      base_prompt: |
+        Task: For Part {part_id}, determine which 3D printer was used and count the total number of parts printed on that printer.
+
+        CONTEXT:
+        You need to trace a specific part back to its manufacturing origin and analyze printer utilization. This requires cross-system validation between relationship data and machine logs.
+
+        REQUIRED ANALYSIS:
+        1. Identify the specific part in the system
+        2. Trace the part to its assigned 3D printer through relationship data
+        3. Access machine logs to verify printer assignment
+        4. Count all parts printed on the identified printer
+        5. Validate temporal consistency between systems
+
+        DATA SOURCES AVAILABLE:
+        • Relationship data (worker-printer-part associations)
+        • Machine logs (printer operation records with start/end times)
+        • Location data (part movement tracking)
+        • Worker data (RFID activity logs)
+
+        SUCCESS CRITERIA:
+        • Correctly identify the 3D printer used for the part
+        • Provide accurate count of total parts printed on that printer
+        • Validate printer-part assignment through multiple data sources
+        • Report any discrepancies between systems
+
+        Your analysis supports manufacturing capacity planning and quality control decisions.
+
+      with_data_quality_issues: |
+        Task: For Part {part_id}, determine which 3D printer was used and count the total number of parts printed on that printer.
+
+        DATA QUALITY NOTICE:
+        Manufacturing systems may have data integrity issues affecting your analysis:
+        • Relationship records may be incomplete
+        • Barcode data may contain errors
+        • Machine logs might have timing discrepancies
+
+        Enhanced requirements:
+        1. Complete the printer identification and counting task
+        2. Cross-validate findings across multiple data sources
+        3. Identify specific data quality issues and their impact
+        4. Provide confidence assessment for printer assignment
+        5. Assess reliability of part count given data quality conditions
+
+        Use redundant data sources and alternative reasoning when primary paths fail.
+
+    hard:
+      base_prompt: |
+        Task: For Order {order_id}, verify that the ARC (Authorized Release Certificate) document completion date matches the date the order arrived at the Parts Warehouse.
+
+        CONTEXT:
+        This is a critical compliance verification task for aerospace manufacturing. FAA 8130-3 certificates must align with actual manufacturing completion dates to ensure airworthiness compliance.
+
+        REQUIRED ANALYSIS:
+        1. Locate and parse the ARC document (FAA 8130-3 certificate) for the order
+        2. Extract the certificate completion date from the document
+        3. Trace the order through location data to find Parts Warehouse arrival
+        4. Compare certificate date with actual warehouse arrival date
+        5. Identify any discrepancies and assess compliance implications
+
+        DATA SOURCES AVAILABLE:
+        • Document system (FAA 8130-3 certificates in PDF format)
+        • Location data (barcode tracking through process stations)
+        • Relationship data (order-gear-status/work associations)
+        • Worker data (certification activity tracking)
+
+        SUCCESS CRITERIA:
+        • Successfully extract certificate completion date
+        • Accurately determine Parts Warehouse arrival date
+        • Provide clear verification of date alignment or discrepancy
+        • Assess manufacturing compliance implications
+        • Recommend corrective actions if discrepancies found
+
+        This analysis is critical for maintaining airworthiness certification and regulatory compliance.
+
+      with_data_quality_issues: |
+        Task: For Order {order_id}, verify that the ARC document completion date matches the order's Parts Warehouse arrival date.
+
+        DATA QUALITY NOTICE:
+        Complex compliance verification under degraded data conditions:
+        • Document parsing may encounter formatting issues
+        • Location tracking may have gaps or errors
+        • Relationship data may be incomplete
+        • Date formats may be inconsistent across systems
+
+        Critical requirements:
+        1. Complete the compliance verification task despite data quality issues
+        2. Document all data quality problems encountered
+        3. Assess impact of data issues on compliance confidence
+        4. Provide risk assessment for manufacturing certification
+        5. Recommend data quality improvements for compliance assurance
+
+        This is a high-stakes analysis where data quality issues could affect regulatory compliance. Use all available alternative methods and clearly document confidence levels.
+
 # Response Format Templates for Each Prompt Length
 response_formats:
   short:
@@ -366,3 +460,47 @@ response_formats:
       
       **Alternative Strategies Used:**
       {alternative_strategies}
+
+    medium_response: |
+      ## PRINTER ANALYSIS RESULTS
+      
+      **Part ID:** {part_id}
+      **Assigned Printer:** {printer_id}
+      **Total Parts on Printer:** {part_count}
+      
+      **Analysis Details:**
+      - Data Sources Used: {data_sources}
+      - Cross-validation Results: {validation_results}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+      
+      **Manufacturing Insights:**
+      {manufacturing_insights}
+  
+    hard_response: |
+      ## COMPLIANCE VERIFICATION RESULTS
+      
+      **Order ID:** {order_id}
+      **Certificate Date:** {certificate_date}
+      **Warehouse Arrival Date:** {warehouse_date}
+      **Date Match Status:** {date_match_status}
+      
+      **Detailed Analysis:**
+      - Certificate Document: {certificate_details}
+      - Location Tracking: {location_tracking}
+      - Date Discrepancy: {discrepancy_details}
+      
+      **Compliance Assessment:**
+      - Regulatory Status: {compliance_status}
+      - Risk Level: {risk_assessment}
+      
+      **Data Quality Assessment:**
+      - Issues Detected: {data_quality_issues}
+      - Confidence Level: {confidence_level}
+      
+      **Recommendations:**
+      {compliance_recommendations}
+    
+    

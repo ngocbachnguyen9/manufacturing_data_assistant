@@ -1,0 +1,2223 @@
+task_id,model,complexity,quality_condition,completion_time_sec,is_correct,total_cost_usd,input_tokens,output_tokens,final_confidence,reconciliation_issues,llm_final_report,ground_truth_answer,judge_consensus_score,judge_details,total_judges,agreement_level
+P1_task_1,deepseek-chat,easy,Q2,42.47,True,0.0,3845,789,0.0,"[""Error from step_6_worker_activity: No data found for worker ID ORBOX00115"", ""Error from step_7_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_6_worker_activity: No data found for worker ID ORBOX00115
+ - Error from step_7_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""direct_answer"": ""The gears associated with Packing List PL1115 are identified as: 3DOR100033, 3DOR100034, 3DOR100035, 3DOR100036, 3DOR100037."",
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00115"",
+      ""No logs found for printer associated with the gear IDs"",
+      ""Insufficient data for timeline validation due to missing machine logs""
+    ],
+    ""confidence_score"": 0.0,
+    ""confidence_justification"": ""The confidence score is 0.0 due to significant data quality issues, including missing worker activity data and machine logs, which are critical for validating the gear manufacturing and packing process."",
+    ""recommendations"": [
+      ""Implement stricter data entry and validation protocols to ensure all worker activities are logged."",
+      ""Enhance machine logging systems to capture all printer activities, especially those related to gear production."",
+      ""Establish a secondary validation system for barcode scanning to improve accuracy and reliability."",
+      ""Regularly audit data sources for completeness and accuracy to identify and rectify issues promptly.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100033"",
+    ""3DOR100034"",
+    ""3DOR100035"",
+    ""3DOR100036"",
+    ""3DOR100037""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_2,deepseek-chat,medium,Q0,20.15,True,0.0,2908,311,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100091"": ""Printer_1"",
+    ""count_of_parts_printed_on_printer_1"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""notes"": ""The data indicates that Part 3DOR100091 was printed on Printer_1. However, there is insufficient data for timeline validation due to missing machine logs and location scans. The confidence score for this analysis is 0.8, indicating a relatively high but not absolute certainty in the findings.""
+  }
+}","{
+  ""part_id"": ""3DOR100091"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_3,deepseek-chat,easy,Q0,26.48,True,0.0,3041,474,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Validation Notes"": [
+      ""No machine logs found for the printers associated with the gears."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Data Quality Issues"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""Critical Issue"": false
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_4,deepseek-chat,medium,Q2,20.47,True,0.0,2908,280,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100056"": ""Printer_6"",
+    ""count_of_parts_printed_on_printer_6"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""notes"": ""The count of parts printed on Printer_6 is based on the provided data, which may not be complete due to the identified data quality issues.""
+  }
+}","{
+  ""part_id"": ""3DOR100056"",
+  ""assigned_printer"": ""Printer_6""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_5,deepseek-chat,easy,Q1,45.09,True,0.0,3860,841,0.0,"[""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00121"",
+    ""source_document"": ""PackingList-PL1121.pdf"",
+    ""gear_list"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""data_quality_issues"": [
+      ""No logs found for printer {step_3_gear_list['gear_ids']}"",
+      ""No data found for worker ID {step_3_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs"",
+      ""Barcode validation failed for gear IDs""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to significant data quality issues, including missing machine logs, worker activity data, and failed barcode validation, which prevent comprehensive validation of the gear list."",
+    ""recommendations"": [
+      ""Implement stricter data entry protocols to ensure all machine logs and worker activity data are recorded."",
+      ""Enhance barcode scanning systems to reduce errors and improve validation success rates."",
+      ""Establish a secondary validation process for critical data points to mitigate the impact of primary data source failures."",
+      ""Regularly audit data quality and address identified issues promptly to improve overall data integrity.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068"",
+    ""3DOR100070""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_6,deepseek-chat,hard,Q1,19.04,True,0.0,1706,265,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX0017."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_7,deepseek-chat,hard,Q3,19.18,True,0.0,1706,314,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0015 is '28/10/2024' as per the '13e Date ddmmmyyyy' field, and the warehouse arrival date is '2024-10-28T16:40:15.27457Z'. Both dates match, confirming that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct answer, but additional data like machine logs and relationship data are missing for comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0015"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_8,deepseek-chat,easy,Q0,27.9,True,0.0,3041,499,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX0011"",
+    ""total_gear_count"": 4,
+    ""complete_gear_list"": [
+      ""3DOR100012"",
+      ""3DOR100013"",
+      ""3DOR100015"",
+      ""3DOR100020""
+    ],
+    ""validation_notes"": [
+      ""No machine logs found for the gears listed, which may affect the completeness of gear identification."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""confidence_score"": 0.4,
+    ""data_quality_issues"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""critical_issue"": false,
+    ""missing_data"": ""Machine operation logs for the gears are missing, which are crucial for complete validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1011"",
+  ""gear_count"": 4,
+  ""gear_list"": [
+    ""3DOR100012"",
+    ""3DOR100013"",
+    ""3DOR100015"",
+    ""3DOR100020""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_9,deepseek-chat,medium,Q0,18.86,True,0.0,6224,299,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100098"": ""Printer_8"",
+    ""count_of_parts_printed_on_printer_8"": 12,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""While the printer for Part 3DOR100098 and the count of parts printed on Printer_8 have been identified with a high confidence score, there are noted issues with data quality that may affect the accuracy of timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100098"",
+  ""assigned_printer"": ""Printer_8""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P1_task_10,deepseek-chat,hard,Q0,18.44,True,0.0,1706,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""query"": ""For Order ORBOX00117, verify ARC document date matches warehouse arrival"",
+    ""findings"": {
+      ""arc_document_date"": ""28/10/2024"",
+      ""warehouse_arrival_date"": ""2024-10-28T18:10:10.414461Z"",
+      ""date_match"": ""Yes, the ARC document date matches the warehouse arrival date."",
+      ""data_quality_issues"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""confidence_score"": 0.8,
+      ""critical_issue"": false,
+      ""missing_data"": ""No missing data for the dates comparison, but additional data is missing for comprehensive validation.""
+    }
+  }
+}","{
+  ""product_id"": ""ORBOX00117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_1,deepseek-chat,hard,Q2,19.08,True,0.0,1822,300,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0019 is '28/10/2024' as per the '13e Date ddmmmyyyy' field in the ARC document. The warehouse arrival data shows two entries on '2024-10-28', which matches the ARC document date. Therefore, the ARC document date matches the warehouse arrival date."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data relevant to the query was identified."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_2,deepseek-chat,medium,Q2,23.08,True,0.0,2908,340,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100017"": ""Printer_7"",
+    ""count_of_parts_printed_on_printer_7"": 5,
+    ""parts_list"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high but not absolute confidence in the data. There are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_3,deepseek-chat,hard,Q0,24.06,True,0.0,1706,274,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0019 matches the warehouse arrival date. Both dates are recorded as '28/10/2024'."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data (machine logs, relationship data) is missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_4,deepseek-chat,medium,Q0,19.11,True,0.0,2908,296,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100041"": ""Printer_1"",
+    ""count_of_parts_printed_on_printer"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""notes"": ""The count of parts printed on Printer_1 is based on the provided data, which only includes part 3DOR100041. There may be additional parts not listed due to missing data.""
+  }
+}","{
+  ""part_id"": ""3DOR100041"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_5,deepseek-chat,easy,Q0,33.83,True,0.0,3026,459,0.4,"[""Error from step_4_machine_logs: No logs found for printer ORBOX00116"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer ORBOX00116
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX00116"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100010"",
+      ""3DOR10002"",
+      ""3DOR10006"",
+      ""3DOR10007"",
+      ""3DOR10009""
+    ],
+    ""Validation Notes"": [
+      ""No logs found for printer ORBOX00116"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Critical Issue"": false,
+    ""Data Quality Problems"": [
+      ""Error from step_4_machine_logs: No logs found for printer ORBOX00116"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1116"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100010"",
+    ""3DOR10002"",
+    ""3DOR10006"",
+    ""3DOR10007"",
+    ""3DOR10009""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_6,deepseek-chat,easy,Q3,40.71,True,0.0,3600,779,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00122"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}"", ""Insufficient data for timeline validation. Missing: machine logs, location scans""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00122
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}
+ - Insufficient data for timeline validation. Missing: machine logs, location scans
+
+{
+  ""summary"": {
+    ""direct_answer"": {
+      ""order_id"": ""ORBOX00122"",
+      ""gears"": [
+        ""3DOR100071"",
+        ""3DOR100073"",
+        ""3DOR100076"",
+        ""3DOR100079"",
+        ""3DOR100080""
+      ],
+      ""source_document"": ""PackingList-PL1122.pdf"",
+      ""validation_status"": ""Partial validation due to missing data""
+    },
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00122"",
+      ""No logs found for printer associated with the gear list"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans"",
+      ""Barcode validation failed due to unknown format""
+    ],
+    ""confidence_level"": {
+      ""score"": 0.0,
+      ""justification"": ""The confidence score is 0 due to significant data quality issues, including missing worker activity data, missing machine logs, and failed barcode validation.""
+    },
+    ""recommendations"": [
+      ""Implement more robust data capture mechanisms for worker activities and machine logs to ensure comprehensive data availability."",
+      ""Standardize barcode formats and implement validation checks to prevent scanning errors."",
+      ""Enhance system uptime monitoring to minimize missing relationship records due to system downtime."",
+      ""Establish secondary validation methods for critical data points to improve data integrity.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_7,deepseek-chat,medium,Q0,17.08,True,0.0,2908,265,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100091"": ""Printer_1"",
+    ""count_of_parts_printed_on_printer"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct query, but additional data could improve validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100091"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_8,deepseek-chat,hard,Q0,16.99,True,0.0,1706,269,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00114."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of dates, but additional data (machine logs, relationship data) is missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_9,deepseek-chat,medium,Q1,18.89,True,0.0,3149,310,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100012"": ""Printer_2"",
+    ""parts_printed_on_printer"": [
+      ""3DOR100012"",
+      ""3DOR100013"",
+      ""3DOR100015"",
+      ""3DOR100020""
+    ],
+    ""count_of_parts_printed_on_printer"": 4,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data reported for the query.""
+  }
+}","{
+  ""part_id"": ""3DOR100012"",
+  ""assigned_printer"": ""Printer_2""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P2_task_10,deepseek-chat,easy,Q1,41.54,True,0.0,3833,821,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00121"", ""Error from step_6_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00121
+ - Error from step_6_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""direct_answer"": {
+      ""order_id"": ""ORBOX00121"",
+      ""source_document"": ""PackingList-PL1121.pdf"",
+      ""gear_list"": [
+        ""3DOR100061"",
+        ""3DOR100062"",
+        ""3DOR100065"",
+        ""3DOR100068"",
+        ""3DOR100070""
+      ],
+      ""validation_status"": ""Validated through Tracking_comp measurement""
+    },
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00121"",
+      ""No logs found for printer associated with gear IDs"",
+      ""Insufficient data for timeline validation due to missing machine logs""
+    ],
+    ""confidence_score"": 0.0,
+    ""confidence_justification"": ""The confidence score is 0.0 due to significant data quality issues, including missing worker activity data and machine logs, which are critical for comprehensive validation."",
+    ""recommendations"": [
+      ""Implement more robust data capture mechanisms for worker activities to ensure all relevant data is recorded."",
+      ""Enhance machine logging systems to capture detailed logs for all printers, including those associated with gear production."",
+      ""Establish a secondary validation protocol for timeline data to compensate for missing machine logs."",
+      ""Regularly audit data quality and integrity to identify and rectify issues promptly.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068"",
+    ""3DOR100070""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_1,deepseek-chat,hard,Q1,18.66,True,0.0,1706,276,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00121."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data (machine logs, relationship data) is missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_2,deepseek-chat,medium,Q3,21.55,True,0.0,4133,300,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100026"": ""Printer_6"",
+    ""parts_printed_on_printer_6"": [
+      ""3DOR100026""
+    ],
+    ""count_of_parts_printed_on_printer_6"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data_noted"": ""No missing data noted for the direct query, but timeline validation data is insufficient.""
+  }
+}","{
+  ""part_id"": ""3DOR100026"",
+  ""assigned_printer"": ""Printer_6""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_3,deepseek-chat,medium,Q2,19.75,True,0.0,5012,335,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part"": ""Printer_1"",
+    ""parts_count_on_printer"": 5,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""notes"": ""The part '3DOR100061' was matched to '3DOR10061' with a fuzzy match confidence of 0.947. The printer identified for this part is 'Printer_1'. A total of 5 parts were found to be printed on 'Printer_1'. However, there are data quality issues noted, specifically missing machine logs and location scans, which may affect the accuracy of the timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100061"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_4,deepseek-chat,easy,Q0,26.3,True,0.0,3026,470,0.4,"[""Error from step_4_machine_logs: No logs found for printer ORBOX00117"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer ORBOX00117
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX00117"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100051"",
+      ""3DOR100053"",
+      ""3DOR100057"",
+      ""3DOR100058"",
+      ""3DOR100060""
+    ],
+    ""Validation Notes"": [
+      ""No machine logs found for printer ORBOX00117, which may affect the completeness of gear identification."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Critical Issue"": false,
+    ""Data Quality Problems"": [
+      ""Error from step_4_machine_logs: No logs found for printer ORBOX00117"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1117"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100051"",
+    ""3DOR100053"",
+    ""3DOR100057"",
+    ""3DOR100058"",
+    ""3DOR100060""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_5,deepseek-chat,hard,Q2,20.65,True,0.0,1822,356,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0019 is '28/10/2024' as per the '13e Date ddmmmyyyy' and '14e Date' fields in the validated_data. The warehouse arrival dates are '2024-10-28T17:24:51.187426Z' and '2024-10-28T21:32:17.382962Z'. Both dates match the ARC document date, confirming that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival dates. However, additional data like machine logs and relationship data are missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_6,deepseek-chat,hard,Q0,19.8,True,0.0,1706,297,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0019 is '28/10/2024' as per the '13e Date ddmmmyyyy' field in the ARC document. The warehouse arrival date is also '2024-10-28' as per the '_time' field in the warehouse arrival data. Therefore, the dates match."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""Machine logs and relationship data are missing, which could provide additional validation for the timeline.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_7,deepseek-chat,easy,Q1,40.96,True,0.0,3842,854,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00121"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00121
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00121"",
+    ""source_document"": ""PackingList-PL1121.pdf"",
+    ""gear_list"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00121"",
+      ""No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs"",
+      ""Barcode validation failed for gear IDs""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to multiple data quality issues including missing worker activity data, missing machine logs, and failed barcode validation. These issues significantly impact the ability to fully validate the gear list and the overall order fulfillment process."",
+    ""recommendations"": [
+      ""Implement more robust data capture mechanisms for worker activities to ensure all actions are logged."",
+      ""Enhance machine logging systems to ensure all printer activities are recorded, especially for gear production."",
+      ""Improve barcode scanning and validation processes to reduce errors and ensure accurate tracking of gear IDs."",
+      ""Establish a secondary validation system for critical data points to cross-verify information when primary sources fail.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068"",
+    ""3DOR100070""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_8,deepseek-chat,hard,Q0,20.05,True,0.0,1706,319,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX00121 is '28/10/2024' as per '13e Date ddmmmyyyy' and '14e Date' fields, and the warehouse arrival date is '2024-10-28T19:26:44.051174Z'. Both dates match, confirming that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct answer, but additional data like machine logs and relationship data are missing for comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",0.6666666666666666,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,weighted_majority
+P3_task_9,deepseek-chat,medium,Q0,17.48,True,0.0,6224,268,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100098"": ""Printer_8"",
+    ""count_of_parts_printed_on_printer_8"": 12,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the query provided.""
+  }
+}","{
+  ""part_id"": ""3DOR100098"",
+  ""assigned_printer"": ""Printer_8""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P3_task_10,deepseek-chat,easy,Q0,28.65,True,0.0,3041,507,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX0012"",
+    ""total_gear_count"": 5,
+    ""complete_gear_list"": [
+      ""3DOR100041"",
+      ""3DOR100043"",
+      ""3DOR100045"",
+      ""3DOR100047"",
+      ""3DOR100050""
+    ],
+    ""validation_notes"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_score"": 0.4,
+    ""data_quality_issues"": [
+      ""No machine logs found for the gears listed, which may affect the completeness of the gear identification."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""critical_issue"": false,
+    ""missing_data"": ""Machine operation logs for the gears are missing, which are crucial for complete validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047"",
+    ""3DOR100050""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_1,deepseek-chat,medium,Q0,19.42,True,0.0,2911,309,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100095"": ""Printer_5"",
+    ""parts_printed_on_printer_5"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""notes"": ""The data indicates that Part 3DOR100095 was printed on Printer_5. However, only one part (3DOR100095 itself) is confirmed to have been printed on this printer based on the provided data. There are noted data quality issues that may affect the completeness of this analysis.""
+  }
+}","{
+  ""part_id"": ""3DOR100095"",
+  ""assigned_printer"": ""Printer_5""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_2,deepseek-chat,hard,Q1,17.91,True,0.0,1706,263,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0017 matches the warehouse arrival date. Both dates are recorded as 28/10/2024."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""Machine logs and relationship data are missing, which could provide further validation for the timeline."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_3,deepseek-chat,easy,Q2,39.02,False,0.0,2667,784,0.0,"[""Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}"", ""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_2_validated_order_id['validated_id']}"", ""Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_2_validated_order_id['validated_id']}
+ - Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
+  ""summary"": {
+    ""direct_answer"": ""No gears were found for Packing List PL1019 due to no relationships found for the order ID ORBOX0019."",
+    ""data_quality_issues"": [
+      ""No relationships found for order ID ORBOX0019"",
+      ""No logs found for printer associated with the gear list"",
+      ""No data found for worker ID ORBOX0019"",
+      ""No location data found for order ID ORBOX0019"",
+      ""Insufficient data for timeline validation including missing machine logs, location scans, and relationship data""
+    ],
+    ""confidence_score"": 0.0,
+    ""confidence_justification"": ""The confidence score is 0.0 due to the inability to validate any gear relationships or associated data for the order ID ORBOX0019, compounded by multiple data quality issues."",
+    ""recommendations"": [
+      ""Implement more robust data capture and validation processes to ensure all necessary relationships and logs are recorded."",
+      ""Enhance error handling and data recovery procedures to mitigate the impact of system downtimes or data corruption."",
+      ""Establish secondary validation methods for critical data points to ensure data integrity even when primary sources fail."",
+      ""Improve documentation and tracking of worker activities and machine logs to support comprehensive order fulfillment analysis.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous
+P4_task_4,deepseek-chat,easy,Q0,29.65,True,0.0,3026,522,0.4,"[""Error from step_4_machine_logs: No logs found for printer ORBOX00117"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer ORBOX00117
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00117"",
+    ""source_document"": ""PackingList-PL1117.pdf"",
+    ""total_gear_count"": 5,
+    ""complete_gear_list"": [
+      ""3DOR100051"",
+      ""3DOR100053"",
+      ""3DOR100057"",
+      ""3DOR100058"",
+      ""3DOR100060""
+    ],
+    ""validation_notes"": [
+      ""Error from step_4_machine_logs: No logs found for printer ORBOX00117"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_score"": 0.4,
+    ""data_quality_issues"": [
+      ""No machine logs found for the order, which may affect validation completeness."",
+      ""Missing data for timeline validation.""
+    ],
+    ""critical_issue"": false,
+    ""additional_comments"": ""Despite the missing machine logs, the gear list is considered complete based on the available relationship tracking data. However, the confidence score is low due to the identified data quality issues.""
+  }
+}","{
+  ""packing_list_id"": ""PL1117"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100051"",
+    ""3DOR100053"",
+    ""3DOR100057"",
+    ""3DOR100058"",
+    ""3DOR100060""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_5,deepseek-chat,easy,Q3,41.79,True,0.0,3723,822,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00120"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00120
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00120"",
+    ""source_document"": ""PackingList-PL1120.pdf"",
+    ""gear_list"": [
+      ""3DOR100063"",
+      ""3DOR100064"",
+      ""3DOR100066"",
+      ""3DOR100067"",
+      ""3DOR100069""
+    ],
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00120"",
+      ""No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs"",
+      ""Barcode validation failed with format unknown and is_valid false""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to multiple data quality issues including missing worker activity data, missing machine logs, and failed barcode validation. These issues significantly impact the reliability of the findings."",
+    ""recommendations"": [
+      ""Implement a more robust data capture system for worker activities to ensure all actions are logged."",
+      ""Ensure machine logs are consistently recorded and stored for future reference."",
+      ""Improve barcode scanning processes to reduce errors and validate barcode formats."",
+      ""Cross-validate data across multiple sources to enhance data integrity and reliability.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1120"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100063"",
+    ""3DOR100064"",
+    ""3DOR100066"",
+    ""3DOR100067"",
+    ""3DOR100069""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_6,deepseek-chat,hard,Q0,16.91,True,0.0,1706,266,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00119."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""Machine logs and relationship data are missing, which could provide further validation for the timeline."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX00119"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_7,deepseek-chat,medium,Q3,17.93,True,0.0,2788,286,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100023"": ""Printer_3"",
+    ""count_of_parts_printed_on_printer_3"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The data is partially validated with a confidence score of 0.8. There are issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100023"",
+  ""assigned_printer"": ""Printer_3""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_8,deepseek-chat,medium,Q1,18.74,True,0.0,2910,284,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part"": ""Printer_7"",
+    ""parts_count_on_printer"": 5,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""notes"": ""The count of parts printed on Printer_7 includes all parts associated with ORBOX00120, as the direct relationship between Printer_7 and other parts besides 3DOR100067 is not explicitly provided in the data.""
+  }
+}","{
+  ""part_id"": ""3DOR100067"",
+  ""assigned_printer"": ""Printer_7""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_9,deepseek-chat,hard,Q0,20.67,True,0.0,1706,268,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX0018."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the specific query regarding the match between ARC document date and warehouse arrival date.""
+  }
+}","{
+  ""product_id"": ""ORBOX0018"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P4_task_10,deepseek-chat,easy,Q0,27.74,True,0.0,3041,512,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX0013"",
+    ""Source Document"": ""PackingList-PL1013.pdf"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""Validation Notes"": [
+      ""No logs found for printers associated with the gear IDs."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Data Quality Issues"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""Critical Issue"": false,
+    ""Missing Data"": ""Machine operation logs for the gears are missing, which affects the validation of the manufacturing timeline.""
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_1,deepseek-chat,medium,Q0,17.49,True,0.0,2908,294,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100020"": ""Printer_10"",
+    ""count_of_parts_printed_on_printer_10"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high level of confidence in the data provided. However, there are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100020"",
+  ""assigned_printer"": ""Printer_10""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_2,deepseek-chat,easy,Q2,45.09,False,0.0,5152,904,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX0019"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX0019
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""direct_answer"": {
+      ""order_id"": ""ORBOX0019"",
+      ""source_document"": ""PackingList-PL1019.pdf"",
+      ""gear_list"": [
+        ""3DOR1000100"",
+        ""3OR100042"",
+        ""3DR100044"",
+        ""3DOR10046"",
+        ""3DOR10048"",
+        ""3DOR10004"",
+        ""3DOR100092"",
+        ""3DOR100093"",
+        ""3DOR100095"",
+        ""3DOR100096""
+      ],
+      ""validation_status"": ""Partial validation due to data quality issues""
+    },
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX0019"",
+      ""No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs"",
+      ""Barcode validation failed for gear IDs""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to significant data quality issues including missing worker activity data, missing machine logs, and failed barcode validation. These issues severely impact the ability to fully validate the gear list and order fulfillment process."",
+    ""recommendations"": [
+      ""Implement more robust data capture and validation processes for worker activity and machine logs."",
+      ""Enhance barcode scanning and validation mechanisms to reduce errors."",
+      ""Establish a secondary validation system for critical data points to ensure data integrity even during system downtimes."",
+      ""Regularly audit and clean data to identify and rectify inconsistencies or missing records.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous
+P5_task_3,deepseek-chat,medium,Q1,24.32,True,0.0,2908,343,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100058"": ""Printer_8"",
+    ""parts_count_on_printer_8"": 5,
+    ""parts_list_on_printer_8"": [
+      ""3DOR100051"",
+      ""3DOR100053"",
+      ""3DOR100057"",
+      ""3DOR100058"",
+      ""3DOR100060""
+    ],
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high level of confidence in the data provided. However, there are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100058"",
+  ""assigned_printer"": ""Printer_8""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_4,deepseek-chat,easy,Q3,38.3,True,0.0,3728,752,0.0,"[""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00118"",
+    ""source_document"": ""PackingList-PL1118.pdf"",
+    ""gear_list"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""data_quality_issues"": [
+      ""No logs found for printer {step_3_gear_list['gear_ids']}"",
+      ""No data found for worker ID {step_3_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_level"": 0.0,
+    ""recommendations"": [
+      ""Implement a more robust logging system for printers to ensure all activities are recorded."",
+      ""Ensure worker activity data is consistently captured and linked to specific tasks or items."",
+      ""Enhance data validation processes to identify and rectify missing or corrupted data promptly.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100056"",
+    ""3DOR100059""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_5,deepseek-chat,medium,Q0,18.78,True,0.0,2908,302,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100061"": ""Printer_1"",
+    ""count_of_parts_printed_on_printer_1"": 5,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""notes"": ""The data indicates that Part 3DOR100061 was printed on Printer_1. A total of 5 parts were identified as being printed on Printer_1. However, there are noted data quality issues that may affect the accuracy of this information.""
+  }
+}","{
+  ""part_id"": ""3DOR100061"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_6,deepseek-chat,easy,Q3,43.42,True,0.0,3718,902,0.0,"[""Error from step_5_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID ORBOX00119"", ""Insufficient data for timeline validation. Missing: machine logs, location scans""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID ORBOX00119
+ - Insufficient data for timeline validation. Missing: machine logs, location scans
+
+{
+  ""summary"": {
+    ""order_id"": {
+      ""value"": ""ORBOX00119"",
+      ""source"": ""PackingList-PL1119.pdf"",
+      ""confidence"": ""High, directly extracted from the source document""
+    },
+    ""gear_list"": [
+      {
+        ""gear_id"": ""3DOR100042"",
+        ""validation_status"": ""Validated via Tracking_comp measurement""
+      },
+      {
+        ""gear_id"": ""3DOR100044"",
+        ""validation_status"": ""Validated via Tracking_comp measurement""
+      },
+      {
+        ""gear_id"": ""3DOR100046"",
+        ""validation_status"": ""Validated via Tracking_comp measurement""
+      },
+      {
+        ""gear_id"": ""3DOR100048"",
+        ""validation_status"": ""Validated via Tracking_comp measurement""
+      },
+      {
+        ""gear_id"": ""3DOR100049"",
+        ""validation_status"": ""Validated via Tracking_comp measurement""
+      }
+    ],
+    ""data_quality_issues"": [
+      ""No logs found for printers associated with the gear IDs"",
+      ""No data found for worker ID ORBOX00119"",
+      ""Insufficient data for timeline validation due to missing machine logs and location scans"",
+      ""Barcode validation failed for the gear list""
+    ],
+    ""confidence_level"": {
+      ""value"": 0.0,
+      ""justification"": ""The confidence score is 0.0 due to significant data quality issues, including missing machine logs, worker activity data, and failed barcode validation, which severely impact the reliability of the findings.""
+    },
+    ""recommendations"": [
+      ""Implement stricter data entry and validation protocols to prevent missing or incorrect data"",
+      ""Enhance logging mechanisms for printers and worker activities to ensure comprehensive data capture"",
+      ""Improve barcode scanning processes to reduce errors and ensure accurate data collection"",
+      ""Establish a secondary validation system to cross-verify data from primary sources when discrepancies or missing data are detected""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1119"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100042"",
+    ""3DOR100044"",
+    ""3DOR100046"",
+    ""3DOR100048"",
+    ""3DOR100049""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_7,deepseek-chat,hard,Q1,17.04,True,0.0,1706,265,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX0017."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date.""
+  }
+}","{
+  ""product_id"": ""ORBOX0017"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_8,deepseek-chat,medium,Q0,18.73,True,0.0,2908,291,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100068"": ""Printer_8"",
+    ""count_of_parts_printed_on_printer_8"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high but not absolute confidence in the data. There are issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100068"",
+  ""assigned_printer"": ""Printer_8""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_9,deepseek-chat,hard,Q0,16.42,True,0.0,1706,258,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00117."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""Machine logs and relationship data are missing, which are required for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P5_task_10,deepseek-chat,hard,Q0,22.68,True,0.0,1706,313,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0019 is '28/10/2024' as per the '13e Date ddmmmyyyy' field, and the warehouse arrival date is also '2024-10-28' as per the '_time' field in 'step_2_warehouse_arrival'. Therefore, the dates match."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the specific query about date matching. However, there is insufficient data for a comprehensive timeline validation due to missing machine logs and relationship data.""
+  }
+}","{
+  ""product_id"": ""ORBOX0019"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_1,deepseek-chat,medium,Q2,25.86,True,0.0,2908,325,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100017"": ""Printer_7"",
+    ""parts_printed_on_printer"": [
+      ""3DOR100011"",
+      ""3DOR100014"",
+      ""3DOR100017"",
+      ""3DOR100018"",
+      ""3DOR100019""
+    ],
+    ""count_of_parts_printed_on_printer"": 5,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""Data quality is impacted by missing machine logs and location scans, which may affect the accuracy of the timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100017"",
+  ""assigned_printer"": ""Printer_7""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_2,deepseek-chat,medium,Q3,19.07,True,0.0,2673,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100093"": ""Printer_3"",
+    ""parts_printed_on_printer"": [
+      ""3DOR1000100"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""count_of_parts_printed"": 5,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""Data quality is impacted by missing machine logs and location scans, affecting timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100093"",
+  ""assigned_printer"": ""Printer_3""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_3,deepseek-chat,medium,Q1,17.12,True,0.0,2908,267,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100064"": ""Printer_4"",
+    ""count_of_parts_printed_on_printer_4"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct query, but additional data could improve validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100064"",
+  ""assigned_printer"": ""Printer_4""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_4,deepseek-chat,hard,Q0,22.24,True,0.0,1706,364,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX00114 is '28/10/2024' as per the '13e Date ddmmmyyyy' and '14e Date' fields in the 'step_1_arc_date' section. The warehouse arrival date is also '2024-10-28T20:08:36.371232Z' as per the '_time' field in the 'step_2_warehouse_arrival' section. Both dates match, confirming that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data such as machine logs and relationship data are missing for a more comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_5,deepseek-chat,hard,Q1,18.99,True,0.0,1706,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX00121 is '28/10/2024' as per the '13e Date ddmmmyyyy' field, and the warehouse arrival date is also '2024-10-28T19:26:44.051174Z'. Both dates match, indicating that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct answer, but additional data like machine logs and relationship data are missing for comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_6,deepseek-chat,hard,Q0,16.06,True,0.0,1706,258,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00117."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""Machine logs and relationship data are missing, which are required for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00117"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_7,deepseek-chat,easy,Q3,40.07,False,0.0,2659,829,0.0,"[""Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['order_id']}"", ""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['order_id']}'"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['order_id']}
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['order_id']}'
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
+  ""summary"": {
+    ""order_id"": {
+      ""id"": ""ORBOX0013"",
+      ""source_document"": ""PackingList-PL1013.pdf"",
+      ""validation_status"": ""Valid"",
+      ""confidence"": 1.0
+    },
+    ""gear_list"": {
+      ""status"": ""No relationships found for ID ORBOX0013"",
+      ""validation_status"": ""Invalid"",
+      ""confidence"": 0.0
+    },
+    ""data_quality_issues"": [
+      ""No relationships found for ID ORBOX0013"",
+      ""No logs found for printer {step_3_gear_list['gear_ids']}"",
+      ""No data found for worker ID {step_3_gear_list['gear_ids']}"",
+      ""No location data found for ID 'ORBOX0013'"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
+    ],
+    ""overall_confidence"": 0.0,
+    ""recommendations"": [
+      ""Implement more robust data capture and validation processes for gear-to-order relationships."",
+      ""Ensure machine logs are consistently recorded and accessible for all printing jobs."",
+      ""Improve worker activity tracking to include all relevant job IDs and activities."",
+      ""Enhance location tracking systems to capture all necessary data for order fulfillment validation."",
+      ""Establish backup data sources and validation methods to compensate for primary data source failures.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous
+P6_task_8,deepseek-chat,easy,Q0,23.37,True,0.0,3026,470,0.4,"[""Error from step_4_machine_logs: No logs found for printer ORBOX00122"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer ORBOX00122
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX00122"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""Validation Notes"": [
+      ""No machine logs found for printer ORBOX00122, which may affect the completeness of gear identification."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Critical Issue"": false,
+    ""Data Quality Problems"": [
+      ""Error from step_4_machine_logs: No logs found for printer ORBOX00122"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_9,deepseek-chat,easy,Q0,25.5,True,0.0,3041,524,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX0017"",
+    ""source_document"": ""PackingList-PL1017.pdf"",
+    ""total_gear_count"": 5,
+    ""complete_gear_list"": [
+      ""3DOR100021"",
+      ""3DOR100022"",
+      ""3DOR100023"",
+      ""3DOR100024"",
+      ""3DOR100030""
+    ],
+    ""validation_notes"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_score"": 0.4,
+    ""data_quality_issues"": [
+      ""No machine logs found for the gears listed, which affects the ability to verify the manufacturing timeline."",
+      ""Missing machine logs data could indicate incomplete tracking of gear production.""
+    ],
+    ""critical_issue"": false,
+    ""missing_data"": ""Machine operation logs for the gears listed are missing, which is crucial for complete validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1017"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100021"",
+    ""3DOR100022"",
+    ""3DOR100023"",
+    ""3DOR100024"",
+    ""3DOR100030""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P6_task_10,deepseek-chat,hard,Q0,16.47,True,0.0,1706,265,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00121."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_1,deepseek-chat,easy,Q0,22.38,True,0.0,3041,473,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00122"",
+    ""source_document"": ""PackingList-PL1122.pdf"",
+    ""total_gear_count"": 5,
+    ""complete_gear_list"": [
+      ""3DOR100071"",
+      ""3DOR100073"",
+      ""3DOR100076"",
+      ""3DOR100079"",
+      ""3DOR100080""
+    ],
+    ""validation_notes"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_score"": 0.4,
+    ""data_quality_issues"": true,
+    ""missing_data"": ""Machine operation logs for the gears listed""
+  }
+}","{
+  ""packing_list_id"": ""PL1122"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100071"",
+    ""3DOR100073"",
+    ""3DOR100076"",
+    ""3DOR100079"",
+    ""3DOR100080""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_2,deepseek-chat,easy,Q2,34.8,False,0.0,2663,804,0.0,"[""Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}"", ""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00115"",
+    ""source_document"": ""PackingList-PL1115.pdf"",
+    ""gear_list"": ""No relationships found for ID ORBOX00115"",
+    ""data_quality_issues"": [
+      ""Error from step_3_gear_list: No relationships found for ID ORBOX00115"",
+      ""Error from step_5_machine_logs: No logs found for printer No relationships found for ID ORBOX00115"",
+      ""Error from step_6_worker_activity: No data found for worker ID No relationships found for ID ORBOX00115"",
+      ""Error from step_7_location_data: No location data found for ID 'ORBOX00115'"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
+    ],
+    ""confidence_level"": 0.0,
+    ""recommendations"": [
+      ""Implement more robust data validation and error handling during document parsing and data entry."",
+      ""Enhance barcode scanning protocols to minimize errors such as extra spaces or missing characters."",
+      ""Ensure system uptime and data backup procedures to prevent missing relationship records due to system downtime."",
+      ""Develop and implement secondary validation methods for critical data points to ensure data integrity."",
+      ""Cross-reference data across multiple systems to identify and rectify inconsistencies or anomalies.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100033"",
+    ""3DOR100034"",
+    ""3DOR100035"",
+    ""3DOR100036"",
+    ""3DOR100037""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous
+P7_task_3,deepseek-chat,medium,Q3,16.21,True,0.0,2788,315,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100076"": ""Printer_6"",
+    ""parts_printed_on_printer_6"": [
+      ""3DOR100076""
+    ],
+    ""count_of_parts_printed_on_printer_6"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a relatively high confidence in the data provided. However, there are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100076"",
+  ""assigned_printer"": ""Printer_6""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_4,deepseek-chat,medium,Q0,17.95,True,0.0,2908,341,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100033"": ""Printer_3"",
+    ""parts_printed_on_printer_3"": [
+      ""3DOR100033"",
+      ""3DOR100034"",
+      ""3DOR100035"",
+      ""3DOR100036"",
+      ""3DOR100037""
+    ],
+    ""count_of_parts_printed_on_printer_3"": 5,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""data_quality_note"": ""Data is available for the printer and parts count, but there are noted issues with missing machine logs and location scans affecting timeline validation.""
+  }
+}","{
+  ""part_id"": ""3DOR100033"",
+  ""assigned_printer"": ""Printer_3""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_5,deepseek-chat,medium,Q0,18.39,True,0.0,2908,352,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR10001"": ""Printer_1"",
+    ""parts_printed_on_printer_1"": [
+      ""3DOR10001""
+    ],
+    ""count_of_parts_printed_on_printer_1"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""notes"": ""The data indicates that Part 3DOR10001 was printed on Printer_1. However, there is insufficient data for a complete timeline validation due to missing machine logs and location scans. The confidence score for this analysis is 0.8, indicating a reasonably high level of confidence in the findings. No critical issues were identified in the data provided.""
+  }
+}","{
+  ""part_id"": ""3DOR10001"",
+  ""assigned_printer"": ""Printer_1""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_6,deepseek-chat,easy,Q1,31.06,True,0.0,3471,692,0.0,"[""Error from step_4_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_5_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_5_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00121"",
+    ""source_document"": ""PackingList-PL1121.pdf"",
+    ""gear_list"": [
+      ""3DOR100061"",
+      ""3DOR100062"",
+      ""3DOR100065"",
+      ""3DOR100068"",
+      ""3DOR100070""
+    ],
+    ""data_quality_issues"": [
+      ""No logs found for printers associated with the gear IDs"",
+      ""No data found for worker IDs associated with the gear IDs"",
+      ""Insufficient data for timeline validation due to missing machine logs""
+    ],
+    ""confidence_score"": 0.0,
+    ""confidence_justification"": ""The confidence score is 0.0 due to significant data quality issues, including missing machine logs and worker activity data, which are critical for validating the gear list and order fulfillment process."",
+    ""recommendations"": [
+      ""Implement more robust logging mechanisms for printer and worker activities to ensure all critical data is captured."",
+      ""Establish secondary validation methods for gear-to-order relationships to mitigate the impact of missing primary data sources."",
+      ""Regularly audit data integrity and completeness to identify and address issues proactively.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1121"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100061"",
+    ""3DOR100062"",
+    ""3DOR100065"",
+    ""3DOR100068"",
+    ""3DOR100070""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_7,deepseek-chat,easy,Q0,23.45,True,0.0,3041,504,0.4,"[""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX0012"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100041"",
+      ""3DOR100043"",
+      ""3DOR100045"",
+      ""3DOR100047"",
+      ""3DOR100050""
+    ],
+    ""Validation Notes"": [
+      ""No machine logs found for the listed gears, indicating potential gaps in production tracking."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Data Quality Issues"": [
+      ""Error from step_4_machine_logs: No logs found for printer {step_2_gear_list['gear_ids']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Critical Issue"": false,
+    ""Missing Data"": ""Machine operation logs for the gears are missing, which affects the completeness of production tracking and timeline validation.""
+  }
+}","{
+  ""packing_list_id"": ""PL1012"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100041"",
+    ""3DOR100043"",
+    ""3DOR100045"",
+    ""3DOR100047"",
+    ""3DOR100050""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_8,deepseek-chat,hard,Q0,15.99,True,0.0,1706,284,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00119."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data (machine logs, relationship data) is missing for a comprehensive timeline validation."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX00119"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_9,deepseek-chat,hard,Q2,18.53,True,0.0,1706,342,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX00115 is '28/10/2024' as per the '13e Date ddmmmyyyy' and '14e Date' fields in the validated_data. The warehouse arrival date is also '2024-10-28T16:40:16.33565Z' as per the '_time' field in the step_2_warehouse_arrival data. Therefore, the ARC document date matches the warehouse arrival date."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data like machine logs and relationship data are missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00115"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P7_task_10,deepseek-chat,hard,Q3,16.88,True,0.0,1706,312,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""query"": ""For Order ORBOX00119, verify ARC document date matches warehouse arrival"",
+    ""findings"": {
+      ""arc_document_date"": ""28/10/2024"",
+      ""warehouse_arrival_date"": ""2024-10-28T17:24:51.187426Z"",
+      ""date_match"": ""Yes, the ARC document date matches the warehouse arrival date."",
+      ""data_quality_issues"": [
+        ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+      ],
+      ""confidence_score"": 0.8,
+      ""critical_issue"": false,
+      ""missing_data"": ""Machine logs and relationship data are missing, which could provide additional validation.""
+    }
+  }
+}","{
+  ""product_id"": ""ORBOX00119"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",0.6666666666666666,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,weighted_majority
+P8_task_1,deepseek-chat,medium,Q0,18.02,True,0.0,4342,342,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100085"": ""Printer_5"",
+    ""count_of_parts_printed_on_printer"": 5,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""notes"": ""The data indicates that Part 3DOR100085 was printed on Printer_5. A total of 5 parts were printed on this printer, including Part 3DOR100085. However, there are some data quality issues noted, specifically missing machine logs and location scans, which may affect the completeness of the timeline validation. The confidence score of 0.8 suggests a reasonably high level of confidence in the data provided.""
+  }
+}","{
+  ""part_id"": ""3DOR100085"",
+  ""assigned_printer"": ""Printer_5""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_2,deepseek-chat,easy,Q0,22.76,True,0.0,3026,470,0.4,"[""Error from step_4_machine_logs: No logs found for printer ORBOX00118"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.40) ⚠️
+Issues found during reconciliation:
+ - Error from step_4_machine_logs: No logs found for printer ORBOX00118
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""Order ID"": ""ORBOX00118"",
+    ""Total Gear Count"": 5,
+    ""Complete Gear List"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""Validation Notes"": [
+      ""No machine logs found for printer ORBOX00118, which may affect the completeness of gear identification."",
+      ""Insufficient data for timeline validation due to missing machine logs.""
+    ],
+    ""Confidence Score"": 0.4,
+    ""Critical Issue"": false,
+    ""Data Quality Problems"": [
+      ""Error from step_4_machine_logs: No logs found for printer ORBOX00118"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1118"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100052"",
+    ""3DOR100054"",
+    ""3DOR100055"",
+    ""3DOR100056"",
+    ""3DOR100059""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_3,deepseek-chat,easy,Q2,37.89,False,0.0,5154,848,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX0019"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX0019
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX0019"",
+    ""source_document"": ""PackingList-PL1019.pdf"",
+    ""gear_list"": [
+      ""3DOR1000100"",
+      ""3OR100042"",
+      ""3DR100044"",
+      ""3DOR10046"",
+      ""3DOR10048"",
+      ""3DOR10004"",
+      ""3DOR100092"",
+      ""3DOR100093"",
+      ""3DOR100095"",
+      ""3DOR100096""
+    ],
+    ""data_quality_issues"": [
+      ""Error from step_5_worker_activity: No data found for worker ID ORBOX0019"",
+      ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to significant data quality issues, including missing worker activity data, missing machine logs, and insufficient data for timeline validation."",
+    ""recommendations"": [
+      ""Implement stricter data entry protocols to ensure all worker activities are logged."",
+      ""Ensure machine logs are consistently recorded and stored for all printing activities."",
+      ""Enhance data validation checks to identify and rectify missing or inconsistent data entries promptly.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}",0.3333333333333333,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,weighted_majority
+P8_task_4,deepseek-chat,easy,Q3,35.09,True,0.0,3716,739,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00114"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gears']}"", ""Insufficient data for timeline validation. Missing: machine logs, location scans""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00114
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['gears']}
+ - Insufficient data for timeline validation. Missing: machine logs, location scans
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX00114"",
+    ""source_document"": ""PackingList-PL1114.pdf"",
+    ""gears"": [
+      ""3DOR100072"",
+      ""3DOR100074"",
+      ""3DOR100075"",
+      ""3DOR100077"",
+      ""3DOR100078""
+    ],
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00114"",
+      ""No logs found for printer gears"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to significant data quality issues including missing worker activity data, missing machine logs for the gears, and insufficient data for timeline validation."",
+    ""recommendations"": [
+      ""Implement more robust data capture mechanisms for worker activities to ensure all actions are logged."",
+      ""Ensure machine logs are accurately captured and stored for all printing activities."",
+      ""Improve the validation process for barcode scanning to reduce errors and missing data."",
+      ""Establish a secondary validation system to cross-reference and validate data from primary sources when they are compromised.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1114"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100072"",
+    ""3DOR100074"",
+    ""3DOR100075"",
+    ""3DOR100077"",
+    ""3DOR100078""
+  ]
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_5,deepseek-chat,medium,Q2,18.99,True,0.0,2910,292,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100055"": ""Printer_5"",
+    ""parts_printed_on_printer_5"": [
+      ""3DOR100055""
+    ],
+    ""count_of_parts_printed_on_printer_5"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""There are identified issues with the data quality that may affect the accuracy of the findings.""
+  }
+}","{
+  ""part_id"": ""3DOR100055"",
+  ""assigned_printer"": ""Printer_5""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_6,deepseek-chat,hard,Q3,19.11,True,0.0,1706,316,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0013 is '28/10/2024' as per the '13e Date ddmmmyyyy' field, and the warehouse arrival date is also '28/10/2024' as per the '_time' field in 'step_2_warehouse_arrival'. Therefore, the dates match."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data like machine logs and relationship data are missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0013"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_7,deepseek-chat,medium,Q0,16.68,True,0.0,2908,298,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100094"": ""Printer_4"",
+    ""parts_printed_on_printer_4"": [
+      ""3DOR100094""
+    ],
+    ""count_of_parts_printed_on_printer_4"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct query, but there are issues with timeline validation due to missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100094"",
+  ""assigned_printer"": ""Printer_4""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_8,deepseek-chat,medium,Q0,15.85,True,0.0,2908,292,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100013"": ""Printer_3"",
+    ""count_of_parts_printed_on_printer_3"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high but not absolute confidence in the data. There are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100013"",
+  ""assigned_printer"": ""Printer_3""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_9,deepseek-chat,hard,Q0,17.05,True,0.0,1706,318,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX00115 is '28/10/2024' as per the '13e Date ddmmmyyyy' field, and the warehouse arrival date is also '2024-10-28T16:40:16.33565Z'. Both dates match, confirming that the ARC document date matches the warehouse arrival."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data such as machine logs and relationship data are missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00115"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P8_task_10,deepseek-chat,hard,Q1,15.57,True,0.0,1706,259,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024)."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX00121"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",0.6666666666666666,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,weighted_majority
+P9_task_1,deepseek-chat,hard,Q0,16.9,True,0.0,1706,326,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""findings"": ""The ARC document date for Order ORBOX00114 is '28/10/2024' as per the '13e Date ddmmmyyyy' field in the ARC document. The warehouse arrival date is also '2024-10-28T20:08:36.371232Z', indicating that the ARC document date matches the warehouse arrival date."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data such as machine logs and relationship data are missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00114"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_2,deepseek-chat,hard,Q0,15.36,True,0.0,1706,276,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX0012."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data (machine logs, relationship data) is missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX0012"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_3,deepseek-chat,hard,Q0,15.13,True,0.0,1706,276,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date (28/10/2024) matches the warehouse arrival date (28/10/2024) for Order ORBOX00118."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data (machine logs, relationship data) is missing for a comprehensive timeline validation.""
+  }
+}","{
+  ""product_id"": ""ORBOX00118"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_4,deepseek-chat,medium,Q0,17.89,True,0.0,2908,313,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100055"": ""Printer_5"",
+    ""parts_printed_on_printer_5"": [
+      ""3DOR100055""
+    ],
+    ""total_parts_printed_on_printer_5"": 1,
+    ""issues_found"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""data_quality_note"": ""The confidence score is 0.8, indicating a high but not absolute confidence in the data. There are noted issues with insufficient data for timeline validation, specifically missing machine logs and location scans.""
+  }
+}","{
+  ""part_id"": ""3DOR100055"",
+  ""assigned_printer"": ""Printer_5""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_5,deepseek-chat,medium,Q3,16.8,True,0.0,2789,317,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100064"": ""Printer_4"",
+    ""count_of_parts_printed_on_printer_4"": 1,
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""additional_notes"": ""The count of parts printed on Printer_4 is based on the provided data, which only includes one part (3DOR100064) directly linked to Printer_4. Other parts listed are associated with ORBOX00120, not directly with Printer_4, hence not included in the count for Printer_4.""
+  }
+}","{
+  ""part_id"": ""3DOR100064"",
+  ""assigned_printer"": ""Printer_4""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_6,deepseek-chat,easy,Q3,32.43,False,0.0,2667,781,0.0,"[""Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}"", ""Error from step_5_worker_activity: No data found for worker ID {step_2_validated_order_id['validated_id']}"", ""Error from step_6_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['validated_id']}
+ - Error from step_5_worker_activity: No data found for worker ID {step_2_validated_order_id['validated_id']}
+ - Error from step_6_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['validated_id']}'
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
+  ""summary"": {
+    ""direct_answer"": ""No gears were found for Packing List PL1013 due to the absence of relationship records for the order ID ORBOX0013."",
+    ""data_quality_issues"": [
+      ""No relationships found for order ID ORBOX0013"",
+      ""No data found for worker ID ORBOX0013"",
+      ""No logs found for printer associated with the gears"",
+      ""No location data found for order ID ORBOX0013"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
+    ],
+    ""confidence_level"": 0.0,
+    ""confidence_justification"": ""The confidence level is 0.0 due to the inability to validate any gear relationships or existence for the specified packing list, compounded by multiple data quality issues."",
+    ""recommendations"": [
+      ""Implement a more robust data capture system to ensure all gear-to-order relationships are recorded."",
+      ""Enhance barcode scanning protocols to minimize errors and missing data."",
+      ""Establish a secondary validation system for critical data points to ensure data integrity during system downtimes."",
+      ""Regularly audit data quality and address any inconsistencies or anomalies promptly.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1013"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100011"",
+    ""3DOR100014"",
+    ""3DOR100017"",
+    ""3DOR100018"",
+    ""3DOR100019""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous
+P9_task_7,deepseek-chat,easy,Q2,36.67,True,0.0,3844,847,0.0,"[""Error from step_5_worker_activity: No data found for worker ID ORBOX00115"", ""Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}"", ""Insufficient data for timeline validation. Missing: machine logs""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_5_worker_activity: No data found for worker ID ORBOX00115
+ - Error from step_6_machine_logs: No logs found for printer {step_2_gear_list['printer_id']}
+ - Insufficient data for timeline validation. Missing: machine logs
+
+{
+  ""summary"": {
+    ""direct_answer"": {
+      ""order_id"": ""ORBOX00115"",
+      ""gears"": [
+        ""3DOR100033"",
+        ""3DOR100034"",
+        ""3DOR100035"",
+        ""3DOR100036"",
+        ""3DOR100037""
+      ],
+      ""source_document"": ""PackingList-PL1115.pdf""
+    },
+    ""data_quality_issues"": [
+      ""No data found for worker ID ORBOX00115"",
+      ""No logs found for printer {step_2_gear_list['printer_id']}"",
+      ""Insufficient data for timeline validation. Missing: machine logs"",
+      ""Barcode validation failed with format unknown and is_valid false""
+    ],
+    ""confidence_score"": 0.0,
+    ""confidence_justification"": ""The confidence score is 0.0 due to multiple data quality issues including missing worker activity data, missing machine logs, and failed barcode validation. These issues significantly impact the ability to fully validate the gear list and order fulfillment process."",
+    ""recommendations"": [
+      ""Implement a more robust data capture system for worker activities to ensure all actions are logged."",
+      ""Ensure machine logs are consistently recorded and stored for all printing activities."",
+      ""Improve barcode scanning and validation processes to reduce errors and ensure accurate tracking of items."",
+      ""Establish a secondary validation method for critical data points to cross-reference and verify data accuracy.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1115"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR100033"",
+    ""3DOR100034"",
+    ""3DOR100035"",
+    ""3DOR100036"",
+    ""3DOR100037""
+  ]
+}",0.6666666666666666,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,weighted_majority
+P9_task_8,deepseek-chat,hard,Q0,17.84,True,0.0,1706,325,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, relationship data""]","{
+  ""summary"": {
+    ""direct_answer"": ""The ARC document date for Order ORBOX0018 is '28/10/2024' as per the '13e Date ddmmmyyyy' and '14e Date' fields in the validated_data. The warehouse arrival date is also '2024-10-28T21:32:18.376922Z', indicating that the dates match."",
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, relationship data""
+    ],
+    ""confidence_score"": 0.8,
+    ""missing_data"": ""No missing data for the direct comparison of ARC document date and warehouse arrival date. However, additional data like machine logs and relationship data are missing for a comprehensive timeline validation."",
+    ""critical_issue"": false
+  }
+}","{
+  ""product_id"": ""ORBOX0018"",
+  ""certificate_date"": ""2024-10-28"",
+  ""warehouse_arrival_date"": ""2024-10-28"",
+  ""date_match_status"": true
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_9,deepseek-chat,medium,Q1,16.62,True,0.0,2908,313,0.8,"[""Insufficient data for timeline validation. Missing: machine logs, location scans""]","{
+  ""summary"": {
+    ""printer_for_part_3DOR100054"": ""Printer_4"",
+    ""parts_count_on_printer"": 5,
+    ""parts_list_on_printer"": [
+      ""3DOR100052"",
+      ""3DOR100054"",
+      ""3DOR100055"",
+      ""3DOR100056"",
+      ""3DOR100059""
+    ],
+    ""data_quality_issues"": [
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans""
+    ],
+    ""confidence_score"": 0.8,
+    ""critical_issue"": false,
+    ""missing_data"": ""No missing data reported for the query.""
+  }
+}","{
+  ""part_id"": ""3DOR100054"",
+  ""assigned_printer"": ""Printer_4""
+}",1.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}, ""deepseek-chat"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""correct***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": true, ""weight"": 1, ""raw_response"": ""correct""}}",3,unanimous
+P9_task_10,deepseek-chat,easy,Q2,33.5,False,0.0,2659,787,0.0,"[""Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['order_id']}"", ""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"", ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"", ""Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['order_id']}'"", ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""]","⚠️ Low Confidence Report (confidence: 0.00) ⚠️
+Issues found during reconciliation:
+ - Error from step_3_gear_list: No relationships found for ID {step_2_validated_order_id['order_id']}
+ - Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}
+ - Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}
+ - Error from step_7_location_data: No location data found for ID '{step_2_validated_order_id['order_id']}'
+ - Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data
+
+{
+  ""summary"": {
+    ""order_id"": ""ORBOX0019"",
+    ""source_document"": ""PackingList-PL1019.pdf"",
+    ""gear_list"": ""No relationships found for ID ORBOX0019"",
+    ""data_quality_issues"": [
+      ""Error from step_3_gear_list: No relationships found for ID ORBOX0019"",
+      ""Error from step_5_machine_logs: No logs found for printer {step_3_gear_list['gear_ids']}"",
+      ""Error from step_6_worker_activity: No data found for worker ID {step_3_gear_list['gear_ids']}"",
+      ""Error from step_7_location_data: No location data found for ID 'ORBOX0019'"",
+      ""Insufficient data for timeline validation. Missing: machine logs, location scans, relationship data""
+    ],
+    ""confidence_score"": 0.0,
+    ""recommendations"": [
+      ""Implement more robust error handling and data validation during document parsing."",
+      ""Enhance barcode scanning protocols to minimize errors."",
+      ""Ensure system uptime and data synchronization to prevent missing relationship records."",
+      ""Develop and implement backup data retrieval methods for when primary sources fail."",
+      ""Regularly audit and clean data to maintain integrity.""
+    ]
+  }
+}","{
+  ""packing_list_id"": ""PL1019"",
+  ""gear_count"": 5,
+  ""gear_list"": [
+    ""3DOR1000100"",
+    ""3DOR100092"",
+    ""3DOR100093"",
+    ""3DOR100095"",
+    ""3DOR100096""
+  ]
+}",0.0,"{""gpt-4o-mini-2024-07-18"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}, ""deepseek-chat"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""{***REMOVED***n  ***REMOVED***""judgment***REMOVED***"": ***REMOVED***""incorrect***REMOVED***""***REMOVED***n}""}, ""claude-3-haiku-20240307"": {""judgment"": false, ""weight"": 1, ""raw_response"": ""incorrect""}}",3,unanimous

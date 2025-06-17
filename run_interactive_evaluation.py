@@ -74,7 +74,7 @@ def interactive_model_selection(available_models):
             "deepseek-reasoner": "DeepSeek's reasoning model (cost-effective)",
             "deepseek-chat": "DeepSeek's chat model (very cost-effective)",
             "o4-mini-2025-04-16": "OpenAI's O4-mini (balanced performance)",
-            "o3-mini-2025-01-31": "OpenAI's O3-mini (alternative)",
+            "gpt-4o-mini-2024-07-18": "OpenAI's GPT-4o-mini (cost-effective, high performance)",
             "claude-sonnet-4-20250514": "Anthropic's Claude Sonnet 4 (high performance)",
             "claude-3-5-haiku-latest": "Anthropic's Claude Haiku (fast)"
         }
@@ -166,6 +166,7 @@ def estimate_runtime(model, prompt_length, task_subset):
         "deepseek-reasoner": 1.2,  # Slower due to reasoning
         "deepseek-chat": 0.8,      # Faster
         "o4-mini-2025-04-16": 1.0, # Baseline
+        "gpt-4o-mini-2024-07-18": 0.9,  # Fast and efficient
         "claude-sonnet-4-20250514": 1.1,  # Slightly slower
         "claude-3-5-haiku-latest": 0.7    # Faster
     }
