@@ -14,9 +14,9 @@ This evaluation used multiple unbiased judge models to eliminate self-evaluation
 ## Consensus Analysis
 
 **Total Tasks Evaluated**: 90
-**Average Consensus Score**: 0.630
-**Unanimous Decisions**: 40/90 (44.4%)
-**Majority Decisions**: 68/90 (75.6%)
+**Average Consensus Score**: 0.489
+**Unanimous Decisions**: 52/90 (57.8%)
+**Majority Decisions**: 46/90 (51.1%)
 
 ## Bias Elimination Benefits
 
@@ -28,11 +28,11 @@ This evaluation used multiple unbiased judge models to eliminate self-evaluation
 ## Controversial Decisions (Split Judgments)
 
 - **P1_task_1**: Consensus 0.67
-- **P1_task_2**: Consensus 0.33
-- **P1_task_3**: Consensus 0.67
+- **P1_task_3**: Consensus 0.33
 - **P1_task_4**: Consensus 0.33
-- **P1_task_5**: Consensus 0.67
-- ... and 45 more
+- **P1_task_6**: Consensus 0.67
+- **P1_task_7**: Consensus 0.67
+- ... and 33 more
 
 ## Methodology Validation
 
