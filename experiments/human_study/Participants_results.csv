@@ -1,0 +1,91 @@
+﻿task_id,participant_id,completion_time_sec,accuracy,comments,complexity,data quality,notes 
+P1_task_1,P1,330,0,Couldn’t finish,easy,Q2,"This participant was somewhat aware of data content, and devised an Excel search strategy early on"
+P1_task_2,P1,193,1,,medium,Q0,
+P1_task_3,P1,92,0,Wrong answer,easy,Q0,Didn't read q properly
+P1_task_4,P1,84,1,Didn't identify data quality issue,medium,Q2,
+P1_task_5,P1,211,1,Didn't identify data quality issue,easy,Q1,
+P1_task_6,P1,168,1,Didn't identify data quality issue,hard,Q1,
+P1_task_7,P1,324,1,Didn't identify data quality issue,hard,Q3,
+P1_task_8,P1,161,1,,easy,Q0,
+P1_task_9,P1,206,1,,medium,Q0,
+P1_task_10,P1,182,1,,hard,Q0,
+P2_task_1,P2,88,1,Didn't identify  data quality issue,hard,Q2,"Participant didn't use Excel functionality, didn't devise correct strategy with CSV app"
+P2_task_2,P2,264,0,Couldn’t finish,medium,Q2,
+P2_task_3,P2,115,1,,hard,Q0,
+P2_task_4,P2,302,0,Couldn’t finish,medium,Q0,
+P2_task_5,P2,323,0,Couldn’t finish,easy,Q0,
+P2_task_6,P2,277,0,Couldn’t finish,easy,Q3,
+P2_task_7,P2,244,0,Couldn’t finish,medium,Q0,
+P2_task_8,P2,87,1,Didn't identify data quality issue,hard,Q0,
+P2_task_9,P2,289,0,Couldn’t finish,medium,Q1,
+P2_task_10,P2,262,0,Couldn’t finish,easy,Q1,
+P3_task_1,P3,274,1,Didn't identify  data quality issue,hard,Q1,Participant didn't use Excel functionality fully
+P3_task_2,P3,281,1,Didn't identify  data quality issue,medium,Q3,
+P3_task_3,P3,163,0,Didn't identify  data quality issue,medium,Q2,
+P3_task_4,P3,270,0,Couldn’t finish,easy,Q0,
+P3_task_5,P3,97,1,Didn't identify  data quality issue,hard,Q2,
+P3_task_6,P3,82,1,,hard,Q0,
+P3_task_7,P3,332,0,Couldn’t finish,easy,Q1,
+P3_task_8,P3,88,1,,hard,Q0,
+P3_task_9,P3,141,1,,medium,Q0,
+P3_task_10,P3,142,0,,easy,Q0,
+P4_task_1,P4,270,1,,medium,Q0,
+P4_task_2,P4,98,1,Didn't identify  data quality issue,hard,Q1,"This participant was somewhat aware of data content, and devised an Excel search strategy early on similar to P1"
+P4_task_3,P4,278,1,Identified missing character issue,easy,Q2,
+P4_task_4,P4,199,1,,easy,Q0,
+P4_task_5,P4,184,1,Didn't identify data quality issue,easy,Q3,
+P4_task_6,P4,51,1,,hard,Q0,
+P4_task_7,P4,171,1,Didn't identify  data quality issue,medium,Q3,
+P4_task_8,P4,50,1,Didn't identify  data quality issue,medium,Q1,
+P4_task_9,P4,35,1,,hard,Q0,
+P4_task_10,P4,55,1,,easy,Q0,
+P5_task_1,P5,155,1,,medium,Q0,
+P5_task_2,P5,139,0,Wrong answer,easy,Q2,10
+P5_task_3,P5,98,1,Didn't identify  data quality issue,medium,Q1,
+P5_task_4,P5,85,0,Wrong answer,easy,Q3,10
+P5_task_5,P5,99,1,Didn't identify  data quality issue,medium,Q0,
+P5_task_6,P5,307,0,Couldn’t finish,easy,Q3,
+P5_task_7,P5,70,1,Didn't identify  data quality issue,hard,Q1,
+P5_task_8,P5,90,1,,medium,Q0,
+P5_task_9,P5,60,0,Wrong answer,hard,Q0,No
+P5_task_10,P5,64,1,,hard,Q0,
+P6_task_1,P6,197,1,Didn't identify  data quality issue,medium,Q2,"Participant used Excel functionality properly to search for data, unaware of dataset content"
+P6_task_2,P6,89,1,Wrong answer,medium,Q3,10
+P6_task_3,P6,108,1,Didn't identify  data quality issue,medium,Q1,
+P6_task_4,P6,325,0,Couldn’t finish,hard,Q0,
+P6_task_5,P6,253,0,Wrong answer,hard,Q1,
+P6_task_6,P6,270,0,Wrong answer,hard,Q0,
+P6_task_7,P6,42,0,Wrong answer,easy,Q3,
+P6_task_8,P6,119,1,,easy,Q0,
+P6_task_9,P6,127,1,,easy,Q0,
+P6_task_10,P6,240,1,,hard,Q0,
+P7_task_1,P7,165,0,Wrong answer,easy,Q0,"Participant unaware of the data, and didn't utilise CSV effectively for certain questions. Didn't reason through data traversal. Didn't use Excel functionality."
+P7_task_2,P7,88,0,Wrong answer,easy,Q2,
+P7_task_3,P7,245,0,Couldn’t finish,medium,Q3,
+P7_task_4,P7,306,0,Couldn’t finish,medium,Q0,
+P7_task_5,P7,313,1,,medium,Q0,
+P7_task_6,P7,216,1,Didn't identify  data quality issue,easy,Q1,Finally developed a strategy for searching
+P7_task_7,P7,55,1,,easy,Q0,
+P7_task_8,P7,79,0,Wrong answer,hard,Q0,
+P7_task_9,P7,104,1,Didn't identify  data quality issue,hard,Q2,
+P7_task_10,P7,26,1,,hard,Q3,
+P8_task_1,P8,212,0,Wrong answer,medium,Q0,"Participant opened multiple files early on and completed a search strategy to locate ID, but failed to understand linkage"
+P8_task_2,P8,213,0,Wrong answer,easy,Q0,
+P8_task_3,P8,212,0,Wrong answer,easy,Q2,Opened wrong packing list
+P8_task_4,P8,164,0,Wrong answer,easy,Q3,
+P8_task_5,P8,287,0,Wrong answer,medium,Q2,"Printer 4, Misunderstood connection between  parent and child link"
+P8_task_6,P8,271,0,Didn't identify  data quality issue,hard,Q3,Mistake when writing down date
+P8_task_7,P8,76,1,,medium,Q0,Understood the task properly
+P8_task_8,P8,38,0,Wrong answer,medium,Q0,Didn't understand link
+P8_task_9,P8,81,1,,hard,Q0,
+P8_task_10,P8,98,1,,hard,Q1,
+P9_task_1,P9,103,1,,hard,Q0,
+P9_task_2,P9,73,1,,hard,Q0,
+P9_task_3,P9,52,1,,hard,Q0,
+P9_task_4,P9,247,1,,medium,Q0,
+P9_task_5,P9,47,1,Didn't identify  data quality issue,medium,Q3,Figured out a strategy for task
+P9_task_6,P9,305,1,Didn't identify  data quality issue,easy,Q3,
+P9_task_7,P9,97,1,Didn't identify  data quality issue,easy,Q2,Figured out a strategy for task
+P9_task_8,P9,149,1,,hard,Q0,
+P9_task_9,P9,119,1,Didn't identify  data quality issue,medium,Q1,
+P9_task_10,P9,118,1,,easy,Q2,
