@@ -1,0 +1,154 @@
+{
+  "timestamp": "2025-06-18T17:25:53.896653",
+  "models_evaluated": [
+    "deepseek-reasoner"
+  ],
+  "total_tasks": 90,
+  "benchmark_results": {
+    "deepseek-reasoner": {
+      "model_name": "deepseek-reasoner",
+      "overall_score": 0.5189444444444444,
+      "rank": 1,
+      "complexity_scores": {
+        "easy": 0.7,
+        "medium": 0.23333333333333334,
+        "hard": 0.6
+      },
+      "quality_scores": {
+        "Q0": 0.5111111111111111,
+        "Q1": 0.4,
+        "Q2": 0.4,
+        "Q3": 0.7333333333333333
+      },
+      "metrics": {
+        "accuracy": 0.5111111111111111,
+        "avg_completion_time": 294.4472222222222,
+        "avg_cost": 0.0,
+        "avg_confidence": 0.42999999999999994,
+        "error_detection_rate": 1.0,
+        "token_efficiency": 0.05105183425911026
+      }
+    }
+  },
+  "statistical_comparison": {},
+  "prompt_effectiveness": {
+    "short": {
+      "prompt_length": "short",
+      "accuracy": 0.4888888888888889,
+      "avg_time": 172.39212938811582,
+      "avg_cost": 0.0,
+      "avg_confidence": 0.3900180525388975,
+      "token_usage": {
+        "avg_input_tokens": 1282.2439836218819,
+        "avg_output_tokens": 6796.866666666667,
+        "total_tokens": 727119.9585259694
+      },
+      "task_count": 90
+    },
+    "normal": {
+      "prompt_length": "normal",
+      "accuracy": 0.5111111111111111,
+      "avg_time": 249.2659633425526,
+      "avg_cost": 0.0,
+      "avg_confidence": 0.40865181531790523,
+      "token_usage": {
+        "avg_input_tokens": 2254.8832421855714,
+        "avg_output_tokens": 6796.866666666667,
+        "total_tokens": 814657.4917967014
+      },
+      "task_count": 90
+    },
+    "long": {
+      "prompt_length": "long",
+      "accuracy": 0.5111111111111111,
+      "avg_time": 294.4472222222222,
+      "avg_cost": 0.0,
+      "avg_confidence": 0.42999999999999994,
+      "token_usage": {
+        "avg_input_tokens": 3214.7444444444445,
+        "avg_output_tokens": 6796.866666666667,
+        "total_tokens": 901045.0
+      },
+      "task_count": 90
+    }
+  },
+  "manufacturing_metrics": {
+    "data_quality_handling": {
+      "Q0": {
+        "accuracy": 0.5111111111111111,
+        "avg_confidence": 0.648888888888889,
+        "task_count": 45,
+        "error_detection_rate": 1.0
+      },
+      "Q1": {
+        "accuracy": 0.4,
+        "avg_confidence": 0.23999999999999996,
+        "task_count": 15,
+        "error_detection_rate": 1.0
+      },
+      "Q2": {
+        "accuracy": 0.4,
+        "avg_confidence": 0.24000000000000002,
+        "task_count": 15,
+        "error_detection_rate": 1.0
+      },
+      "Q3": {
+        "accuracy": 0.7333333333333333,
+        "avg_confidence": 0.15333333333333332,
+        "task_count": 15,
+        "error_detection_rate": 1.0
+      }
+    },
+    "task_complexity_performance": {
+      "easy": {
+        "accuracy": 0.7,
+        "avg_time": 306.2163333333334,
+        "avg_cost": 0.0,
+        "task_count": 30
+      },
+      "medium": {
+        "accuracy": 0.23333333333333334,
+        "avg_time": 369.81166666666667,
+        "avg_cost": 0.0,
+        "task_count": 30
+      },
+      "hard": {
+        "accuracy": 0.6,
+        "avg_time": 207.3136666666667,
+        "avg_cost": 0.0,
+        "task_count": 30
+      }
+    },
+    "error_detection_capabilities": {},
+    "cross_system_validation": {
+      "overall_integration_success": 0.5111111111111111,
+      "data_reconciliation_quality": 0.42999999999999994,
+      "system_complexity_handling": {
+        "single_system_tasks": 0.7,
+        "multi_system_tasks": 0.4166666666666667
+      }
+    },
+    "manufacturing_domain_accuracy": {
+      "gear_identification": {
+        "accuracy": 0.7,
+        "avg_confidence": 0.43666666666666676,
+        "task_count": 30
+      },
+      "printer_analysis": {
+        "accuracy": 0.23333333333333334,
+        "avg_confidence": 0.1733333333333333,
+        "task_count": 30
+      },
+      "compliance_verification": {
+        "accuracy": 0.6,
+        "avg_confidence": 0.6800000000000002,
+        "task_count": 30
+      }
+    }
+  },
+  "recommendations": {
+    "data_quality": "***REMOVED***n            Weakest Performance on: Q1 conditions (40.0% accuracy)***REMOVED***n            Recommendation: Implement additional data validation and error handling for Q1 scenarios***REMOVED***n            Consider prompt engineering improvements for data quality issue detection***REMOVED***n            ",
+    "task_complexity": "***REMOVED***n            Most Challenging Tasks: medium (23.3% accuracy)***REMOVED***n            Recommendation: Consider task decomposition or specialized prompting for medium tasks***REMOVED***n            Average time for medium tasks: 369.8s***REMOVED***n            ",
+    "manufacturing_domain": "***REMOVED***n            Weakest Manufacturing Domain: printer_analysis (23.3% accuracy)***REMOVED***n            Recommendation: Develop domain-specific training or fine-tuning for printer_analysis***REMOVED***n            Consider adding more context or examples for this task type***REMOVED***n            "
+  }
+}
