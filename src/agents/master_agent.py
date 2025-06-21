@@ -53,12 +53,22 @@ class MasterAgent:
         """
         UPDATED: Manages the end-to-end process and returns a full execution trace.
         """
+        import time
+        start_time = time.time()
+        max_execution_time = 300  # 5 minutes timeout per task
+
         attempts = 0
         error_context = ""
         final_report = "Failed to generate a satisfactory report."
         reconciliation = {}
 
         while attempts < self.max_attempts:
+            # Check timeout
+            if time.time() - start_time > max_execution_time:
+                print(f"[MasterAgent] ⏰ Task timeout after {max_execution_time}s")
+                final_report = f"Task timed out after {max_execution_time} seconds"
+                break
+
             attempts += 1
             print(f"***REMOVED***n[MasterAgent] Execution Attempt: {attempts}")
 
@@ -198,9 +208,27 @@ class MasterAgent:
             tool_name = step.get("tool")
             raw_input = step.get("input")
             output_key = step.get("output_key", f"step_{step['step']}_output")
+            step_num = step.get("step", "unknown")
+
+            # Check if this step has unresolved dependencies
+            if self._has_unresolved_dependencies(raw_input, context):
+                print(f"  - Skipping step {step_num} ({tool_name}): Missing required dependencies")
+                context[output_key] = [{"error": "Skipped due to missing dependencies", "dependency_failed": True}]
+                continue
 
             # Resolve input by substituting context variables
-            resolved_input = self._resolve_input_variables(raw_input, context)
+            resolved_input, resolution_success = self._resolve_input_variables_enhanced(raw_input, context)
+
+            # If resolution failed and this step depends on previous steps, try fallback
+            if not resolution_success and self._step_has_dependencies(raw_input):
+                fallback_input = self._get_fallback_input(raw_input, step, context)
+                if fallback_input:
+                    print(f"  - Using fallback input for step {step_num}: {fallback_input}")
+                    resolved_input = fallback_input
+                else:
+                    print(f"  - Skipping step {step_num} ({tool_name}): No fallback available")
+                    context[output_key] = [{"error": "No fallback input available", "dependency_failed": True}]
+                    continue
 
             if tool_name:
                 try:
@@ -214,19 +242,21 @@ class MasterAgent:
         print("- [MasterAgent] Plan execution complete.")
         return context
 
-    def _resolve_input_variables(self, raw_input: str, context: Dict[str, Any]) -> str:
+    def _resolve_input_variables_enhanced(self, raw_input: str, context: Dict[str, Any]) -> tuple[str, bool]:
         """
-        Resolves variable references in input strings like {step_1_order_id['order_id']}
+        Enhanced variable resolution that returns both resolved input and success status
         """
         if not raw_input or not isinstance(raw_input, str):
-            return raw_input
+            return raw_input, True
 
         import re
 
         # Pattern to match {variable_name['key']} or {variable_name["key"]}
         pattern = r'***REMOVED***{([^}]+)***REMOVED***[[***REMOVED***'"](.*?)[***REMOVED***'"]***REMOVED***]***REMOVED***}'
+        resolution_success = True
 
         def replace_variable(match):
+            nonlocal resolution_success
             var_name = match.group(1)
             key = match.group(2)
 
@@ -239,18 +269,29 @@ class MasterAgent:
                 elif isinstance(var_value, list) and len(var_value) > 0:
                     if isinstance(var_value[0], dict) and key in var_value[0]:
                         return str(var_value[0][key])
+                    # Handle case where list contains non-dict items
+                    elif len(var_value) == 1 and not isinstance(var_value[0], dict):
+                        return str(var_value[0])
 
             print(f"  - Warning: Could not resolve variable {var_name}['{key}'] in context")
+            resolution_success = False
             return match.group(0)  # Return original if can't resolve
 
         try:
             resolved = re.sub(pattern, replace_variable, raw_input)
-            if resolved != raw_input:
+            if resolved != raw_input and resolution_success:
                 print(f"  - Resolved input: '{raw_input}' -> '{resolved}'")
-            return resolved
+            return resolved, resolution_success
         except Exception as e:
             print(f"  - Warning: Error resolving variables in '{raw_input}': {str(e)}")
-            return raw_input
+            return raw_input, False
+
+    def _resolve_input_variables(self, raw_input: str, context: Dict[str, Any]) -> str:
+        """
+        Legacy method for backward compatibility
+        """
+        resolved, _ = self._resolve_input_variables_enhanced(raw_input, context)
+        return resolved
 
     def _post_process_data(
         self, data: Dict[str, Any], complexity: str
@@ -273,10 +314,10 @@ class MasterAgent:
         return data
 
     def _load_task_prompts(self) -> dict:
-        """Load task-specific prompts from YAML file"""
-        path = self.config.get("task_prompts_path", "config/task_prompts.yaml")
+        """Load task-specific prompts from task_prompts_variations.yaml"""
+        path = self.config.get("task_prompts_path", "config/task_prompts_variations.yaml")
         with open(path, 'r') as f:
-            return yaml.safe_load(f).get("task_prompts", {})
+            return yaml.safe_load(f).get("prompt_variations", {})
 
     def _determine_task_type(self, query: str) -> str:
         """Determine task complexity based on query content"""
@@ -317,3 +358,84 @@ class MasterAgent:
                 params["order_id"] = match.group(1)
         
         return template.format(**params)
+
+    def _has_unresolved_dependencies(self, raw_input: str, context: Dict[str, Any]) -> bool:
+        """
+        Check if the input has variable dependencies that cannot be resolved
+        """
+        if not raw_input or not isinstance(raw_input, str):
+            return False
+
+        import re
+        pattern = r'***REMOVED***{([^}]+)***REMOVED***[[***REMOVED***'"](.*?)[***REMOVED***'"]***REMOVED***]***REMOVED***}'
+        matches = re.findall(pattern, raw_input)
+
+        for var_name, key in matches:
+            if var_name not in context:
+                return True
+            var_value = context[var_name]
+            # Check if the variable exists but contains error data
+            if isinstance(var_value, list) and len(var_value) > 0:
+                if isinstance(var_value[0], dict) and "error" in var_value[0]:
+                    # Check if it's a dependency failure (should skip) vs recoverable error
+                    if var_value[0].get("dependency_failed", False):
+                        return True
+                    # For other errors, check if we have the required key anyway
+                    if key not in var_value[0]:
+                        return True
+        return False
+
+    def _step_has_dependencies(self, raw_input: str) -> bool:
+        """
+        Check if a step input contains variable references
+        """
+        if not raw_input or not isinstance(raw_input, str):
+            return False
+        import re
+        pattern = r'***REMOVED***{([^}]+)***REMOVED***[[***REMOVED***'"](.*?)[***REMOVED***'"]***REMOVED***]***REMOVED***}'
+        return bool(re.search(pattern, raw_input))
+
+    def _get_fallback_input(self, raw_input: str, step: Dict, context: Dict[str, Any]) -> Optional[str]:
+        """
+        Generate fallback input when variable resolution fails
+        """
+        tool_name = step.get("tool", "")
+
+        # Extract any direct IDs from the original raw_input
+        import re
+
+        # Look for order IDs like ORBOX00117
+        order_match = re.search(r'ORBOX***REMOVED***d+', raw_input)
+        if order_match:
+            order_id = order_match.group(0)
+
+            # Tool-specific fallback strategies
+            if tool_name == "document_parser_tool":
+                return order_id  # Use order ID directly
+            elif tool_name == "location_query_tool":
+                return order_id  # Use order ID directly
+            elif tool_name == "relationship_tool":
+                return order_id  # Use order ID directly
+            elif tool_name == "worker_data_tool":
+                return order_id  # Use order ID directly
+
+        # Look for part IDs like 3DOR100xxx
+        part_match = re.search(r'3DOR***REMOVED***d+', raw_input)
+        if part_match and tool_name in ["relationship_tool", "worker_data_tool"]:
+            return part_match.group(0)
+
+        # Look for any successful previous step outputs that might be usable
+        for key, value in context.items():
+            if isinstance(value, list) and len(value) > 0:
+                if isinstance(value[0], dict):
+                    # Check for structured error with order_id
+                    if "error" in value[0] and "order_id" in value[0]:
+                        return value[0]["order_id"]
+                    # Check for successful data
+                    elif "error" not in value[0]:
+                        if "order_id" in value[0]:
+                            return value[0]["order_id"]
+                        elif "id" in value[0]:
+                            return value[0]["id"]
+
+        return None

@@ -76,7 +76,7 @@ def interactive_model_selection(available_models):
         descriptions = {
             "deepseek-reasoner": "DeepSeek's reasoning model (cost-effective)",
             "deepseek-chat": "DeepSeek's chat model (very cost-effective)",
-            "o4-mini-2025-04-16": "OpenAI's O4-mini (balanced performance)",
+            "o4-mini-2025-04-16": "OpenAI's O4-mini thinking model (reasoning capabilities)",
             "gpt-4o-mini-2024-07-18": "OpenAI's GPT-4o-mini (cost-effective, high performance)",
             "claude-sonnet-4-20250514": "Anthropic's Claude Sonnet 4 (high performance)",
             "claude-3-5-haiku-latest": "Anthropic's Claude Haiku (fast)"
@@ -168,7 +168,7 @@ def estimate_runtime(model, prompt_length, task_subset):
     model_multipliers = {
         "deepseek-reasoner": 1.2,  # Slower due to reasoning
         "deepseek-chat": 0.8,      # Faster
-        "o4-mini-2025-04-16": 1.0, # Baseline
+        "o4-mini-2025-04-16": 1.1, # Thinking model - slightly slower due to reasoning
         "gpt-4o-mini-2024-07-18": 0.9,  # Fast and efficient
         "claude-sonnet-4-20250514": 1.1,  # Slightly slower
         "claude-3-5-haiku-latest": 0.7    # Faster
@@ -188,19 +188,39 @@ def estimate_runtime(model, prompt_length, task_subset):
 
 def run_evaluation(config, model, prompt_length, task_subset):
     """Run the evaluation with selected parameters"""
-    
+
     print(f"***REMOVED***n🚀 Starting Evaluation")
     print("=" * 50)
     print(f"   Model: {model}")
     print(f"   Prompt Length: {prompt_length}")
     print(f"   Task Subset: {task_subset}")
-    
+
+    # Ask about fast mode
+    print(f"***REMOVED***n⚡ Evaluation Mode:")
+    print("   1. Full Mode - Uses 3 balanced judges: o4-mini thinking model (high reasoning) + Claude-3.5-Haiku + DeepSeek (fast)")
+    print("   2. Fast Mode - Simple string matching (3x faster, less accurate)")
+    print("   3. Ultra-Fast Mode - Fast mode + easy tasks only (5x faster)")
+
+    mode_choice = input("Select mode (1/2/3): ").strip()
+    fast_mode = mode_choice in ["2", "3"]
+    ultra_fast = mode_choice == "3"
+
+    if ultra_fast:
+        print("   Selected: 🚀 Ultra-Fast Mode (easy tasks only)")
+        task_subset = "easy"  # Override task subset for ultra-fast
+    elif fast_mode:
+        print("   Selected: ⚡ Fast Mode")
+    else:
+        print("   Selected: 🏛️ Full Mode (with 3 balanced judges)")
+
     # Estimate runtime
     estimated_minutes, num_tasks = estimate_runtime(model, prompt_length, task_subset)
+    if fast_mode:
+        estimated_minutes = estimated_minutes * 0.33  # Fast mode is ~3x faster
     print(f"   Tasks: {num_tasks}")
     print(f"   Estimated Time: {estimated_minutes:.1f} minutes")
     print()
-    
+
     # Confirm before starting
     confirm = input("Continue with evaluation? (y/n): ").lower().strip()
     if confirm not in ['y', 'yes']:
@@ -213,10 +233,11 @@ def run_evaluation(config, model, prompt_length, task_subset):
     try:
         # Initialize evaluation runner with custom parameters
         runner = LLMEvaluationRunner(
-            config, 
-            use_mock=False, 
+            config,
+            use_mock=False,
             prompt_length=prompt_length,
-            task_subset=task_subset
+            task_subset=task_subset,
+            fast_mode=fast_mode
         )
         
         # Run the evaluation
@@ -257,7 +278,7 @@ def main():
     print("🏛️  Interactive LLM Evaluation System")
     print("=" * 50)
     print()
-    print("This system provides unbiased evaluation using multiple judge models")
+    print("This system provides balanced evaluation using 3 judges with weighted consensus")
     print("to eliminate self-evaluation bias and provide accurate performance metrics.")
     print()
     

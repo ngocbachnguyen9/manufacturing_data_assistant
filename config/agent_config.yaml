@@ -2,9 +2,9 @@
 master_agent:
   name: "ManufacturingDataMaster"
   role: "Manufacturing Data Analysis Orchestrator"
-  max_planning_steps: 5
+  max_planning_steps: 6
   max_execution_attempts: 3
-  confidence_threshold: 0.7
+  confidence_threshold: 0.6
   
   # Error Handling Strategy
   error_handling:
@@ -24,9 +24,9 @@ specialist_agents:
     name: "DataRetrievalSpecialist"
     role: "Multi-source Manufacturing Data Query"
     tools: ["location_query", "machine_log", "relationship", "worker_data"]
-    fuzzy_search_enabled: true
+    fuzzy_search_enabled: true  # Re-enabled - needed for variable resolution
     search_threshold: 0.75  # Lowered to catch more corruption cases
-    force_fuzzy_on_failure: true  # Always try fuzzy matching if exact match fails
+    force_fuzzy_on_failure: true  # Re-enabled - critical for task success
     
   reconciliation_agent:
     name: "DataReconciliationSpecialist"

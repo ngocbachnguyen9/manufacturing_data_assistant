@@ -1,44 +1,40 @@
-# Unbiased LLM Evaluation - Bias Analysis Report
+# Balanced LLM Evaluation - Judge Analysis Report
 ============================================================
 
 ## Executive Summary
 
-This evaluation used multiple unbiased judge models to eliminate self-evaluation bias.
+This evaluation used 3 balanced judges with weighted consensus to eliminate self-evaluation bias.
 
 ## Judge System Configuration
 
-- **gpt-4o-mini-2024-07-18**: Weight 1
-- **deepseek-chat**: Weight 1
-- **claude-3-haiku-20240307**: Weight 1
+- **o4-mini-2025-04-16**: Weight 2.0 (high reasoning)
+- **claude-3-5-haiku-latest**: Weight 1.5 (fast)
+- **deepseek-chat**: Weight 1.5 (fast)
 
 ## Consensus Analysis
 
-**Total Tasks Evaluated**: 90
-**Average Consensus Score**: 0.548
-**Unanimous Decisions**: 51/90 (56.7%)
-**Majority Decisions**: 45/90 (50.0%)
+**Total Tasks Evaluated**: 9
+**Average Consensus Score**: 0.911
+**Unanimous Decisions**: 7/9 (77.8%)
+**Majority Decisions**: 9/9 (100.0%)
 
 ## Bias Elimination Benefits
 
-✅ **Self-Evaluation Bias Eliminated**: Different models judge the answers
-✅ **Weighted Consensus**: Higher-capability judges have more influence
-✅ **Transparency**: All individual judgments are recorded
-✅ **Reliability**: Multiple perspectives reduce individual model biases
+✅ **Self-Evaluation Bias Eliminated**: Independent judges evaluate the answers
+✅ **Balanced Approach**: High-reasoning judge + fast judges for speed/accuracy balance
+✅ **Weighted Consensus**: Higher weight for reasoning judge, majority threshold
+✅ **Transparency**: All individual judgments and weights are recorded
 
 ## Controversial Decisions (Split Judgments)
 
-- **P1_task_2**: Consensus 0.33
-- **P1_task_3**: Consensus 0.67
-- **P1_task_7**: Consensus 0.33
-- **P1_task_9**: Consensus 0.33
-- **P2_task_5**: Consensus 0.33
-- ... and 34 more
+- **P1_task_8**: Consensus 0.60
+- **P6_task_10**: Consensus 0.60
 
 ## Methodology Validation
 
 This unbiased evaluation system addresses the critical flaw in self-evaluation:
 
-❌ **Previous (Biased)**: deepseek-chat judges its own answers
-✅ **Current (Unbiased)**: GPT-4o-mini, deepseek-reasoner, Claude judge deepseek-chat's answers
+❌ **Previous (Biased)**: Model judges its own answers
+✅ **Current (Balanced)**: 3 independent judges with weighted consensus judge all model answers
 
 This provides more accurate, reliable performance metrics for manufacturing data analysis tasks.

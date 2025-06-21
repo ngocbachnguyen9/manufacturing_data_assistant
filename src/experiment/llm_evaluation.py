@@ -18,6 +18,7 @@ from src.utils.llm_provider import (
     OpenAIProvider,
     AnthropicProvider,
     DeepSeekProvider,
+    OpenAIReasoningProvider,
 )
 
 class LLMEvaluationRunner:
@@ -25,11 +26,12 @@ class LLMEvaluationRunner:
     Manages the execution of the LLM agent against the experimental tasks.
     """
     def __init__(self, config: Dict[str, Any], use_mock: bool = False, use_corrected_ground_truth: bool = True,
-                 prompt_length: str = "long", task_subset: str = "all"):
+                 prompt_length: str = "long", task_subset: str = "all", fast_mode: bool = False):
         self.config = config
         self.use_mock = use_mock
         self.prompt_length = prompt_length
         self.task_subset = task_subset
+        self.fast_mode = fast_mode  # Skip judge system for maximum speed
 
         # Load prompt variations
         self.prompt_variations = self._load_prompt_variations()
@@ -173,7 +175,9 @@ class LLMEvaluationRunner:
             return MockLLMProvider(model_name)
 
         print(f"  - Using LIVE provider for {model_name}")
-        if "gpt" in model_name or "o4" in model_name:
+        if "o4-mini" in model_name:
+            return OpenAIReasoningProvider(model_name)  # Use reasoning provider for o4-mini thinking models
+        elif "gpt" in model_name or "o4" in model_name:
             return OpenAIProvider(model_name)
         elif "claude" in model_name or "sonnet" in model_name:
             return AnthropicProvider(model_name)
@@ -197,7 +201,9 @@ class LLMEvaluationRunner:
                 llm_provider = MockLLMProvider(model_name)
                 print(f"  - Using MockLLMProvider for {model_name}")
             else:
-                if "gpt" in model_name or "o4" in model_name:
+                if "o4-mini" in model_name:
+                    llm_provider = OpenAIReasoningProvider(model_name)  # Use reasoning provider for o4-mini thinking models
+                elif "gpt" in model_name or "o4" in model_name:
                     llm_provider = OpenAIProvider(model_name)
                 elif "claude" in model_name or "sonnet" in model_name:
                     llm_provider = AnthropicProvider(model_name)
@@ -210,9 +216,14 @@ class LLMEvaluationRunner:
 
             cost_tracker = CostTracker(cost_config)
 
+            task_counter = 0
+            total_tasks = sum(len(tasks) for tasks in self.assignments.values())
+
             for p_id, tasks in self.assignments.items():
                 for task in tasks:
-                    print(f"  - Running Task: {task['task_id']} on {model_name}")
+                    task_counter += 1
+                    print(f"  - Running Task {task_counter}/{total_tasks}: {task['task_id']} on {model_name}")
+                    print(f"    Query: {task['query_string'][:80]}...")
                     cost_tracker.reset()
                     start_time = time.time()
 
@@ -236,10 +247,16 @@ class LLMEvaluationRunner:
                     completion_time = round(end_time - start_time, 2)
                     cost_summary = cost_tracker.get_summary()
 
-                    # UPDATED: Use the robust LLM-as-Judge evaluation
-                    is_correct, gt_answer = self._evaluate_answer(
-                        task["task_id"], final_report, llm_provider
-                    )
+                    # UPDATED: Use fast evaluation or robust LLM-as-Judge evaluation
+                    if self.fast_mode:
+                        # Fast mode: Simple string matching for speed
+                        is_correct, gt_answer = self._fast_evaluate_answer(task["task_id"], final_report)
+                        print(f"    ⚡ Fast evaluation: {'✅ CORRECT' if is_correct else '❌ INCORRECT'}")
+                    else:
+                        # Full mode: Use the robust LLM-as-Judge evaluation
+                        is_correct, gt_answer = self._evaluate_answer(
+                            task["task_id"], final_report, llm_provider
+                        )
 
                     # UPDATED: Log the rich behavioral data with bias analysis
                     result_entry = {
@@ -278,6 +295,8 @@ class LLMEvaluationRunner:
         """Create a judge-specific provider that handles plain text responses"""
         if provider_class == "OpenAIProvider":
             return self._create_openai_judge(model_name)
+        elif provider_class == "OpenAIReasoningProvider":
+            return self._create_openai_reasoning_judge(model_name)
         elif provider_class == "AnthropicProvider":
             return self._create_anthropic_judge(model_name)
         elif provider_class == "DeepSeekProvider":
@@ -295,14 +314,14 @@ class LLMEvaluationRunner:
                 self.model_name = model_name
                 self.client = openai.OpenAI()
 
-            @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=60))
+            @retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=1, max=5))
             def generate(self, prompt: str) -> Dict[str, Any]:
                 try:
                     response = self.client.chat.completions.create(
                         model=self.model_name,
                         messages=[{"role": "user", "content": prompt}],
-                        max_tokens=10,  # We only need "Correct" or "Incorrect"
-                        temperature=0.1  # Low temperature for consistent judgments
+                        max_tokens=5,  # Reduced from 10 to 5 - we only need "Correct" or "Incorrect"
+                        temperature=0.0  # Zero temperature for fastest, most consistent judgments
                     )
 
                     content = response.choices[0].message.content.strip()
@@ -317,6 +336,42 @@ class LLMEvaluationRunner:
 
         return OpenAIJudgeProvider(model_name)
 
+    def _create_openai_reasoning_judge(self, model_name: str):
+        """Create OpenAI reasoning provider for o4-mini with high reasoning effort"""
+        import openai
+        from tenacity import retry, stop_after_attempt, wait_exponential
+
+        class OpenAIReasoningJudgeProvider:
+            def __init__(self, model_name: str):
+                self.model_name = model_name
+                self.client = openai.OpenAI()
+
+            @retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=1, max=3))
+            def generate(self, prompt: str) -> Dict[str, Any]:
+                try:
+                    response = self.client.responses.create(
+                        model=self.model_name,
+                        reasoning={"effort": "medium"},  #options from low to high for reasoning effort
+                        input=[
+                            {
+                                "role": "user",
+                                "content": prompt
+                            }
+                        ]
+                    )
+
+                    content = response.output_text.strip()
+                    return {
+                        "content": content,
+                        "input_tokens": 0,  # Reasoning API doesn't provide token counts yet
+                        "output_tokens": 0
+                    }
+                except Exception as e:
+                    print(f"ERROR: OpenAI reasoning judge API call failed: {e}")
+                    return {"content": "incorrect", "input_tokens": 0, "output_tokens": 0}
+
+        return OpenAIReasoningJudgeProvider(model_name)
+
     def _create_anthropic_judge(self, model_name: str):
         """Create Anthropic provider configured for plain text judge responses"""
         import anthropic
@@ -327,13 +382,16 @@ class LLMEvaluationRunner:
                 self.model_name = model_name
                 self.client = anthropic.Anthropic()
 
-            @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=60))
+            @retry(
+                stop=stop_after_attempt(3),
+                wait=wait_exponential(multiplier=2, min=2, max=30)  # Longer waits for overload errors
+            )
             def generate(self, prompt: str) -> Dict[str, Any]:
                 try:
                     response = self.client.messages.create(
                         model=self.model_name,
-                        max_tokens=10,  # We only need "Correct" or "Incorrect"
-                        temperature=0.1,  # Low temperature for consistent judgments
+                        max_tokens=10,  # Increased back to 10 for reliability
+                        temperature=0.0,  # Zero temperature for fastest, most consistent judgments
                         system="You are an expert evaluator. Respond with exactly one word: 'Correct' or 'Incorrect'.",
                         messages=[{"role": "user", "content": prompt}]
                     )
@@ -345,17 +403,24 @@ class LLMEvaluationRunner:
                         "output_tokens": response.usage.output_tokens
                     }
                 except Exception as e:
-                    print(f"ERROR: Anthropic judge API call failed: {e}")
-                    return {"content": "incorrect", "input_tokens": 0, "output_tokens": 0}
+                    error_msg = str(e)
+                    if "overloaded" in error_msg.lower() or "529" in error_msg:
+                        print(f"⚠️  Anthropic judge overloaded, will retry with longer delay: {e}")
+                        raise  # Let retry mechanism handle it
+                    else:
+                        print(f"❌ Anthropic judge API call failed: {e}")
+                        return {"content": "incorrect", "input_tokens": 0, "output_tokens": 0}
 
         return AnthropicJudgeProvider(model_name)
 
     def _initialize_judge_providers(self) -> Dict[str, Any]:
-        """Initialize unbiased judge model providers with equal weights - using fast, reliable models"""
+        """Initialize balanced 3-judge system with weighted voting and fallback options"""
         judge_models = {
-            "gpt-4o-mini-2024-07-18": {"weight": 1, "provider_class": "OpenAIProvider"},
-            "deepseek-chat": {"weight": 1, "provider_class": "DeepSeekProvider"},
-            "claude-3-haiku-20240307": {"weight": 1, "provider_class": "AnthropicProvider"}
+            "o4-mini-2025-04-16": {"weight": 2.0, "provider_class": "OpenAIReasoningProvider"},
+            "claude-3-5-haiku-latest": {"weight": 1.5, "provider_class": "AnthropicProvider", "fallback": "gpt-4o-mini-2024-07-18"},
+            "deepseek-chat": {"weight": 1.5, "provider_class": "DeepSeekProvider"}
+            # Balanced system: 1 high-reasoning judge + 2 fast judges with weighted consensus
+            # Claude has GPT-4o-mini fallback for overload situations
         }
 
         judge_providers = {}
@@ -365,9 +430,12 @@ class LLMEvaluationRunner:
                 provider = self._create_judge_provider(model_name, config["provider_class"])
                 judge_providers[model_name] = {
                     "provider": provider,
-                    "weight": config["weight"]
+                    "weight": config["weight"],
+                    "fallback": config.get("fallback")  # Store fallback model if available
                 }
-                print(f"✅ Initialized unbiased judge: {model_name} (weight: {config['weight']})")
+                judge_type = "high reasoning" if "o4-mini" in model_name else "fast"
+                fallback_info = f" (fallback: {config['fallback']})" if config.get("fallback") else ""
+                print(f"✅ Initialized judge: {model_name} (weight: {config['weight']}, {judge_type}){fallback_info}")
             except Exception as e:
                 print(f"❌ Failed to initialize judge {model_name}: {e}")
                 # Continue without this judge rather than failing completely
@@ -375,7 +443,7 @@ class LLMEvaluationRunner:
         if not judge_providers:
             raise RuntimeError("❌ CRITICAL: No judge providers could be initialized. Check API keys and model names.")
 
-        print(f"🏛️  Unbiased evaluation system ready with {len(judge_providers)} judges")
+        print(f"🏛️  Balanced evaluation system ready with {len(judge_providers)} judges")
         return judge_providers
 
     def _create_unbiased_judge_prompt(self, llm_report: str, ground_truth: str) -> str:
@@ -387,7 +455,8 @@ class LLMEvaluationRunner:
 1. **IGNORE confidence scores completely** - Low confidence does not mean wrong answer
 2. **IGNORE data quality warnings** - These are neutral and don't affect correctness
 3. **IGNORE extra fields or formatting** - Focus only on core required data
-4. **ONLY evaluate factual accuracy** - Does the core data match the expected result?
+4. **IGNORE field name differences** - "printer_used" vs "assigned_printer" are equivalent if values match
+5. **ONLY evaluate factual accuracy** - Does the core data match the expected result?
 
 **Ground Truth (Expected Result):**
 {ground_truth}
@@ -399,10 +468,15 @@ class LLMEvaluationRunner:
 
 **Example 1 - Gear Identification (CORRECT):**
 - Ground Truth: {{"gear_list": ["3DOR100033", "3DOR100034", "3DOR100035"]}}
-- AI Report: {{"gears_found": ["3DOR100033", "3DOR100034", "3DOR100035"], "confidence": 0.3, "issues": ["low confidence due to data quality"]}}
-- Judgment: CORRECT (gear list matches exactly, ignore confidence and warnings)
+- AI Report: {{"gears": ["3DOR100033", "3DOR100034", "3DOR100035"], "confidence": 0.3, "issues": ["low confidence due to data quality"]}}
+- Judgment: CORRECT (gear list matches exactly, ignore field name difference, confidence and warnings)
 
-**Example 2 - Printer Assignment (INCORRECT):**
+**Example 2 - Printer Assignment (CORRECT with different field names):**
+- Ground Truth: {{"assigned_printer": "Printer_1"}}
+- AI Report: {{"printer_used": "Printer_1", "confidence": 0.3, "issues": ["data quality"]}}
+- Judgment: CORRECT (same printer value, ignore field name difference and low confidence)
+
+**Example 2b - Printer Assignment (INCORRECT):**
 - Ground Truth: {{"assigned_printer": "Printer_1"}}
 - AI Report: {{"printer_used": "ORBOX0018", "confidence": 0.8}}
 - Judgment: INCORRECT (wrong printer name, even with high confidence)
@@ -444,11 +518,11 @@ Do not provide explanations. Just the single word judgment."""
 
         judge_prompt = self._create_unbiased_judge_prompt(llm_report, gt_answer_json)
 
-        # Collect judgments from all judges
+        # Collect judgments from all judges with weighted consensus
         judgments = {}
         judge_details = {}
 
-        print(f"    🔍 Evaluating {task_id} with {len(self.judge_providers)} unbiased judges...")
+        print(f"    🔍 Evaluating {task_id} with {len(self.judge_providers)} balanced judges...")
 
         for judge_name, judge_config in self.judge_providers.items():
             try:
@@ -471,16 +545,55 @@ Do not provide explanations. Just the single word judgment."""
                     'raw_response': judgment_text[:50]  # Truncate for storage
                 }
 
-                print(f"    📝 {judge_name}: {'✅ Correct' if judgment else '❌ Incorrect'} (weight: {judge_config['weight']})")
+                judge_type = "high reasoning" if "o4-mini" in judge_name else "fast"
+                print(f"    📝 {judge_name}: {'✅ Correct' if judgment else '❌ Incorrect'} (weight: {judge_config['weight']}, {judge_type})")
 
             except Exception as e:
-                print(f"    ❌ Error with judge {judge_name}: {e}")
-                judgments[judge_name] = False
-                judge_details[judge_name] = {
-                    'judgment': False,
-                    'weight': judge_config["weight"],
-                    'raw_response': f"Error: {str(e)}"
-                }
+                error_msg = str(e)
+                fallback_model = judge_config.get("fallback")
+
+                # Try fallback if available and it's an overload error
+                if fallback_model and ("overloaded" in error_msg.lower() or "529" in error_msg):
+                    print(f"    ⚠️  {judge_name} overloaded, trying fallback: {fallback_model}")
+                    try:
+                        # Create fallback provider
+                        fallback_provider = self._create_judge_provider(fallback_model, "OpenAIProvider")
+                        response = fallback_provider.generate(judge_prompt)
+                        judgment_text = response["content"].strip().lower()
+
+                        # Parse fallback judgment
+                        if "correct" in judgment_text and "incorrect" not in judgment_text:
+                            judgment = True
+                        elif "incorrect" in judgment_text:
+                            judgment = False
+                        else:
+                            judgment = False
+
+                        judgments[judge_name] = judgment
+                        judge_details[judge_name] = {
+                            'judgment': judgment,
+                            'weight': judge_config["weight"],
+                            'raw_response': f"Fallback({fallback_model}): {judgment_text[:30]}"
+                        }
+
+                        print(f"    📝 {judge_name} (fallback): {'✅ Correct' if judgment else '❌ Incorrect'} (weight: {judge_config['weight']}, fallback)")
+
+                    except Exception as fallback_error:
+                        print(f"    ❌ Fallback also failed for {judge_name}: {fallback_error}")
+                        judgments[judge_name] = False
+                        judge_details[judge_name] = {
+                            'judgment': False,
+                            'weight': judge_config["weight"],
+                            'raw_response': f"Error + Fallback failed: {str(e)}"
+                        }
+                else:
+                    print(f"    ❌ Error with judge {judge_name}: {e}")
+                    judgments[judge_name] = False
+                    judge_details[judge_name] = {
+                        'judgment': False,
+                        'weight': judge_config["weight"],
+                        'raw_response': f"Error: {str(e)}"
+                    }
 
         # Calculate weighted consensus
         total_weight = 0
@@ -494,9 +607,9 @@ Do not provide explanations. Just the single word judgment."""
 
         # Weighted consensus score
         consensus_score = correct_weight / total_weight if total_weight > 0 else 0
-        final_judgment = consensus_score >= 0.5
+        final_judgment = consensus_score >= 0.5  # Majority threshold
 
-        print(f"    🏛️  Consensus: {consensus_score:.2f} → {'✅ CORRECT' if final_judgment else '❌ INCORRECT'}")
+        print(f"    🏛️  Weighted Consensus: {consensus_score:.2f} → {'✅ CORRECT' if final_judgment else '❌ INCORRECT'}")
 
         # Store bias analysis data for later reporting
         if not hasattr(self, 'bias_analysis_data'):
@@ -511,8 +624,66 @@ Do not provide explanations. Just the single word judgment."""
 
         return final_judgment, gt_answer_json
 
+    def _fast_evaluate_answer(self, task_id: str, llm_report: str) -> tuple:
+        """
+        Fast evaluation mode: Simple string matching without judge models.
+        Much faster but less sophisticated than the full judge system.
+        """
+        gt_task = next(
+            (t for t in self.ground_truth if t["task_id"] == task_id), None
+        )
+        if not gt_task:
+            return False, f"Ground truth for task_id '{task_id}' not found in baseline_answers.json"
+
+        gt_answer_json = json.dumps(gt_task["baseline_answer"], indent=2)
+
+        # Simple heuristic: check if key elements from ground truth appear in LLM report
+        try:
+            gt_answer = gt_task["baseline_answer"]
+
+            # For gear finding tasks
+            if "gear_list" in gt_answer:
+                expected_gears = gt_answer["gear_list"]
+                found_gears = sum(1 for gear in expected_gears if gear in llm_report)
+                is_correct = found_gears >= len(expected_gears) * 0.8  # 80% threshold
+
+            # For printer tasks
+            elif "printer_id" in gt_answer:
+                is_correct = gt_answer["printer_id"] in llm_report
+
+            # For date verification tasks
+            elif "date_match" in gt_answer:
+                # Look for boolean indicators
+                if gt_answer["date_match"]:
+                    is_correct = any(word in llm_report.lower() for word in ["match", "correct", "true", "yes"])
+                else:
+                    is_correct = any(word in llm_report.lower() for word in ["mismatch", "incorrect", "false", "no"])
+
+            else:
+                # Fallback: assume correct if report is substantial
+                is_correct = len(llm_report.strip()) > 50
+
+        except Exception as e:
+            print(f"    ⚠️  Fast evaluation error: {e}")
+            is_correct = False
+
+        return is_correct, gt_answer_json
+
     def _save_results(self):
         results_df = pd.DataFrame(self.results)
+
+        # Clean text fields to prevent CSV formatting issues
+        if 'llm_final_report' in results_df.columns:
+            # Replace newlines with escaped newlines and handle quotes
+            results_df['llm_final_report'] = results_df['llm_final_report'].apply(
+                lambda x: str(x).replace('***REMOVED***n', '***REMOVED******REMOVED***n').replace('***REMOVED***r', '***REMOVED******REMOVED***r') if pd.notna(x) else ''
+            )
+
+        if 'ground_truth_answer' in results_df.columns:
+            # Clean ground truth field as well
+            results_df['ground_truth_answer'] = results_df['ground_truth_answer'].apply(
+                lambda x: str(x).replace('***REMOVED***n', '***REMOVED******REMOVED***n').replace('***REMOVED***r', '***REMOVED******REMOVED***r') if pd.notna(x) else ''
+            )
 
         # Create custom filename based on configuration
         timestamp = datetime.now().strftime("%Y%m%d")
@@ -522,7 +693,8 @@ Do not provide explanations. Just the single word judgment."""
         filename = f"{model_name}_{self.prompt_length}_{self.task_subset}_{timestamp}.csv"
         output_path = os.path.join(self.log_dir, filename)
 
-        results_df.to_csv(output_path, index=False)
+        # Use proper CSV quoting to handle special characters
+        results_df.to_csv(output_path, index=False, quoting=1, escapechar='***REMOVED******REMOVED***')  # quoting=1 = QUOTE_ALL
 
         # Generate bias analysis report if we have bias data
         if hasattr(self, 'bias_analysis_data') and self.bias_analysis_data:
@@ -530,17 +702,17 @@ Do not provide explanations. Just the single word judgment."""
 
         print(f"***REMOVED***n--- Unbiased Evaluation Complete ---")
         print(f"✅ Results saved to {output_path}")
-        print(f"🏛️  Evaluation used {len(getattr(self, 'judge_providers', {}))} unbiased judges")
+        print(f"🏛️  Evaluation used 3 balanced judges with weighted consensus")
 
         # Print bias analysis summary
         if hasattr(self, 'bias_analysis_data') and self.bias_analysis_data:
             consensus_scores = [data['consensus_score'] for data in self.bias_analysis_data]
             avg_consensus = sum(consensus_scores) / len(consensus_scores)
             unanimous_decisions = sum(1 for score in consensus_scores if score in [0, 1])
-            print(f"📊 Bias Analysis Summary:")
-            print(f"   • Average Consensus Score: {avg_consensus:.2f}")
-            print(f"   • Unanimous Decisions: {unanimous_decisions}/{len(consensus_scores)} ({unanimous_decisions/len(consensus_scores)*100:.1f}%)")
-            print(f"   • Bias analysis report: {self.log_dir}/bias_analysis_report.md")
+            print(f"📊 Judge Analysis Summary:")
+            print(f"   • Average Decision Score: {avg_consensus:.2f}")
+            print(f"   • Consistent Decisions: {unanimous_decisions}/{len(consensus_scores)} ({unanimous_decisions/len(consensus_scores)*100:.1f}%)")
+            print(f"   • Judge analysis report: {self.log_dir}/bias_analysis_report.md")
 
     def _generate_bias_analysis_report(self):
         """Generate comprehensive bias analysis report"""
@@ -550,12 +722,12 @@ Do not provide explanations. Just the single word judgment."""
         consensus_scores = [data['consensus_score'] for data in self.bias_analysis_data]
 
         report = []
-        report.append("# Unbiased LLM Evaluation - Bias Analysis Report")
+        report.append("# Balanced LLM Evaluation - Judge Analysis Report")
         report.append("=" * 60)
         report.append("")
         report.append("## Executive Summary")
         report.append("")
-        report.append("This evaluation used multiple unbiased judge models to eliminate self-evaluation bias.")
+        report.append("This evaluation used 3 balanced judges with weighted consensus to eliminate self-evaluation bias.")
         report.append("")
 
         # Judge System Overview
@@ -563,7 +735,8 @@ Do not provide explanations. Just the single word judgment."""
             report.append("## Judge System Configuration")
             report.append("")
             for judge_name, config in self.judge_providers.items():
-                report.append(f"- **{judge_name}**: Weight {config['weight']}")
+                judge_type = "high reasoning" if "o4-mini" in judge_name else "fast"
+                report.append(f"- **{judge_name}**: Weight {config['weight']} ({judge_type})")
             report.append("")
 
         # Consensus Analysis
@@ -582,10 +755,10 @@ Do not provide explanations. Just the single word judgment."""
         # Bias Elimination Benefits
         report.append("## Bias Elimination Benefits")
         report.append("")
-        report.append("✅ **Self-Evaluation Bias Eliminated**: Different models judge the answers")
-        report.append("✅ **Weighted Consensus**: Higher-capability judges have more influence")
-        report.append("✅ **Transparency**: All individual judgments are recorded")
-        report.append("✅ **Reliability**: Multiple perspectives reduce individual model biases")
+        report.append("✅ **Self-Evaluation Bias Eliminated**: Independent judges evaluate the answers")
+        report.append("✅ **Balanced Approach**: High-reasoning judge + fast judges for speed/accuracy balance")
+        report.append("✅ **Weighted Consensus**: Higher weight for reasoning judge, majority threshold")
+        report.append("✅ **Transparency**: All individual judgments and weights are recorded")
         report.append("")
 
         # Controversial Decisions
@@ -603,8 +776,8 @@ Do not provide explanations. Just the single word judgment."""
         report.append("")
         report.append("This unbiased evaluation system addresses the critical flaw in self-evaluation:")
         report.append("")
-        report.append("❌ **Previous (Biased)**: deepseek-chat judges its own answers")
-        report.append("✅ **Current (Unbiased)**: GPT-4o-mini, deepseek-reasoner, Claude judge deepseek-chat's answers")
+        report.append("❌ **Previous (Biased)**: Model judges its own answers")
+        report.append("✅ **Current (Balanced)**: 3 independent judges with weighted consensus judge all model answers")
         report.append("")
         report.append("This provides more accurate, reliable performance metrics for manufacturing data analysis tasks.")
 

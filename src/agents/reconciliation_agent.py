@@ -30,7 +30,7 @@ class ReconciliationAgent:
         }
 
         self._check_for_tool_errors(context, summary)
-        self._cross_validate_gear_timeline(context, summary)
+        self._cross_validate_gear_timeline(context, summary)  # Re-enabled - needed for data validation
 
         # Apply confidence floor at 0.0
         summary["confidence"] = max(0.0, summary["confidence"])

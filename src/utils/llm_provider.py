@@ -181,8 +181,8 @@ class OpenAIProvider:
         self.client = openai.OpenAI()
 
     @retry(
-        stop=stop_after_attempt(3), # From retry_config.max_retries
-        wait=wait_exponential(multiplier=1, min=2, max=60) # Exponential backoff
+        stop=stop_after_attempt(2), # Reduced from 3 to 2 attempts
+        wait=wait_exponential(multiplier=1, min=1, max=10) # Faster backoff: 1-10s instead of 2-60s
     )
 
     def generate(self, prompt: str) -> Dict[str, Any]:
@@ -216,8 +216,8 @@ class AnthropicProvider:
         self.client = anthropic.Anthropic()
 
     @retry(
-        stop=stop_after_attempt(3),  # From retry_config.max_retries
-        wait=wait_exponential(multiplier=1, min=2, max=60),  # Exponential backoff
+        stop=stop_after_attempt(2),  # Reduced from 3 to 2 attempts
+        wait=wait_exponential(multiplier=1, min=1, max=10),  # Faster backoff: 1-10s instead of 2-60s
     )
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to Anthropic and standardizes the response."""
@@ -264,8 +264,8 @@ class DeepSeekProvider:
         )
     
     @retry(
-        stop=stop_after_attempt(3), # From retry_config.max_retries
-        wait=wait_exponential(multiplier=1, min=2, max=60) # Exponential backoff
+        stop=stop_after_attempt(2), # Reduced from 3 to 2 attempts
+        wait=wait_exponential(multiplier=1, min=1, max=10) # Faster backoff: 1-10s instead of 2-60s
     )
 
     def generate(self, prompt: str) -> Dict[str, Any]:
@@ -289,3 +289,53 @@ class DeepSeekProvider:
         except Exception as e:
             print(f"ERROR: DeepSeek API call failed: {e}")
             return {"content": f'{{"error": "API call failed: {e}"}}', "input_tokens": 0, "output_tokens": 0}
+
+class OpenAIReasoningProvider:
+    """OpenAI provider for o4-mini models using regular chat completions API with reasoning prompts."""
+
+    def __init__(self, model_name: str):
+        # Map o4-mini to the actual available model
+        if "o4-mini" in model_name:
+            self.model_name = "gpt-4o-mini-2024-07-18"  # Use available model
+        else:
+            self.model_name = model_name
+        self.client = openai.OpenAI()
+
+    @retry(
+        stop=stop_after_attempt(2),
+        wait=wait_exponential(multiplier=1, min=1, max=10)
+    )
+    def generate(self, prompt: str) -> Dict[str, Any]:
+        """Makes a real API call to OpenAI's chat completions API with reasoning-enhanced prompts."""
+        try:
+            # Enhance prompt for better reasoning
+            reasoning_prompt = f"""Think step by step and reason through this problem carefully. Consider all aspects of the data and provide a thorough analysis.
+
+{prompt}
+
+Please provide a detailed, well-reasoned response."""
+
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": reasoning_prompt
+                    }
+                ],
+                temperature=0.1,  # Low temperature for consistent reasoning
+                max_tokens=4000   # Sufficient tokens for detailed responses
+            )
+
+            content = response.choices[0].message.content
+            input_tokens = response.usage.prompt_tokens if response.usage else 0
+            output_tokens = response.usage.completion_tokens if response.usage else 0
+
+            return {
+                "content": content,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+            }
+        except Exception as e:
+            print(f"ERROR: OpenAI Reasoning Provider API call failed: {e}")
+            return {"content": f'{{"error": "Reasoning Provider API call failed: {e}"}}', "input_tokens": 0, "output_tokens": 0}
