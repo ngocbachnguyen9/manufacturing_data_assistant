@@ -89,6 +89,12 @@ master_agent_planning_prompt: |
     ]
   }}
   ```
+
+  IMPORTANT CONSTRAINTS:
+  - Keep plans simple with 2 steps maximum for easy and medium tasks
+  - Only use 3+ steps for hard tasks when absolutely necessary
+  - Avoid complex dependency chains that reference multiple previous steps
+  - Use direct tool inputs when possible instead of variable references
   ---
 
   Now, generate the JSON plan for the following user query. Remember, ONLY output the JSON object.

@@ -101,9 +101,15 @@ class ReconciliationAgent:
         """Checks for explicit 'error' keys returned by tools."""
         for step_name, result in context.items():
             if isinstance(result, list) and result and "error" in result[0]:
-                issue = f"Error from {step_name}: {result[0]['error']}"
+                error_msg = result[0]['error']
+                issue = f"Error from {step_name}: {error_msg}"
                 summary["issues_found"].append(issue)
-                summary["confidence"] -= 0.5
+
+                # Lighter penalties for dependency-related issues
+                if "Skipped due to missing dependencies" in error_msg or "No fallback input available" in error_msg:
+                    summary["confidence"] -= 0.2  # Reduced penalty for planning issues
+                else:
+                    summary["confidence"] -= 0.5  # Standard penalty for data issues
 
     def _cross_validate_gear_timeline(self, context: Dict, summary: Dict):
         """

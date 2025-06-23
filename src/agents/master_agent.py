@@ -38,9 +38,22 @@ class MasterAgent:
         # Load task-specific prompts
         self.task_prompts = self._load_task_prompts()
 
-        self.max_attempts = config.get("master_agent", {}).get("max_execution_attempts", 2)
+        # Apply model-specific configurations
+        model_name = getattr(llm_provider, 'model_name', 'default')
+        model_config = config.get("master_agent", {}).get("model_specific", {}).get(model_name, {})
+
+        self.max_attempts = model_config.get("max_execution_attempts",
+                                           config.get("master_agent", {}).get("max_execution_attempts", 2))
         self.confidence_threshold = config.get("master_agent", {}).get("confidence_threshold", 0.7)
+        self.confidence_adjustment = model_config.get("confidence_adjustment", 0.0)
+        self.enhanced_fallback = model_config.get("enhanced_fallback", False)
         self.cost_tracker = cost_tracker
+
+        print(f"MasterAgent configured for model: {model_name}")
+        if self.enhanced_fallback:
+            print(f"  - Enhanced fallback enabled")
+        if self.confidence_adjustment != 0.0:
+            print(f"  - Confidence adjustment: +{self.confidence_adjustment}")
 
         self.tools = {name: cls(datasets) for name, cls in TOOL_CLASSES.items()}
         agent_configs = self.config.get("specialist_agents", {})
@@ -79,6 +92,14 @@ class MasterAgent:
 
             context = self._execute_plan(plan)
             reconciliation = self.reconciliation_agent.reconcile(context)
+
+            # Apply model-specific confidence adjustment
+            if self.confidence_adjustment != 0.0:
+                original_confidence = reconciliation["confidence"]
+                reconciliation["confidence"] = min(1.0, max(0.0,
+                    original_confidence + self.confidence_adjustment))
+                if original_confidence != reconciliation["confidence"]:
+                    print(f"  - Applied confidence adjustment: {original_confidence:.2f} -> {reconciliation['confidence']:.2f}")
             
             # Handle critical data issues by retrying with alternative tools
             if reconciliation.get("critical_issue", False) and attempts < self.max_attempts:
@@ -210,25 +231,36 @@ class MasterAgent:
             output_key = step.get("output_key", f"step_{step['step']}_output")
             step_num = step.get("step", "unknown")
 
-            # Check if this step has unresolved dependencies
+            # Check if this step has unresolved dependencies - but be more permissive for o4-mini
             if self._has_unresolved_dependencies(raw_input, context):
-                print(f"  - Skipping step {step_num} ({tool_name}): Missing required dependencies")
-                context[output_key] = [{"error": "Skipped due to missing dependencies", "dependency_failed": True}]
-                continue
-
-            # Resolve input by substituting context variables
-            resolved_input, resolution_success = self._resolve_input_variables_enhanced(raw_input, context)
-
-            # If resolution failed and this step depends on previous steps, try fallback
-            if not resolution_success and self._step_has_dependencies(raw_input):
-                fallback_input = self._get_fallback_input(raw_input, step, context)
-                if fallback_input:
-                    print(f"  - Using fallback input for step {step_num}: {fallback_input}")
-                    resolved_input = fallback_input
+                # For o4-mini and similar models, try to extract direct IDs first before skipping
+                if self.enhanced_fallback:
+                    fallback_input = self._get_fallback_input(raw_input, step, context)
+                    if fallback_input:
+                        print(f"  - Using enhanced fallback for step {step_num}: {fallback_input}")
+                        resolved_input = fallback_input
+                    else:
+                        print(f"  - Skipping step {step_num} ({tool_name}): Missing required dependencies")
+                        context[output_key] = [{"error": "Skipped due to missing dependencies", "dependency_failed": True}]
+                        continue
                 else:
-                    print(f"  - Skipping step {step_num} ({tool_name}): No fallback available")
-                    context[output_key] = [{"error": "No fallback input available", "dependency_failed": True}]
+                    print(f"  - Skipping step {step_num} ({tool_name}): Missing required dependencies")
+                    context[output_key] = [{"error": "Skipped due to missing dependencies", "dependency_failed": True}]
                     continue
+            else:
+                # Resolve input by substituting context variables
+                resolved_input, resolution_success = self._resolve_input_variables_enhanced(raw_input, context)
+
+                # If resolution failed and this step depends on previous steps, try fallback
+                if not resolution_success and self._step_has_dependencies(raw_input):
+                    fallback_input = self._get_fallback_input(raw_input, step, context)
+                    if fallback_input:
+                        print(f"  - Using fallback input for step {step_num}: {fallback_input}")
+                        resolved_input = fallback_input
+                    else:
+                        print(f"  - Skipping step {step_num} ({tool_name}): No fallback available")
+                        context[output_key] = [{"error": "No fallback input available", "dependency_failed": True}]
+                        continue
 
             if tool_name:
                 try:
@@ -264,11 +296,28 @@ class MasterAgent:
                 var_value = context[var_name]
 
                 # Handle different data structures returned by tools
-                if isinstance(var_value, dict) and key in var_value:
-                    return str(var_value[key])
+                if isinstance(var_value, dict):
+                    if key in var_value and var_value[key]:
+                        return str(var_value[key])
+                    # Try alternative keys
+                    alt_keys = self._get_alternative_keys(key)
+                    for alt_key in alt_keys:
+                        if alt_key in var_value and var_value[alt_key]:
+                            return str(var_value[alt_key])
+
                 elif isinstance(var_value, list) and len(var_value) > 0:
-                    if isinstance(var_value[0], dict) and key in var_value[0]:
-                        return str(var_value[0][key])
+                    if isinstance(var_value[0], dict):
+                        # First try the exact key
+                        if key in var_value[0] and var_value[0][key]:
+                            return str(var_value[0][key])
+                        # Try alternative keys
+                        alt_keys = self._get_alternative_keys(key)
+                        for alt_key in alt_keys:
+                            if alt_key in var_value[0] and var_value[0][alt_key]:
+                                return str(var_value[0][alt_key])
+                        # Even if there's an error, check if the key exists
+                        if "error" in var_value[0] and key in var_value[0]:
+                            return str(var_value[0][key])
                     # Handle case where list contains non-dict items
                     elif len(var_value) == 1 and not isinstance(var_value[0], dict):
                         return str(var_value[0])
@@ -361,7 +410,7 @@ class MasterAgent:
 
     def _has_unresolved_dependencies(self, raw_input: str, context: Dict[str, Any]) -> bool:
         """
-        Check if the input has variable dependencies that cannot be resolved
+        Enhanced dependency resolution that considers recoverable errors and alternative data sources
         """
         if not raw_input or not isinstance(raw_input, str):
             return False
@@ -373,17 +422,54 @@ class MasterAgent:
         for var_name, key in matches:
             if var_name not in context:
                 return True
+
             var_value = context[var_name]
-            # Check if the variable exists but contains error data
+
+            # Handle list results
             if isinstance(var_value, list) and len(var_value) > 0:
-                if isinstance(var_value[0], dict) and "error" in var_value[0]:
-                    # Check if it's a dependency failure (should skip) vs recoverable error
+                if isinstance(var_value[0], dict):
+                    # Critical dependency failures should block execution
                     if var_value[0].get("dependency_failed", False):
                         return True
-                    # For other errors, check if we have the required key anyway
+
+                    # For errors, check if we can still extract the needed key
+                    if "error" in var_value[0]:
+                        # Some errors still contain usable data
+                        if key in var_value[0] and var_value[0][key]:
+                            continue  # We can use this data despite the error
+                        # Check for alternative key names
+                        alt_keys = self._get_alternative_keys(key)
+                        if any(alt_key in var_value[0] and var_value[0][alt_key] for alt_key in alt_keys):
+                            continue  # Found alternative data
+                        return True  # No usable data found
+
+                    # Success case - check if required key exists
                     if key not in var_value[0]:
+                        alt_keys = self._get_alternative_keys(key)
+                        if not any(alt_key in var_value[0] for alt_key in alt_keys):
+                            return True
+
+            # Handle dict results
+            elif isinstance(var_value, dict):
+                if var_value.get("dependency_failed", False):
+                    return True
+                if "error" in var_value and key not in var_value:
+                    alt_keys = self._get_alternative_keys(key)
+                    if not any(alt_key in var_value for alt_key in alt_keys):
                         return True
+
         return False
+
+    def _get_alternative_keys(self, key: str) -> List[str]:
+        """Get alternative key names that might contain the same data"""
+        alternatives = {
+            'order_id': ['id', 'parent', 'order'],
+            'id': ['order_id', 'parent', 'entity_id'],
+            'parent': ['order_id', 'id', 'printer_id'],
+            'printer_id': ['parent', 'machine', 'printer'],
+            'packing_list_id': ['id', 'packing_list', 'pl_id']
+        }
+        return alternatives.get(key, [])
 
     def _step_has_dependencies(self, raw_input: str) -> bool:
         """
@@ -397,45 +483,61 @@ class MasterAgent:
 
     def _get_fallback_input(self, raw_input: str, step: Dict, context: Dict[str, Any]) -> Optional[str]:
         """
-        Generate fallback input when variable resolution fails
+        Enhanced fallback input generation with improved pattern matching and context analysis
         """
         tool_name = step.get("tool", "")
-
-        # Extract any direct IDs from the original raw_input
         import re
 
-        # Look for order IDs like ORBOX00117
-        order_match = re.search(r'ORBOX***REMOVED***d+', raw_input)
-        if order_match:
-            order_id = order_match.group(0)
+        # Enhanced ID pattern matching
+        patterns = {
+            'order_id': r'ORBOX***REMOVED***d+',
+            'part_id': r'3DOR***REMOVED***d{6}',
+            'packing_list': r'PL***REMOVED***d+',
+            'printer_id': r'Printer_***REMOVED***d+',
+            'worker_id': r'***REMOVED***d{10}'
+        }
 
-            # Tool-specific fallback strategies
-            if tool_name == "document_parser_tool":
-                return order_id  # Use order ID directly
-            elif tool_name == "location_query_tool":
-                return order_id  # Use order ID directly
-            elif tool_name == "relationship_tool":
-                return order_id  # Use order ID directly
-            elif tool_name == "worker_data_tool":
-                return order_id  # Use order ID directly
+        # Extract IDs from raw input with priority order
+        extracted_ids = {}
+        for id_type, pattern in patterns.items():
+            match = re.search(pattern, raw_input)
+            if match:
+                extracted_ids[id_type] = match.group(0)
 
-        # Look for part IDs like 3DOR100xxx
-        part_match = re.search(r'3DOR***REMOVED***d+', raw_input)
-        if part_match and tool_name in ["relationship_tool", "worker_data_tool"]:
-            return part_match.group(0)
+        # Tool-specific fallback strategies with enhanced logic
+        if tool_name == "document_parser_tool":
+            return extracted_ids.get('order_id') or extracted_ids.get('packing_list')
+        elif tool_name == "location_query_tool":
+            return extracted_ids.get('order_id') or extracted_ids.get('part_id')
+        elif tool_name == "relationship_tool":
+            # Relationship tool can work with any ID type
+            return (extracted_ids.get('order_id') or
+                   extracted_ids.get('part_id') or
+                   extracted_ids.get('packing_list'))
+        elif tool_name == "worker_data_tool":
+            return extracted_ids.get('worker_id') or extracted_ids.get('part_id')
+        elif tool_name == "machine_log_tool":
+            return extracted_ids.get('printer_id')
+        elif tool_name == "packing_list_parser_tool":
+            return extracted_ids.get('packing_list')
 
-        # Look for any successful previous step outputs that might be usable
-        for key, value in context.items():
+        # Enhanced context analysis for successful data extraction
+        for _, value in context.items():
             if isinstance(value, list) and len(value) > 0:
-                if isinstance(value[0], dict):
-                    # Check for structured error with order_id
-                    if "error" in value[0] and "order_id" in value[0]:
-                        return value[0]["order_id"]
-                    # Check for successful data
-                    elif "error" not in value[0]:
-                        if "order_id" in value[0]:
-                            return value[0]["order_id"]
-                        elif "id" in value[0]:
-                            return value[0]["id"]
+                if isinstance(value[0], dict) and "error" not in value[0]:
+                    # Priority order for context extraction
+                    for field in ["order_id", "parent", "id", "packing_list_id", "printer_id"]:
+                        if field in value[0] and value[0][field]:
+                            return str(value[0][field])
+            elif isinstance(value, dict) and "error" not in value:
+                # Handle single dict results
+                for field in ["order_id", "parent", "id", "packing_list_id", "printer_id"]:
+                    if field in value and value[field]:
+                        return str(value[field])
+
+        # Last resort: extract any ID-like pattern from raw input
+        generic_id_match = re.search(r'[A-Z]{2,}[0-9]{3,}', raw_input)
+        if generic_id_match:
+            return generic_id_match.group(0)
 
         return None
