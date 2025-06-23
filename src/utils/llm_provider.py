@@ -222,18 +222,18 @@ class AnthropicProvider:
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to Anthropic and standardizes the response."""
         try:
-            # Prepend a system instruction to force pure JSON output
+            # System instruction for pure JSON output - passed as separate parameter
             system_prompt = (
                 "You are a JSON generator. Respond with exactly one valid JSON "
                 "object and no additional text or formatting."
             )
             messages = [
-                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": prompt},
             ]
             response = self.client.messages.create(
                 model=self.model_name,
                 max_tokens=4096,  # Required by Claude API
+                system=system_prompt,  # System message as separate parameter
                 messages=messages,
             )
             content = response.content[0].text
