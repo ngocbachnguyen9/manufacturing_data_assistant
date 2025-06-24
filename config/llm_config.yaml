@@ -15,8 +15,8 @@ llm_providers:
       gpt-4o-mini-2024-07-18:
         max_tokens: 128000
         temperature: 0.1
-        cost_per_1m_tokens_input: 0.15   # GPT-4o-mini pricing
-        cost_per_1m_tokens_output: 0.60  # GPT-4o-mini pricing
+        cost_per_1m_tokens_input: 0.15   # Example value
+        cost_per_1m_tokens_output: 0.60  # Example value
         recommended: true
 
     
