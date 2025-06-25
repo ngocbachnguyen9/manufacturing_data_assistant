@@ -19,6 +19,20 @@ master_agent:
     tool_selection_strategy: "manufacturing_priority"
     fallback_enabled: true
 
+  # API Rate Limiting for Overload Handling
+  api_settings:
+    anthropic:
+      retry_attempts: 3
+      base_delay: 5
+      max_delay: 60
+      backoff_multiplier: 2
+      judge_delay: 3  # Delay between judge evaluations
+    openai:
+      retry_attempts: 2
+      base_delay: 1
+      max_delay: 10
+      backoff_multiplier: 1
+
 specialist_agents:
   data_retrieval_agent:
     name: "DataRetrievalSpecialist"

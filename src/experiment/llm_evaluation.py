@@ -525,6 +525,10 @@ Do not provide explanations. Just the single word judgment."""
         print(f"    🔍 Evaluating {task_id} with {len(self.judge_providers)} balanced judges...")
 
         for judge_name, judge_config in self.judge_providers.items():
+            # Add delay between judge calls to reduce API overload
+            import time
+            time.sleep(3)  # 3 second delay between judge evaluations
+
             try:
                 response = judge_config["provider"].generate(judge_prompt)
                 judgment_text = response["content"].strip().lower()

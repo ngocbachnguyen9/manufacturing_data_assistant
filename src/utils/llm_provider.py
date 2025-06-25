@@ -5,7 +5,7 @@ import os
 import openai
 import anthropic
 from typing import Dict, Any, Optional
-from tenacity import retry, stop_after_attempt, wait_exponential
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 class MockLLMProvider:
     """
@@ -216,8 +216,9 @@ class AnthropicProvider:
         self.client = anthropic.Anthropic()
 
     @retry(
-        stop=stop_after_attempt(2),  # Reduced from 3 to 2 attempts
-        wait=wait_exponential(multiplier=1, min=1, max=10),  # Faster backoff: 1-10s instead of 2-60s
+        stop=stop_after_attempt(3),  # Increased attempts for overload handling
+        wait=wait_exponential(multiplier=2, min=5, max=60),  # Longer backoff for overload: 5-60s
+        retry=retry_if_exception_type((Exception,))  # Retry on any exception including overload
     )
     def generate(self, prompt: str) -> Dict[str, Any]:
         """Makes a real API call to Anthropic and standardizes the response."""
@@ -246,12 +247,19 @@ class AnthropicProvider:
                 "output_tokens": output_tokens,
             }
         except Exception as e:
-            print(f"ERROR: Anthropic API call failed: {e}")
-            return {
-                "content": f'{{"error": "API call failed: {e}"}}',
-                "input_tokens": 0,
-                "output_tokens": 0,
-            }
+            error_msg = str(e)
+            # Check for overload errors and provide specific handling
+            if "529" in error_msg or "overloaded" in error_msg.lower():
+                print(f"ERROR: Anthropic API overloaded: {e}")
+                # Re-raise to trigger retry mechanism
+                raise e
+            else:
+                print(f"ERROR: Anthropic API call failed: {e}")
+                return {
+                    "content": f'{{"error": "API call failed: {e}"}}',
+                    "input_tokens": 0,
+                    "output_tokens": 0,
+                }
         
 class DeepSeekProvider:
     """A real LLM provider for DeepSeek's OpenAI-compatible API."""
