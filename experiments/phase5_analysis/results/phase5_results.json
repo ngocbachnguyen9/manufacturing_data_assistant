@@ -1,0 +1,130 @@
+{
+  "overall_comparison": {
+    "human_accuracy": 0.6333333333333333,
+    "llm_accuracy": 0.801851851851852,
+    "accuracy_difference": 0.16851851851851873,
+    "human_avg_time_sec": 166.2111111111111,
+    "llm_avg_time_sec": 51.652746913580245,
+    "time_speedup_factor": 3.2178561846710196,
+    "human_avg_cost_usd": 1.3850925925925925,
+    "llm_avg_cost_usd": 0.0,
+    "cost_efficiency_ratio": Infinity
+  },
+  "complexity_comparison": {
+    "easy": {
+      "human_accuracy": 0.43333333333333335,
+      "llm_accuracy": 0.8092592592592592,
+      "human_avg_time": 185.6,
+      "llm_avg_time": 54.78225925925927,
+      "human_avg_cost": 1.5466666666666664,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 30,
+      "llm_sample_size": 30
+    },
+    "medium": {
+      "human_accuracy": 0.6666666666666666,
+      "llm_accuracy": 0.7925925925925927,
+      "human_avg_time": 179.46666666666667,
+      "llm_avg_time": 52.78192592592593,
+      "human_avg_cost": 1.4955555555555555,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 30,
+      "llm_sample_size": 30
+    },
+    "hard": {
+      "human_accuracy": 0.8,
+      "llm_accuracy": 0.8037037037037036,
+      "human_avg_time": 133.56666666666666,
+      "llm_avg_time": 47.39405555555556,
+      "human_avg_cost": 1.1130555555555555,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 30,
+      "llm_sample_size": 30
+    }
+  },
+  "quality_comparison": {
+    "Q0": {
+      "human_accuracy": 0.6666666666666666,
+      "llm_accuracy": 0.8679012345679009,
+      "human_avg_time": 154.42222222222222,
+      "llm_avg_time": 47.12714814814816,
+      "human_avg_cost": 1.2868518518518517,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 45,
+      "llm_sample_size": 45
+    },
+    "Q1": {
+      "human_accuracy": 0.7333333333333333,
+      "llm_accuracy": 0.8,
+      "human_avg_time": 176.4,
+      "llm_avg_time": 56.9025925925926,
+      "human_avg_cost": 1.4700000000000002,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 15,
+      "llm_sample_size": 15
+    },
+    "Q2": {
+      "human_accuracy": 0.5333333333333333,
+      "llm_accuracy": 0.6,
+      "human_avg_time": 169.73333333333332,
+      "llm_avg_time": 58.58303703703703,
+      "human_avg_cost": 1.4144444444444446,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 15,
+      "llm_sample_size": 15
+    },
+    "Q3": {
+      "human_accuracy": 0.5333333333333333,
+      "llm_accuracy": 0.8074074074074074,
+      "human_avg_time": 187.86666666666667,
+      "llm_avg_time": 53.04940740740741,
+      "human_avg_cost": 1.5655555555555554,
+      "llm_avg_cost": 0.0,
+      "human_sample_size": 15,
+      "llm_sample_size": 15
+    }
+  },
+  "statistical_tests": {
+    "accuracy_chi2": {
+      "statistic": 13.74111242354549,
+      "p_value": 0.0002098112024539363,
+      "significant": "True",
+      "interpretation": "Significant difference in accuracy"
+    },
+    "time_mannwhitney": {
+      "statistic": 7468.0,
+      "p_value": 1.4085747699771504e-22,
+      "significant": "True",
+      "interpretation": "Significant difference in completion time"
+    }
+  },
+  "summary_statistics": {
+    "total_common_tasks": 90,
+    "human_total_records": 90,
+    "llm_total_records": 1620,
+    "llm_models_included": [
+      "claude-3-5-haiku-latest",
+      "claude-sonnet-4-20250514",
+      "deepseek-chat",
+      "deepseek-reasoner",
+      "gpt-4o-mini-2024-07-18",
+      "o4-mini-2025-04-16"
+    ],
+    "analysis_timestamp": "2025-06-26T10:16:06.471390"
+  },
+  "exported_files": {
+    "overall_comparison": "experiments/phase5_analysis/results/overall_comparison.csv",
+    "statistical_tests": "experiments/phase5_analysis/results/statistical_tests.csv",
+    "complexity_comparison": "experiments/phase5_analysis/results/complexity_comparison.csv",
+    "quality_comparison": "experiments/phase5_analysis/results/quality_comparison.csv",
+    "task_level_comparison": "experiments/phase5_analysis/results/task_level_comparison.csv",
+    "analysis_summary": "experiments/phase5_analysis/results/analysis_summary.csv"
+  },
+  "generated_plots": {
+    "overall_performance": "experiments/phase5_analysis/visualizations/overall_performance_comparison.png",
+    "performance_by_complexity": "experiments/phase5_analysis/visualizations/performance_by_complexity.png",
+    "performance_by_quality": "experiments/phase5_analysis/visualizations/performance_by_quality.png",
+    "time_vs_accuracy": "experiments/phase5_analysis/visualizations/time_vs_accuracy_scatter.png",
+    "cost_analysis": "experiments/phase5_analysis/visualizations/cost_analysis.png"
+  }
+}

@@ -1,0 +1,3 @@
+test_name,statistic,p_value,significant,interpretation
+accuracy_chi2,13.74111242354549,0.0002098112024539363,True,Significant difference in accuracy
+time_mannwhitney,7468.0,1.4085747699771504e-22,True,Significant difference in completion time
