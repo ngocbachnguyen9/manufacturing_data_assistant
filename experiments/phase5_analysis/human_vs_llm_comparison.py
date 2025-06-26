@@ -200,6 +200,7 @@ class HumanVsLLMComparison:
 
         results = {
             'overall_comparison': {},
+            'model_specific_comparison': {},
             'complexity_comparison': {},
             'quality_comparison': {},
             'statistical_tests': {},
@@ -268,7 +269,74 @@ class HumanVsLLMComparison:
                 'interpretation': 'Significant difference in completion time' if mw_p < 0.05 else 'No significant difference in completion time'
             }
 
-        # Analysis by complexity
+        # Model-specific analysis
+        models = self.llm_data['model'].unique()
+        for model in models:
+            model_data = self.llm_data[
+                (self.llm_data['model'] == model) &
+                (self.llm_data['task_id'].isin(common_tasks))
+            ]
+
+            if len(model_data) > 0:
+                # Calculate model-specific metrics
+                model_accuracy = model_data['is_correct'].mean()
+                model_avg_time = model_data['completion_time_sec'].mean()
+                model_avg_cost = model_data['total_cost_usd'].mean()
+
+                # Statistical tests for this specific model vs humans
+                model_correct = model_data['is_correct'].sum()
+                model_total = len(model_data)
+                human_correct = human_filtered['is_correct'].sum()
+                human_total = len(human_filtered)
+
+                # Chi-square test for accuracy
+                contingency_table = [[human_correct, human_total - human_correct],
+                                   [model_correct, model_total - model_correct]]
+                chi2_stat, chi2_p = chi2_contingency(contingency_table)[:2]
+
+                # Mann-Whitney U test for time (need to match tasks)
+                model_times = []
+                human_times_matched = []
+
+                for task_id in model_data['task_id'].unique():
+                    model_task_time = model_data[model_data['task_id'] == task_id]['completion_time_sec'].iloc[0]
+                    human_task_data = human_filtered[human_filtered['task_id'] == task_id]
+
+                    for _, human_row in human_task_data.iterrows():
+                        model_times.append(model_task_time)
+                        human_times_matched.append(human_row['completion_time_sec'])
+
+                mw_stat, mw_p = None, None
+                if len(model_times) > 0 and len(human_times_matched) > 0:
+                    mw_stat, mw_p = mannwhitneyu(human_times_matched, model_times, alternative='two-sided')
+
+                results['model_specific_comparison'][model] = {
+                    'model_accuracy': model_accuracy,
+                    'human_accuracy': human_filtered['is_correct'].mean(),
+                    'accuracy_difference': model_accuracy - human_filtered['is_correct'].mean(),
+                    'model_avg_time': model_avg_time,
+                    'human_avg_time': human_filtered['completion_time_sec'].mean(),
+                    'time_speedup_factor': human_filtered['completion_time_sec'].mean() / model_avg_time if model_avg_time > 0 else float('inf'),
+                    'model_avg_cost': model_avg_cost,
+                    'human_avg_cost': human_filtered['total_cost_usd'].mean(),
+                    'cost_efficiency_ratio': human_filtered['total_cost_usd'].mean() / model_avg_cost if model_avg_cost > 0 else float('inf'),
+                    'model_sample_size': len(model_data),
+                    'human_sample_size': len(human_filtered),
+                    'statistical_tests': {
+                        'accuracy_chi2': {
+                            'statistic': chi2_stat,
+                            'p_value': chi2_p,
+                            'significant': chi2_p < 0.05 if chi2_p is not None else False
+                        },
+                        'time_mannwhitney': {
+                            'statistic': mw_stat,
+                            'p_value': mw_p,
+                            'significant': mw_p < 0.05 if mw_p is not None else False
+                        } if mw_stat is not None else None
+                    }
+                }
+
+        # Analysis by complexity (aggregated LLM)
         for complexity in ['easy', 'medium', 'hard']:
             human_comp = human_filtered[human_filtered['complexity'] == complexity]
             llm_comp = llm_agg[llm_agg['complexity'] == complexity]
@@ -285,7 +353,35 @@ class HumanVsLLMComparison:
                     'llm_sample_size': len(llm_comp)
                 }
 
-        # Analysis by data quality condition
+        # Model-specific analysis by complexity
+        results['model_complexity_analysis'] = {}
+        for model in models:
+            model_data = self.llm_data[
+                (self.llm_data['model'] == model) &
+                (self.llm_data['task_id'].isin(common_tasks))
+            ]
+
+            results['model_complexity_analysis'][model] = {}
+
+            for complexity in ['easy', 'medium', 'hard']:
+                human_comp = human_filtered[human_filtered['complexity'] == complexity]
+                model_comp = model_data[model_data['complexity'] == complexity]
+
+                if len(human_comp) > 0 and len(model_comp) > 0:
+                    results['model_complexity_analysis'][model][complexity] = {
+                        'human_accuracy': human_comp['is_correct'].mean(),
+                        'model_accuracy': model_comp['is_correct'].mean(),
+                        'accuracy_difference': model_comp['is_correct'].mean() - human_comp['is_correct'].mean(),
+                        'human_avg_time': human_comp['completion_time_sec'].mean(),
+                        'model_avg_time': model_comp['completion_time_sec'].mean(),
+                        'time_speedup_factor': human_comp['completion_time_sec'].mean() / model_comp['completion_time_sec'].mean() if model_comp['completion_time_sec'].mean() > 0 else float('inf'),
+                        'human_avg_cost': human_comp['total_cost_usd'].mean(),
+                        'model_avg_cost': model_comp['total_cost_usd'].mean(),
+                        'human_sample_size': len(human_comp),
+                        'model_sample_size': len(model_comp)
+                    }
+
+        # Analysis by data quality condition (aggregated LLM)
         for quality in ['Q0', 'Q1', 'Q2', 'Q3']:
             human_qual = human_filtered[human_filtered['quality_condition'] == quality]
             llm_qual = llm_agg[llm_agg['quality_condition'] == quality]
@@ -301,6 +397,34 @@ class HumanVsLLMComparison:
                     'human_sample_size': len(human_qual),
                     'llm_sample_size': len(llm_qual)
                 }
+
+        # Model-specific analysis by data quality condition
+        results['model_quality_analysis'] = {}
+        for model in models:
+            model_data = self.llm_data[
+                (self.llm_data['model'] == model) &
+                (self.llm_data['task_id'].isin(common_tasks))
+            ]
+
+            results['model_quality_analysis'][model] = {}
+
+            for quality in ['Q0', 'Q1', 'Q2', 'Q3']:
+                human_qual = human_filtered[human_filtered['quality_condition'] == quality]
+                model_qual = model_data[model_data['quality_condition'] == quality]
+
+                if len(human_qual) > 0 and len(model_qual) > 0:
+                    results['model_quality_analysis'][model][quality] = {
+                        'human_accuracy': human_qual['is_correct'].mean(),
+                        'model_accuracy': model_qual['is_correct'].mean(),
+                        'accuracy_difference': model_qual['is_correct'].mean() - human_qual['is_correct'].mean(),
+                        'human_avg_time': human_qual['completion_time_sec'].mean(),
+                        'model_avg_time': model_qual['completion_time_sec'].mean(),
+                        'time_speedup_factor': human_qual['completion_time_sec'].mean() / model_qual['completion_time_sec'].mean() if model_qual['completion_time_sec'].mean() > 0 else float('inf'),
+                        'human_avg_cost': human_qual['total_cost_usd'].mean(),
+                        'model_avg_cost': model_qual['total_cost_usd'].mean(),
+                        'human_sample_size': len(human_qual),
+                        'model_sample_size': len(model_qual)
+                    }
 
         # Summary statistics
         results['summary_statistics'] = {
@@ -357,7 +481,34 @@ class HumanVsLLMComparison:
             complexity_df.to_csv(complexity_path, index=False)
             exported_files['complexity_comparison'] = str(complexity_path)
 
-        # 4. Quality condition comparison
+        # 4. Model-specific comparison
+        if 'model_specific_comparison' in self.comparison_results:
+            model_data = []
+            for model, metrics in self.comparison_results['model_specific_comparison'].items():
+                row = {'model': model}
+                # Flatten the nested structure
+                for key, value in metrics.items():
+                    if key == 'statistical_tests':
+                        # Add statistical test results with prefixes
+                        if value['accuracy_chi2']:
+                            row['accuracy_chi2_statistic'] = value['accuracy_chi2']['statistic']
+                            row['accuracy_chi2_p_value'] = value['accuracy_chi2']['p_value']
+                            row['accuracy_chi2_significant'] = value['accuracy_chi2']['significant']
+                        if value['time_mannwhitney']:
+                            row['time_mw_statistic'] = value['time_mannwhitney']['statistic']
+                            row['time_mw_p_value'] = value['time_mannwhitney']['p_value']
+                            row['time_mw_significant'] = value['time_mannwhitney']['significant']
+                    else:
+                        row[key] = value
+                model_data.append(row)
+
+            if model_data:
+                model_df = pd.DataFrame(model_data)
+                model_path = Path(self.config.output_dir) / "model_specific_comparison.csv"
+                model_df.to_csv(model_path, index=False)
+                exported_files['model_specific_comparison'] = str(model_path)
+
+        # 5. Quality condition comparison
         quality_data = []
         for quality, metrics in self.comparison_results['quality_comparison'].items():
             row = {'quality_condition': quality}
@@ -370,7 +521,37 @@ class HumanVsLLMComparison:
             quality_df.to_csv(quality_path, index=False)
             exported_files['quality_comparison'] = str(quality_path)
 
-        # 5. Detailed task-level comparison
+        # 6. Model-specific complexity analysis
+        if 'model_complexity_analysis' in self.comparison_results:
+            complexity_model_data = []
+            for model, complexities in self.comparison_results['model_complexity_analysis'].items():
+                for complexity, metrics in complexities.items():
+                    row = {'model': model, 'complexity': complexity}
+                    row.update(metrics)
+                    complexity_model_data.append(row)
+
+            if complexity_model_data:
+                complexity_model_df = pd.DataFrame(complexity_model_data)
+                complexity_model_path = Path(self.config.output_dir) / "model_complexity_analysis.csv"
+                complexity_model_df.to_csv(complexity_model_path, index=False)
+                exported_files['model_complexity_analysis'] = str(complexity_model_path)
+
+        # 7. Model-specific quality analysis
+        if 'model_quality_analysis' in self.comparison_results:
+            quality_model_data = []
+            for model, qualities in self.comparison_results['model_quality_analysis'].items():
+                for quality, metrics in qualities.items():
+                    row = {'model': model, 'quality_condition': quality}
+                    row.update(metrics)
+                    quality_model_data.append(row)
+
+            if quality_model_data:
+                quality_model_df = pd.DataFrame(quality_model_data)
+                quality_model_path = Path(self.config.output_dir) / "model_quality_analysis.csv"
+                quality_model_df.to_csv(quality_model_path, index=False)
+                exported_files['model_quality_analysis'] = str(quality_model_path)
+
+        # 8. Detailed task-level comparison
         if self.aligned_data is not None:
             # Create task-level summary
             llm_agg = self.calculate_aggregate_llm_performance()
@@ -404,7 +585,7 @@ class HumanVsLLMComparison:
                 task_df.to_csv(task_path, index=False)
                 exported_files['task_level_comparison'] = str(task_path)
 
-        # 6. Summary metadata
+        # 9. Summary metadata
         summary_df = pd.DataFrame([self.comparison_results['summary_statistics']])
         summary_path = Path(self.config.output_dir) / "analysis_summary.csv"
         summary_df.to_csv(summary_path, index=False)
@@ -463,6 +644,27 @@ class HumanVsLLMComparison:
         plt.savefig(cost_path, dpi=300, bbox_inches='tight')
         plt.close()
         generated_plots['cost_analysis'] = str(cost_path)
+
+        # 6. Model-specific Performance Comparison
+        self._plot_model_specific_comparison()
+        model_path = Path(self.config.visualization_dir) / "model_specific_comparison.png"
+        plt.savefig(model_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['model_specific_comparison'] = str(model_path)
+
+        # 7. Model-specific Complexity Analysis
+        self._plot_model_complexity_analysis()
+        complexity_path = Path(self.config.visualization_dir) / "model_complexity_analysis.png"
+        plt.savefig(complexity_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['model_complexity_analysis'] = str(complexity_path)
+
+        # 8. Model-specific Quality Analysis
+        self._plot_model_quality_analysis()
+        quality_path = Path(self.config.visualization_dir) / "model_quality_analysis.png"
+        plt.savefig(quality_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['model_quality_analysis'] = str(quality_path)
 
         print(f"Generated {len(generated_plots)} visualization files:")
         for name, path in generated_plots.items():
@@ -717,6 +919,380 @@ class HumanVsLLMComparison:
         axes[1, 1].set_ylabel('Accuracy per USD')
         for i, v in enumerate(roi_data):
             axes[1, 1].text(i, v + max(roi_data) * 0.02, f'{v:.1f}', ha='center', va='bottom', fontweight='bold')
+
+        plt.tight_layout()
+
+    def _plot_model_specific_comparison(self):
+        """Create model-specific performance comparison"""
+        if 'model_specific_comparison' not in self.comparison_results:
+            print("No model-specific data available for plotting")
+            return
+
+        model_data = self.comparison_results['model_specific_comparison']
+        models = list(model_data.keys())
+
+        if not models:
+            return
+
+        # Create a comprehensive model comparison plot
+        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+        fig.suptitle('Model-Specific Performance vs Human Baseline', fontsize=16, fontweight='bold')
+
+        # 1. Accuracy comparison
+        human_accuracy = model_data[models[0]]['human_accuracy']  # Same for all models
+        model_accuracies = [model_data[model]['model_accuracy'] for model in models]
+
+        x = np.arange(len(models))
+        width = 0.35
+
+        # Create human baseline line
+        axes[0, 0].axhline(y=human_accuracy, color='red', linestyle='--', linewidth=2,
+                          label=f'Human Baseline ({human_accuracy:.3f})', alpha=0.8)
+
+        bars = axes[0, 0].bar(x, model_accuracies, width, color='lightblue', alpha=0.8,
+                             edgecolor='navy', linewidth=1)
+        axes[0, 0].set_title('Accuracy: Models vs Human Baseline')
+        axes[0, 0].set_ylabel('Accuracy Rate')
+        axes[0, 0].set_xticks(x)
+        axes[0, 0].set_xticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+        axes[0, 0].legend()
+        axes[0, 0].set_ylim(0, 1)
+
+        # Add value labels on bars
+        for i, (bar, acc) in enumerate(zip(bars, model_accuracies)):
+            color = 'green' if acc > human_accuracy else 'red'
+            axes[0, 0].text(bar.get_x() + bar.get_width()/2, acc + 0.02,
+                           f'{acc:.3f}', ha='center', va='bottom', fontweight='bold', color=color)
+
+        # 2. Time comparison (speedup factors)
+        speedup_factors = [model_data[model]['time_speedup_factor'] for model in models]
+        # Cap at reasonable maximum for visualization
+        speedup_capped = [min(sf, 20) if sf != float('inf') else 20 for sf in speedup_factors]
+
+        bars = axes[0, 1].bar(models, speedup_capped, color='lightgreen', alpha=0.8,
+                             edgecolor='darkgreen', linewidth=1)
+        axes[0, 1].set_title('Speed Improvement (Human Time / Model Time)')
+        axes[0, 1].set_ylabel('Speedup Factor')
+        axes[0, 1].set_xticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+        axes[0, 1].axhline(y=1, color='red', linestyle='--', alpha=0.5, label='No improvement')
+
+        for i, (bar, sf) in enumerate(zip(bars, speedup_capped)):
+            axes[0, 1].text(bar.get_x() + bar.get_width()/2, sf + max(speedup_capped) * 0.02,
+                           f'{sf:.1f}x', ha='center', va='bottom', fontweight='bold')
+
+        # 3. Statistical significance heatmap
+        sig_data = []
+        test_names = ['Accuracy', 'Time']
+
+        for model in models:
+            model_stats = model_data[model]['statistical_tests']
+            row = []
+            # Accuracy significance
+            acc_sig = model_stats['accuracy_chi2']['significant'] if model_stats['accuracy_chi2'] else False
+            row.append(1 if acc_sig else 0)
+            # Time significance
+            time_sig = model_stats['time_mannwhitney']['significant'] if model_stats['time_mannwhitney'] else False
+            row.append(1 if time_sig else 0)
+            sig_data.append(row)
+
+        sig_array = np.array(sig_data)
+        im = axes[1, 0].imshow(sig_array, cmap='RdYlGn', aspect='auto', vmin=0, vmax=1)
+        axes[1, 0].set_title('Statistical Significance (p < 0.05)')
+        axes[1, 0].set_xticks(range(len(test_names)))
+        axes[1, 0].set_xticklabels(test_names)
+        axes[1, 0].set_yticks(range(len(models)))
+        axes[1, 0].set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+
+        # Add text annotations
+        for i in range(len(models)):
+            for j in range(len(test_names)):
+                text = 'Sig' if sig_array[i, j] == 1 else 'NS'
+                axes[1, 0].text(j, i, text, ha='center', va='center',
+                               color='white' if sig_array[i, j] == 1 else 'black', fontweight='bold')
+
+        # 4. Accuracy difference from human baseline
+        accuracy_diffs = [model_data[model]['accuracy_difference'] for model in models]
+
+        colors = ['green' if diff > 0 else 'red' for diff in accuracy_diffs]
+        bars = axes[1, 1].bar(models, accuracy_diffs, color=colors, alpha=0.7,
+                             edgecolor='black', linewidth=1)
+        axes[1, 1].set_title('Accuracy Difference from Human Baseline')
+        axes[1, 1].set_ylabel('Accuracy Difference')
+        axes[1, 1].set_xticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+        axes[1, 1].axhline(y=0, color='black', linestyle='-', alpha=0.5)
+
+        for i, (bar, diff) in enumerate(zip(bars, accuracy_diffs)):
+            y_pos = diff + (0.01 if diff >= 0 else -0.01)
+            axes[1, 1].text(bar.get_x() + bar.get_width()/2, y_pos,
+                           f'{diff:+.3f}', ha='center',
+                           va='bottom' if diff >= 0 else 'top', fontweight='bold')
+
+        plt.tight_layout()
+
+    def _plot_model_complexity_analysis(self):
+        """Create model-specific performance analysis by task complexity"""
+        if 'model_complexity_analysis' not in self.comparison_results:
+            print("No model complexity data available for plotting")
+            return
+
+        complexity_data = self.comparison_results['model_complexity_analysis']
+        models = list(complexity_data.keys())
+        complexities = ['easy', 'medium', 'hard']
+
+        if not models:
+            return
+
+        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+        fig.suptitle('Model Performance by Task Complexity', fontsize=16, fontweight='bold')
+
+        # 1. Accuracy by complexity heatmap
+        accuracy_matrix = []
+        for model in models:
+            row = []
+            for complexity in complexities:
+                if complexity in complexity_data[model]:
+                    row.append(complexity_data[model][complexity]['model_accuracy'])
+                else:
+                    row.append(0)
+            accuracy_matrix.append(row)
+
+        accuracy_array = np.array(accuracy_matrix)
+        im1 = axes[0, 0].imshow(accuracy_array, cmap='RdYlGn', aspect='auto', vmin=0, vmax=1)
+        axes[0, 0].set_title('Model Accuracy by Complexity')
+        axes[0, 0].set_xticks(range(len(complexities)))
+        axes[0, 0].set_xticklabels(complexities)
+        axes[0, 0].set_yticks(range(len(models)))
+        axes[0, 0].set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+
+        # Add text annotations
+        for i in range(len(models)):
+            for j in range(len(complexities)):
+                if accuracy_array[i, j] > 0:
+                    text = f'{accuracy_array[i, j]:.3f}'
+                    axes[0, 0].text(j, i, text, ha='center', va='center',
+                                   color='white' if accuracy_array[i, j] < 0.5 else 'black', fontweight='bold')
+
+        plt.colorbar(im1, ax=axes[0, 0], fraction=0.046, pad=0.04)
+
+        # 2. Accuracy improvement over humans by complexity
+        improvement_matrix = []
+        for model in models:
+            row = []
+            for complexity in complexities:
+                if complexity in complexity_data[model]:
+                    row.append(complexity_data[model][complexity]['accuracy_difference'])
+                else:
+                    row.append(0)
+            improvement_matrix.append(row)
+
+        improvement_array = np.array(improvement_matrix)
+        im2 = axes[0, 1].imshow(improvement_array, cmap='RdBu_r', aspect='auto',
+                               vmin=-0.5, vmax=0.5)
+        axes[0, 1].set_title('Accuracy Improvement over Humans')
+        axes[0, 1].set_xticks(range(len(complexities)))
+        axes[0, 1].set_xticklabels(complexities)
+        axes[0, 1].set_yticks(range(len(models)))
+        axes[0, 1].set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+
+        # Add text annotations
+        for i in range(len(models)):
+            for j in range(len(complexities)):
+                if improvement_array[i, j] != 0:
+                    text = f'{improvement_array[i, j]:+.3f}'
+                    color = 'white' if abs(improvement_array[i, j]) > 0.25 else 'black'
+                    axes[0, 1].text(j, i, text, ha='center', va='center',
+                                   color=color, fontweight='bold')
+
+        plt.colorbar(im2, ax=axes[0, 1], fraction=0.046, pad=0.04)
+
+        # 3. Speed improvement by complexity
+        speed_matrix = []
+        for model in models:
+            row = []
+            for complexity in complexities:
+                if complexity in complexity_data[model]:
+                    speed = complexity_data[model][complexity]['time_speedup_factor']
+                    row.append(min(speed, 25) if speed != float('inf') else 25)  # Cap for visualization
+                else:
+                    row.append(0)
+            speed_matrix.append(row)
+
+        speed_array = np.array(speed_matrix)
+        im3 = axes[1, 0].imshow(speed_array, cmap='YlOrRd', aspect='auto', vmin=0, vmax=25)
+        axes[1, 0].set_title('Speed Improvement (x faster)')
+        axes[1, 0].set_xticks(range(len(complexities)))
+        axes[1, 0].set_xticklabels(complexities)
+        axes[1, 0].set_yticks(range(len(models)))
+        axes[1, 0].set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+
+        # Add text annotations
+        for i in range(len(models)):
+            for j in range(len(complexities)):
+                if speed_array[i, j] > 0:
+                    text = f'{speed_array[i, j]:.1f}x'
+                    axes[1, 0].text(j, i, text, ha='center', va='center',
+                                   color='white' if speed_array[i, j] > 12 else 'black', fontweight='bold')
+
+        plt.colorbar(im3, ax=axes[1, 0], fraction=0.046, pad=0.04)
+
+        # 4. Best model by complexity
+        best_models_by_complexity = {}
+        for complexity in complexities:
+            best_acc = 0
+            best_model = None
+            for model in models:
+                if complexity in complexity_data[model]:
+                    acc = complexity_data[model][complexity]['model_accuracy']
+                    if acc > best_acc:
+                        best_acc = acc
+                        best_model = model
+            best_models_by_complexity[complexity] = (best_model, best_acc)
+
+        # Create bar chart for best models
+        best_accs = [best_models_by_complexity[c][1] for c in complexities]
+        best_names = [best_models_by_complexity[c][0].replace('-', '***REMOVED***n') if best_models_by_complexity[c][0] else 'None' for c in complexities]
+
+        bars = axes[1, 1].bar(complexities, best_accs, color=['#FF6B6B', '#4ECDC4', '#45B7D1'], alpha=0.8)
+        axes[1, 1].set_title('Best Model by Complexity')
+        axes[1, 1].set_ylabel('Best Accuracy')
+        axes[1, 1].set_ylim(0, 1)
+
+        # Add model names on bars
+        for i, (bar, name, acc) in enumerate(zip(bars, best_names, best_accs)):
+            axes[1, 1].text(bar.get_x() + bar.get_width()/2, acc + 0.02,
+                           name, ha='center', va='bottom', fontweight='bold', fontsize=8)
+            axes[1, 1].text(bar.get_x() + bar.get_width()/2, acc/2,
+                           f'{acc:.3f}', ha='center', va='center', fontweight='bold', color='white')
+
+        plt.tight_layout()
+
+    def _plot_model_quality_analysis(self):
+        """Create model-specific performance analysis by data quality condition"""
+        if 'model_quality_analysis' not in self.comparison_results:
+            print("No model quality data available for plotting")
+            return
+
+        quality_data = self.comparison_results['model_quality_analysis']
+        models = list(quality_data.keys())
+        qualities = ['Q0', 'Q1', 'Q2', 'Q3']
+
+        if not models:
+            return
+
+        fig, axes = plt.subplots(2, 2, figsize=(16, 12))
+        fig.suptitle('Model Performance by Data Quality Condition', fontsize=16, fontweight='bold')
+
+        # 1. Accuracy by quality heatmap
+        accuracy_matrix = []
+        for model in models:
+            row = []
+            for quality in qualities:
+                if quality in quality_data[model]:
+                    row.append(quality_data[model][quality]['model_accuracy'])
+                else:
+                    row.append(0)
+            accuracy_matrix.append(row)
+
+        accuracy_array = np.array(accuracy_matrix)
+        im1 = axes[0, 0].imshow(accuracy_array, cmap='RdYlGn', aspect='auto', vmin=0, vmax=1)
+        axes[0, 0].set_title('Model Accuracy by Data Quality')
+        axes[0, 0].set_xticks(range(len(qualities)))
+        axes[0, 0].set_xticklabels(qualities)
+        axes[0, 0].set_yticks(range(len(models)))
+        axes[0, 0].set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=9)
+
+        # Add text annotations
+        for i in range(len(models)):
+            for j in range(len(qualities)):
+                if accuracy_array[i, j] > 0:
+                    text = f'{accuracy_array[i, j]:.3f}'
+                    axes[0, 0].text(j, i, text, ha='center', va='center',
+                                   color='white' if accuracy_array[i, j] < 0.5 else 'black', fontweight='bold')
+
+        plt.colorbar(im1, ax=axes[0, 0], fraction=0.046, pad=0.04)
+
+        # 2. Robustness analysis (Q0 vs corrupted data average)
+        robustness_scores = []
+        model_names = []
+
+        for model in models:
+            if 'Q0' in quality_data[model]:
+                q0_acc = quality_data[model]['Q0']['model_accuracy']
+                corrupted_accs = []
+                for q in ['Q1', 'Q2', 'Q3']:
+                    if q in quality_data[model]:
+                        corrupted_accs.append(quality_data[model][q]['model_accuracy'])
+
+                if corrupted_accs:
+                    avg_corrupted = np.mean(corrupted_accs)
+                    robustness = avg_corrupted / q0_acc if q0_acc > 0 else 0
+                    robustness_scores.append(robustness)
+                    model_names.append(model)
+
+        if robustness_scores:
+            colors = ['green' if score > 0.8 else 'orange' if score > 0.6 else 'red' for score in robustness_scores]
+            bars = axes[0, 1].bar(range(len(model_names)), robustness_scores, color=colors, alpha=0.7)
+            axes[0, 1].set_title('Data Quality Robustness***REMOVED***n(Corrupted/Perfect Accuracy Ratio)')
+            axes[0, 1].set_ylabel('Robustness Score')
+            axes[0, 1].set_xticks(range(len(model_names)))
+            axes[0, 1].set_xticklabels([m.replace('-', '***REMOVED***n') for m in model_names], fontsize=9)
+            axes[0, 1].axhline(y=1.0, color='black', linestyle='--', alpha=0.5, label='Perfect robustness')
+            axes[0, 1].axhline(y=0.8, color='green', linestyle='--', alpha=0.5, label='Good robustness')
+            axes[0, 1].legend()
+
+            for i, (bar, score) in enumerate(zip(bars, robustness_scores)):
+                axes[0, 1].text(bar.get_x() + bar.get_width()/2, score + 0.02,
+                               f'{score:.3f}', ha='center', va='bottom', fontweight='bold')
+
+        # 3. Quality degradation pattern
+        quality_labels = ['Perfect***REMOVED***n(Q0)', 'Spaces***REMOVED***n(Q1)', 'Missing Chars***REMOVED***n(Q2)', 'Missing Records***REMOVED***n(Q3)']
+
+        for i, model in enumerate(models[:4]):  # Show top 4 models to avoid clutter
+            model_accs = []
+            for quality in qualities:
+                if quality in quality_data[model]:
+                    model_accs.append(quality_data[model][quality]['model_accuracy'])
+                else:
+                    model_accs.append(0)
+
+            axes[1, 0].plot(range(len(qualities)), model_accs, marker='o', linewidth=2,
+                           label=model.replace('-', '***REMOVED***n'), alpha=0.8)
+
+        axes[1, 0].set_title('Accuracy Degradation by Data Quality')
+        axes[1, 0].set_ylabel('Accuracy')
+        axes[1, 0].set_xticks(range(len(qualities)))
+        axes[1, 0].set_xticklabels(quality_labels, fontsize=9)
+        axes[1, 0].legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        axes[1, 0].grid(True, alpha=0.3)
+
+        # 4. Best model by quality condition
+        best_models_by_quality = {}
+        for quality in qualities:
+            best_acc = 0
+            best_model = None
+            for model in models:
+                if quality in quality_data[model]:
+                    acc = quality_data[model][quality]['model_accuracy']
+                    if acc > best_acc:
+                        best_acc = acc
+                        best_model = model
+            best_models_by_quality[quality] = (best_model, best_acc)
+
+        # Create bar chart for best models
+        best_accs = [best_models_by_quality[q][1] for q in qualities]
+        best_names = [best_models_by_quality[q][0].replace('-', '***REMOVED***n') if best_models_by_quality[q][0] else 'None' for q in qualities]
+
+        bars = axes[1, 1].bar(qualities, best_accs, color=['#2E8B57', '#FF6347', '#4169E1', '#FFD700'], alpha=0.8)
+        axes[1, 1].set_title('Best Model by Data Quality')
+        axes[1, 1].set_ylabel('Best Accuracy')
+        axes[1, 1].set_ylim(0, 1)
+
+        # Add model names on bars
+        for i, (bar, name, acc) in enumerate(zip(bars, best_names, best_accs)):
+            axes[1, 1].text(bar.get_x() + bar.get_width()/2, acc + 0.02,
+                           name, ha='center', va='bottom', fontweight='bold', fontsize=8)
+            axes[1, 1].text(bar.get_x() + bar.get_width()/2, acc/2,
+                           f'{acc:.3f}', ha='center', va='center', fontweight='bold', color='white')
 
         plt.tight_layout()
 

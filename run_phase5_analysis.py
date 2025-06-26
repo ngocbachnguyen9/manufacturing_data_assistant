@@ -87,16 +87,106 @@ def create_analysis_report(comparison_results: dict, cost_report: dict, output_p
     # Performance by Data Quality
     report_lines.append("## Performance by Data Quality Condition")
     report_lines.append("")
-    
+
     if 'quality_comparison' in comparison_results:
         quality_data = comparison_results['quality_comparison']
-        
+
         report_lines.append("| Quality | Human Accuracy | LLM Accuracy | Human Time (s) | LLM Time (s) |")
         report_lines.append("|---------|----------------|--------------|----------------|--------------|")
-        
+
         for quality, metrics in quality_data.items():
             report_lines.append(f"| {quality} | {metrics['human_accuracy']:.3f} | {metrics['llm_accuracy']:.3f} | {metrics['human_avg_time']:.1f} | {metrics['llm_avg_time']:.1f} |")
-        
+
+        report_lines.append("")
+
+    # Model-specific Performance
+    report_lines.append("## Model-Specific Performance vs Human Baseline")
+    report_lines.append("")
+
+    if 'model_specific_comparison' in comparison_results:
+        model_data = comparison_results['model_specific_comparison']
+
+        report_lines.append("| Model | Accuracy | Accuracy Diff | Speed Factor | Cost Ratio | Acc. Significant | Time Significant |")
+        report_lines.append("|-------|----------|---------------|--------------|------------|------------------|------------------|")
+
+        for model, metrics in model_data.items():
+            acc_sig = "✓" if metrics['statistical_tests']['accuracy_chi2']['significant'] else "✗"
+            time_sig = "✓" if metrics['statistical_tests']['time_mannwhitney'] and metrics['statistical_tests']['time_mannwhitney']['significant'] else "✗"
+
+            report_lines.append(f"| {model} | {metrics['model_accuracy']:.3f} | {metrics['accuracy_difference']:+.3f} | {metrics['time_speedup_factor']:.1f}x | {metrics['cost_efficiency_ratio']:.1f}x | {acc_sig} | {time_sig} |")
+
+        report_lines.append("")
+        report_lines.append("*✓ = Statistically significant difference (p < 0.05), ✗ = Not significant*")
+        report_lines.append("")
+
+    # Model-specific Complexity Analysis
+    if 'model_complexity_analysis' in comparison_results:
+        report_lines.append("## Model Performance by Task Complexity")
+        report_lines.append("")
+
+        complexity_data = comparison_results['model_complexity_analysis']
+
+        # Create summary table showing best model for each complexity
+        report_lines.append("### Best Models by Complexity Level")
+        report_lines.append("")
+
+        complexities = ['easy', 'medium', 'hard']
+        for complexity in complexities:
+            best_acc = 0
+            best_model = None
+            best_improvement = 0
+
+            for model, model_data in complexity_data.items():
+                if complexity in model_data:
+                    acc = model_data[complexity]['model_accuracy']
+                    improvement = model_data[complexity]['accuracy_difference']
+                    if acc > best_acc:
+                        best_acc = acc
+                        best_model = model
+                        best_improvement = improvement
+
+            if best_model:
+                report_lines.append(f"- **{complexity.capitalize()}**: {best_model} ({best_acc:.3f} accuracy, {best_improvement:+.3f} vs human)")
+
+        report_lines.append("")
+
+    # Model-specific Quality Analysis
+    if 'model_quality_analysis' in comparison_results:
+        report_lines.append("## Model Performance by Data Quality Condition")
+        report_lines.append("")
+
+        quality_data = comparison_results['model_quality_analysis']
+
+        # Create robustness analysis
+        report_lines.append("### Data Quality Robustness Analysis")
+        report_lines.append("")
+
+        robustness_scores = []
+        for model, model_data in quality_data.items():
+            if 'Q0' in model_data:
+                q0_acc = model_data['Q0']['model_accuracy']
+                corrupted_accs = []
+                for q in ['Q1', 'Q2', 'Q3']:
+                    if q in model_data:
+                        corrupted_accs.append(model_data[q]['model_accuracy'])
+
+                if corrupted_accs:
+                    avg_corrupted = sum(corrupted_accs) / len(corrupted_accs)
+                    robustness = avg_corrupted / q0_acc if q0_acc > 0 else 0
+                    robustness_scores.append((model, robustness, q0_acc, avg_corrupted))
+
+        # Sort by robustness score
+        robustness_scores.sort(key=lambda x: x[1], reverse=True)
+
+        report_lines.append("| Model | Robustness Score | Perfect Data (Q0) | Corrupted Avg (Q1-Q3) |")
+        report_lines.append("|-------|------------------|-------------------|------------------------|")
+
+        for model, robustness, q0_acc, corrupted_avg in robustness_scores:
+            status = "🟢" if robustness > 0.8 else "🟡" if robustness > 0.6 else "🔴"
+            report_lines.append(f"| {model} {status} | {robustness:.3f} | {q0_acc:.3f} | {corrupted_avg:.3f} |")
+
+        report_lines.append("")
+        report_lines.append("*🟢 = Robust (>0.8), 🟡 = Moderate (0.6-0.8), 🔴 = Fragile (<0.6)*")
         report_lines.append("")
     
     # Cost Analysis
@@ -260,6 +350,21 @@ def main():
     if cost_report:
         print(f"  - Best ROI scenario: {cost_report['summary']['best_roi_scenario']}")
         print(f"  - ROI percentage: {cost_report['summary']['best_roi_percentage']:.1f}%")
+
+    # Show top 3 models
+    if 'model_specific_comparison' in results:
+        import pandas as pd
+        model_df = pd.DataFrame.from_dict(results['model_specific_comparison'], orient='index')
+        top_models = model_df.nlargest(3, 'model_accuracy')
+
+        print(f"***REMOVED***n🏆 Top 3 Models:")
+        for i, (model, data) in enumerate(top_models.iterrows(), 1):
+            acc_diff = data['accuracy_difference']
+            speed = data['time_speedup_factor']
+            print(f"  {i}. {model}: {data['model_accuracy']:.1%} ({acc_diff:+.1%}), {speed:.1f}x faster")
+
+    print(f"***REMOVED***n📊 For detailed model rankings, run:")
+    print(f"   python experiments/phase5_analysis/model_ranking_summary.py")
 
 if __name__ == "__main__":
     main()
