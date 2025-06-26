@@ -1,5 +1,5 @@
 # Phase 5: Human vs LLM Comparative Analysis Report
-**Generated:** 2025-06-26 10:50:45
+**Generated:** 2025-06-26 11:10:48
 
 ## Executive Summary
 
@@ -99,13 +99,3 @@
 - **Model Quality Analysis:** `experiments/phase5_analysis/results/model_quality_analysis.csv`
 - **Task Level Comparison:** `experiments/phase5_analysis/results/task_level_comparison.csv`
 - **Analysis Summary:** `experiments/phase5_analysis/results/analysis_summary.csv`
-
-### Visualizations
-- **Overall Performance:** `experiments/phase5_analysis/visualizations/overall_performance_comparison.png`
-- **Performance By Complexity:** `experiments/phase5_analysis/visualizations/performance_by_complexity.png`
-- **Performance By Quality:** `experiments/phase5_analysis/visualizations/performance_by_quality.png`
-- **Time Vs Accuracy:** `experiments/phase5_analysis/visualizations/time_vs_accuracy_scatter.png`
-- **Cost Analysis:** `experiments/phase5_analysis/visualizations/cost_analysis.png`
-- **Model Specific Comparison:** `experiments/phase5_analysis/visualizations/model_specific_comparison.png`
-- **Model Complexity Analysis:** `experiments/phase5_analysis/visualizations/model_complexity_analysis.png`
-- **Model Quality Analysis:** `experiments/phase5_analysis/visualizations/model_quality_analysis.png`

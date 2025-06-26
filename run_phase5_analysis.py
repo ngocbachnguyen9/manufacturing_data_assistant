@@ -363,8 +363,10 @@ def main():
             speed = data['time_speedup_factor']
             print(f"  {i}. {model}: {data['model_accuracy']:.1%} ({acc_diff:+.1%}), {speed:.1f}x faster")
 
-    print(f"***REMOVED***n📊 For detailed model rankings, run:")
-    print(f"   python experiments/phase5_analysis/model_ranking_summary.py")
+    print(f"***REMOVED***n📊 For detailed analysis, run:")
+    print(f"   python experiments/phase5_analysis/model_ranking_summary.py  # Model rankings")
+    print(f"   python experiments/phase5_analysis/quick_insights.py         # Quick insights")
+    print(f"   python experiments/phase5_analysis/visualization_guide.py    # Visualization guide")
 
 if __name__ == "__main__":
     main()

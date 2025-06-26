@@ -68,6 +68,12 @@ cost_report = cost_analyzer.generate_cost_comparison_report(
 - `analysis_summary.csv` - Metadata and summary statistics
 
 ### Visualizations
+- `enhanced_model_comparison_dashboard.png` - Comprehensive model comparison dashboard
+- `complexity_performance_matrix.png` - Detailed task complexity analysis matrix
+- `quality_robustness_analysis.png` - Data quality robustness analysis
+- `model_specific_comparison.png` - Individual model performance comparison
+- `model_complexity_analysis.png` - Model performance by complexity breakdown
+- `model_quality_analysis.png` - Model performance by quality breakdown
 - `overall_performance_comparison.png` - Overall performance metrics
 - `performance_by_complexity.png` - Performance across complexity levels
 - `performance_by_quality.png` - Performance across data quality conditions

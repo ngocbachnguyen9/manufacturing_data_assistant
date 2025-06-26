@@ -262,7 +262,7 @@
       "gpt-4o-mini-2024-07-18",
       "o4-mini-2025-04-16"
     ],
-    "analysis_timestamp": "2025-06-26T10:50:41.683493"
+    "analysis_timestamp": "2025-06-26T11:10:48.552776"
   },
   "model_complexity_analysis": {
     "claude-sonnet-4-20250514": {
@@ -806,15 +806,5 @@
     "model_quality_analysis": "experiments/phase5_analysis/results/model_quality_analysis.csv",
     "task_level_comparison": "experiments/phase5_analysis/results/task_level_comparison.csv",
     "analysis_summary": "experiments/phase5_analysis/results/analysis_summary.csv"
-  },
-  "generated_plots": {
-    "overall_performance": "experiments/phase5_analysis/visualizations/overall_performance_comparison.png",
-    "performance_by_complexity": "experiments/phase5_analysis/visualizations/performance_by_complexity.png",
-    "performance_by_quality": "experiments/phase5_analysis/visualizations/performance_by_quality.png",
-    "time_vs_accuracy": "experiments/phase5_analysis/visualizations/time_vs_accuracy_scatter.png",
-    "cost_analysis": "experiments/phase5_analysis/visualizations/cost_analysis.png",
-    "model_specific_comparison": "experiments/phase5_analysis/visualizations/model_specific_comparison.png",
-    "model_complexity_analysis": "experiments/phase5_analysis/visualizations/model_complexity_analysis.png",
-    "model_quality_analysis": "experiments/phase5_analysis/visualizations/model_quality_analysis.png"
   }
 }
