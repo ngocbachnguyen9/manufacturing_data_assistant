@@ -1,5 +1,5 @@
 # Phase 5: Human vs LLM Comparative Analysis Report
-**Generated:** 2025-06-26 11:10:48
+**Generated:** 2025-06-26 19:41:19
 
 ## Executive Summary
 
@@ -86,16 +86,3 @@
 - **Human Records:** 90
 - **LLM Records:** 1620
 - **LLM Models:** claude-3-5-haiku-latest, claude-sonnet-4-20250514, deepseek-chat, deepseek-reasoner, gpt-4o-mini-2024-07-18, o4-mini-2025-04-16
-
-## Generated Files
-
-### CSV Exports
-- **Overall Comparison:** `experiments/phase5_analysis/results/overall_comparison.csv`
-- **Statistical Tests:** `experiments/phase5_analysis/results/statistical_tests.csv`
-- **Complexity Comparison:** `experiments/phase5_analysis/results/complexity_comparison.csv`
-- **Model Specific Comparison:** `experiments/phase5_analysis/results/model_specific_comparison.csv`
-- **Quality Comparison:** `experiments/phase5_analysis/results/quality_comparison.csv`
-- **Model Complexity Analysis:** `experiments/phase5_analysis/results/model_complexity_analysis.csv`
-- **Model Quality Analysis:** `experiments/phase5_analysis/results/model_quality_analysis.csv`
-- **Task Level Comparison:** `experiments/phase5_analysis/results/task_level_comparison.csv`
-- **Analysis Summary:** `experiments/phase5_analysis/results/analysis_summary.csv`

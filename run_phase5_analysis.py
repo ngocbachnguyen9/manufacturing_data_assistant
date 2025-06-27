@@ -367,6 +367,7 @@ def main():
     print(f"   python experiments/phase5_analysis/model_ranking_summary.py  # Model rankings")
     print(f"   python experiments/phase5_analysis/quick_insights.py         # Quick insights")
     print(f"   python experiments/phase5_analysis/visualization_guide.py    # Visualization guide")
+    print(f"   python run_phase5_individual_visualizations.py               # Individual charts")
 
 if __name__ == "__main__":
     main()

@@ -68,7 +68,7 @@ def display_visualization_guide(viz_dir: str = "experiments/phase5_analysis/visu
             "description": "Comprehensive analysis of model performance under data corruption",
             "components": [
                 "• Accuracy heatmap across Q0-Q3 quality conditions",
-                "• Robustness score ranking (corrupted vs perfect data ratio)",
+                "• Robustness score ranking (corrupted vs normal baseline data ratio)",
                 "• Quality degradation pattern analysis",
                 "• Perfect vs corrupted data performance scatter plot",
                 "• Best model identification for each quality condition",
