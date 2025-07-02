@@ -161,6 +161,146 @@ def plot_quality_comparison_bars(quality_data, models, qualities, output_path):
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
+def plot_model_time_ranking(model_data, models, output_path):
+    """Create model time ranking chart: completion time in seconds vs human baseline"""
+    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+
+    human_time = model_data[models[0]]['human_avg_time']
+
+    # Sort models by completion time (ascending - faster is better)
+    model_time_sorted = sorted([(model, model_data[model]['model_avg_time']) for model in models],
+                              key=lambda x: x[1])
+
+    model_names = [item[0].replace('-', '***REMOVED***n') for item in model_time_sorted]
+    model_times = [item[1] for item in model_time_sorted]
+
+    # Color bars based on performance vs human (green if faster, red if slower)
+    bar_colors = ['green' if time < human_time else 'red' for time in model_times]
+
+    bars = ax.barh(range(len(model_names)), model_times, color=bar_colors, alpha=0.7, edgecolor='black')
+    ax.axvline(x=human_time, color='red', linestyle='--', linewidth=3, label=f'Human Baseline ({human_time:.1f}s)')
+
+    ax.set_yticks(range(len(model_names)))
+    ax.set_yticklabels(model_names, fontsize=11)
+    ax.set_xlabel('Completion Time (seconds)', fontsize=12, fontweight='bold')
+    ax.set_title('Model Time Ranking vs Human Baseline', fontsize=14, fontweight='bold')
+    ax.legend()
+    ax.grid(True, alpha=0.3, axis='x')
+
+    # Add value labels on bars
+    for i, (bar, time) in enumerate(zip(bars, model_times)):
+        ax.text(time + max(model_times) * 0.01, bar.get_y() + bar.get_height()/2, f'{time:.1f}s',
+               va='center', fontweight='bold')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+def plot_model_confidence_ranking(model_data, models, output_path):
+    """Create model confidence ranking chart: average confidence levels"""
+    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+
+    # Sort models by average confidence (descending - higher is better)
+    model_confidence_sorted = sorted([(model, model_data[model]['model_avg_confidence']) for model in models],
+                                   key=lambda x: x[1], reverse=True)
+
+    model_names = [item[0].replace('-', '***REMOVED***n') for item in model_confidence_sorted]
+    model_confidences = [item[1] for item in model_confidence_sorted]
+
+    # Color bars based on confidence level (green=high, yellow=medium, red=low)
+    bar_colors = []
+    for conf in model_confidences:
+        if conf >= 0.7:
+            bar_colors.append('#2E8B57')  # Dark green for high confidence
+        elif conf >= 0.5:
+            bar_colors.append('#FFD700')  # Gold for medium confidence
+        else:
+            bar_colors.append('#DC143C')  # Crimson for low confidence
+
+    bars = ax.barh(range(len(model_names)), model_confidences, color=bar_colors, alpha=0.7, edgecolor='black')
+
+    ax.set_yticks(range(len(model_names)))
+    ax.set_yticklabels(model_names, fontsize=11)
+    ax.set_xlabel('Average Confidence Level', fontsize=12, fontweight='bold')
+    ax.set_title('Model Confidence Ranking', fontsize=14, fontweight='bold')
+    ax.set_xlim(0, 1.0)
+    ax.grid(True, alpha=0.3, axis='x')
+
+    # Add value labels on bars
+    for i, (bar, conf) in enumerate(zip(bars, model_confidences)):
+        ax.text(conf + 0.02, bar.get_y() + bar.get_height()/2, f'{conf:.3f}',
+               va='center', fontweight='bold')
+
+    # Add confidence level legend
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor='#2E8B57', alpha=0.7, label='High (≥0.7)'),
+        Patch(facecolor='#FFD700', alpha=0.7, label='Medium (0.5-0.7)'),
+        Patch(facecolor='#DC143C', alpha=0.7, label='Low (<0.5)')
+    ]
+    ax.legend(handles=legend_elements, loc='lower right')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+def plot_confidence_by_quality(quality_data, models, qualities, output_path):
+    """Create confidence comparison by data quality condition"""
+    fig, ax = plt.subplots(1, 1, figsize=(15, 8))
+
+    x = np.arange(len(qualities))
+    total = len(models)
+    width = 0.8 / total
+
+    # Quality condition labels
+    quality_labels = ['Normal***REMOVED***nBaseline', 'Spaces', 'Missing***REMOVED***nChars', 'Missing***REMOVED***nRecords']
+
+    for i, model in enumerate(models):
+        confidences = [quality_data[model][q]['model_avg_confidence'] for q in qualities]
+        color = get_provider_color(model, models)
+        ax.bar(x - (total/2 - 0.5 - i)*width, confidences,
+               width, label=model, color=color, edgecolor='black', linewidth=1.5)
+
+    ax.set_title('Model Confidence by Data Quality Condition', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Data Quality Condition', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Average Confidence Level', fontsize=12, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(quality_labels)
+    ax.legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    ax.set_ylim(0, 1.0)
+    ax.grid(True, alpha=0.3, axis='y')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+def plot_confidence_by_complexity(complexity_data, models, complexities, output_path):
+    """Create confidence comparison by task complexity"""
+    fig, ax = plt.subplots(1, 1, figsize=(15, 8))
+
+    x = np.arange(len(complexities))
+    total = len(models)
+    width = 0.8 / total
+
+    for i, model in enumerate(models):
+        confidences = [complexity_data[model][c]['model_avg_confidence'] for c in complexities]
+        color = get_provider_color(model, models)
+        ax.bar(x - (total/2 - 0.5 - i)*width, confidences,
+               width, label=model, color=color, edgecolor='black', linewidth=1.5)
+
+    ax.set_title('Model Confidence by Task Complexity', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Task Complexity', fontsize=12, fontweight='bold')
+    ax.set_ylabel('Average Confidence Level', fontsize=12, fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels([c.capitalize() for c in complexities])
+    ax.legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    ax.set_ylim(0, 1.0)
+    ax.grid(True, alpha=0.3, axis='y')
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
 # Remaining individual visualization functions retained unchanged below
 def plot_complexity_improvement_heatmap(complexity_data, models, complexities, output_path):
     """Create complexity improvement heatmap"""

@@ -54,7 +54,17 @@ def generate_all_individual_visualizations(human_csv_path: str, llm_results_dir:
         # Model Rankings
         generate_model_rankings(model_data, models, output_path)
         generated_files.extend(["model_accuracy_ranking.png", "model_speed_ranking.png"])
-        
+
+        # Model Time Ranking (new chart)
+        plot_model_time_ranking(model_data, models, output_path / "model_time_ranking.png")
+        generated_files.append("model_time_ranking.png")
+
+        # Confidence Analysis Charts (use model_data from results)
+        if 'model_data' in results:
+            confidence_model_data = results['model_data']
+            plot_model_confidence_ranking(confidence_model_data, models, output_path / "model_confidence_ranking.png")
+            generated_files.append("model_confidence_ranking.png")
+
         # Statistical Significance
         generate_statistical_significance_chart(model_data, models, output_path)
         generated_files.append("statistical_significance_matrix.png")
@@ -94,6 +104,11 @@ def generate_all_individual_visualizations(human_csv_path: str, llm_results_dir:
         plot_best_models_by_complexity(complexity_data, models, complexities,
                                      output_path / "best_models_by_complexity.png")
         generated_files.append("best_models_by_complexity.png")
+
+        # Confidence by Complexity
+        plot_confidence_by_complexity(complexity_data, models, complexities,
+                                    output_path / "confidence_by_complexity.png")
+        generated_files.append("confidence_by_complexity.png")
     
     # 3. Quality Analysis Individual Charts
     if 'model_quality_analysis' in results:
@@ -115,6 +130,11 @@ def generate_all_individual_visualizations(human_csv_path: str, llm_results_dir:
         
         plot_quality_comparison_bars(quality_data, models, qualities, output_path / "quality_comparison_bars.png")
         generated_files.append("quality_comparison_bars.png")
+
+        # Confidence by Quality
+        plot_confidence_by_quality(quality_data, models, qualities,
+                                 output_path / "confidence_by_quality.png")
+        generated_files.append("confidence_by_quality.png")
     
     # 4. Overall Comparison Charts (individual versions)
     print(f"***REMOVED***n📈 Generating Overall Comparison Charts...")

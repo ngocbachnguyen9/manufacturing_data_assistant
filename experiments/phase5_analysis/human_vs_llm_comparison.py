@@ -435,6 +435,7 @@ class HumanVsLLMComparison:
                         'time_speedup_factor': human_comp['completion_time_sec'].mean() / model_comp['completion_time_sec'].mean() if model_comp['completion_time_sec'].mean() > 0 else float('inf'),
                         'human_avg_cost': human_comp['total_cost_usd'].mean(),
                         'model_avg_cost': model_comp['total_cost_usd'].mean(),
+                        'model_avg_confidence': model_comp['final_confidence'].mean() if 'final_confidence' in model_comp.columns else 0.0,
                         'human_sample_size': len(human_comp),
                         'model_sample_size': len(model_comp)
                     }
@@ -480,9 +481,27 @@ class HumanVsLLMComparison:
                         'time_speedup_factor': human_qual['completion_time_sec'].mean() / model_qual['completion_time_sec'].mean() if model_qual['completion_time_sec'].mean() > 0 else float('inf'),
                         'human_avg_cost': human_qual['total_cost_usd'].mean(),
                         'model_avg_cost': model_qual['total_cost_usd'].mean(),
+                        'model_avg_confidence': model_qual['final_confidence'].mean() if 'final_confidence' in model_qual.columns else 0.0,
                         'human_sample_size': len(human_qual),
                         'model_sample_size': len(model_qual)
                     }
+
+        # Overall model data for confidence ranking
+        results['model_data'] = {}
+        for model in models:
+            model_data = self.llm_data[
+                (self.llm_data['model'] == model) &
+                (self.llm_data['task_id'].isin(common_tasks))
+            ]
+
+            if len(model_data) > 0:
+                results['model_data'][model] = {
+                    'model_accuracy': model_data['is_correct'].mean(),
+                    'model_avg_time': model_data['completion_time_sec'].mean(),
+                    'model_avg_cost': model_data['total_cost_usd'].mean(),
+                    'model_avg_confidence': model_data['final_confidence'].mean() if 'final_confidence' in model_data.columns else 0.0,
+                    'model_sample_size': len(model_data)
+                }
 
         # Summary statistics
         results['summary_statistics'] = {
