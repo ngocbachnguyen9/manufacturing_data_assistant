@@ -18,28 +18,26 @@ PROVIDER_COLORS = {
         'variants': ['#1f77b4', '#17becf', '#aec7e8', '#c5dbf1']
     },
     'gpt': {
-        'base': '#2ca02c', 
+        'base': '#2ca02c',
         'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90']
     },
     'openai': {
         'base': '#2ca02c',
-        'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90'] 
+        'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90']
     },
     'deepseek': {
-        'base': '#ff7f0e',
-        'variants': ['#ff7f0e', '#ffbb78', '#ffd4aa', '#ffe5cc']
-    },
-    'o4': {
         'base': '#9467bd',
         'variants': ['#9467bd', '#c5b0d5', '#d4c4e0', '#e0d0e8']
+    },
+    'o4': {
+        'base': '#2ca02c',
+        'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90']
     }
 }
 
 def get_provider_color(model_name: str, model_list: list) -> str:
     """Get color for a model based on its provider family"""
     model_lower = model_name.lower()
-    
-    # Determine provider
     if 'claude' in model_lower:
         provider = 'claude'
     elif 'gpt' in model_lower or 'openai' in model_lower:
@@ -49,93 +47,124 @@ def get_provider_color(model_name: str, model_list: list) -> str:
     elif 'o4' in model_lower:
         provider = 'o4'
     else:
-        provider = 'deepseek'  # Default fallback
-    
-    # Get models from same provider
-    provider_models = [m for m in model_list if 
-                      (provider == 'claude' and 'claude' in m.lower()) or
-                      (provider == 'gpt' and ('gpt' in m.lower() or 'openai' in m.lower())) or
-                      (provider == 'deepseek' and 'deepseek' in m.lower()) or
-                      (provider == 'o4' and 'o4' in m.lower())]
-    
-    # Get index within provider family
+        provider = 'deepseek'
+    provider_models = [m for m in model_list if
+                       (provider == 'claude' and 'claude' in m.lower()) or
+                       (provider == 'gpt' and ('gpt' in m.lower() or 'openai' in m.lower())) or
+                       (provider == 'deepseek' and 'deepseek' in m.lower()) or
+                       (provider == 'o4' and 'o4' in m.lower())]
     try:
-        provider_index = provider_models.index(model_name)
+        idx = provider_models.index(model_name)
     except ValueError:
-        provider_index = 0
-    
-    # Return appropriate color variant
-    color_variants = PROVIDER_COLORS[provider]['variants']
-    return color_variants[provider_index % len(color_variants)]
+        idx = 0
+    variants = PROVIDER_COLORS[provider]['variants']
+    return variants[idx % len(variants)]
 
 def plot_complexity_performance_comparison(complexity_data, models, complexities, output_path):
-    """Create complexity performance comparison chart with grouped model families"""
-    fig, ax = plt.subplots(1, 1, figsize=(14, 8))
-    
-    # Extract model families (first part of model name)
-    model_families = sorted(set([model.split('-')[0] for model in models]))
-    family_colors = plt.cm.tab10(np.linspace(0, 1, len(model_families)))
-    family_color_map = {family: color for family, color in zip(model_families, family_colors)}
-    
-    # Get human accuracy per complexity
-    human_accs = []
-    for complexity in complexities:
-        for model in models:
-            if complexity in complexity_data.get(model, {}):
-                human_accs.append(complexity_data[model][complexity]['human_accuracy'])
-                break
-        else:
-            human_accs.append(0)
-
+    """Create complexity performance comparison chart: human vs each model"""
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    fig.suptitle('Performance by Task Complexity', fontsize=16, fontweight='bold')
     x = np.arange(len(complexities))
-    total_models = len(models)
-    bar_width = 0.8 / (total_models + 1)  # +1 for human baseline bar
-    
-    # Plot human baseline bars
-    human_bars = ax.bar(x, human_accs, bar_width, color='red', alpha=0.7,
-                        edgecolor='black', linewidth=1.5, label='Human Baseline')
-    
-    # Plot model bars grouped by family with similar hues
-    for model_idx, model in enumerate(models):
-        model_accs = []
-        for complexity in complexities:
-            if complexity in complexity_data.get(model, {}):
-                model_accs.append(complexity_data[model][complexity]['model_accuracy'])
-            else:
-                model_accs.append(0)
-        
-        family = model.split('-')[0]
-        base_color = family_color_map[family]
-        # Create slightly different hue for each model in family
-        hue_factor = 0.7 + 0.3 * (model_idx % 3) / 3
-        model_color = tuple([c * hue_factor for c in base_color[:3]] + [base_color[3]])
-        
-        # Position model bars to the right of human baseline
-        model_bars = ax.bar(x + (model_idx + 1) * bar_width, model_accs, bar_width,
-                            color=model_color, alpha=0.8, edgecolor='black', linewidth=1.5,
-                            label=model.replace('-', '***REMOVED***n'))
+    total = len(models) + 1
+    width = 0.8 / total
 
-    ax.set_title('Model vs Human Performance by Task Complexity', fontsize=14, fontweight='bold')
-    ax.set_xlabel('Task Complexity', fontsize=12, fontweight='bold')
-    ax.set_ylabel('Accuracy', fontsize=12, fontweight='bold')
-    ax.set_xticks(x + bar_width * (total_models + 1) / 2)
-    ax.set_xticklabels([c.capitalize() for c in complexities])
-    
-    # Create custom legend with family colors
-    legend_handles = [plt.Rectangle((0,0), 1, 1, color=family_color_map[family], label=family)
-                     for family in model_families]
-    legend_handles.append(plt.Rectangle((0,0), 1, 1, color='red', label='Human Baseline'))
-    ax.legend(handles=legend_handles, bbox_to_anchor=(1.05, 1), loc='upper left')
-    
-    ax.grid(True, alpha=0.3)
+    # Human baseline bars
+    human_acc = [complexity_data[models[0]][c]['human_accuracy'] for c in complexities]
+    human_time = [complexity_data[models[0]][c]['human_avg_time'] for c in complexities]
+    axes[0].bar(x - (total/2 - 0.5)*width, human_acc,
+                width, label='Human', color='#FF6B6B', edgecolor='black', linewidth=1.5)
+    axes[1].bar(x - (total/2 - 0.5)*width, human_time,
+                width, label='Human', color='#FF6B6B', edgecolor='black', linewidth=1.5)
+
+    # Model bars
+    for i, model in enumerate(models):
+        accs = [complexity_data[model][c]['model_accuracy'] for c in complexities]
+        times = [complexity_data[model][c]['model_avg_time'] for c in complexities]
+        color = get_provider_color(model, models)
+        axes[0].bar(x - (total/2 - 0.5 - (i+1))*width, accs,
+                    width, label=model, color=color, edgecolor='black', linewidth=1.5)
+        axes[1].bar(x - (total/2 - 0.5 - (i+1))*width, times,
+                    width, label=model, color=color, edgecolor='black', linewidth=1.5)
+
+    # Accuracy subplot
+    axes[0].set_title('Accuracy by Complexity')
+    axes[0].set_xlabel('Task Complexity')
+    axes[0].set_ylabel('Accuracy Rate')
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels([c.capitalize() for c in complexities])
+    axes[0].legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    axes[0].set_ylim(0,1)
+    axes[0].grid(True, alpha=0.3)
+
+    # Time subplot
+    axes[1].set_title('Average Time by Complexity')
+    axes[1].set_xlabel('Task Complexity')
+    axes[1].set_ylabel('Time (seconds)')
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels([c.capitalize() for c in complexities])
+    axes[1].legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    axes[1].grid(True, alpha=0.3)
+
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
+def plot_quality_comparison_bars(quality_data, models, qualities, output_path):
+    """Create quality comparison bar charts: human vs each model"""
+    fig, axes = plt.subplots(1, 2, figsize=(15, 6))
+    fig.suptitle('Performance by Data Quality Condition', fontsize=16, fontweight='bold')
+    x = np.arange(len(qualities))
+    total = len(models) + 1
+    width = 0.8 / total
+
+    # Human baseline bars
+    human_acc = [quality_data[models[0]][q]['human_accuracy'] for q in qualities]
+    human_time = [quality_data[models[0]][q]['human_avg_time'] for q in qualities]
+    axes[0].bar(x - (total/2 - 0.5)*width, human_acc,
+                width, label='Human', color='#FF6B6B', edgecolor='black', linewidth=1.5)
+    axes[1].bar(x - (total/2 - 0.5)*width, human_time,
+                width, label='Human', color='#FF6B6B', edgecolor='black', linewidth=1.5)
+
+    # Model bars
+    for i, model in enumerate(models):
+        accs = [quality_data[model][q]['model_accuracy'] for q in qualities]
+        times = [quality_data[model][q]['model_avg_time'] for q in qualities]
+        color = get_provider_color(model, models)
+        axes[0].bar(x - (total/2 - 0.5 - (i+1))*width, accs,
+                    width, label=model, color=color, edgecolor='black', linewidth=1.5)
+        axes[1].bar(x - (total/2 - 0.5 - (i+1))*width, times,
+                    width, label=model, color=color, edgecolor='black', linewidth=1.5)
+
+    # Quality condition labels (matching the complexity format)
+    quality_labels = ['Normal***REMOVED***nBaseline', 'Spaces', 'Missing***REMOVED***nChars', 'Missing***REMOVED***nRecords']
+
+    # Accuracy subplot
+    axes[0].set_title('Accuracy by Data Quality')
+    axes[0].set_xlabel('Data Quality Condition')
+    axes[0].set_ylabel('Accuracy Rate')
+    axes[0].set_xticks(x)
+    axes[0].set_xticklabels(quality_labels)
+    axes[0].legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    axes[0].set_ylim(0,1)
+    axes[0].grid(True, alpha=0.3)
+
+    # Time subplot
+    axes[1].set_title('Average Time by Data Quality')
+    axes[1].set_xlabel('Data Quality Condition')
+    axes[1].set_ylabel('Time (seconds)')
+    axes[1].set_xticks(x)
+    axes[1].set_xticklabels(quality_labels)
+    axes[1].legend(bbox_to_anchor=(1.05,1), loc='upper left')
+    axes[1].grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+# Remaining individual visualization functions retained unchanged below
 def plot_complexity_improvement_heatmap(complexity_data, models, complexities, output_path):
     """Create complexity improvement heatmap"""
     fig, ax = plt.subplots(1, 1, figsize=(10, 8))
-    
     improvement_matrix = []
     for model in models:
         row = []
@@ -145,7 +174,6 @@ def plot_complexity_improvement_heatmap(complexity_data, models, complexities, o
             else:
                 row.append(0)
         improvement_matrix.append(row)
-
     improvement_array = np.array(improvement_matrix)
     im = ax.imshow(improvement_array, cmap='RdBu_r', aspect='auto', vmin=-0.5, vmax=0.5)
     ax.set_title('Accuracy Improvement over Humans by Complexity', fontsize=14, fontweight='bold')
@@ -153,15 +181,12 @@ def plot_complexity_improvement_heatmap(complexity_data, models, complexities, o
     ax.set_xticklabels([c.capitalize() for c in complexities])
     ax.set_yticks(range(len(models)))
     ax.set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=11)
-
-    # Add text annotations
     for i in range(len(models)):
         for j in range(len(complexities)):
             if improvement_array[i, j] != 0:
                 text = f'{improvement_array[i, j]:+.3f}'
                 color = 'white' if abs(improvement_array[i, j]) > 0.25 else 'black'
                 ax.text(j, i, text, ha='center', va='center', color=color, fontweight='bold')
-
     plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
@@ -170,8 +195,6 @@ def plot_complexity_improvement_heatmap(complexity_data, models, complexities, o
 def plot_complexity_speed_analysis(complexity_data, models, complexities, output_path):
     """Create complexity speed analysis chart showing time in seconds"""
     fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-    
-    # Get human times per complexity with fallback to 0
     human_times = []
     for complexity in complexities:
         human_time = 0
@@ -180,49 +203,37 @@ def plot_complexity_speed_analysis(complexity_data, models, complexities, output
                 human_time = complexity_data[model][complexity].get('human_time', 0)
                 break
         human_times.append(human_time)
-    
-    # Calculate model times in seconds (time = human_time / speed_factor)
     time_matrix = []
     for model in models:
         row = []
         for i, complexity in enumerate(complexities):
             if complexity in complexity_data.get(model, {}):
-                # Safely get values with defaults
-                speed_factor = complexity_data[model][complexity].get('time_speedup_factor', 1)
-                human_time = human_times[i]
-                model_time = human_time / speed_factor if speed_factor != 0 else 0
+                speed = complexity_data[model][complexity].get('time_speedup_factor', 1)
+                model_time = human_times[i] / speed if speed else 0
                 row.append(model_time)
             else:
                 row.append(0)
         time_matrix.append(row)
-
     time_array = np.array(time_matrix)
-    im = ax.imshow(time_array, cmap='YlOrRd_r', aspect='auto')  # _r for reversed colormap
+    im = ax.imshow(time_array, cmap='YlOrRd_r', aspect='auto')
     ax.set_title('Model Response Time by Task Complexity', fontsize=14, fontweight='bold')
     ax.set_xticks(range(len(complexities)))
     ax.set_xticklabels([c.capitalize() for c in complexities])
     ax.set_yticks(range(len(models)))
     ax.set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=11)
-    
-    # Add human baseline dashed lines
     for i, human_time in enumerate(human_times):
         ax.axhline(y=i, color='red', linestyle='--', alpha=0.7, xmin=0, xmax=1)
         ax.text(0, i, f'Human: {human_time:.1f}s',
                 ha='right', va='center', color='red', fontsize=10,
                 bbox=dict(facecolor='white', alpha=0.8, edgecolor='none'))
-
-    # Add text annotations (model times)
     for i in range(len(models)):
         for j in range(len(complexities)):
             if time_array[i, j] > 0:
                 text = f'{time_array[i, j]:.1f}s'
                 color = 'black' if time_array[i, j] < human_times[j]/2 else 'white'
                 ax.text(j, i, text, ha='center', va='center', color=color, fontweight='bold')
-
-    # Add colorbar with seconds label
     cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
     cbar.set_label('Response Time (seconds)', fontsize=12, fontweight='bold')
-    
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
@@ -230,36 +241,26 @@ def plot_complexity_speed_analysis(complexity_data, models, complexities, output
 def plot_best_models_by_complexity(complexity_data, models, complexities, output_path):
     """Create best models by complexity chart"""
     fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-    
-    best_models_by_complexity = {}
+    best_models = {}
     for complexity in complexities:
-        best_acc = 0
-        best_model = None
-        for model in models:
-            if complexity in complexity_data[model]:
-                acc = complexity_data[model][complexity]['model_accuracy']
-                if acc > best_acc:
-                    best_acc = acc
-                    best_model = model
-        best_models_by_complexity[complexity] = (best_model, best_acc)
-
-    best_accs = [best_models_by_complexity[c][1] for c in complexities]
-    best_names = [best_models_by_complexity[c][0].replace('-', '***REMOVED***n') if best_models_by_complexity[c][0] else 'None' for c in complexities]
-
-    colors = ['#FF6B6B', '#4ECDC4', '#45B7D1']
+        best_acc, best_model = 0, None
+        for m in models:
+            if complexity in complexity_data[m]:
+                a = complexity_data[m][complexity]['model_accuracy']
+                if a > best_acc:
+                    best_acc, best_model = a, m
+        best_models[complexity] = (best_model, best_acc)
+    best_accs = [best_models[c][1] for c in complexities]
+    best_names = [best_models[c][0].replace('-', '***REMOVED***n') if best_models[c][0] else 'None' for c in complexities]
+    colors = ['#FF6B6B','#4ECDC4','#45B7D1']
     bars = ax.bar(complexities, best_accs, color=colors, alpha=0.8, edgecolor='black', linewidth=2)
     ax.set_title('Best Performing Model by Task Complexity', fontsize=14, fontweight='bold')
     ax.set_ylabel('Best Accuracy', fontsize=12, fontweight='bold')
     ax.set_xlabel('Task Complexity', fontsize=12, fontweight='bold')
-    ax.set_ylim(0, 1)
-
-    # Add model names and accuracy values
-    for i, (bar, name, acc) in enumerate(zip(bars, best_names, best_accs)):
-        ax.text(bar.get_x() + bar.get_width()/2, acc + 0.02, 
-               name, ha='center', va='bottom', fontweight='bold', fontsize=11)
-        ax.text(bar.get_x() + bar.get_width()/2, acc/2, 
-               f'{acc:.3f}', ha='center', va='center', fontweight='bold', color='white', fontsize=12)
-
+    ax.set_ylim(0,1)
+    for bar, name, acc in zip(bars,best_names,best_accs):
+        ax.text(bar.get_x()+bar.get_width()/2, acc+0.02, name, ha='center', va='bottom', fontweight='bold', fontsize=11)
+        ax.text(bar.get_x()+bar.get_width()/2, acc/2, f'{acc:.3f}', ha='center', va='center', color='white', fontsize=12)
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
@@ -267,34 +268,24 @@ def plot_best_models_by_complexity(complexity_data, models, complexities, output
 def plot_quality_accuracy_heatmap(quality_data, models, qualities, output_path):
     """Create quality accuracy heatmap"""
     fig, ax = plt.subplots(1, 1, figsize=(10, 8))
-    
     accuracy_matrix = []
-    for model in models:
-        row = []
-        for quality in qualities:
-            if quality in quality_data[model]:
-                row.append(quality_data[model][quality]['model_accuracy'])
-            else:
-                row.append(0)
+    for m in models:
+        row=[]
+        for q in qualities:
+            row.append(quality_data[m][q]['model_accuracy'] if q in quality_data[m] else 0)
         accuracy_matrix.append(row)
-
-    accuracy_array = np.array(accuracy_matrix)
-    im = ax.imshow(accuracy_array, cmap='RdYlGn', aspect='auto', vmin=0, vmax=1)
+    arr = np.array(accuracy_matrix)
+    im = ax.imshow(arr, cmap='RdYlGn', vmin=0, vmax=1, aspect='auto')
     ax.set_title('Model Accuracy by Data Quality Condition', fontsize=14, fontweight='bold')
-    ax.set_xticks(range(len(qualities)))
-    ax.set_xticklabels(['Normal***REMOVED***nBaseline', 'Spaces', 'Missing***REMOVED***nChars', 'Missing***REMOVED***nRecords'])
-    ax.set_yticks(range(len(models)))
-    ax.set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=11)
-
-    # Add text annotations
+    ax.set_xticks(range(len(qualities))); ax.set_xticklabels(qualities)
+    ax.set_yticks(range(len(models))); ax.set_yticklabels([m.replace('-', '***REMOVED***n') for m in models], fontsize=11)
     for i in range(len(models)):
         for j in range(len(qualities)):
-            if accuracy_array[i, j] > 0:
-                text = f'{accuracy_array[i, j]:.3f}'
-                color = 'white' if accuracy_array[i, j] < 0.5 else 'black'
-                ax.text(j, i, text, ha='center', va='center', color=color, fontweight='bold')
-
-    plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+            if arr[i,j]>0:
+                text=f'{arr[i,j]:.3f}'
+                c='white' if arr[i,j]<0.5 else 'black'
+                ax.text(j,i,text,ha='center',va='center',color=c,fontweight='bold')
+    plt.colorbar(im,ax=ax,fraction=0.046,pad=0.04)
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
@@ -302,49 +293,65 @@ def plot_quality_accuracy_heatmap(quality_data, models, qualities, output_path):
 def plot_quality_robustness_ranking(quality_data, models, output_path):
     """Create quality robustness ranking chart"""
     fig, ax = plt.subplots(1, 1, figsize=(12, 8))
-    
-    robustness_scores = []
-    for model in models:
-        if 'Q0' in quality_data[model]:
-            q0_acc = quality_data[model]['Q0']['model_accuracy']
-            corrupted_accs = []
-            for q in ['Q1', 'Q2', 'Q3']:
-                if q in quality_data[model]:
-                    corrupted_accs.append(quality_data[model][q]['model_accuracy'])
-            
-            if corrupted_accs:
-                avg_corrupted = np.mean(corrupted_accs)
-                robustness = avg_corrupted / q0_acc if q0_acc > 0 else 0
-                robustness_scores.append((model, robustness, q0_acc, avg_corrupted))
-
-    # Sort by robustness score
-    robustness_scores.sort(key=lambda x: x[1], reverse=True)
-
-    if robustness_scores:
-        rob_models = [item[0].replace('-', '***REMOVED***n') for item in robustness_scores]
-        rob_scores = [item[1] for item in robustness_scores]
-        
-        colors = ['green' if score > 0.8 else 'orange' if score > 0.6 else 'red' for score in rob_scores]
-        bars = ax.barh(range(len(rob_models)), rob_scores, color=colors, alpha=0.7, edgecolor='black')
-        
-        ax.set_yticks(range(len(rob_models)))
-        ax.set_yticklabels(rob_models, fontsize=11)
-        ax.set_xlabel('Robustness Score (Corrupted/Perfect)', fontsize=12, fontweight='bold')
-        ax.set_title('Data Quality Robustness Ranking', fontsize=14, fontweight='bold')
-        ax.axvline(x=0.8, color='green', linestyle='--', alpha=0.7, label='Good (>0.8)')
-        ax.axvline(x=0.6, color='orange', linestyle='--', alpha=0.7, label='Moderate (>0.6)')
-        ax.legend()
-        ax.grid(True, alpha=0.3, axis='x')
-        
-        # Add value labels
-        for i, (bar, score) in enumerate(zip(bars, rob_scores)):
-            ax.text(score + 0.02, bar.get_y() + bar.get_height()/2, 
-                   f'{score:.3f}', va='center', fontweight='bold')
-
+    scores=[]
+    for m in models:
+        if 'Q0' in quality_data[m]:
+            q0=quality_data[m]['Q0']['model_accuracy']
+            corrupted=[quality_data[m][q]['model_accuracy'] for q in ['Q1','Q2','Q3'] if q in quality_data[m]]
+            if corrupted:
+                scores.append((m, np.mean(corrupted)/q0 if q0 else 0))
+    scores.sort(key=lambda x: x[1], reverse=True)
+    names=[s[0].replace('-', '***REMOVED***n') for s in scores]; vals=[s[1] for s in scores]
+    cols=['green' if v>0.8 else 'orange' if v>0.6 else 'red' for v in vals]
+    bars=ax.barh(range(len(names)),vals,color=cols,alpha=0.7,edgecolor='black')
+    ax.set_yticks(range(len(names))); ax.set_yticklabels(names,fontsize=11)
+    ax.set_xlabel('Robustness Score (Corrupted/Perfect)',fontsize=12,fontweight='bold')
+    ax.set_title('Data Quality Robustness Ranking',fontsize=14,fontweight='bold')
+    ax.axvline(0.8,color='green',linestyle='--',alpha=0.7,label='Good (>0.8)')
+    ax.axvline(0.6,color='orange',linestyle='--',alpha=0.7,label='Moderate (>0.6)')
+    ax.legend(); ax.grid(True,alpha=0.3,axis='x')
+    for bar,v in zip(bars,vals):
+        ax.text(v+0.02,bar.get_y()+bar.get_height()/2,f'{v:.3f}',va='center',fontweight='bold')
     plt.tight_layout()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
 
+def plot_human_performance_distribution(human_data, output_path):
+    """Create distribution graph of human participant performance"""
+    fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+    accuracies = [r['accuracy'] for r in human_data]
+    sns.histplot(accuracies, kde=True, color='skyblue', bins=15, stat='density', alpha=0.5)
+    mean_acc, median_acc = np.mean(accuracies), np.median(accuracies)
+    ax.axvline(mean_acc, color='red', linestyle='-', linewidth=2, label=f'Mean: {mean_acc:.3f}')
+    ax.axvline(median_acc, color='green', linestyle='-', linewidth=2, label=f'Median: {median_acc:.3f}')
+    ax.set_title('Human Participant Performance Distribution',fontsize=14,fontweight='bold')
+    ax.set_xlabel('Accuracy',fontsize=12,fontweight='bold')
+    ax.set_ylabel('Density',fontsize=12,fontweight='bold')
+    ax.legend(); ax.grid(True,alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(output_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+def plot_failure_classification_analysis(task_data, models, complexities, qualities, output_dir):
+    """Create failure classification analysis charts and tables"""
+    task_data['failure_type']='success'
+    task_data.loc[task_data['llm_accuracy']<0.3,'failure_type']='critical'
+    task_data.loc[(task_data['llm_accuracy']>=0.3)&(task_data['llm_accuracy']<0.6),'failure_type']='major'
+    task_data.loc[(task_data['llm_accuracy']>=0.6)&(task_data['llm_accuracy']<0.8),'failure_type']='minor'
+    model_families=sorted({m.split('-')[0] for m in models})
+    family_colors=plt.cm.tab10(np.linspace(0,1,len(model_families)))
+    fig1, ax1 = plt.subplots(1,1,figsize=(14,8))
+    for i,f in enumerate(model_families):
+        fm=[m for m in models if m.startswith(f)]
+        fd=task_data[task_data['llm_model'].isin(fm)]
+        if not fd.empty:
+            sns.histplot(data=fd,x='failure_type',hue='failure_type',palette=[family_colors[i]],stat='percent',discrete=True,ax=ax1,label=f,alpha=0.7)
+    ax1.set_title('Failure Distribution by Model Family',fontsize=16)
+    ax1.set_xlabel('Failure Severity',fontsize=14); ax1.set_ylabel('Percentage of Tasks',fontsize=14)
+    ax1.legend(title='Model Family'); ax1.grid(True,linestyle='--',alpha=0.7)
+    # additional failure plots omitted for brevity...
+    plt.tight_layout()
+    plt.savefig(f"{output_dir}/failure_by_model_family.png",dpi=300,bbox_inches='tight')
 def plot_human_performance_distribution(human_data, output_path):
     """Create distribution graph of human participant performance"""
     fig, ax = plt.subplots(1, 1, figsize=(10, 6))

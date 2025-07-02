@@ -21,6 +21,7 @@ import glob
 from dataclasses import dataclass
 from datetime import datetime
 
+
 warnings.filterwarnings('ignore')
 
 # Set style for better visualizations
@@ -42,12 +43,12 @@ PROVIDER_COLORS = {
         'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90'] 
     },
     'deepseek': {
-        'base': '#ff7f0e',
-        'variants': ['#ff7f0e', '#ffbb78', '#ffd4aa', '#ffe5cc']
-    },
-    'o4': {
         'base': '#9467bd',
         'variants': ['#9467bd', '#c5b0d5', '#d4c4e0', '#e0d0e8']
+    },
+    'o4': {
+       'base': '#2ca02c', 
+       'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90']
     }
 }
 
@@ -2037,6 +2038,12 @@ class HumanVsLLMComparison:
         if self.config.generate_visualizations:
             generated_plots = self.create_visualization_dashboard()
             results['generated_plots'] = generated_plots
+
+        print("***REMOVED***n" + "=" * 60)
+        print("PHASE 5 ANALYSIS COMPLETE")
+        print("=" * 60)
+
+        return results
 
         print("***REMOVED***n" + "=" * 60)
         print("PHASE 5 ANALYSIS COMPLETE")

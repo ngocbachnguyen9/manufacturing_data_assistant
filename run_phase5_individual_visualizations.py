@@ -14,10 +14,11 @@ import seaborn as sns
 import numpy as np
 
 # Add the experiments directory to the path
-sys.path.append('experiments/phase5_analysis')
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'experiments/phase5_analysis')))
 
-from human_vs_llm_comparison import HumanVsLLMComparison, ComparisonConfig
-from individual_visualizations import *
+from experiments.phase5_analysis.human_vs_llm_comparison import HumanVsLLMComparison, ComparisonConfig
+from experiments.phase5_analysis.individual_visualizations import *
 
 def generate_all_individual_visualizations(human_csv_path: str, llm_results_dir: str, 
                                          output_dir: str = "experiments/phase5_analysis/individual_visualizations"):
@@ -112,7 +113,7 @@ def generate_all_individual_visualizations(human_csv_path: str, llm_results_dir:
         generate_quality_degradation_patterns(quality_data, models, qualities, output_path)
         generated_files.append("quality_degradation_patterns.png")
         
-        generate_quality_comparison_bars(quality_data, models, qualities, output_path)
+        plot_quality_comparison_bars(quality_data, models, qualities, output_path / "quality_comparison_bars.png")
         generated_files.append("quality_comparison_bars.png")
     
     # 4. Overall Comparison Charts (individual versions)
