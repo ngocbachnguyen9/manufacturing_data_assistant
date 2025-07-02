@@ -1,5 +1,5 @@
 # Phase 5: Human vs LLM Comparative Analysis Report
-**Generated:** 2025-06-26 19:41:19
+**Generated:** 2025-07-01 19:57:46
 
 ## Executive Summary
 
@@ -80,9 +80,42 @@
 
 ## Cost-Effectiveness Analysis
 
+- **Best ROI Scenario:** Senior Engineer
+- **Best ROI Percentage:** 56.0%
+- **Average Cost Savings:** $21.821 per task
+
+### Recommendations
+- Strong ROI case for LLM implementation
+- LLM shows superior accuracy performance
+
 ## Data Summary
 
 - **Total Common Tasks:** 90
 - **Human Records:** 90
 - **LLM Records:** 1620
 - **LLM Models:** claude-3-5-haiku-latest, claude-sonnet-4-20250514, deepseek-chat, deepseek-reasoner, gpt-4o-mini-2024-07-18, o4-mini-2025-04-16
+
+### Visualizations
+- **Overall Performance:** `experiments/phase5_analysis/visualizations/overall_performance_comparison.png`
+- **Performance By Complexity:** `experiments/phase5_analysis/visualizations/performance_by_complexity.png`
+- **Performance By Quality:** `experiments/phase5_analysis/visualizations/performance_by_quality.png`
+- **Time Vs Accuracy:** `experiments/phase5_analysis/visualizations/time_vs_accuracy_scatter.png`
+- **Cost Analysis:** `experiments/phase5_analysis/visualizations/cost_analysis.png`
+- **Model Specific Comparison:** `experiments/phase5_analysis/visualizations/model_specific_comparison.png`
+- **Model Complexity Analysis:** `experiments/phase5_analysis/visualizations/model_complexity_analysis.png`
+- **Model Quality Analysis:** `experiments/phase5_analysis/visualizations/model_quality_analysis.png`
+- **Model Accuracy Vs Speed Scatter:** `experiments/phase5_analysis/visualizations/model_accuracy_vs_speed_scatter.png`
+- **Model Accuracy Ranking:** `experiments/phase5_analysis/visualizations/model_accuracy_ranking.png`
+- **Model Speed Ranking:** `experiments/phase5_analysis/visualizations/model_speed_ranking.png`
+- **Statistical Significance Matrix:** `experiments/phase5_analysis/visualizations/statistical_significance_matrix.png`
+- **Performance Radar Chart:** `experiments/phase5_analysis/visualizations/performance_radar_chart.png`
+- **Accuracy Improvement Bars:** `experiments/phase5_analysis/visualizations/accuracy_improvement_bars.png`
+- **Complexity Accuracy Heatmap:** `experiments/phase5_analysis/visualizations/complexity_accuracy_heatmap.png`
+- **Complexity Performance Comparison:** `experiments/phase5_analysis/visualizations/complexity_performance_comparison.png`
+- **Complexity Speed Analysis:** `experiments/phase5_analysis/visualizations/complexity_speed_analysis.png`
+- **Best Models By Complexity:** `experiments/phase5_analysis/visualizations/best_models_by_complexity.png`
+- **Quality Accuracy Heatmap:** `experiments/phase5_analysis/visualizations/quality_accuracy_heatmap.png`
+- **Quality Robustness Ranking:** `experiments/phase5_analysis/visualizations/quality_robustness_ranking.png`
+- **Human Performance Distribution:** `experiments/phase5_analysis/visualizations/human_performance_distribution.png`
+- **Llm Failure Analysis:** `experiments/phase5_analysis/visualizations/llm_failure_analysis.png`
+- **Speed Chart Seconds:** `experiments/phase5_analysis/visualizations/speed_chart_seconds.png`

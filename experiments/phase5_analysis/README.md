@@ -1,169 +1,239 @@
-# Phase 5: Human vs LLM Comparative Analysis
+# LLM Evaluation and Benchmarking System
 
-This module provides comprehensive comparison capabilities between human participants and LLM models on manufacturing data analysis tasks.
+A comprehensive evaluation and benchmarking framework for Large Language Models (LLMs) on manufacturing data analysis tasks.
 
-## Features
+## 🎯 Overview
 
-- **Statistical Analysis**: Chi-square tests for accuracy, Mann-Whitney U tests for completion time
-- **Cost-Effectiveness Analysis**: Detailed ROI calculations with multiple cost scenarios
-- **Visualization Dashboard**: Comprehensive charts and plots for performance comparison
-- **CSV Export**: All analysis results exported in structured CSV format
-- **Comprehensive Reporting**: Markdown reports with key findings and recommendations
+This system provides a complete evaluation framework to assess and benchmark LLM performance across different:
+- **Models** (deepseek-chat, GPT-4, Claude, etc.)
+- **Task Complexities** (easy, medium, hard)
+- **Data Quality Conditions** (Q0-Q3: perfect to corrupted data)
+- **Prompt Lengths** (short, normal, long)
 
-## Quick Start
+## 🏗️ System Architecture
 
-### Basic Usage
+### Core Components
 
+1. **Evaluation Framework** (`evaluation_framework.py`)
+   - Performance metrics calculation
+   - Benchmark scoring and ranking
+   - Comprehensive reporting
+
+2. **Model Comparison** (`model_comparison.py`)
+   - Statistical significance testing
+   - Multi-dimensional performance analysis
+   - Visualization generation
+
+3. **Prompt Effectiveness Analyzer** (`prompt_effectiveness_analyzer.py`)
+   - Prompt length comparison (short/normal/long)
+   - Token efficiency analysis
+   - Time-accuracy trade-offs
+
+4. **Comprehensive Benchmarking Suite** (`benchmarking_suite.py`)
+   - Unified evaluation pipeline
+   - Manufacturing-specific metrics
+   - Executive summaries and recommendations
+
+## 📊 Key Features
+
+### Performance Metrics
+- **Accuracy**: Task completion correctness
+- **Speed**: Average completion time
+- **Cost**: Token usage and API costs
+- **Confidence**: Model confidence calibration
+- **Error Detection**: Data quality issue identification
+- **Token Efficiency**: Correct answers per token
+
+### Manufacturing-Specific Analysis
+- **Gear Identification Tasks**: Packing list to gear mapping
+- **Printer Analysis Tasks**: Part-to-printer tracing
+- **Compliance Verification**: Document date validation
+- **Cross-System Integration**: Multi-source data handling
+
+### Data Quality Conditions
+- **Q0 (Baseline)**: Perfect data, 0% corruption
+- **Q1 (Space Injection)**: Random spaces in barcodes (~15%)
+- **Q2 (Character Missing)**: Missing characters in IDs (~12%)
+- **Q3 (Missing Records)**: Strategic record removal (~7%)
+
+## 🚀 Quick Start
+
+### 1. Run the Demo
 ```bash
-# Run complete Phase 5 analysis with default settings
-python run_phase5_analysis.py
-
-# Specify custom data paths
-python run_phase5_analysis.py ***REMOVED***
-  --human-data experiments/human_study/Participants_results.csv ***REMOVED***
-  --llm-data experiments/llm_evaluation/performance_logs/short_all_results_fair_benchmark
-
-# Customize human hourly rate for cost analysis
-python run_phase5_analysis.py --human-hourly-rate 35.0
-
-# Skip certain analysis components
-python run_phase5_analysis.py --no-viz --no-cost-analysis
+cd experiments/llm_evaluation
+python run_evaluation_demo.py
 ```
 
-### Advanced Usage
+### 2. Individual Component Usage
 
+#### Basic Performance Evaluation
 ```python
-from experiments.phase5_analysis.human_vs_llm_comparison import HumanVsLLMComparison, ComparisonConfig
-from experiments.phase5_analysis.cost_analysis import CostAnalyzer
+from evaluation_framework import LLMEvaluationFramework
 
-# Configure analysis
-config = ComparisonConfig(
-    human_hourly_rate=30.0,
-    output_dir="custom_results",
-    visualization_dir="custom_viz"
-)
-
-# Run comparison
-comparison = HumanVsLLMComparison(config)
-results = comparison.run_complete_analysis(
-    "path/to/human_data.csv",
-    "path/to/llm_results_dir"
-)
-
-# Detailed cost analysis
-cost_analyzer = CostAnalyzer()
-cost_report = cost_analyzer.generate_cost_comparison_report(
-    human_performance, llm_performance
-)
+framework = LLMEvaluationFramework()
+report = framework.generate_performance_report()
+benchmark_results = framework.create_benchmark_suite()
 ```
 
-## Output Files
+#### Model Comparison
+```python
+from model_comparison import ModelComparison
 
-### CSV Exports
-- `overall_comparison.csv` - High-level performance metrics
-- `statistical_tests.csv` - Statistical significance test results
-- `complexity_comparison.csv` - Performance breakdown by task complexity
-- `quality_comparison.csv` - Performance breakdown by data quality condition
-- `task_level_comparison.csv` - Detailed task-by-task comparison
-- `analysis_summary.csv` - Metadata and summary statistics
+comparison = ModelComparison()
+stats_results = comparison.compare_models_statistical()
+comparison.create_comparison_visualizations()
+```
 
-### Visualizations
-- `enhanced_model_comparison_dashboard.png` - Comprehensive model comparison dashboard
-- `complexity_performance_matrix.png` - Detailed task complexity analysis matrix
-- `quality_robustness_analysis.png` - Data quality robustness analysis
-- `model_specific_comparison.png` - Individual model performance comparison
-- `model_complexity_analysis.png` - Model performance by complexity breakdown
-- `model_quality_analysis.png` - Model performance by quality breakdown
-- `overall_performance_comparison.png` - Overall performance metrics
-- `performance_by_complexity.png` - Performance across complexity levels
-- `performance_by_quality.png` - Performance across data quality conditions
-- `time_vs_accuracy_scatter.png` - Time vs accuracy trade-off analysis
-- `cost_analysis.png` - Cost-effectiveness comparison
-- `detailed_cost_analysis.png` - Advanced cost scenario analysis
+#### Prompt Effectiveness Analysis
+```python
+from prompt_effectiveness_analyzer import PromptEffectivenessAnalyzer
+
+analyzer = PromptEffectivenessAnalyzer()
+effectiveness = analyzer.analyze_prompt_effectiveness()
+analyzer.create_prompt_comparison_visualizations()
+```
+
+#### Complete Benchmarking Suite
+```python
+from benchmarking_suite import ComprehensiveBenchmarkingSuite
+
+suite = ComprehensiveBenchmarkingSuite()
+results, json_path, summary_path = suite.run_and_export_complete_suite()
+```
+
+## 📁 File Structure
+
+```
+experiments/llm_evaluation/
+├── evaluation_framework.py          # Core evaluation metrics
+├── model_comparison.py              # Statistical model comparison
+├── prompt_effectiveness_analyzer.py # Prompt length analysis
+├── benchmarking_suite.py           # Unified benchmarking system
+├── run_evaluation_demo.py          # Demo runner script
+├── README.md                       # This file
+├── performance_logs/
+│   └── llm_performance_results.csv # Performance data
+└── [Generated Output Directories]
+    ├── visualizations/             # Comparison charts
+    ├── prompt_analysis/           # Prompt effectiveness plots
+    └── benchmark_suite_results/   # Complete benchmark outputs
+```
+
+## 📈 Generated Outputs
 
 ### Reports
-- `phase5_analysis_report.md` - Comprehensive markdown report
-- `phase5_results.json` - Complete results in JSON format
+- **Performance Report**: Comprehensive metrics analysis
+- **Model Comparison Report**: Statistical comparison results
+- **Prompt Effectiveness Report**: Prompt length analysis
+- **Executive Summary**: High-level findings and recommendations
 
-## Configuration Options
+### Visualizations
+- **Overall Performance Comparison**: Accuracy, time, cost, confidence
+- **Performance by Complexity**: Easy/medium/hard task breakdown
+- **Performance by Quality**: Q0-Q3 data condition analysis
+- **Time vs Accuracy Scatter**: Trade-off analysis
+- **Cost Analysis**: Cost efficiency and optimization
+- **Error Detection Capabilities**: Data quality issue identification
+- **Token Efficiency Analysis**: Input/output token usage
+- **Prompt Comparison Charts**: Short/normal/long effectiveness
 
-### ComparisonConfig
-- `human_hourly_rate`: Hourly rate for human labor cost calculation (default: $25.00)
-- `output_dir`: Directory for CSV exports and reports
-- `visualization_dir`: Directory for generated plots
-- `export_csv`: Enable/disable CSV export
-- `generate_visualizations`: Enable/disable visualization generation
+### Data Exports
+- **Benchmark Results JSON**: Complete numerical results
+- **Statistical Analysis**: Significance testing results
+- **Manufacturing Metrics**: Domain-specific performance data
 
-### Cost Analysis Scenarios
-The cost analyzer includes multiple predefined scenarios:
-- Manufacturing Technician ($25/hr)
-- Quality Assurance Specialist ($35/hr)
-- Data Analyst ($45/hr)
-- Senior Engineer ($65/hr)
+## 🎯 Task Prompt Variations
 
-Each scenario includes overhead multipliers, training costs, and setup costs.
+The system supports three prompt lengths for each task complexity:
 
-## Statistical Methods
+### Short Prompts
+- Minimal, concise instructions
+- Fastest processing time
+- Lower token usage
+- Suitable for high-volume tasks
 
-### Accuracy Comparison
-- **Chi-square test**: Tests for significant differences in accuracy rates between human and LLM performance
-- **Effect size**: Calculates practical significance of accuracy differences
+### Normal Prompts  
+- Balanced detail and clarity
+- Optimal accuracy-efficiency trade-off
+- Recommended for most use cases
 
-### Time Comparison
-- **Mann-Whitney U test**: Non-parametric test for completion time differences
-- **Speedup factor**: Ratio of human to LLM completion times
+### Long Prompts
+- Comprehensive, detailed instructions
+- Highest accuracy potential
+- Best for complex, critical tasks
+- Current baseline format
 
-### Cost Analysis
-- **ROI calculation**: Return on investment considering accuracy and error costs
-- **Break-even analysis**: Number of tasks needed to justify LLM implementation
-- **Total cost of ownership**: Includes setup, training, and operational costs
+## 📊 Benchmarking Methodology
 
-## Requirements
+### Scoring System
+- **Accuracy Weight**: 40%
+- **Speed Weight**: 20%
+- **Cost Weight**: 15%
+- **Confidence Weight**: 15%
+- **Error Detection Weight**: 10%
 
-```
-pandas>=1.3.0
-numpy>=1.20.0
-matplotlib>=3.3.0
-seaborn>=0.11.0
-scipy>=1.7.0
-```
+### Statistical Tests
+- **Chi-square test**: Accuracy comparison
+- **Mann-Whitney U test**: Time comparison
+- **Confidence intervals**: Performance ranges
 
-## Data Format Requirements
+### Manufacturing Metrics
+- **Data Quality Handling**: Performance across Q0-Q3 conditions
+- **Task Complexity Performance**: Easy/medium/hard breakdown
+- **Cross-System Validation**: Multi-source integration success
+- **Domain Accuracy**: Manufacturing-specific task performance
 
-### Human Data CSV
-Required columns:
-- `task_id`: Unique task identifier
-- `completion_time_sec`: Task completion time in seconds
-- `accuracy` or `is_correct`: Binary accuracy (0/1)
-- `complexity`: Task complexity level (easy/medium/hard)
-- `quality_condition` or `data quality`: Data quality condition (Q0/Q1/Q2/Q3)
+## 🔧 Configuration
 
-### LLM Data CSV
-Required columns:
-- `task_id`: Unique task identifier matching human data
-- `completion_time_sec`: Task completion time in seconds
-- `is_correct`: Binary accuracy (True/False or 1/0)
-- `complexity`: Task complexity level
-- `quality_condition`: Data quality condition
-- `total_cost_usd`: API cost per task
-- `model`: LLM model identifier
+### Task Prompt Configurations
+Edit `config/task_prompts_variations.yaml` to modify:
+- Prompt templates for each length
+- Response format templates
+- Task-specific instructions
 
-## Troubleshooting
+### Evaluation Parameters
+Modify evaluation settings in the respective Python files:
+- Benchmark scoring weights
+- Statistical test parameters
+- Visualization styles
 
-### Common Issues
+## 📋 Requirements
 
-1. **No common task_ids found**: Ensure task_id formats match between human and LLM datasets
-2. **Encoding errors**: Human CSV may have BOM encoding - the system handles this automatically
-3. **Missing columns**: Check that required columns exist and are properly named
-4. **Empty results**: Verify that both datasets contain data for the same tasks
+- Python 3.8+
+- pandas, numpy, matplotlib, seaborn
+- scipy (for statistical tests)
+- PyYAML (for configuration files)
 
-### Debug Mode
+## 🎯 Use Cases
 
-Add debug prints by modifying the comparison class:
+### Model Selection
+- Compare multiple LLM providers
+- Identify best model for specific task types
+- Optimize cost vs performance trade-offs
 
-```python
-comparison = HumanVsLLMComparison(config)
-comparison.load_human_data(human_path)
-print(f"Human columns: {comparison.human_data.columns.tolist()}")
-print(f"Human task_ids: {sorted(comparison.human_data['task_id'].unique())}")
-```
+### Prompt Engineering
+- Evaluate prompt length effectiveness
+- Optimize token usage
+- Balance accuracy and efficiency
+
+### Performance Monitoring
+- Track model performance over time
+- Identify degradation or improvements
+- Benchmark against baselines
+
+### Manufacturing Domain Analysis
+- Assess manufacturing-specific capabilities
+- Evaluate data quality handling
+- Optimize for industrial use cases
+
+## 🚀 Next Steps
+
+1. **Run the demo** to see the system in action
+2. **Review generated reports** for insights
+3. **Customize prompts** based on effectiveness analysis
+4. **Implement continuous evaluation** for new models
+5. **Extend metrics** for specific use cases
+
+## 📞 Support
+
+For questions or issues with the evaluation system, please refer to the generated reports and visualizations for detailed analysis results.

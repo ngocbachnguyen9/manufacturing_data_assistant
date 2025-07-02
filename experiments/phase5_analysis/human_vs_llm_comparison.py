@@ -27,6 +27,63 @@ warnings.filterwarnings('ignore')
 plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
+# Provider-based color mapping for consistent visualization
+PROVIDER_COLORS = {
+    'claude': {
+        'base': '#1f77b4',
+        'variants': ['#1f77b4', '#17becf', '#aec7e8', '#c5dbf1']
+    },
+    'gpt': {
+        'base': '#2ca02c', 
+        'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90']
+    },
+    'openai': {
+        'base': '#2ca02c',
+        'variants': ['#2ca02c', '#98df8a', '#d9f2d9', '#90ee90'] 
+    },
+    'deepseek': {
+        'base': '#ff7f0e',
+        'variants': ['#ff7f0e', '#ffbb78', '#ffd4aa', '#ffe5cc']
+    },
+    'o4': {
+        'base': '#9467bd',
+        'variants': ['#9467bd', '#c5b0d5', '#d4c4e0', '#e0d0e8']
+    }
+}
+
+def get_provider_color(model_name: str, model_list: List[str]) -> str:
+    """Get color for a model based on its provider family"""
+    model_lower = model_name.lower()
+    
+    # Determine provider
+    if 'claude' in model_lower:
+        provider = 'claude'
+    elif 'gpt' in model_lower or 'openai' in model_lower:
+        provider = 'gpt'
+    elif 'deepseek' in model_lower:
+        provider = 'deepseek'
+    elif 'o4' in model_lower:
+        provider = 'o4'
+    else:
+        provider = 'deepseek'  # Default fallback
+    
+    # Get models from same provider
+    provider_models = [m for m in model_list if 
+                      (provider == 'claude' and 'claude' in m.lower()) or
+                      (provider == 'gpt' and ('gpt' in m.lower() or 'openai' in m.lower())) or
+                      (provider == 'deepseek' and 'deepseek' in m.lower()) or
+                      (provider == 'o4' and 'o4' in m.lower())]
+    
+    # Get index within provider family
+    try:
+        provider_index = provider_models.index(model_name)
+    except ValueError:
+        provider_index = 0
+    
+    # Return appropriate color variant
+    color_variants = PROVIDER_COLORS[provider]['variants']
+    return color_variants[provider_index % len(color_variants)]
+
 @dataclass
 class ComparisonConfig:
     """Configuration for human vs LLM comparison analysis"""
@@ -678,6 +735,24 @@ class HumanVsLLMComparison:
         quality_plots = self._plot_individual_quality_analysis()
         generated_plots.update(quality_plots)
 
+        # 12. Human Performance Distribution
+        self._plot_human_performance_distribution()
+        human_dist_path = Path(self.config.visualization_dir) / "human_performance_distribution.png"
+        plt.savefig(human_dist_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['human_performance_distribution'] = str(human_dist_path)
+
+        # 13. LLM Failure Classification Analysis
+        failure_plots = self._plot_llm_failure_analysis()
+        generated_plots.update(failure_plots)
+
+        # 14. Speed Chart in Seconds (with human baseline)
+        self._plot_speed_in_seconds()
+        speed_seconds_path = Path(self.config.visualization_dir) / "speed_chart_seconds.png"
+        plt.savefig(speed_seconds_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['speed_chart_seconds'] = str(speed_seconds_path)
+
         print(f"Generated {len(generated_plots)} visualization files:")
         for name, path in generated_plots.items():
             print(f"  {name}: {path}")
@@ -805,9 +880,11 @@ class HumanVsLLMComparison:
         x = np.arange(len(qualities))
         width = 0.35
 
-        # Accuracy by quality
-        axes[0].bar(x - width/2, human_accuracy, width, label='Human', color='#FF6B6B', alpha=0.8)
-        axes[0].bar(x + width/2, llm_accuracy, width, label='LLM (Avg)', color='#4ECDC4', alpha=0.8)
+        # Accuracy by quality - with solid black borders
+        axes[0].bar(x - width/2, human_accuracy, width, label='Human Baseline', 
+                   color='#FF6B6B', alpha=0.8, edgecolor='black', linewidth=1.5)
+        axes[0].bar(x + width/2, llm_accuracy, width, label='LLM (Avg)', 
+                   color='#4ECDC4', alpha=0.8, edgecolor='black', linewidth=1.5)
         axes[0].set_title('Accuracy by Data Quality')
         axes[0].set_ylabel('Accuracy Rate')
         axes[0].set_xlabel('Data Quality Condition')
@@ -815,16 +892,20 @@ class HumanVsLLMComparison:
         axes[0].set_xticklabels(qualities)
         axes[0].legend()
         axes[0].set_ylim(0, 1)
+        axes[0].grid(True, alpha=0.3)
 
-        # Time by quality
-        axes[1].bar(x - width/2, human_time, width, label='Human', color='#FF6B6B', alpha=0.8)
-        axes[1].bar(x + width/2, llm_time, width, label='LLM (Avg)', color='#4ECDC4', alpha=0.8)
+        # Time by quality - with solid black borders
+        axes[1].bar(x - width/2, human_time, width, label='Human Baseline', 
+                   color='#FF6B6B', alpha=0.8, edgecolor='black', linewidth=1.5)
+        axes[1].bar(x + width/2, llm_time, width, label='LLM (Avg)', 
+                   color='#4ECDC4', alpha=0.8, edgecolor='black', linewidth=1.5)
         axes[1].set_title('Average Time by Data Quality')
         axes[1].set_ylabel('Time (seconds)')
         axes[1].set_xlabel('Data Quality Condition')
         axes[1].set_xticks(x)
         axes[1].set_xticklabels(qualities)
         axes[1].legend()
+        axes[1].grid(True, alpha=0.3)
 
         plt.tight_layout()
 
@@ -1601,21 +1682,15 @@ class HumanVsLLMComparison:
             plot_best_models_by_complexity
         )
 
-        # 1. Complexity Accuracy Heatmap
-        self._plot_complexity_accuracy_heatmap(complexity_data, models, complexities)
+        # 1. Complexity Accuracy Heatmap (using the imported function)
         heatmap_path = Path(self.config.visualization_dir) / "complexity_accuracy_heatmap.png"
-        plt.savefig(heatmap_path, dpi=300, bbox_inches='tight')
-        plt.close()
+        plot_complexity_improvement_heatmap(complexity_data, models, complexities, heatmap_path)
         generated_plots['complexity_accuracy_heatmap'] = str(heatmap_path)
 
         # 2. Other complexity charts
         plot_complexity_performance_comparison(complexity_data, models, complexities,
                                              Path(self.config.visualization_dir) / "complexity_performance_comparison.png")
         generated_plots['complexity_performance_comparison'] = str(Path(self.config.visualization_dir) / "complexity_performance_comparison.png")
-
-        plot_complexity_improvement_heatmap(complexity_data, models, complexities,
-                                          Path(self.config.visualization_dir) / "complexity_improvement_heatmap.png")
-        generated_plots['complexity_improvement_heatmap'] = str(Path(self.config.visualization_dir) / "complexity_improvement_heatmap.png")
 
         plot_complexity_speed_analysis(complexity_data, models, complexities,
                                      Path(self.config.visualization_dir) / "complexity_speed_analysis.png")
@@ -1659,6 +1734,288 @@ class HumanVsLLMComparison:
         generated_plots['quality_robustness_ranking'] = str(Path(self.config.visualization_dir) / "quality_robustness_ranking.png")
 
         return generated_plots
+
+    def _plot_human_performance_distribution(self):
+        """Create distribution graph of human participant performance"""
+        if self.human_data is None:
+            print("No human data available for distribution plot")
+            return
+
+        fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+        fig.suptitle('Human Participant Performance Distribution', fontsize=16, fontweight='bold')
+
+        # 1. Accuracy distribution by participant
+        participant_accuracy = self.human_data.groupby('participant_id')['is_correct'].mean()
+        
+        axes[0, 0].hist(participant_accuracy, bins=8, alpha=0.7, color='skyblue', edgecolor='black', linewidth=1.5)
+        mean_acc = participant_accuracy.mean()
+        median_acc = participant_accuracy.median()
+        axes[0, 0].axvline(mean_acc, color='red', linestyle='-', linewidth=2, label=f'Mean: {mean_acc:.3f}')
+        axes[0, 0].axvline(median_acc, color='green', linestyle='-', linewidth=2, label=f'Median: {median_acc:.3f}')
+        axes[0, 0].set_title('Accuracy Distribution by Participant')
+        axes[0, 0].set_xlabel('Accuracy Rate')
+        axes[0, 0].set_ylabel('Number of Participants')
+        axes[0, 0].legend()
+        axes[0, 0].grid(True, alpha=0.3)
+
+        # 2. Time distribution by participant
+        participant_time = self.human_data.groupby('participant_id')['completion_time_sec'].mean()
+        
+        axes[0, 1].hist(participant_time, bins=8, alpha=0.7, color='lightcoral', edgecolor='black', linewidth=1.5)
+        mean_time = participant_time.mean()
+        median_time = participant_time.median()
+        axes[0, 1].axvline(mean_time, color='red', linestyle='-', linewidth=2, label=f'Mean: {mean_time:.1f}s')
+        axes[0, 1].axvline(median_time, color='green', linestyle='-', linewidth=2, label=f'Median: {median_time:.1f}s')
+        axes[0, 1].set_title('Average Time Distribution by Participant')
+        axes[0, 1].set_xlabel('Average Completion Time (seconds)')
+        axes[0, 1].set_ylabel('Number of Participants')
+        axes[0, 1].legend()
+        axes[0, 1].grid(True, alpha=0.3)
+
+        # 3. Participant performance scatter (accuracy vs time)
+        axes[1, 0].scatter(participant_time, participant_accuracy, s=100, alpha=0.7, 
+                          color='purple', edgecolors='black', linewidth=1.5)
+        
+        # Add participant labels
+        for participant_id in participant_accuracy.index:
+            acc = participant_accuracy[participant_id]
+            time = participant_time[participant_id]
+            axes[1, 0].annotate(participant_id, (time, acc), xytext=(5, 5), 
+                               textcoords='offset points', fontsize=10, fontweight='bold')
+        
+        axes[1, 0].set_xlabel('Average Completion Time (seconds)')
+        axes[1, 0].set_ylabel('Accuracy Rate')
+        axes[1, 0].set_title('Individual Participant Performance')
+        axes[1, 0].grid(True, alpha=0.3)
+
+        # 4. Performance by complexity for each participant
+        participant_ids = self.human_data['participant_id'].unique()[:5]  # Show top 5 participants
+        complexities = ['easy', 'medium', 'hard']
+        
+        x = np.arange(len(complexities))
+        width = 0.15
+        colors = plt.cm.tab10(np.linspace(0, 1, len(participant_ids)))
+        
+        for i, participant in enumerate(participant_ids):
+            participant_data = self.human_data[self.human_data['participant_id'] == participant]
+            complexity_accuracy = []
+            
+            for complexity in complexities:
+                complexity_data = participant_data[participant_data['complexity'] == complexity]
+                if len(complexity_data) > 0:
+                    complexity_accuracy.append(complexity_data['is_correct'].mean())
+                else:
+                    complexity_accuracy.append(0)
+            
+            axes[1, 1].bar(x + i * width, complexity_accuracy, width, 
+                          label=participant, color=colors[i], alpha=0.8, edgecolor='black', linewidth=1)
+        
+        axes[1, 1].set_title('Accuracy by Complexity (Individual Participants)')
+        axes[1, 1].set_xlabel('Task Complexity')
+        axes[1, 1].set_ylabel('Accuracy Rate')
+        axes[1, 1].set_xticks(x + width * (len(participant_ids) - 1) / 2)
+        axes[1, 1].set_xticklabels([c.capitalize() for c in complexities])
+        axes[1, 1].legend(bbox_to_anchor=(1.05, 1), loc='upper left')
+        axes[1, 1].grid(True, alpha=0.3)
+
+        plt.tight_layout()
+
+    def _plot_llm_failure_analysis(self):
+        """Create comprehensive LLM failure classification analysis"""
+        if self.llm_data is None:
+            print("No LLM data available for failure analysis")
+            return {}
+
+        generated_plots = {}
+
+        # Classify failures based on accuracy and confidence
+        llm_analysis_data = self.llm_data.copy()
+        
+        # Create failure categories
+        def classify_failure(row):
+            if row['is_correct'] == 1:
+                if row.get('final_confidence', 1.0) >= 0.8:
+                    return 'success_high_confidence'
+                else:
+                    return 'success_low_confidence'
+            else:
+                if row.get('final_confidence', 0.0) >= 0.5:
+                    return 'failure_high_confidence'
+                else:
+                    return 'failure_low_confidence'
+
+        llm_analysis_data['failure_category'] = llm_analysis_data.apply(classify_failure, axis=1)
+
+        # 1. Failure distribution by model family
+        fig1, axes1 = plt.subplots(2, 2, figsize=(16, 12))
+        fig1.suptitle('LLM Failure Analysis by Model and Conditions', fontsize=16, fontweight='bold')
+
+        # Get model families
+        model_families = {}
+        for model in llm_analysis_data['model'].unique():
+            if 'claude' in model.lower():
+                family = 'Claude'
+            elif 'gpt' in model.lower() or 'openai' in model.lower():
+                family = 'OpenAI/GPT'
+            elif 'deepseek' in model.lower():
+                family = 'DeepSeek'
+            elif 'o4' in model.lower():
+                family = 'OpenAI o4'
+            else:
+                family = 'Other'
+            model_families[model] = family
+
+        llm_analysis_data['model_family'] = llm_analysis_data['model'].map(model_families)
+
+        # Family-level failure analysis
+        family_failure = llm_analysis_data.groupby(['model_family', 'failure_category']).size().unstack(fill_value=0)
+        family_failure_pct = family_failure.div(family_failure.sum(axis=1), axis=0) * 100
+
+        family_failure_pct.plot(kind='bar', stacked=True, ax=axes1[0, 0], 
+                               colormap='RdYlGn_r', alpha=0.8, edgecolor='black', linewidth=1)
+        axes1[0, 0].set_title('Failure Distribution by Model Family')
+        axes1[0, 0].set_xlabel('Model Family')
+        axes1[0, 0].set_ylabel('Percentage')
+        axes1[0, 0].legend(title='Category', bbox_to_anchor=(1.05, 1), loc='upper left')
+        axes1[0, 0].grid(True, alpha=0.3)
+        axes1[0, 0].tick_params(axis='x', rotation=45)
+
+        # 2. Failure by complexity
+        complexity_failure = llm_analysis_data.groupby(['complexity', 'failure_category']).size().unstack(fill_value=0)
+        complexity_failure_pct = complexity_failure.div(complexity_failure.sum(axis=1), axis=0) * 100
+
+        complexity_failure_pct.plot(kind='bar', stacked=True, ax=axes1[0, 1], 
+                                   colormap='RdYlGn_r', alpha=0.8, edgecolor='black', linewidth=1)
+        axes1[0, 1].set_title('Failure Distribution by Task Complexity')
+        axes1[0, 1].set_xlabel('Task Complexity')
+        axes1[0, 1].set_ylabel('Percentage')
+        axes1[0, 1].legend(title='Category', bbox_to_anchor=(1.05, 1), loc='upper left')
+        axes1[0, 1].grid(True, alpha=0.3)
+        axes1[0, 1].tick_params(axis='x', rotation=0)
+
+        # 3. Failure by data quality
+        quality_failure = llm_analysis_data.groupby(['quality_condition', 'failure_category']).size().unstack(fill_value=0)
+        quality_failure_pct = quality_failure.div(quality_failure.sum(axis=1), axis=0) * 100
+
+        quality_failure_pct.plot(kind='bar', stacked=True, ax=axes1[1, 0], 
+                                colormap='RdYlGn_r', alpha=0.8, edgecolor='black', linewidth=1)
+        axes1[1, 0].set_title('Failure Distribution by Data Quality')
+        axes1[1, 0].set_xlabel('Data Quality Condition')
+        axes1[1, 0].set_ylabel('Percentage')
+        axes1[1, 0].legend(title='Category', bbox_to_anchor=(1.05, 1), loc='upper left')
+        axes1[1, 0].grid(True, alpha=0.3)
+        axes1[1, 0].tick_params(axis='x', rotation=0)
+
+        # 4. Reconciliation issues analysis
+        reconciliation_issues = []
+        for _, row in llm_analysis_data.iterrows():
+            if pd.notna(row.get('reconciliation_issues')):
+                try:
+                    issues = eval(row['reconciliation_issues']) if isinstance(row['reconciliation_issues'], str) else row['reconciliation_issues']
+                    if isinstance(issues, list):
+                        reconciliation_issues.extend(issues)
+                except:
+                    reconciliation_issues.append(str(row['reconciliation_issues']))
+
+        # Count common error types
+        error_types = {}
+        for issue in reconciliation_issues:
+            issue_str = str(issue).lower()
+            if 'missing' in issue_str:
+                error_types['Missing Data'] = error_types.get('Missing Data', 0) + 1
+            elif 'no logs found' in issue_str:
+                error_types['No Logs Found'] = error_types.get('No Logs Found', 0) + 1
+            elif 'insufficient data' in issue_str:
+                error_types['Insufficient Data'] = error_types.get('Insufficient Data', 0) + 1
+            elif 'skipped' in issue_str:
+                error_types['Process Skipped'] = error_types.get('Process Skipped', 0) + 1
+            else:
+                error_types['Other'] = error_types.get('Other', 0) + 1
+
+        if error_types:
+            error_df = pd.DataFrame(list(error_types.items()), columns=['Error Type', 'Count'])
+            error_df = error_df.sort_values('Count', ascending=True)
+            
+            axes1[1, 1].barh(error_df['Error Type'], error_df['Count'], 
+                           color='lightcoral', alpha=0.8, edgecolor='black', linewidth=1)
+            axes1[1, 1].set_title('Common Reconciliation Error Types')
+            axes1[1, 1].set_xlabel('Count')
+            axes1[1, 1].grid(True, alpha=0.3)
+
+            # Add value labels
+            for i, v in enumerate(error_df['Count']):
+                axes1[1, 1].text(v + max(error_df['Count']) * 0.01, i, str(v), 
+                                va='center', fontweight='bold')
+
+        plt.tight_layout()
+        
+        # Save failure analysis
+        failure_path = Path(self.config.visualization_dir) / "llm_failure_analysis.png"
+        plt.savefig(failure_path, dpi=300, bbox_inches='tight')
+        plt.close()
+        generated_plots['llm_failure_analysis'] = str(failure_path)
+
+        return generated_plots
+
+    def _plot_speed_in_seconds(self):
+        """Create speed chart showing time in seconds with human baseline"""
+        if 'model_specific_comparison' not in self.comparison_results:
+            print("No model-specific data available for speed chart")
+            return
+
+        model_data = self.comparison_results['model_specific_comparison']
+        models = list(model_data.keys())
+
+        if not models:
+            return
+
+        fig, ax = plt.subplots(1, 1, figsize=(14, 8))
+
+        # Get human baseline time
+        human_avg_time = model_data[models[0]]['human_avg_time']
+        
+        # Get model times (convert from speed factor back to actual time)
+        model_times = []
+        model_names = []
+        
+        for model in models:
+            model_time = model_data[model]['model_avg_time']
+            model_times.append(model_time)
+            model_names.append(model.replace('-', '***REMOVED***n'))
+
+        # Create bars with provider-based colors
+        bar_colors = [get_provider_color(model, models) for model in models]
+        
+        bars = ax.bar(range(len(models)), model_times, 
+                     color=bar_colors, alpha=0.8, edgecolor='black', linewidth=1.5)
+
+        # Add human baseline as red dashed line
+        ax.axhline(y=human_avg_time, color='red', linestyle='--', linewidth=3, alpha=0.8,
+                  label=f'Human Average: {human_avg_time:.1f}s')
+
+        ax.set_title('Model Response Time vs Human Baseline', fontsize=16, fontweight='bold')
+        ax.set_xlabel('LLM Model', fontsize=12, fontweight='bold')
+        ax.set_ylabel('Completion Time (seconds)', fontsize=12, fontweight='bold')
+        ax.set_xticks(range(len(models)))
+        ax.set_xticklabels(model_names, fontsize=10, rotation=45, ha='right')
+        ax.legend()
+        ax.grid(True, alpha=0.3, axis='y')
+
+        # Add value labels on bars
+        for i, (bar, time) in enumerate(zip(bars, model_times)):
+            ax.text(bar.get_x() + bar.get_width()/2, time + max(model_times) * 0.02,
+                   f'{time:.1f}s', ha='center', va='bottom', fontweight='bold')
+
+        # Add speedup annotations
+        for i, (bar, model) in enumerate(zip(bars, models)):
+            speedup = model_data[model]['time_speedup_factor']
+            if speedup != float('inf'):
+                ax.text(bar.get_x() + bar.get_width()/2, model_times[i] / 2,
+                       f'{speedup:.1f}x faster', ha='center', va='center', 
+                       fontweight='bold', color='white', fontsize=9,
+                       bbox=dict(boxstyle='round,pad=0.3', facecolor='black', alpha=0.7))
+
+        plt.tight_layout()
 
     def run_complete_analysis(self, human_csv_path: str, llm_results_dir: str) -> Dict[str, Any]:
         """Run the complete Phase 5 analysis pipeline"""

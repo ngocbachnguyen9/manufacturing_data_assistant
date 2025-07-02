@@ -262,7 +262,7 @@
       "gpt-4o-mini-2024-07-18",
       "o4-mini-2025-04-16"
     ],
-    "analysis_timestamp": "2025-06-26T19:41:18.951208"
+    "analysis_timestamp": "2025-07-01T19:57:37.353295"
   },
   "model_complexity_analysis": {
     "claude-sonnet-4-20250514": {
@@ -795,5 +795,30 @@
         "model_sample_size": 45
       }
     }
+  },
+  "generated_plots": {
+    "overall_performance": "experiments/phase5_analysis/visualizations/overall_performance_comparison.png",
+    "performance_by_complexity": "experiments/phase5_analysis/visualizations/performance_by_complexity.png",
+    "performance_by_quality": "experiments/phase5_analysis/visualizations/performance_by_quality.png",
+    "time_vs_accuracy": "experiments/phase5_analysis/visualizations/time_vs_accuracy_scatter.png",
+    "cost_analysis": "experiments/phase5_analysis/visualizations/cost_analysis.png",
+    "model_specific_comparison": "experiments/phase5_analysis/visualizations/model_specific_comparison.png",
+    "model_complexity_analysis": "experiments/phase5_analysis/visualizations/model_complexity_analysis.png",
+    "model_quality_analysis": "experiments/phase5_analysis/visualizations/model_quality_analysis.png",
+    "model_accuracy_vs_speed_scatter": "experiments/phase5_analysis/visualizations/model_accuracy_vs_speed_scatter.png",
+    "model_accuracy_ranking": "experiments/phase5_analysis/visualizations/model_accuracy_ranking.png",
+    "model_speed_ranking": "experiments/phase5_analysis/visualizations/model_speed_ranking.png",
+    "statistical_significance_matrix": "experiments/phase5_analysis/visualizations/statistical_significance_matrix.png",
+    "performance_radar_chart": "experiments/phase5_analysis/visualizations/performance_radar_chart.png",
+    "accuracy_improvement_bars": "experiments/phase5_analysis/visualizations/accuracy_improvement_bars.png",
+    "complexity_accuracy_heatmap": "experiments/phase5_analysis/visualizations/complexity_accuracy_heatmap.png",
+    "complexity_performance_comparison": "experiments/phase5_analysis/visualizations/complexity_performance_comparison.png",
+    "complexity_speed_analysis": "experiments/phase5_analysis/visualizations/complexity_speed_analysis.png",
+    "best_models_by_complexity": "experiments/phase5_analysis/visualizations/best_models_by_complexity.png",
+    "quality_accuracy_heatmap": "experiments/phase5_analysis/visualizations/quality_accuracy_heatmap.png",
+    "quality_robustness_ranking": "experiments/phase5_analysis/visualizations/quality_robustness_ranking.png",
+    "human_performance_distribution": "experiments/phase5_analysis/visualizations/human_performance_distribution.png",
+    "llm_failure_analysis": "experiments/phase5_analysis/visualizations/llm_failure_analysis.png",
+    "speed_chart_seconds": "experiments/phase5_analysis/visualizations/speed_chart_seconds.png"
   }
 }
