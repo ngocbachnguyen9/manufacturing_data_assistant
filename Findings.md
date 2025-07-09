@@ -8,7 +8,7 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 - **Best Overall Performance**: DeepSeek Reasoner (97.4% accuracy, 159.8s avg time)
 - **Most Efficient**: Claude Haiku (93.0% accuracy, 7.9s avg time, 21.2× speed improvement)
 - **Human Baseline**: 63.3% accuracy, 166.2s average completion time
-- **Cost Analysis**: All models evaluated are free-tier implementations ($0.00 cost)
+- **Cost Analysis**: All models evaluated are almost free-tier implementations due to low token consumption
 - **Confidence Calibration**: Significant variation in self-assessment accuracy across models
 
 ## 1. Overall Model Performance Rankings
