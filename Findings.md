@@ -27,6 +27,18 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 
 *Sample size: 270 tasks per model, 90 human baseline tasks*
 
+### Overall Performance Distribution (Human vs. LLM)
+
+Boxplot analysis of overall performance provides deeper insights into the distribution of results beyond simple averages:
+
+-   **Accuracy Distribution**:
+    -   **LLMs**: Exhibit a higher median accuracy (approx. 85%) compared to the human median (approx. 60%). The interquartile range (IQR) for LLMs is tighter (75% to 90%), indicating more consistent performance in the middle 50% of tasks. However, the presence of low-performing outliers (as low as 5-17%) suggests that LLMs can occasionally fail significantly on certain tasks.
+    -   **Humans**: Show a wider IQR (approx. 50% to 80%), reflecting greater variability among participants. The overall range is from 30% to 100%, indicating that while the average is lower, no human participant performed as poorly as the LLM outliers.
+
+-   **Completion Time Distribution**:
+    -   **LLMs**: Demonstrate a clear and significant advantage in speed. The median completion time is approximately 50 seconds, with a very tight IQR (approx. 45 to 60 seconds). This indicates high consistency and speed.
+    -   **Humans**: Are substantially slower, with a median time of approximately 165 seconds and a much wider IQR (approx. 140 to 185 seconds). The fastest human performance (approx. 115 seconds) is still significantly slower than the slowest LLM performance (approx. 80 seconds).
+
 ### Manufacturing-Specific Performance Insights
 
 **Critical Finding**: Only **DeepSeek Reasoner** and **Claude models** consistently exceed human performance across all manufacturing scenarios, indicating superior capability for:
@@ -186,7 +198,12 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 
 *Analysis based on 1,710 total task evaluations (90 human baseline + 1,620 LLM evaluations) across 6 models and 4 data quality conditions.*
 
-## 6. Token Usage Analysis
+## 6. Token Usage and Cost Analysis
+
+### Costs per task
+Human: USD $1.154 (based on the average salary of a Data Analyst at $25/hr on Indeed.com and average time taken per task for humans)
+LLM: USD $0.0004 (based on total tokens across all tasks divided by the number of task for each model, and an average were taken)
+
 
 ### Overall Token Consumption by Model
 
@@ -314,6 +331,13 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 
 ## 7. Statistical Significance and Correlation Analysis
 
+#### Statistical Significance Test Types
+
+- **Chi-square Test**: For accuracy comparisons (categorical)
+- **Mann-Whitney U Test**: For completion time (non-parametric)
+- **Data Type**: p-value (Float)
+- **Purpose**: Validate comparison reliability
+
 ### Performance Correlation Matrix
 
 **Accuracy vs Confidence Correlation**: r = 0.412 (moderate positive correlation)
@@ -352,6 +376,7 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 - F-statistic: 89.23, p < 0.001 (highly significant model differences)
 - Effect size (η²): 0.421 (very large effect)
 - GPT-4o Mini and DeepSeek Reasoner significantly more verbose
+
 
 ## 7. Technical Appendices
 
@@ -406,12 +431,5 @@ This study evaluates six Large Language Models (LLMs) against human performance 
 - **Medium Risk**: O4-Mini for non-critical applications only
 - **Low Risk**: All Claude models and DeepSeek Reasoner for production use
 
----
-
-**Referenced Visualizations**:
-- `model_accuracy_ranking.png`, `model_time_ranking.png`, `model_confidence_ranking.png`
-- `complexity_performance_comparison.png`, `quality_comparison_bars.png`
-- `confidence_by_complexity.png`, `confidence_by_quality.png`
-- `statistical_significance_matrix.png`, `performance_radar_chart.png`
 
 *Complete analysis dataset: 1,710 task evaluations, 22 generated visualization charts, 95% confidence interval*
