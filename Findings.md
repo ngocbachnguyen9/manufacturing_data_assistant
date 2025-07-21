@@ -367,6 +367,11 @@ LLM: USD $0.0004 (based on total tokens across all tasks divided by the number o
 - O4-Mini: p > 0.05 (not significant)
 - GPT-4o Mini: p < 0.01 (significant degradation)
 
+**Task Type Impact** (ANOVA):
+- F-statistic: 0.09, p > 0.05 (not significant)
+- Effect size (η²): 0.01 (negligible effect)
+- Insight: While individual model performance varies, the average accuracy across all models is not significantly impacted by task type. The divergence is seen in the variance, not the mean of all models.
+
 **Data Quality Impact** (ANOVA):
 - F-statistic: 12.47, p < 0.001 (highly significant)
 - Effect size (η²): 0.186 (large effect)

@@ -1,0 +1,47 @@
+sequenceDiagram
+    participant User
+    participant MasterAgent
+    participant LLM as LLM Provider
+    participant DataRetrievalAgent
+    participant Tools
+    participant ReconciliationAgent
+    participant SynthesisAgent
+
+    User->>+MasterAgent: run_query(query)
+
+    rect rgb(240, 240, 240)
+        note over MasterAgent, LLM: Planning Phase
+        MasterAgent->>+LLM: _decompose_task(query)
+        LLM-->>-MasterAgent: Returns: {plan, complexity}
+    end
+
+    rect rgb(240, 240, 240)
+        note over MasterAgent, DataRetrievalAgent: Execution Phase
+        loop For each step in plan
+            MasterAgent->>+DataRetrievalAgent: retrieve(tool_name, resolved_input)
+            DataRetrievalAgent->>+Tools: run(input)
+            Tools-->>-DataRetrievalAgent: Returns: tool_result
+            DataRetrievalAgent-->>-MasterAgent: Returns: tool_result (added to context)
+        end
+    end
+
+    rect rgb(240, 240, 240)
+        note over MasterAgent, ReconciliationAgent: Reconciliation Phase
+        MasterAgent->>+ReconciliationAgent: reconcile(full_context)
+        note right of ReconciliationAgent: Checks for errors, validates data,<br>and calculates confidence score.
+        ReconciliationAgent-->>-MasterAgent: Returns: reconciliation_summary {issues, confidence, validated_data}
+    end
+
+    alt Critical issues found
+        MasterAgent->>MasterAgent: Re-attempts planning and execution with error context
+    end
+
+    rect rgb(240, 240, 240)
+        note over MasterAgent, SynthesisAgent: Synthesis Phase
+        MasterAgent->>+SynthesisAgent: synthesize(reconciliation_summary, query, complexity)
+        SynthesisAgent->>+LLM: generate(synthesis_prompt)
+        LLM-->>-SynthesisAgent: Returns: human_readable_report
+        SynthesisAgent-->>-MasterAgent: Returns: human_readable_report
+    end
+
+    MasterAgent-->>-User: Returns: final_report

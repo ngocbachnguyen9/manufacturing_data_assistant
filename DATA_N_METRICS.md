@@ -195,11 +195,7 @@ This document provides detailed information about data sources, metrics calculat
 - **Data Type**: Float (multiplier)
 - **Purpose**: Economic comparison
 
-#### 4. Statistical Significance
-- **Chi-square Test**: For accuracy comparisons (categorical)
-- **Mann-Whitney U Test**: For completion time (non-parametric)
-- **Data Type**: p-value (Float)
-- **Purpose**: Validate comparison reliability
+
 
 ### Advanced Analysis Metrics
 
