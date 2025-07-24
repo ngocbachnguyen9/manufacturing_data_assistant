@@ -246,6 +246,14 @@ class BoxWhiskerComparison:
             self.aggregated_data[self.aggregated_data['source'] == 'LLM']['accuracy'].values
         ]
 
+        # Save accuracy data to CSV
+        accuracy_df = pd.DataFrame({
+            'Human_Accuracy': pd.Series(accuracy_data[0]),
+            'LLM_Accuracy': pd.Series(accuracy_data[1])
+        })
+        accuracy_df.to_csv(self.output_dir / "overall_accuracy_boxplot_data.csv", index=False)
+        print(f"  Saved accuracy data: overall_accuracy_boxplot_data.csv")
+
         bp1 = ax1.boxplot(accuracy_data, labels=['Human***REMOVED***n(Participant Avg)', 'LLM***REMOVED***n(Task Avg)'], patch_artist=True)
         bp1['boxes'][0].set_facecolor(self.colors['human'])
         bp1['boxes'][1].set_facecolor(self.colors['llm'])
@@ -266,6 +274,14 @@ class BoxWhiskerComparison:
             self.aggregated_data[self.aggregated_data['source'] == 'Human']['completion_time_sec'].values,
             self.aggregated_data[self.aggregated_data['source'] == 'LLM']['completion_time_sec'].values
         ]
+
+        # Save time data to CSV
+        time_df = pd.DataFrame({
+            'Human_Time_Sec': pd.Series(time_data[0]),
+            'LLM_Time_Sec': pd.Series(time_data[1])
+        })
+        time_df.to_csv(self.output_dir / "overall_time_boxplot_data.csv", index=False)
+        print(f"  Saved time data: overall_time_boxplot_data.csv")
 
         bp2 = ax2.boxplot(time_data, labels=['Human***REMOVED***n(Participant Avg)', 'LLM***REMOVED***n(Task Avg)'], patch_artist=True)
         bp2['boxes'][0].set_facecolor(self.colors['human'])

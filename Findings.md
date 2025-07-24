@@ -392,7 +392,7 @@ LLM: USD $0.0004 (based on total tokens across all tasks divided by the number o
 - **Task Distribution**: 30 easy, 30 medium, 30 hard complexity levels
 - **Quality Conditions**: Q0 (normal), Q1 (spaces), Q2 (missing chars), Q3 (missing records)
 - **Evaluation Method**: Unbiased multi-judge consensus scoring
-- **Human Baseline**: 90 participants, manufacturing domain experts
+- **Human Baseline**: 9 participants, manufacturing domain experts
 
 **Data Collection Protocol**:
 - **Timing Precision**: Measured to nearest second
