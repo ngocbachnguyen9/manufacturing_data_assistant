@@ -19,9 +19,9 @@ The project is organized into five sequential phases:
 
 Generates experimental datasets with controlled data quality conditions:
 - Q0: Perfect baseline data (0% corruption)
-- Q1: Space injection corruption (~15%)
-- Q2: Character missing corruption (~12%)
-- Q3: Missing records corruption (~7%)
+- Q1: Space injection corruption (~10%)
+- Q2: Character missing corruption (~10%)
+- Q3: Missing records corruption (~10%)
 
 **Key Components:**
 - `run_phase1_generation.py`: Main data generation script
